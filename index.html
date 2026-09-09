@@ -416,7 +416,7 @@
   .topbar .badge{position:absolute; top:2px; right:2px; min-width:16px; height:16px; padding:0 4px; background:#F56C6C; color:#fff; font-size:10px; border-radius:8px; display:flex; align-items:center; justify-content:center;}
   .topbar .user-center{margin-left:0;}
   .topbar .user-center .avatar{width:32px; height:32px; font-size:13px; font-weight:500; background:var(--primary); color:#fff;}
-  .mem-table .avatar{width:30px; height:30px; font-size:13px; flex:0 0 30px;}
+  .mem-table .avatar{width:16px; height:16px; font-size:12px; flex:0 0 16px;}
   /* 页签栏 */
   .tabbar{height:40px; flex:0 0 40px; background:#fff; border-bottom:1px solid var(--border-lighter); display:flex; align-items:center; padding:0 10px; gap:6px; overflow-x:auto;}
   .tabbar .tab{display:flex; align-items:center; gap:6px; padding:7px 12px; font-size:13px; color:var(--text-regular); background:var(--bg-page); border:1px solid var(--border-lighter); border-bottom:none; border-radius:6px 6px 0 0; cursor:pointer; white-space:nowrap;}
@@ -600,6 +600,7 @@
   .pager .pg-info{color:var(--text-secondary); margin-right:auto;}
   .pager .pg-size{display:inline-flex; align-items:center; gap:4px; padding:4px 10px; border:1px solid var(--border-base); border-radius:4px; background:#fff; cursor:pointer; color:var(--text-regular);}
   .pager .pg-btn{min-width:30px; height:30px; padding:0 8px; border:1px solid var(--border-base); background:#fff; border-radius:4px; cursor:pointer; font-size:13px; color:var(--text-regular); transition:.15s;}
+  .pager .pg-size-sel{height:30px; padding:0 6px; border:1px solid var(--border-base); border-radius:4px; background:#fff; color:var(--text-regular); font-size:12px; cursor:pointer; outline:none; margin:0 2px;}
   .pager .pg-btn:hover:not(:disabled):not(.active){color:var(--primary); border-color:var(--primary);}
   .pager .pg-btn.active{background:var(--primary); color:#fff; border-color:var(--primary);}
   .pager .pg-btn:disabled{color:var(--text-placeholder); cursor:not-allowed; background:var(--bg-page);}
@@ -754,8 +755,9 @@
   .modal-mask.show{display:flex;}
   .modal{background:#fff; border-radius:8px; width:460px; max-width:92vw; box-shadow:0 12px 40px rgba(0,0,0,.25); display:flex; flex-direction:column; max-height:90vh;}
   .modal.lg{width:780px;}
+  #modalBox.nt-main-modal{width:520px; max-width:92vw;}
   .modal-head{display:flex; justify-content:space-between; align-items:center; padding:16px 20px 12px; border-bottom:1px solid var(--border-extra-light); flex:0 0 auto;}
-  .modal-head h3{margin:0; font-size:14px; font-weight:600;}
+  .modal .modal-head h3{margin:0; font-size:14px; font-weight:600;}
   .modal-body{padding:14px 18px; overflow:auto; flex:1 1 auto; font-size:12px; color:var(--text-regular);}
   .modal-foot{padding:12px 20px; border-top:1px solid var(--border-extra-light); display:flex; justify-content:flex-end; gap:10px; flex:0 0 auto;}
   .modal h3{margin:0 0 14px; font-size:16px;}
@@ -859,6 +861,9 @@
   /* org tree (企业端权限-组织架构) */
   .esub-ent-search{display:flex; align-items:center; gap:8px; margin-bottom:12px;}
   .esub-ent-label{flex:0 0 auto; font-size:13px; color:var(--text-secondary); white-space:nowrap;}
+  .esub-ent-clear{display:none; position:absolute; right:8px; top:50%; transform:translateY(-50%); width:18px; height:18px; line-height:16px; text-align:center; border-radius:50%; color:#909399; cursor:pointer; font-size:16px; z-index:6;}
+  .esub-ent-clear:hover{background:#f2f3f5; color:#606266;}
+  .esub-ent-wrap .inp:not(:placeholder-shown) ~ .esub-ent-clear{display:block;}
   .org-panel-header{display:flex; align-items:center; justify-content:space-between; padding:0 2px 12px; margin-bottom:4px; border-bottom:1px solid var(--border-extra-light);}
   .org-panel-header h4{margin:0; font-size:13px; font-weight:600; color:var(--text-primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; flex:0 0 auto; margin-right:12px;}
   .org-tree{font-size:13px; flex:1; min-height:0; overflow-x:auto; overflow-y:auto; padding:2px 0;}
@@ -1378,6 +1383,7 @@
   .warranty-badge{display:inline-block; padding:2px 8px; border-radius:10px; font-size:12px;}
   /* 招聘管理详情新版 */
   .modal.xl{width:980px;}
+  .modal.er-modal{width:620px; max-width:92vw;}
   .pd-head-right{display:flex; align-items:center; gap:10px;}
   .pd-section{border:1px solid var(--border-base, #e4e7ed); border-radius:6px; padding:12px; margin-bottom:12px; background:#fff;}
   .pd-section-h{font-size:13px; font-weight:600; color:var(--text-primary); margin-bottom:10px; display:flex; align-items:center; justify-content:space-between; gap:10px;}
@@ -2304,6 +2310,7 @@
   .mod-card:hover .mod-check{border-color:var(--primary-hover);}
   .mod-card.on .mod-check{background:var(--primary); border-color:var(--primary);}
   .mod-card.on .mod-check::after{content:'✓'; color:#fff; font-size:12px; line-height:1; font-weight:700;}
+  .mod-card:not(.on) .mod-check{background:#fff; border-color:#c0c4cc;}
   /* 企业端权限：上下卡片区 */
   .perm-section-card{background:#fff; border:1px solid var(--border-extra-light); border-radius:4px; padding:12px; margin-bottom:12px;}
   .perm-section-card h4{margin:0 0 8px; font-size:12px; color:var(--text-regular); font-weight:600;}
@@ -2316,14 +2323,14 @@
   .h-section{margin:18px 0 10px; font-size:14px; font-weight:600; color:var(--text-primary);}
   /* 平铺状态切换（账号状态：左侧 label + 右侧胶囊单选） */
   .status-field{display:flex; align-items:center; gap:16px;}
-  .status-field > label{margin:0 !important; font-size:14px; color:var(--text-regular);}
+  .status-field > label:not(.lr-radio){margin:0 !important; font-size:14px; color:var(--text-regular);}
   /* 编辑/新增企业账号：整页左名右值（仅作用于该表单，不影响其他抽屉） */
   .lr-form{width:100%;}
   .lr-form .field{display:flex; align-items:center; gap:12px; margin-bottom:12px; flex-wrap:wrap;}
   .lr-form .field>label{flex:0 0 150px; margin:0; font-size:12px; line-height:1.3; color:var(--text-secondary); white-space:nowrap;}
   .lr-form .field>*:not(label){flex:1; min-width:0;}
-  .lr-form .field>.note{flex:0 0 100%; margin:4px 0 0 162px; font-size:11px; color:var(--text-secondary); line-height:1.5;}
-  .lr-form .h-section{margin:16px 0 10px;}
+  .lr-form .field>.note{flex:0 0 auto; width:calc(100% - 162px); margin:4px 0 0 162px; font-size:11px; color:var(--text-secondary); line-height:1.5; box-sizing:border-box; max-width:100%;}
+  .lr-form .h-section{margin:16px 0 10px; border-left:3px solid var(--primary); padding-left:8px;}
   .lr-form .inp{font-size:12px; height:30px; font-family:inherit;}
   .lr-form .form-row-2{display:block;}
   /* 账号状态开关（替代原 .lr-radio 单选） */
@@ -2339,6 +2346,41 @@
   .lr-switch-text{font-size:12px;}
   .lr-link-btn{height:30px; padding:0 14px; border:1px solid var(--primary); border-radius:6px; color:var(--primary); background:#fff; font-size:12px; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; box-sizing:border-box; transition:.15s;}
   .lr-link-btn:hover{background:var(--primary-lighter);}
+  /* 账号状态：单选按钮组（小圆点，选中蓝实心、未选灰空心） */
+  .radio-group{display:inline-flex; align-items:center; gap:20px;}
+  .radio-group .lr-radio{display:inline-flex; align-items:center; gap:6px; flex:0 0 auto; width:auto; margin-right:0; cursor:pointer; font-size:12px; color:var(--text-secondary); user-select:none; line-height:1.4;}
+  .lr-radio input{display:none;}
+  .lr-radio .r-dot{width:14px; height:14px; border-radius:50%; border:2px solid var(--primary); background:#fff; box-sizing:border-box; position:relative; transition:.15s; flex:0 0 14px;}
+  .lr-radio input:checked + .r-dot{border-color:var(--primary); background:var(--primary);}
+  .lr-radio input:checked ~ .r-text{color:var(--text-regular);}
+  /* 账号管理弹窗（子账号/运营账号新建·编辑）：左名右值；长标签允许换行避免溢出 */
+  .acct-form .field>label{flex:0 0 110px; text-align:right; white-space:nowrap; line-height:1.4;}
+  .acct-form .field>.note{width:calc(100% - 122px); margin-left:122px;}
+  /* 字段值控件统一实线边框 + 白底背景；禁用/只读态统一灰底 */
+  .acct-form .inp,
+  .acct-form .select,
+  .acct-form .ms-display{
+    border:1px solid var(--border-base);
+    border-radius:4px;
+    background:#fff;
+    box-sizing:border-box;
+  }
+  .acct-form .inp:disabled,
+  .acct-form .inp[readonly],
+  .acct-form .select:disabled{
+    background:var(--bg-page);
+    color:var(--text-secondary);
+    cursor:not-allowed;
+  }
+  /* 状态单选组也包实线框，与上方输入框视觉一致（仅占内容宽，不撑满） */
+  .lr-form .field>.radio-group{
+    flex:0 0 auto;
+    align-self:center;
+    border:1px solid var(--border-base);
+    border-radius:4px;
+    padding:6px 12px;
+  }
+  #modalMask .modal-body{overflow-x:hidden;}
   /* 操作列：始终显示（不再依赖行悬浮） */
   .mem-table tbody tr .ops{opacity:1;}
   .mem-table tbody tr:hover{background:var(--bg-page);}
@@ -2385,33 +2427,43 @@
   .mem-table td.col-created{max-width:160px;}
   /* 企业端账号管理：横向滚动 + 右侧固定操作列 */
   .table-scroll-wrap{overflow:auto; border-radius:10px; box-shadow:0 2px 12px rgba(0,0,0,.06); border:1px solid var(--border-extra-light); background:#fff;}
-  #e-account .mem-table{table-layout:fixed; min-width:1100px; width:100%; border:none; margin-top:0;}
-  #e-account .mem-table th,#e-account .mem-table td{border-top:none; border-right:1px solid var(--border-extra-light); border-bottom:1px solid var(--border-extra-light); border-left:none;}
+  /* 企业端账号管理：自适应列宽 + 可拖动调整 + 右侧固定操作列 */
+  #e-account .mem-table{table-layout:auto; width:auto; min-width:100%; border:none; margin-top:0;}
+  #e-account .mem-table th,#e-account .mem-table td{border-top:none; border-right:1px solid var(--border-extra-light); border-bottom:1px solid var(--border-extra-light); border-left:none; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-size:12px;}
   #e-account .mem-table tr:last-child td{border-bottom:none;}
-  #e-account .mem-table th:last-child,#e-account .mem-table td:last-child{position:sticky; right:0; background:#fff; z-index:2; box-shadow:-4px 0 12px rgba(0,0,0,.06); width:160px; min-width:160px;}
+  #e-account .mem-table th{background:#fafbfc; position:sticky; top:0; z-index:1; min-width:60px;}
+  #e-account .mem-table th:last-child,#e-account .mem-table td:last-child{position:sticky; right:0; background:#fff; z-index:2; box-shadow:-5px 0 10px -4px rgba(0,0,0,.12); width:260px; min-width:260px;}
   #e-account .mem-table th:last-child{background:#fafbfc; z-index:3;}
-  #e-account .mem-table th{background:#fafbfc; position:sticky; top:0; z-index:1;}
-  #e-account .mem-table td.col-loginId{width:120px;}
-  #e-account .mem-table td.col-name{width:120px;}
-  #e-account .mem-table td.col-role{width:120px;}
-  #e-account .mem-table td.col-dept{width:240px;}
-  #e-account .mem-table td.col-phone{width:130px;}
-  #e-account .mem-table td.col-created{width:160px;}
-  /* 账号管理成员列表：操作列三按钮（编辑/重置密码/停用）同一行不换行，按 D3 调宽，不压缩间距、不缩短"重置密码"文案 */
-  #e-account .mem-table td.ops{white-space:nowrap; width:260px; min-width:260px; overflow:visible;}
-  #a-account .mem-table td.ops{white-space:nowrap; min-width:260px; overflow:visible;}
+  #e-account .mem-table td.ops{white-space:nowrap; overflow:visible; width:260px; min-width:260px;}
+  /* 运营账号管理：自适应列宽 + 可拖动调整 + 右侧固定操作列 */
+  #a-account .mem-table{table-layout:auto; width:auto; min-width:100%; border:none; margin-top:0;}
+  #a-account .mem-table th,#a-account .mem-table td{border-top:none; border-right:1px solid var(--border-extra-light); border-bottom:1px solid var(--border-extra-light); border-left:none; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-size:12px;}
+  #a-account .mem-table tr:last-child td{border-bottom:none;}
+  #a-account .mem-table th{background:#fafbfc; position:sticky; top:0; z-index:1; min-width:60px;}
+  #a-account .mem-table th:last-child,#a-account .mem-table td:last-child{position:sticky; right:0; background:#fff; z-index:2; box-shadow:-5px 0 10px -4px rgba(0,0,0,.12); width:260px; min-width:260px;}
+  #a-account .mem-table th:last-child{background:#fafbfc; z-index:3;}
+  #a-account .mem-table td.ops{white-space:nowrap; overflow:visible; width:260px; min-width:260px;}
+  /* 账号管理类列表弹窗：新建/编辑账号调窄（780→560） */
+  .modal.acct{width:560px; max-width:92vw;}
+  /* 账号管理类列表：操作列按钮单行不换行（根因 .row-act 默认 flex-wrap:wrap，列窄时折行） */
+  #e-account .mem-table td.ops .row-act, #a-account .mem-table td.ops .row-act, #a-tenant .mem-table td.ops .row-act{display:inline-flex; flex-wrap:nowrap; gap:10px; white-space:nowrap; justify-content:flex-start;}
   /* 客户账号管理：自适应列宽 + 可拖动调整列宽 + 右侧固定操作列 + 操作列始终显示 */
   #a-tenant .table-scroll-wrap{overflow:auto; border-radius:0 0 10px 10px;}
   #a-tenant .mem-table{table-layout:auto; width:auto; min-width:100%; border:none; margin-top:0;}
-  #a-tenant .mem-table th,#a-tenant .mem-table td{border-top:none; border-right:1px solid var(--border-extra-light); border-bottom:1px solid var(--border-extra-light); border-left:none; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-size:13px;}
+  #a-tenant .mem-table th,#a-tenant .mem-table td{border-top:none; border-right:1px solid var(--border-extra-light); border-bottom:1px solid var(--border-extra-light); border-left:none; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-size:12px;}
   #a-tenant .mem-table tr:last-child td{border-bottom:none;}
   #a-tenant .mem-table th{position:sticky; top:0; background:#fafbfc; z-index:1; min-width:60px; position:relative;}
-  #a-tenant .mem-table th:last-child,#a-tenant .mem-table td:last-child{position:sticky; right:0; background:#fff; z-index:2; box-shadow:-4px 0 12px rgba(0,0,0,.06); width:auto; min-width:200px;}
+  #a-tenant .mem-table th:last-child,#a-tenant .mem-table td:last-child{position:sticky; right:0; background:#fff; z-index:2; box-shadow:-4px 0 12px rgba(0,0,0,.06); width:260px; min-width:260px;}
   #a-tenant .mem-table th:last-child{background:#fafbfc; z-index:3;}
-  #a-tenant .mem-table td.ops{opacity:1 !important; white-space:nowrap; overflow:visible; width:auto; min-width:200px;}
+  #a-tenant .mem-table td.ops{opacity:1 !important; white-space:nowrap; overflow:visible; width:260px; min-width:260px;}
   #a-tenant .col-resizer{position:absolute; right:0; top:0; bottom:0; width:6px; cursor:col-resize; z-index:10; background:transparent; transition:background .15s;}
   #a-tenant .col-resizer:hover{background:var(--primary); opacity:.35;}
   #a-tenant .col-resizer:active{background:var(--primary); opacity:.55;}
+  #a-tenant .mem-table td.ops .lnk,#a-tenant .mem-table td.ops .lnk-danger,#a-account .mem-table td.ops .lnk,#a-account .mem-table td.ops .lnk-danger,#e-account .mem-table td.ops .lnk,#e-account .mem-table td.ops .lnk-danger{font-size:12px; padding:0; margin:0 12px 0 0;}
+  /* 重置密码弹窗：列数据不加粗、字号统一 12px */
+  #er-table{font-size:12px;}
+  #er-table th,#er-table td{font-size:12px;}
+  #er-table .txt-suc,#er-table .txt-dan{font-weight:normal;}
   .ent-detail-mem-wrap .table-scroll-wrap{overflow:auto; border-radius:0; border:none; box-shadow:none; background:transparent; margin:0 -16px; padding:0 16px;}
   .ent-detail-mem-wrap .mem-table{table-layout:fixed; min-width:840px; width:100%; margin-top:0;}
   .ent-detail-mem-wrap .mem-table th:last-child,.ent-detail-mem-wrap .mem-table td:last-child{position:sticky; right:0; background:#fff; z-index:2; box-shadow:-4px 0 12px rgba(0,0,0,.06); width:110px; min-width:110px;}
@@ -2427,7 +2479,7 @@
   /* 节点信息卡（按截图 3 行 × 6 列表格样式） */
   .org-info-tbl{width:100%; border-collapse:collapse; font-size:13px; border:1px solid var(--border-lighter); border-radius:6px; overflow:hidden; margin-bottom:10px; background:var(--bg-card);}
   .org-info-tbl th, .org-info-tbl td{border:1px solid var(--border-lighter); padding:10px 16px; text-align:left; vertical-align:middle; line-height:1.5;}
-  .org-info-tbl th{background:var(--bg-page); color:var(--text-regular); font-weight:400; width:96px; white-space:nowrap;}
+  .org-info-tbl th{background:var(--bg-page); color:var(--text-regular); font-weight:400; width:72px; white-space:nowrap; text-align:right; padding:10px 8px 10px 16px;}
   .org-info-tbl td{color:var(--text-primary); font-weight:500;}
   .org-info-tbl .tag.pri{font-weight:400; padding:2px 10px; border-radius:10px; font-size:12px; display:inline-block;}
   .org-info-tbl .role-cell{padding:10px 14px;}
@@ -2623,7 +2675,7 @@
   .tag-type{display:inline-flex; align-items:center; padding:2px 9px; border-radius:4px; font-size:12px; line-height:1.6; white-space:nowrap;}
   /* ===== 账号/权限管理：稳重硬朗规范（正文12 / 字段名12 / 值11 / 说明10 + 1px实线 + 4px圆角 + 少阴影 + 深左浅右对比） ===== */
   #a-tenant .card, #a-account .card, #a-permission .card, #e-account .card, #e-permission .card{border-radius:4px; box-shadow:none; border:1px solid var(--border-light);}
-  #a-tenant .note, #a-account .note, #a-permission .note, #e-account .note, #e-permission .note{font-size:10px; margin:6px 0;}
+  #a-tenant .note, #a-account .note, #a-permission .note, #e-account .note, #e-permission .note{font-size:11px; margin:6px 0;}
   #a-tenant .mem-table th, #a-account .mem-table th, #a-permission .mem-table th, #e-account .mem-table th, #e-permission .mem-table th,
   #a-tenant .mem-table td, #a-account .mem-table td, #a-permission .mem-table td, #e-account .mem-table td, #e-permission .mem-table td{font-size:12px; white-space:nowrap; padding:6px 10px;}
   #a-tenant .kv-row, #a-account .kv-row, #a-permission .kv-row, #e-account .kv-row, #e-permission .kv-row{font-size:12px; padding:6px 0; border-bottom:1px solid var(--border-lighter);}
@@ -3960,43 +4012,43 @@
             <div class="filter-pair" data-page-node-id="NgRaFVaAdzdLEeQjKR0BMW"><label data-page-node-id="YmQRLmzVlF7GLRJsaBryY6">企业名称</label><input class="inp" placeholder="请输入企业名称" value="" oninput="entSearch=this.value" data-page-node-id="lrKYkzPqo6ReSVSvHZpzs3"/></div>
             <div class="filter-pair" data-page-node-id="1osBollv8jRc5PmwLNWDBb"><label data-page-node-id="5uYEG3TQW6rYxFz9YX3KHS">管理员姓名</label><input class="inp" placeholder="请输入管理员姓名" value="" oninput="entAdmin=this.value" data-page-node-id="HsyNJSok9Wy7rxY2GRA3O2"/></div>
             <div class="filter-pair" data-page-node-id="vbBZADHQm7fjaHKf6hQV0J"><label data-page-node-id="IqJOHdBJgeNlE4CdF9fAmU">状态</label><select class="select" onchange="entStatus=this.value" data-page-node-id="lCVwyj6arEDERgkNiTD7Xv"><option data-page-node-id="s4D8UpNPRIWBH4n7N9QBOK">全部</option><option data-page-node-id="6knV2Kl40SYvGyoePktoCJ">正常</option><option data-page-node-id="PAQ0TWjeI7xdvCpXvBjl85">已停用</option></select></div>
-            <div class="filter-actions-inline" data-page-node-id="uMebE0FEBZq8lKUpqd2PVt"><button class="btn sm" onclick="renderEntTable()" data-page-node-id="ffCtPNcnIKbvikD291mZbC">🔍 搜索</button><button class="btn ghost sm" onclick="entSearch='';entAdmin='';entStatus='全部';renderEntTable()" data-page-node-id="nIxPBFzlmfHGkiOGikW9RF">↺ 重置</button></div>
+            <div class="filter-actions-inline" data-page-node-id="uMebE0FEBZq8lKUpqd2PVt"><button class="btn sm" onclick="entPage=1;renderEntTable()" data-page-node-id="ffCtPNcnIKbvikD291mZbC">🔍 搜索</button><button class="btn ghost sm" onclick="entSearch='';entAdmin='';entStatus='全部';entPage=1;renderEntTable()" data-page-node-id="nIxPBFzlmfHGkiOGikW9RF">↺ 重置</button></div>
             <span style="flex:1" data-page-node-id="6hiC76bP9pVHfGVF9ooA7b"></span>
-            <button class="btn sm" onclick="openNewTenant()" data-page-node-id="yA9CWk92eAfPrRetqLhqAh">+ 新增企业账号</button>
+            <button class="btn sm" onclick="openNewTenant()" data-page-node-id="yA9CWk92eAfPrRetqLhqAh">+ 新增主账号</button>
           </div>
           <div class="card" style="padding:0;margin-top:12px" data-page-node-id="uTIDUkP2PqaKoyGMK8D6zY">
             <div class="table-scroll-wrap" data-page-node-id="Jg5VoAkdRtwpIO1ZQzsDYu">
               <table class="mem-table" id="ent-table" data-page-node-id="Pw7p0IfjA7hHTCf5j9HGok">
                 <thead data-page-node-id="UxKC9pUbr1S9QHUSCEVzTf"><tr data-page-node-id="b8e3InSqBTjCMAEGTmxzap">
-                  <th data-page-node-id="SoykfjUBv17uU8HPxpFj5O">企业编码</th>
                   <th data-page-node-id="SeMKx5VE59uROEzPUcZb3X">企业名称</th>
-                  <th data-page-node-id="LBllVc4kdzb8RaduFdvDmi">统一社会信用代码</th>
                   <th data-page-node-id="Ufgr6HM78QMjzgqsbd5ngJ">管理员姓名</th>
                   <th data-page-node-id="mqKLTGus0stgBgxBemBAqD">手机号（登录账号）</th>
                   <th data-page-node-id="w9TnR2RK2dX3StEhNo862X">账号角色</th>
                   <th data-page-node-id="yFEiLfoEwvhLkbsh6W7TEE">账号状态</th>
                   <th data-page-node-id="tBthHmC7CgfgsZbmBxtewO">子账号数</th>
                   <th data-page-node-id="irKc0Y4x0lWIFapXHMPElI">创建时间</th>
-                  <th data-page-node-id="7f62SbiEGbCfpR12vS1zAC">可用模块</th>
                   <th class="op-col" data-page-node-id="D28YgKEAybL9EnYzyk7iCB">操作</th>
                 </tr></thead>
                 <tbody id="entTbody" data-page-node-id="lXAn4KGfK7QSU83YMAzjuF"></tbody>
               </table>
             </div>
+            <div class="pager" id="ent-pager"></div>
           </div>
         </div>
         <div id="tenant-sub" style="display:none" data-page-node-id="RYmCdiDM1cuxQ3TfLOmb9q">
-          <div id="esub-panel" style="display:block" data-page-node-id="7GUTEsNQ0XJGBs0Yg3yedY">
+          <div class="esub-ent-search" id="esub-ent-bar" data-page-node-id="mVYzsKug2gHLiWlDcHHP1K">
+            <span class="esub-ent-label" data-page-node-id="GCubZFV5UUFA5BTRpqIb5W">选择企业</span>
+            <div class="filter-pair" id="esub-ent-wrap" style="position:relative;flex:1;min-width:0;max-width:360px" data-page-node-id="JkdsfVdDfWIODDUUehOn9I">
+              <input class="inp" id="esub-ent-input" placeholder="请输入企业并选择" style="width:100%;padding-right:28px" oninput="onEsubEntSearch(this.value)" onfocus="onEsubEntSearch(this.value)" autocomplete="off" data-page-node-id="nkgoHJk8DSubzyCO6ATXdz"/>
+              <span class="esub-ent-clear" onclick="esubClearEnt()" title="清除已选企业" data-page-node-id="esub-clear-x">×</span>
+              <input type="hidden" id="esub-ent" value="" data-page-node-id="CY5rACms5NMvSEvHu69tNN"/>
+              <div class="srch-sel-menu" id="esub-ent-menu" style="display:none;position:absolute;top:100%;left:0;right:0;margin-top:4px;background:#fff;border:1px solid var(--border-light);border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.12);z-index:50;max-height:260px;overflow:auto;padding:4px 0" data-page-node-id="sGSHCFQD58lGCwsJDauMtX"></div>
+            </div>
+          </div>
+          <div id="esub-empty" class="empty-tip" data-page-node-id="AmPFVfP5oAqXDhKJ1y8MwM" style="margin-top:24px">请先在上方选择企业，查看其组织架构与人员账号</div>
+          <div id="esub-panel" style="display:none" data-page-node-id="7GUTEsNQ0XJGBs0Yg3yedY">
             <div class="layout-split" data-page-node-id="d93JQehxWSvAVNASzjHOwK">
               <div class="tree" data-page-node-id="2ytl4CTBMnyxNjsKxM1cja">
-                <div class="esub-ent-search" data-page-node-id="mVYzsKug2gHLiWlDcHHP1K">
-                  <span class="esub-ent-label" data-page-node-id="GCubZFV5UUFA5BTRpqIb5W">当前企业</span>
-                  <div class="filter-pair" id="esub-ent-wrap" style="position:relative;flex:1;min-width:0" data-page-node-id="JkdsfVdDfWIODDUUehOn9I">
-                    <input class="inp" id="esub-ent-input" placeholder="请输入企业" style="width:100%" oninput="onEsubEntSearch(this.value)" onfocus="onEsubEntSearch(this.value)" autocomplete="off" data-page-node-id="nkgoHJk8DSubzyCO6ATXdz"/>
-                    <input type="hidden" id="esub-ent" value="" data-page-node-id="CY5rACms5NMvSEvHu69tNN"/>
-                    <div class="srch-sel-menu" id="esub-ent-menu" style="display:none;position:absolute;top:100%;left:0;right:0;margin-top:4px;background:#fff;border:1px solid var(--border-light);border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.12);z-index:50;max-height:260px;overflow:auto;padding:4px 0" data-page-node-id="sGSHCFQD58lGCwsJDauMtX"></div>
-                  </div>
-                </div>
                 <div class="org-panel-header" data-page-node-id="MDsTXx3Ur6xQiwbA3PSadY"><button class="btn sm" onclick="addNode('')" data-page-node-id="f31Fen9TXUpZ8WGuziY6ZA">+ 一级组织</button><div id="esub-orgToolbar" class="org-toolbar" data-page-node-id="XWzGt87pZKr7YpCXfPzZQ9"></div></div>
                 <div class="org-search" data-page-node-id="2zA9crnGbuj9J1N6umabKT"><input class="inp" style="width:100%" placeholder="搜索部门" oninput="onOrgSearch(this.value)" data-page-node-id="gIJZ142u6Smakj7tAqYdVw"/>
                   <div class="org-expand-btns" data-page-node-id="2tTjuYL4au4I3rRMLH3jag"><button class="btn ghost xs" onclick="expandOrgAll()" data-page-node-id="MW80Ea0USGwYbjyHT25JNn">展开全部</button><button class="btn ghost xs" onclick="collapseOrgAll()" data-page-node-id="4JRXAQnHHL6lJpUyeExhiS">收起全部</button></div>
@@ -4334,7 +4386,7 @@
       </div>
       <div class="ent-info" data-page-node-id="aIGmvB4QkL7vLWRGrPGxDh">
         <div class="name" data-page-node-id="Sema9vRntWaAO83RBCU84W">中国移动北京朝阳分公司</div>
-        <div class="no" data-page-node-id="nI4ErLZV8KPdtADPTS48Ut">企业号：CT-2024-00142</div>
+        <div class="no" data-page-node-id="nI4ErLZV8KPdtADPTS48Ut">企业号：ENT_2026_0001</div>
       </div>
       <div class="topbar-div" data-page-node-id="UtVR52ePVGCda8IeXTPgPU"></div>
       <div class="top-search" data-page-node-id="7BZpggPg2VrSYXMeqmoB0n">
@@ -4342,14 +4394,14 @@
         <input placeholder="搜索功能、页面..." data-page-node-id="1qF0HnpgPeHTtvV8xdt8lc"/>
       </div>
       <div class="top-right" data-page-node-id="OWwlLZ2eqGUbfrQk5HzsiB">
-        <div class="ent-sel" onclick="toggleEntSel(this)" data-page-node-id="yB3hdjYHbD1nWA5So7EmvG">中国移动北京朝阳分公司 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="GzHPSEB2RPYX7GLkJbES2s"><polyline points="6 9 12 15 18 9" data-page-node-id="XEWyCvhVh8HT3vWzcElMlu"/></svg>
+        <div class="ent-sel" onclick="toggleEntSel(this, event)" data-page-node-id="yB3hdjYHbD1nWA5So7EmvG">中国移动北京朝阳分公司 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="GzHPSEB2RPYX7GLkJbES2s"><polyline points="6 9 12 15 18 9" data-page-node-id="XEWyCvhVh8HT3vWzcElMlu"/></svg>
           <div class="ent-sel-menu" id="entSelMenu" data-page-node-id="kCz2GhGFBG9Pl8Z3VeUBcu">
-            <div class="esi" onclick="selectEnt('中国移动北京朝阳分公司')" data-page-node-id="rFUZlV4WeCqZ2qS5y4Pjjy">中国移动北京朝阳分公司</div>
-            <div class="esi" onclick="selectEnt('中国移动浙江分公司')" data-page-node-id="LglFAFB3ElVCvAVjafb6uY">中国移动浙江分公司</div>
-            <div class="esi" onclick="selectEnt('中国移动广东公司')" data-page-node-id="whzwoiiVRMrvLp6hA46RPd">中国移动广东公司</div>
-            <div class="esi" onclick="selectEnt('中国移动江苏公司')" data-page-node-id="fdd9I2zBiBdEAwNWATerid">中国移动江苏公司</div>
-            <div class="esi" onclick="selectEnt('中国移动北京公司')" data-page-node-id="l3J2pOPf7I7Ffg247t432K">中国移动北京公司</div>
-            <div class="esi" onclick="selectEnt('中国移动上海公司')" data-page-node-id="f92CQbWFDJP17yNPy1OmuS">中国移动上海公司</div>
+            <div class="esi" onclick="selectEnt('中国移动北京朝阳分公司', event)" data-page-node-id="rFUZlV4WeCqZ2qS5y4Pjjy">中国移动北京朝阳分公司</div>
+            <div class="esi" onclick="selectEnt('中国移动浙江分公司', event)" data-page-node-id="LglFAFB3ElVCvAVjafb6uY">中国移动浙江分公司</div>
+            <div class="esi" onclick="selectEnt('中国移动广东公司', event)" data-page-node-id="whzwoiiVRMrvLp6hA46RPd">中国移动广东公司</div>
+            <div class="esi" onclick="selectEnt('中国移动江苏公司', event)" data-page-node-id="fdd9I2zBiBdEAwNWATerid">中国移动江苏公司</div>
+            <div class="esi" onclick="selectEnt('中国移动北京公司', event)" data-page-node-id="l3J2pOPf7I7Ffg247t432K">中国移动北京公司</div>
+            <div class="esi" onclick="selectEnt('中国移动上海公司', event)" data-page-node-id="f92CQbWFDJP17yNPy1OmuS">中国移动上海公司</div>
           </div>
         </div>
         <div class="icon-btn" data-page-node-id="XXkIHvc3TTXFMZrnYZG5XR">
@@ -8508,18 +8560,25 @@
     if(window.event) window.event.stopPropagation();
   }
   function closeAllUserMenus(){ document.querySelectorAll('.user-menu').forEach(x=>x.style.display='none'); }
-  function toggleEntSel(el){
+  function toggleEntSel(el, ev){
     const m=document.getElementById('entSelMenu'); if(!m) return;
     const open=m.classList.contains('open'); closeAllEntMenus();
     if(!open) m.classList.add('open');
-    if(window.event) window.event.stopPropagation();
+    if(ev) ev.stopPropagation();
   }
   function closeAllEntMenus(){ const m=document.getElementById('entSelMenu'); if(m) m.classList.remove('open'); }
-  function selectEnt(ent){
+  function selectEnt(ent, ev){
     closeAllEntMenus();
     const es=document.querySelector('#p-enterprise .ent-sel');
     if(es){ const txt=es.childNodes[0]; if(txt&&txt.nodeType===3) txt.textContent=ent+' '; }
     ENT=ent;
+    if(ev) ev.stopPropagation();
+    // 顶部左侧企业名称 + 企业号同步更新（企业号取该企业在 enterprises 中的编码）
+    const e0=enterprises.find(x=>x.name===ent);
+    const nmEl=document.querySelector('.ent-info .name'); if(nmEl) nmEl.textContent=ent;
+    const noEl=document.querySelector('.ent-info .no'); if(noEl) noEl.textContent='企业号：'+(e0?e0.code:'');
+    // 切换企业后按当前企业刷新当前页（需求/进度/人员/工作台等均按 ENT 过滤）
+    if(curPlat==='enterprise'){ nav('enterprise', curScreen); }
     toast('已切换企业：'+ent+'（演示：数据范围已刷新）');
   }
   document.addEventListener('click', function(){ closeAllUserMenus(); closeAllEntMenus(); });
@@ -8643,6 +8702,15 @@
     renderTabs(plat);
     curScreen=screenId;
     if(plat==='enterprise' && screenId==='e-progress') renderEntProgress();
+    if(plat==='enterprise' && screenId==='e-demand') renderEntDemand();
+    if(plat==='enterprise' && screenId==='e-interview') renderEntInterview();
+    if(plat==='enterprise' && screenId==='e-oplog') renderEnterpriseOpLog();
+    // 企业后台导航时同步顶部左侧企业名称+企业号（切换企业后兜底刷新）
+    if(plat==='enterprise'){
+      const e0=enterprises.find(x=>x.name===ENT);
+      const nmEl=document.querySelector('.ent-info .name'); if(nmEl) nmEl.textContent=ENT;
+      const noEl=document.querySelector('.ent-info .no'); if(noEl) noEl.textContent='企业号：'+(e0?e0.code:'');
+    }
     if(plat==='admin' && screenId==='a-tenant'){ renderEntTable(); switchTenantTab('main'); }
     if(plat==='enterprise' && screenId==='e-account'){ loadOrg(ENT,false); }
     if(plat==='admin' && screenId==='a-workbench') renderWorkbench('admin');
@@ -9371,10 +9439,11 @@
     html+=`<button class="pg-btn" ${cur>=total?'disabled':''} onclick="${nextFn}()">›</button>`;
     document.getElementById(elId).innerHTML=html;
   }
-  function renderPagerHtml(total, cur, pageSize, prevFn, nextFn, pageFn, jumpFn){
+  function renderPagerHtml(total, cur, pageSize, prevFn, nextFn, pageFn, jumpFn, onSize){
     const max=Math.max(1, Math.ceil(total/pageSize));
     cur=Math.max(1,Math.min(max,cur));
-    let html=`<span class="pg-info">共 ${total} 条</span><span class="pg-size">${pageSize}条/页</span>`;
+    const sizeSel=onSize?`<select class="pg-size-sel" onchange="${onSize}(parseInt(this.value))"><option value="10" ${pageSize===10?'selected':''}>10条/页</option><option value="20" ${pageSize===20?'selected':''}>20条/页</option><option value="50" ${pageSize===50?'selected':''}>50条/页</option><option value="100" ${pageSize===100?'selected':''}>100条/页</option></select>`:`<span class="pg-size">${pageSize}条/页</span>`;
+    let html=`<span class="pg-info">共 ${total} 条</span>${sizeSel}`;
     html+=`<button class="pg-btn" ${cur<=1?'disabled':''} onclick="${prevFn}()">‹</button>`;
     html+=buildPageButtons(max, cur, pageFn);
     html+=`<button class="pg-btn" ${cur>=max?'disabled':''} onclick="${nextFn}()">›</button>`;
@@ -9737,7 +9806,7 @@
     document.getElementById('modalFoot').style.display='flex';
     const he=document.getElementById('modalHeadExtra'); if(he){ he.innerHTML=headExtra||''; he.style.display=headExtra?'flex':'none'; }
     const box=document.getElementById('modalBox');
-    if(box){ box.classList.toggle('lg', size==='lg'); box.classList.toggle('xl', size==='xl'); }
+    if(box){ box.classList.toggle('lg', size==='lg'); box.classList.toggle('xl', size==='xl'); box.classList.toggle('acct', size==='acct'); }
     const closeBtn=document.querySelector('#modalMask .modal-head .drawer-close');
     if(closeBtn) closeBtn.style.display=hideClose?'none':'';
     const head=document.querySelector('#modalMask .modal-head');
@@ -9749,7 +9818,7 @@
   function closeModal(){
     document.getElementById('modalMask').classList.remove('show');
     const box=document.getElementById('modalBox');
-    if(box){ box.classList.remove('lg'); box.classList.remove('xl'); }
+    if(box){ box.classList.remove('lg'); box.classList.remove('xl'); box.classList.remove('nt-main-modal'); box.classList.remove('er-modal'); box.classList.remove('acct'); }
     const he=document.getElementById('modalHeadExtra'); if(he){ he.innerHTML=''; he.style.display='none'; }
     const head=document.querySelector('#modalMask .modal-head');
     if(head) head.style.display='';
@@ -10873,15 +10942,15 @@
   function openEditMember(name){
     const m=orgMembers.find(x=>x.name===name); if(!m) return;
     const msHtml=renderMultiSelect('em-nodes', m.nodeIds||[], '请选择所属部门');
-    const body=`<div class="field"><label>姓名 <span class="req">*</span></label><input class="inp" id="em-name" value="${m.name}"/></div>
+    const body=`<div class="lr-form acct-form"><div class="field"><label>姓名 <span class="req">*</span></label><input class="inp" id="em-name" value="${m.name}"/></div>
       <div class="field"><label>手机号（登录账号） <span class="req">*</span></label><input class="inp mono" id="em-phone" value="${m.phone}"/></div>
       <div class="field"><label>角色（可多选）</label>${renderEntRoleMs('em-roles', Array.isArray(m.role)?m.role:([m.role].filter(Boolean)))}
         <div class="note">多选时权限取并集。</div></div>
-      <div class="field"><label>所属部门（必选，支持多选）</label>${msHtml}
+      <div class="field"><label>所属部门 <span class="req">*</span></label>${msHtml}
         <div class="note">数据范围按各所属部门的「本部门及下级」自动并集。</div></div>
-      <div class="field"><label>状态</label><div class="note" style="margin:0">${m.status==='正常'?'正常':'停用'}（如需停用请在操作列点击「停用」）</div></div>`;
+      <div class="field"><label>状态</label><div class="radio-group"><label class="lr-radio"><input type="radio" name="em-status" value="启用" ${m.status==='正常'?'checked':''}><span class="r-dot"></span><span class="r-text">启用</span></label><label class="lr-radio"><input type="radio" name="em-status" value="停用" ${m.status==='停用'?'checked':''}><span class="r-dot"></span><span class="r-text">停用</span></label></div></div>`;
     const foot=`<button class="btn ghost" onclick="closeModal()">取消</button><button class="btn" onclick="saveEditMember('${m.name}')">保存</button>`;
-    openModal('编辑成员 — '+m.name, body, foot, 'lg');
+    openModal('编辑成员 — '+m.name, body, foot, 'acct');
   }
   function saveEditMember(name){
     const m=orgMembers.find(x=>x.name===name); if(!m) return;
@@ -10894,7 +10963,8 @@
     if(!m.role.length){ toast('请至少选择一个角色'); return; }
     const nodes=getMsValues('em-nodes');
     if(!nodes.length){ toast('请至少选择一个所属部门'); return; }
-    m.name=nm; m.phone=ph; m.loginId=ph; m.nodeIds=nodes;
+    const emSv=document.querySelector('input[name="em-status"]:checked');
+    m.name=nm; m.phone=ph; m.loginId=ph; m.nodeIds=nodes; m.status=(emSv && emSv.value==='停用')?'停用':'正常';
     closeModal(); renderOrgDetail(); toast('已保存 '+nm+' 的资料');
   }
   function renderOrgNodes(list, vis, depth){
@@ -11044,18 +11114,25 @@
   function getEntRoleMs(id){ return [...document.querySelectorAll('#'+id+' .ms-options input:checked')].map(c=>c.value); }
   function openAddMember(nodeId){
     const n=orgNodes.find(x=>x.id===nodeId); if(!n) return;
+    const pwd=genStrongPwd();
     const roleOpts=roles.filter(x=>x.status==='启用').map(r=>`<option>${r.name}</option>`).join('');
     const msHtml=renderMultiSelect('am-nodes', [nodeId], '请选择所属部门');
-    const body=`<div class="field"><label>姓名 <span style="color:#f56c6c">*</span></label><input class="inp" id="am-name" placeholder="如：新人"/></div>
+    const body=`<div class="lr-form acct-form"><div class="field"><label>姓名 <span style="color:#f56c6c">*</span></label><input class="inp" id="am-name" placeholder="如：新人"/></div>
       <div class="field"><label>手机号 <span style="color:#f56c6c">*</span></label><input class="inp" id="am-phone" placeholder="如：13800138000"/></div>
-      <div class="field"><label>账号类型</label><div class="note" style="margin:0">企业端成员均为子账号；主账号由运营后台统一创建。</div></div>
+      <div class="field"><label>初始密码</label>
+        <div style="display:flex;gap:8px;align-items:center">
+          <input class="inp mono" value="${pwd}" id="am-pwd" readonly style="flex:1;background:var(--bg-page);color:var(--text-secondary)"/>
+          <button class="lr-link-btn" onclick="document.getElementById('am-pwd').value=genStrongPwd()">重新生成</button>
+        </div>
+        <div class="note">初始密码随机生成，首次登录需修改</div>
+      </div>
       <div class="field"><label>角色（可多选）</label>${renderEntRoleMs('am-roles', [])}
         <div class="note">多选时权限取并集。</div></div>
-      <div class="field"><label>状态</label><select class="select" id="am-status"><option>正常</option><option>停用</option></select></div>
-      <div class="field"><label>所属部门（必选，支持多选）</label>${msHtml}
-        <div class="note">支持一人归属多个部门；数据范围按各所属部门的「本部门及下级」自动并集。已默认选择当前节点「${n.name}」。</div></div>`;
-    const foot=`<button class="btn ghost" onclick="closeModal()">取消</button><button class="btn" onclick="saveMember('${nodeId}')">保存</button>`;
-    openModal('新建账号 — '+n.name, body, foot, 'lg');
+      <div class="field"><label>状态</label><div class="radio-group"><label class="lr-radio"><input type="radio" name="am-status" value="启用" checked><span class="r-dot"></span><span class="r-text">启用</span></label><label class="lr-radio"><input type="radio" name="am-status" value="停用"><span class="r-dot"></span><span class="r-text">停用</span></label></div></div>
+      <div class="field"><label>所属部门 <span style="color:#f56c6c">*</span></label>${msHtml}
+        <div class="note">支持一人归属多个部门；数据范围按各所属部门的「本部门及下级」自动并集。已默认选择当前节点「${n.name}」。</div></div></div>`;
+    const foot=`<button class="btn ghost" onclick="closeModal()">取消</button><button class="btn" onclick="saveMember('${nodeId}')">保存并开通</button>`;
+    openModal('新建账号 — '+n.name, body, foot, 'acct');
   }
   function saveMember(nodeId){
     const name=document.getElementById('am-name').value.trim();
@@ -11066,8 +11143,8 @@
     if(orgMembers.some(m=>m.phone===phone)){ toast('手机号已存在，请更换'); return; }
     const role=getEntRoleMs('am-roles');
     if(!role.length){ toast('请至少选择一个角色'); return; }
-    const sv=document.getElementById('am-status').value;
-    const status=sv.includes('停用')?'停用':'正常';
+    const sv=document.querySelector('input[name="am-status"]:checked');
+    const status=sv && sv.value==='停用'?'停用':'正常';
     const nodes=getMsValues('am-nodes');
     if(!nodes.length){ toast('请至少选择一个所属部门'); return; }
     const createdAt=formatDateTime(new Date());
@@ -11082,9 +11159,11 @@
   function memGoPrev(total){ if(memPage>1){ memPage--; renderOrgDetail(); } }
   function memGoNext(total){ const max=Math.ceil(total/memPageSize)||1; if(memPage<max){ memPage++; renderOrgDetail(); } }
   function memGoPage(p,total){ const max=Math.ceil(total/memPageSize)||1; p=Math.max(1,Math.min(max,p)); memPage=p; renderOrgDetail(); }
+  function memPageSizeChange(v){ memPageSize=v; memPage=1; renderOrgDetail(); }
   function renderMemPager(total){
     const max=Math.ceil(total/memPageSize)||1;
-    return `<div class="pager"><span class="total">共 ${total} 条</span><span class="pages">${memPageSize}条/页</span><button ${memPage===1?'disabled':''} onclick="memGoPrev(${total})">‹</button><span class="cur">${memPage}</span><button ${memPage===max?'disabled':''} onclick="memGoNext(${total})">›</button></div>`;
+    const sizeSel=`<select class="pg-size-sel" onchange="memPageSizeChange(parseInt(this.value))"><option value="10" ${memPageSize===10?'selected':''}>10条/页</option><option value="20" ${memPageSize===20?'selected':''}>20条/页</option><option value="50" ${memPageSize===50?'selected':''}>50条/页</option><option value="100" ${memPageSize===100?'selected':''}>100条/页</option></select>`;
+    return `<div class="pager"><span class="total">共 ${total} 条</span>${sizeSel}<button ${memPage===1?'disabled':''} onclick="memGoPrev(${total})">‹</button><span class="cur">${memPage}</span><button ${memPage===max?'disabled':''} onclick="memGoNext(${total})">›</button></div>`;
   }
   function descendantNodes(id){
     const res=[id], stack=[id];
@@ -11113,13 +11192,15 @@
     return html;
   }
   function getFilteredMembers(list){
-    return list.filter(m=>{
+    const arr=list.filter(m=>{
       if(memSearch){ const t=memSearch.toLowerCase(); const hay=(m.loginId+' '+m.name+' '+m.phone).toLowerCase(); if(!hay.includes(t)) return false; }
       if(memRole!=='全部角色' && !(Array.isArray(m.role)?m.role:([m.role].filter(Boolean))).includes(memRole)) return false;
       if(memStatus==='正常' && m.status!=='正常') return false;
       if(memStatus==='停用' && m.status!=='停用') return false;
       return true;
     });
+    arr.sort((a,b)=>(b.createdAt||'').localeCompare(a.createdAt||''));
+    return arr;
   }
   function colorAvatar(name){
     const palettes=['#7B6CF4','#409EFF','#F56C6C','#67C23A','#E6A23C','#13C2C2','#EB4D8C','#909399'];
@@ -11141,15 +11222,13 @@
         </div>
       </div>`;
     const rowHtml=m=>{
-      const multi=(m.nodeIds||[]).length>1;
-      const tag=multi?`<span class="tag war" style="margin-left:6px">兼其他组织</span>`:'';
       return `<tr>
-        <td class="col-loginId"><span class="mono">${m.phone}</span></td>
         <td class="col-name">${colorAvatar(m.name)}${m.name}</td>
+        <td class="col-loginId"><span class="mono">${m.phone}</span></td>
         <td class="col-role">${roleText(m)}</td>
-        <td class="col-dept">${memberDeptHtml(m)}${tag}</td>
+        <td class="col-dept">${memberDeptHtml(m)}</td>
         <td class="col-created mono">${m.createdAt||'—'}</td>
-        <td class="ops" style="white-space:nowrap;min-width:210px"><div class="row-act">${memberOps(m)}</div></td>
+        <td class="ops" style="white-space:nowrap"><div class="row-act">${memberOps(m)}</div></td>
       </tr>`;
     };
     const n=orgNodes.find(x=>x.id===orgSelected);
@@ -11193,9 +11272,11 @@
         </div>
         ${filterBar}
         <div class="table-scroll-wrap">
-          <table class="mem-table"><thead><tr><th>手机号（登录账号）</th><th>姓名</th><th>角色</th><th>所属部门</th><th>创建时间</th><th style="min-width:210px">操作</th></tr></thead><tbody>${rows}</tbody></table>
+          <table class="mem-table" id="ea-mem-table"><thead><tr><th>姓名</th><th>手机号（登录账号）</th><th>角色</th><th>所属部门</th><th>创建时间</th><th>操作</th></tr></thead><tbody>${rows}</tbody></table>
         </div>
+        ${renderMemPager(total)}
       </div>`;
+    initColResize('ea-mem-table');
   }
 
   /* ===== 模块2：角色权限管理（卡片视图 + 三级勾选矩阵，预置/自定义合一） ===== */
@@ -11543,6 +11624,7 @@
     {id:'e6',name:'中国移动上海公司',code:'ENT_2026_0006',creditCode:'91310115MA1K3X9H2G',adminName:'吴总监',phone:'13402006666',role:'超级管理员',ops:'李顾问',status:'已停用',modules:['招聘管理','财税管理'],createdAt:'2026-07-12 09:50:00',logo:'#1d9e73'}
   ];
   let entSearch='', entAdmin='', entStatus='全部';
+  let entPage=1, entPageSize=10;
   let entResetPage=1, entResetPageSize=10, entResetKw='', entResetMembers=[], entResetFiltered=[], entResetCurEntId='';
   const ALL_MODULES=['招聘管理','面试日程','人才库','系统设置'];
   // 企业编码：ENT_{YYYY}_{0001} 依次编号（按年重置，取当年最大序号+1）
@@ -11605,34 +11687,42 @@
     document.addEventListener('mousemove',move); document.addEventListener('mouseup',up);
   }
   function renderEntTable(){
-    const list=enterprises.filter(e=>{
+    let list=enterprises.filter(e=>{
       const ms=!entSearch||e.name.includes(entSearch);
       const mc=!entAdmin||(e.adminName||'').includes(entAdmin);
       const mst=entStatus==='全部'||e.status===entStatus;
       return ms&&mc&&mst;
     });
-    const rows=list.length?list.map(e=>{
+    list.sort((a,b)=>b.createdAt.localeCompare(a.createdAt));
+    const total=list.length;
+    const max=Math.max(1, Math.ceil(total/entPageSize));
+    if(entPage>max) entPage=max;
+    const paged=list.slice((entPage-1)*entPageSize, entPage*entPageSize);
+    const rows=paged.length?paged.map(e=>{
       const statusTag=e.status==='正常'?'<span class="txt-suc">● 正常</span>':'<span class="txt-dan">● 已停用</span>';
       const modText=e.modules&&e.modules.length?e.modules.join('、'):'—';
       const subCnt=entSubCount(e.name);
       const ops=`<a class="lnk" onclick="openEditEnt('${e.id}')">编辑</a><a class="lnk" onclick="openEntReset('${e.id}')">重置密码</a><a class="lnk" onclick="switchTenantTab('sub');esubSelectEnt('${e.name}')">子账号管理</a>${e.status==='正常'?`<a class="lnk-danger" onclick="toggleEnt('${e.id}',true)">停用</a>`:`<a class="lnk" onclick="toggleEnt('${e.id}',false)">启用</a>`}`;
       return `<tr>
-        <td class="mono" style="white-space:nowrap">${e.code}</td>
-        <td style="white-space:nowrap;font-weight:600">${e.name}</td>
-        <td class="mono" style="white-space:nowrap">${e.creditCode}</td>
+        <td style="white-space:nowrap">${e.name}</td>
         <td style="white-space:nowrap">${e.adminName}</td>
         <td class="mono" style="white-space:nowrap">${e.phone}</td>
         <td style="white-space:nowrap">${e.role}</td>
         <td style="white-space:nowrap">${statusTag}</td>
         <td style="white-space:nowrap;text-align:center">${subCnt}</td>
         <td class="mono" style="white-space:nowrap">${e.createdAt}</td>
-        <td style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis" title="${modText}">${modText}</td>
         <td class="ops" style="white-space:nowrap">${ops}</td>
       </tr>`;
-    }).join(''):'<tr><td colspan="11" style="color:var(--text-secondary);text-align:center;padding:20px">无匹配企业</td></tr>';
+    }).join(''):'<tr><td colspan="8" style="color:var(--text-secondary);text-align:center;padding:20px">无匹配企业</td></tr>';
     document.getElementById('entTbody').innerHTML=rows;
+    const pagerEl=document.getElementById('ent-pager');
+    if(pagerEl) pagerEl.innerHTML=renderPagerHtml(total, entPage, entPageSize, 'entGoPrev','entGoNext','entGoPage','entGoPage','entPageSizeChange');
     initEntColResize();
   }
+  function entGoPrev(){ if(entPage>1){ entPage--; renderEntTable(); } }
+  function entGoNext(){ entPage++; renderEntTable(); }
+  function entGoPage(p){ entPage=p; renderEntTable(); }
+  function entPageSizeChange(v){ entPageSize=v; entPage=1; renderEntTable(); }
   /* ===== 主账号 → 子账号管理：Tab 切换 + 企业查询/选择 ===== */
   let esubEnt='';
   function entSubCount(name){
@@ -11645,11 +11735,12 @@
     document.getElementById('tenant-main').style.display = tab==='main'?'block':'none';
     document.getElementById('tenant-sub').style.display = tab==='sub'?'block':'none';
     if(tab==='sub' && esubEnt){ document.getElementById('esub-ent-input').value=esubEnt; esubSelectEnt(esubEnt); }
-    else if(tab==='sub'){ const t=document.getElementById('esub-orgTree'); if(t) t.innerHTML='<div class="empty-tip">搜索并选择企业后，展示其组织架构与人员</div>'; const d=document.getElementById('esub-orgDetail'); if(d) d.innerHTML='<div class="empty-tip">点击左侧节点查看详情</div>'; }
+    else if(tab==='sub'){ const panel=document.getElementById('esub-panel'); if(panel) panel.style.display='none'; const empty=document.getElementById('esub-empty'); if(empty) empty.style.display='block'; }
   }
   function onEsubEntSearch(v){
     const menu=document.getElementById('esub-ent-menu'); if(!menu) return;
     const q=v.trim();
+    if(!q){ const panel=document.getElementById('esub-panel'); if(panel) panel.style.display='none'; const empty=document.getElementById('esub-empty'); if(empty) empty.style.display='block'; esubEnt=''; const hidden=document.getElementById('esub-ent'); if(hidden) hidden.value=''; }
     const list=enterprises.filter(e=>e.name.includes(q)).slice(0,50);
     menu.innerHTML=list.length?list.map(e=>`<div class="ssi" onclick="esubSelectEnt('${e.name.replace(/'/g,"\\'")}')" style="padding:9px 14px;font-size:13px;color:var(--text-primary);cursor:pointer;white-space:nowrap">${e.name}</div>`).join(''):'<div class="ssi" style="padding:9px 14px;color:var(--text-secondary);cursor:default">无匹配企业</div>';
     menu.style.display='block';
@@ -11660,7 +11751,16 @@
     const hidden=document.getElementById('esub-ent'); if(hidden) hidden.value=name;
     const menu=document.getElementById('esub-ent-menu'); if(menu) menu.style.display='none';
     const panel=document.getElementById('esub-panel'); if(panel) panel.style.display='block';
+    const empty=document.getElementById('esub-empty'); if(empty) empty.style.display='none';
     loadOrg(name, true);
+  }
+  function esubClearEnt(){
+    esubEnt='';
+    const input=document.getElementById('esub-ent-input'); if(input) input.value='';
+    const hidden=document.getElementById('esub-ent'); if(hidden) hidden.value='';
+    const menu=document.getElementById('esub-ent-menu'); if(menu) menu.style.display='none';
+    const panel=document.getElementById('esub-panel'); if(panel) panel.style.display='none';
+    const empty=document.getElementById('esub-empty'); if(empty) empty.style.display='block';
   }
   document.addEventListener('click',function(e){
     const wrap=document.getElementById('esub-ent-wrap');
@@ -12176,7 +12276,7 @@
   /* ---------- 运营账号管理：右侧列表 ---------- */
   function getFilteredOpAccounts(){
     const scopeSet=new Set(opOrgDescendantIds(opOrgSelected));
-    return opAccounts.filter(a=>{
+    const arr=opAccounts.filter(a=>{
       if(!scopeSet.has(a.deptId)) return false;
       if(opAccSearch){ const t=opAccSearch.toLowerCase(); const hay=(a.loginId+' '+a.name+' '+a.phone).toLowerCase(); if(!hay.includes(t)) return false; }
       if(opAccRole!=='全部角色'){ const rNames=a.roles.map(rid=>(opRoles.find(x=>x.id===rid)||{}).name).filter(Boolean); if(!rNames.includes(opAccRole)) return false; }
@@ -12184,6 +12284,8 @@
       if(opAccStatus==='停用' && a.status!=='停用') return false;
       return true;
     });
+    arr.sort((a,b)=>(b.createdAt||'').localeCompare(a.createdAt||''));
+    return arr;
   }
   function renderOpAccountList(){
     const panel=document.getElementById('opAccountPanel'); if(!panel) return;
@@ -12204,12 +12306,12 @@
       let ops=`<a class="lnk" onclick="openOpAccountForm('${a.id}')">编辑</a><a class="lnk" onclick="resetOpAccountPwd('${a.id}')">重置密码</a>`;
       if(a.status==='正常') ops+=`<a class="lnk danger" onclick="toggleOpAccount('${a.id}')">停用</a>`;
       else ops+=`<a class="lnk" onclick="toggleOpAccount('${a.id}')">启用</a>`;
-      return `<tr><td class="mono">${a.phone}</td><td>${colorAvatar(a.name)}${a.name}</td><td>${roleNames}</td><td>${deptName}</td><td>${statusTag}</td><td class="ops" style="white-space:nowrap">${ops}</td></tr>`;
+      return `<tr><td>${colorAvatar(a.name)}${a.name}</td><td class="mono">${a.phone}</td><td>${roleNames}</td><td>${deptName}</td><td>${statusTag}</td><td class="ops" style="white-space:nowrap">${ops}</td></tr>`;
     }).join(''):'<tr><td colspan="7" style="color:var(--text-secondary);text-align:center;padding:28px">暂无账号</td></tr>';
     panel.innerHTML=`
       <div class="card" style="padding:16px 16px 12px">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-          <div><b>${nodeName}</b><span style="color:var(--text-secondary);font-size:13px;margin-left:8px">含下级共 ${totalCnt} 个账号</span></div>
+          <div><b>${nodeName}</b><span style="color:var(--text-secondary);font-size:12px;margin-left:8px">含下级共 ${totalCnt} 个账号</span></div>
           <button class="btn" onclick="openOpAccountForm()">+ 新建账号</button>
         </div>
         <div class="mem-filter">
@@ -12223,12 +12325,15 @@
         </div>
       </div>
       <div class="card" style="padding:0;margin-top:12px">
-        <table class="mem-table">
-          <thead><tr><th>手机号（登录账号）</th><th>姓名</th><th>角色</th><th>所属部门</th><th>状态</th><th>操作</th></tr></thead>
-          <tbody>${rows}</tbody>
-        </table>
-        <div class="pager" id="opacc-pager">${renderPagerHtml(opAccTotal, opAccPage, opAccPageSize, 'opAccGoPrev','opAccGoNext','opAccGoPage','opAccGoPage')}</div>
+        <div class="table-scroll-wrap">
+          <table class="mem-table" id="opacc-table">
+            <thead><tr><th>姓名</th><th>手机号（登录账号）</th><th>角色</th><th>所属部门</th><th>状态</th><th>操作</th></tr></thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>
+        <div class="pager" id="opacc-pager">${renderPagerHtml(opAccTotal, opAccPage, opAccPageSize, 'opAccGoPrev','opAccGoNext','opAccGoPage','opAccGoPage','opAccPageSizeChange')}</div>
       </div>`;
+    initColResize('opacc-table');
   }
   function onOpAccSearch(v){ opAccSearch=v.trim(); opAccPage=1; renderOpAccountList(); }
   function onOpAccRole(v){ opAccRole=v; opAccPage=1; renderOpAccountList(); }
@@ -12236,6 +12341,7 @@
   function opAccGoPrev(){ if(opAccPage>1){ opAccPage--; renderOpAccountList(); } }
   function opAccGoNext(){ opAccPage++; renderOpAccountList(); }
   function opAccGoPage(p){ opAccPage=p; renderOpAccountList(); }
+  function opAccPageSizeChange(v){ opAccPageSize=v; opAccPage=1; renderOpAccountList(); }
   /* ---------- 运营账号管理：角色多选组件 ---------- */
   function renderRoleMultiSelect(id, selected){
     const sel=selected||[];
@@ -12265,14 +12371,22 @@
     const a=isEdit?opAccounts.find(x=>x.id===id):null;
     const title=isEdit?'编辑账号 — '+(a?a.name:''):'新建账号';
     const deptOpts=opOrgNodes.map(n=>`<option value="${n.id}" ${(a?a.deptId:opOrgSelected)===n.id?'selected':''}>${opOrgPath(n.id)}</option>`).join('');
-    const statusHtml=a?`<div class="field"><label>状态 <span class="req">*</span></label><div class="radio-group"><label><input type="radio" name="oa-status" value="正常" ${a.status==='正常'?'checked':''}/> 正常</label><label><input type="radio" name="oa-status" value="停用" ${a.status==='停用'?'checked':''}/> 停用</label></div></div>`:'';
-    const body=`<div class="field"><label>姓名 <span class="req">*</span></label><input class="inp" id="oa-name" value="${a?a.name:''}" placeholder="请输入姓名"/></div>
+    const pwd=genStrongPwd();
+    const statusHtml=`<div class="field"><label>状态 <span class="req">*</span></label><div class="radio-group"><label class="lr-radio"><input type="radio" name="oa-status" value="启用" ${(!a||a.status==='正常')?'checked':''}><span class="r-dot"></span><span class="r-text">启用</span></label><label class="lr-radio"><input type="radio" name="oa-status" value="停用" ${a&&a.status==='停用'?'checked':''}><span class="r-dot"></span><span class="r-text">停用</span></label></div></div>`;
+    const pwdHtml=!isEdit?`<div class="field"><label>初始密码</label>
+        <div style="display:flex;gap:8px;align-items:center">
+          <input class="inp mono" value="${pwd}" id="oa-pwd" readonly style="flex:1;background:var(--bg-page);color:var(--text-secondary)"/>
+          <button class="lr-link-btn" onclick="document.getElementById('oa-pwd').value=genStrongPwd()">重新生成</button>
+        </div>
+        <div class="note">初始密码随机生成，首次登录需修改</div>
+      </div>`:'';
+    const body=`<div class="lr-form acct-form"><div class="field"><label>姓名 <span class="req">*</span></label><input class="inp" id="oa-name" value="${a?a.name:''}" placeholder="请输入姓名"/></div>
       <div class="field"><label>手机号 <span class="req">*</span></label><input class="inp" id="oa-phone" value="${a?a.phone:''}" placeholder="请输入11位手机号" maxlength="11"/></div>
       <div class="field"><label>角色 <span class="req">*</span></label>${renderRoleMultiSelect('oa-roles', a?a.roles:[])}<div class="note">多选时权限取并集</div></div>
       <div class="field"><label>所属部门 <span class="req">*</span></label><select class="select" id="oa-dept">${deptOpts}</select></div>
       ${statusHtml}
-      ${isEdit?'':'<div class="note">新建账号初始密码为系统随机生成的 8-20 位密码（须含大写字母、小写字母、数字），首次登录需修改</div>'}`;
-    const foot=`<button class="btn ghost" onclick="closeModal()">取消</button><button class="btn" onclick="saveOpAccount('${id||''}')">保存</button>`;
+      ${pwdHtml}</div>`;
+    const foot=`<button class="btn ghost" onclick="closeModal()">取消</button><button class="btn" onclick="saveOpAccount('${id||''}')">${isEdit?'保存':'保存并开通'}</button>`;
     openModal(title, body, foot, 'lg');
   }
   function saveOpAccount(id){
@@ -12281,12 +12395,13 @@
     const deptId=document.getElementById('oa-dept').value;
     const phone=document.getElementById('oa-phone').value.trim();
     const statusEls=document.getElementsByName('oa-status');
-    const status=statusEls.length?[...statusEls].find(r=>r.checked).value:'正常';
+    const rawStatus=statusEls.length?[...statusEls].find(r=>r.checked).value:'启用';
+    const status=rawStatus==='停用'?'停用':'正常';
     if(!name){ toast('请输入姓名'); return; }
     if(!roles.length){ toast('请选择角色'); return; }
     if(!deptId){ toast('请选择所属部门'); return; }
     if(!phone){ toast('请输入手机号'); return; }
-    if(!/^1[3-9]\d{9}$/.test(phone)){ toast('手机号格式不正确'); return; }
+    if(!/^1[3-9]\d{9}$/.test(phone)){ toast('手机号必须为11位有效手机号'); return; }
     if(id){
       const a=opAccounts.find(x=>x.id===id); if(!a) return;
       a.name=name; a.roles=roles; a.deptId=deptId; a.phone=phone; a.status=status;
@@ -12325,46 +12440,39 @@
   }
   function openEditEnt(id){
     const e=enterprises.find(x=>x.id===id); if(!e) return;
-    const statusOn=e.status==='正常'?'checked':''; const statusOff=e.status==='已停用'?'checked':'';
-    const body=`<div class="lr-form"><h4 class="h-section">企业基础信息</h4>
-      <div class="field"><label>企业名称</label><input class="inp" id="ee-name" value="${e.name}" readonly style="background:var(--bg-page);color:var(--text-secondary)"/></div>
-      <div class="field"><label>企业编码</label><input class="inp mono" value="${e.code}" readonly style="background:var(--bg-page);color:var(--text-secondary)"/></div>
-      <div class="field"><label>统一社会信用代码（税号） <span class="req">*</span></label><input class="inp mono" id="ee-credit" value="${e.creditCode}" readonly style="background:var(--bg-page);color:var(--text-secondary)"/></div>
-      <h4 class="h-section">主账号信息</h4>
+    const entOpts=enterprises.map(x=>`<option value="${escAttr(x.name)}" ${x.name===e.name?'selected':''}>${escAttr(x.name)}</option>`).join('');
+    const body=`<div class="lr-form">
+      <div class="field"><label>所属企业</label>
+        <select class="select" id="ee-ent-select" disabled style="flex:1;min-width:0;background:var(--bg-page);color:var(--text-secondary);cursor:not-allowed">${entOpts}</select>
+      </div>
       <div class="field"><label>管理员姓名 <span class="req">*</span></label><input class="inp" id="ee-admin" value="${e.adminName}"/></div>
       <div class="field"><label>手机号（登录账号） <span class="req">*</span></label><input class="inp mono" id="ee-phone" value="${e.phone}"/></div>
-      <div class="field status-field"><label>账号状态 <span class="req">*</span></label>
-        <label class="lr-switch"><input type="checkbox" id="ee-status" ${e.status==='正常'?'checked':''} onchange="document.getElementById('ee-status-txt').textContent=this.checked?'启用':'停用'"><span class="lr-switch-track"><span class="lr-switch-thumb"></span></span><span class="lr-switch-text" id="ee-status-txt">${e.status==='正常'?'启用':'停用'}</span></label>
-      </div>
-      <h4 class="h-section">开通模块</h4>
-      <div class="note">按模块（一级菜单）授权，勾选后企业端展示该模块全部功能；工作台、系统设置、人员管理、排班管理、抢班管理、财税管理默认开通。</div>
-      ${moduleCardAuthHTML(e.modules||[], e.status==='已停用')}
-      <div class="field"><label>备注</label><input class="inp" id="ee-remark" value="${e.remark||''}" placeholder="选填，来源渠道 / 特殊要求"></div></div>`;
+      <div class="field"><label>角色</label><input class="inp" value="${e.role||'超级管理员'}" readonly style="background:var(--bg-page);color:var(--text-secondary)"/></div>
+      <div class="field"><label>账号状态 <span class="req">*</span></label>
+        <div class="radio-group">
+          <label class="lr-radio"><input type="radio" name="ee-status" value="启用" ${e.status==='正常'?'checked':''}><span class="r-dot"></span><span class="r-text">启用</span></label>
+          <label class="lr-radio"><input type="radio" name="ee-status" value="停用" ${e.status==='已停用'?'checked':''}><span class="r-dot"></span><span class="r-text">停用</span></label>
+        </div>
+      </div></div>`;
     const foot=`<button class="btn ghost" onclick="closeModal()">取消</button><button class="btn" onclick="saveEditEnt('${id}')">保存</button>`;
-    openModal('编辑企业 — '+e.name, body, foot, 'lg');
+    openModal('编辑主账号 — '+e.name, body, foot, 'lg');
+    const box=document.getElementById('modalBox'); if(box) box.classList.add('nt-main-modal');
+    const mm=document.getElementById('modalMask'); if(mm) mm.classList.add('adm-scope');
   }
   function saveEditEnt(id){
     const e=enterprises.find(x=>x.id===id); if(!e) return;
-    const credit=(document.getElementById('ee-credit').value||'').trim();
+    const newEnt=(document.getElementById('ee-ent-select').value||'').trim();
     const admin=(document.getElementById('ee-admin').value||'').trim();
     const phone=(document.getElementById('ee-phone').value||'').trim();
-    const status=document.getElementById('ee-status').checked?'正常':'已停用';
-    const remark=(document.getElementById('ee-remark')?.value||'').trim();
-    if(!credit){ toast('请填写统一社会信用代码（税号）'); return; }
+    const status=(document.querySelector('input[name="ee-status"]:checked')||{}).value==='停用'?'已停用':'正常';
+    if(!newEnt){ toast('请选择所属企业'); return; }
     if(!admin){ toast('请填写管理员姓名'); return; }
     if(!/^1\d{10}$/.test(phone)){ toast('请填写正确的11位手机号（登录账号）'); return; }
-    // 企业名称 + 统一社会信用代码 在正常状态下唯一（排除自身）
-    const dup=enterprises.find(x=>x.id!==id && x.status==='正常' && x.name===e.name && x.creditCode===credit);
-    if(dup){ toast('该企业名称与统一社会信用代码组合已存在正常企业，无法保存'); return; }
-    e.creditCode=credit;
+    e.name=newEnt;
     e.adminName=admin;
     e.phone=phone;
     e.status=status;
-    e.remark=remark;
-    const modSet=new Set();
-    document.querySelectorAll('#mac-modules input[data-mod]:checked').forEach(cb=>{ modSet.add(cb.getAttribute('data-mod')); });
-    e.modules=[...modSet];
-    closeModal(); renderEntTable(); toast('企业信息已保存');
+    closeModal(); renderEntTable(); toast('主账号信息已保存');
   }
   // 开通模块：独立模块清单（与导航菜单树解耦），按用户指定 11 个模块
   const AUTH_MODULES=[
@@ -12462,17 +12570,11 @@
   }
   function openNewTenant(){
     const pwd=genEntPwd();
-    const body=`
-      <div class="lr-form"><h4 class="h-section">企业基础信息</h4>
-      <div class="field"><label>企业名称 <span class="req">*</span></label>
-        <div class="nt-ent-ctl" style="position:relative;flex:1;min-width:0">
-          <input class="inp" id="nt-name" style="width:100%" placeholder="请输入企业名称" autocomplete="off" oninput="ntFilterEnts(this.value)" onfocus="ntFilterEnts(this.value)" onblur="setTimeout(ntEntBlur,220)"/>
-          <div class="pos-suggest nt-ent-suggest" id="nt-ent-suggest" style="display:none;position:absolute;top:calc(100% + 4px);left:0;right:0"></div>
-        </div>
+    const entOpts=enterprises.map(e=>`<option value="${escAttr(e.name)}">${escAttr(e.name)}</option>`).join('');
+    const body=`<div class="lr-form">
+      <div class="field"><label>所属企业 <span class="req">*</span></label>
+        <select class="select" id="nt-ent-select" style="flex:1;min-width:0"><option value="">请选择企业</option>${entOpts}</select>
       </div>
-      <div class="field"><label>企业编码</label><input class="inp mono" id="nt-code" placeholder="选择企业后自动带出" readonly style="background:var(--bg-page);color:var(--text-secondary)"/></div>
-      <div class="field"><label>统一社会信用代码（税号） <span class="req">*</span></label><input class="inp mono" id="nt-credit" placeholder="选择企业后自动带出" readonly style="background:var(--bg-page);color:var(--text-secondary)"/></div>
-      <h4 class="h-section">主账号信息</h4>
       <div class="field"><label>管理员姓名 <span class="req">*</span></label><input class="inp" id="nt-admin" placeholder="主账号姓名"/></div>
       <div class="field"><label>手机号（登录账号） <span class="req">*</span></label><input class="inp mono" id="nt-phone" placeholder="11位手机号"/></div>
       <div class="field"><label>初始密码</label>
@@ -12482,37 +12584,30 @@
         </div>
         <div class="note">初始密码随机生成，首次登录需修改</div>
       </div>
-      <div class="field status-field"><label>账号状态 <span class="req">*</span></label>
-        <label class="lr-switch"><input type="checkbox" id="nt-status" checked onchange="document.getElementById('nt-status-txt').textContent=this.checked?'启用':'停用'"><span class="lr-switch-track"><span class="lr-switch-thumb"></span></span><span class="lr-switch-text" id="nt-status-txt">启用</span></label>
-      </div>
-      <h4 class="h-section">开通模块</h4>
-      <div class="note">按模块（一级菜单）授权，勾选后企业端展示该模块全部功能；工作台、系统设置、人员管理、排班管理、抢班管理、财税管理默认开通。</div>
-      ${moduleCardAuthHTML([],false)}
-      <div class="field"><label>备注</label><input class="inp" id="nt-remark" placeholder="选填，来源渠道 / 特殊要求"></div></div>`;
+      <div class="field"><label>角色</label><input class="inp" value="超级管理员" readonly style="background:var(--bg-page);color:var(--text-secondary)"/></div>
+      <div class="field"><label>账号状态 <span class="req">*</span></label>
+        <div class="radio-group">
+          <label class="lr-radio"><input type="radio" name="nt-status" value="启用" checked><span class="r-dot"></span><span class="r-text">启用</span></label>
+          <label class="lr-radio"><input type="radio" name="nt-status" value="停用"><span class="r-dot"></span><span class="r-text">停用</span></label>
+        </div>
+      </div></div>`;
     const foot=`<button class="btn ghost" onclick="closeModal()">取消</button><button class="btn" onclick="confirmNewTenant()">保存并开通</button>`;
-    openModal('新增企业账号 — 企业入驻', body, foot, 'lg');
+    openModal('新增主账号', body, foot, 'lg');
+    const box=document.getElementById('modalBox'); if(box) box.classList.add('nt-main-modal');
+    const mm=document.getElementById('modalMask'); if(mm) mm.classList.add('adm-scope');
   }
   function confirmNewTenant(){
-    const name=(document.getElementById('nt-name').value||'').trim();
-    const ntLogo='#8B7BFF';
-    const code=(document.getElementById('nt-code').value||'').trim()||genEntCode();
-    const credit=(document.getElementById('nt-credit').value||'').trim();
+    const ent=(document.getElementById('nt-ent-select').value||'').trim();
     const admin=(document.getElementById('nt-admin').value||'').trim();
     const phone=(document.getElementById('nt-phone').value||'').trim();
-    const statusSel=document.getElementById('nt-status').checked?'启用':'停用';
-    if(!name){ toast('请填写企业名称'); return; }
-    if(!credit){ toast('请填写统一社会信用代码（税号）'); return; }
+    const statusSel=(document.querySelector('input[name="nt-status"]:checked')||{}).value||'启用';
+    if(!ent){ toast('请选择所属企业'); return; }
     if(!admin){ toast('请填写管理员姓名'); return; }
     if(!/^1\d{10}$/.test(phone)){ toast('请填写正确的11位手机号（登录账号）'); return; }
-    // 企业名称 + 统一社会信用代码 在正常状态下唯一（已停用可多个同时存在）
-    const dup=enterprises.find(e=>e.status==='正常' && e.name===name && e.creditCode===credit);
-    if(dup){ toast('该企业名称与统一社会信用代码组合已存在正常企业，无法重复创建'); return; }
-    const modSet=new Set();
-    document.querySelectorAll('#mac-modules input[data-mod]:checked').forEach(cb=>{ modSet.add(cb.getAttribute('data-mod')); });
-    const now=new Date(); const pad=n=>String(n).padStart(2,'0');
-    const createdAt=`${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
-    enterprises.push({id:'e'+Date.now(), name, code, creditCode:credit, adminName:admin, phone, role:'超级管理员', ops:'—', status:statusSel==='停用'?'已停用':'正常', modules:[...modSet], createdAt, logo:ntLogo});
-    closeModal(); renderEntTable(); toast('企业账号已创建并开通，状态：'+(statusSel==='停用'?'已停用':'正常'));
+    const e=enterprises.find(x=>x.name===ent);
+    if(!e){ toast('所选企业不存在'); return; }
+    e.adminName=admin; e.phone=phone; e.status=(statusSel==='停用'?'已停用':'正常');
+    closeModal(); renderEntTable(); toast('主账号已保存，状态：'+(statusSel==='停用'?'已停用':'正常'));
   }
   /* 新增企业账号：企业名称从企业管理列表中选择，选择后带出编码/税号 */
   function ntFilterEnts(q){
@@ -12552,13 +12647,14 @@
         <button class="btn ghost sm" onclick="document.getElementById('er-search').value='';filterEntResetMem('')">↺ 重置</button>
       </div>
       <div class="table-scroll-wrap" style="max-height:360px">
-        <table class="mem-table" id="er-table" style="min-width:760px;table-layout:fixed">
-          <thead><tr><th style="width:40px"></th><th style="width:120px">姓名</th><th style="width:160px">角色</th><th style="width:180px">手机号（登录账号）</th><th style="width:90px">状态</th></tr></thead>
+      <table class="mem-table" id="er-table" style="min-width:560px;table-layout:fixed">
+        <thead><tr><th style="width:36px"></th><th style="width:110px">姓名</th><th style="width:150px">角色</th><th style="width:160px">手机号（登录账号）</th><th style="width:90px">状态</th></tr></thead>
           <tbody id="er-tbody"></tbody>
         </table>
       </div>`;
     const foot=`<button class="btn ghost" onclick="closeModal()">取消</button><button class="btn danger" onclick="confirmEntReset('${id}')">确认重置</button>`;
-    openModal('重置密码 — '+e.name, body, foot, 'xl');
+    openModal('重置密码 — '+e.name, body, foot, 'lg');
+    const erBox=document.getElementById('modalBox'); if(erBox) erBox.classList.add('er-modal');
     setTimeout(()=>{
       const inp=document.getElementById('er-search');
       if(!inp) return;
@@ -12588,7 +12684,7 @@
       const absIdx=start+i;
       return `<tr data-name="${m.name}" data-login="${m.phone}">
         <td style="text-align:center"><input type="radio" name="er-mem" value="${m.phone}" data-name="${m.name}" ${absIdx===0?'checked':''} ${m.status==='停用'?'disabled':''}></td>
-        <td style="font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${m.name}${m.isMain?'<span class="tag pri" style="font-size:11px;margin-left:4px">主账号</span>':''}</td>
+        <td style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${m.name}${m.isMain?'<span class="tag pri" style="font-size:11px;margin-left:4px">主账号</span>':''}</td>
         <td style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${roleText(m)}</td>
         <td class="mono" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${m.phone}</td>
         <td style="white-space:nowrap">${m.status==='正常'?'<span class="txt-suc">● 正常</span>':'<span class="txt-dan">● 停用</span>'}</td>
