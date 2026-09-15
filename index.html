@@ -18608,7 +18608,6 @@
     const mine=demands.filter(d=>d.ent===ENT);
     let list=mine.filter(d=>{
       const created=demandCreated(d).slice(0,10).replace(/-/g,'');
-      if(!entCanSeeDept(d.dept)) return false;
       return (st==='全部'||entStatusMap(d.status)===st)
         && (!q||d.name.includes(q))
         && (!dept||deptName(d.dept).includes(dept))
