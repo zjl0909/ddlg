@@ -1747,9 +1747,10 @@
   /* ===== 推荐页 ===== */
   #m-rec{position:relative;}
   .mr-header{position:sticky; top:0; z-index:20; background:linear-gradient(180deg,#C6FCFD 0%,#E0FCFD 70%,#F5F7FA 100%); padding:30px 16px 6px;}
-  .mr-top{display:flex; align-items:center; gap:10px; padding:10px 14px 6px;}
-  .mr-city{font-size:18px; font-weight:700; color:#0c3d2b; display:flex; align-items:center; gap:4px; cursor:pointer; flex:0 0 auto; white-space:nowrap;}
-  .mr-city .arrow{font-size:12px; color:#0c3d2b; opacity:.7;}
+  .mr-top{display:flex; align-items:center; gap:10px; padding:10px 14px 6px 6px;}
+  .mr-city{font-size:14px; font-weight:700; color:#0c3d2b; display:flex; align-items:center; gap:4px; cursor:pointer; flex:0 0 auto; white-space:nowrap; max-width:90px;}
+  .mr-city .arrow{font-size:16px; color:#0c3d2b; opacity:.85; line-height:1; margin-left:1px;}
+  .mr-city-txt{overflow:hidden; white-space:nowrap; text-overflow:ellipsis; max-width:4.3em; min-width:0;}
   .mr-search{flex:1; background:#fff; border-radius:18px; display:flex; align-items:center; padding:7px 14px; gap:6px; min-width:0;}
   .mr-search svg{width:14px; height:14px; color:var(--text-placeholder);}
   .mr-search input{border:none; background:transparent; flex:1; font-size:11px; outline:none; color:var(--text-primary); min-width:0;}
@@ -1759,7 +1760,7 @@
   .mr-capsule .c-dots i{width:3px; height:3px; border-radius:50%; background:#0c3d2b;}
   .mr-capsule .c-circle{width:11px; height:11px; border:1.5px solid #0c3d2b; border-radius:50%;}
   .mr-tabs{display:flex; gap:20px; padding:6px 16px 8px; position:relative; border-bottom:1px solid rgba(0,0,0,.06);}
-  .mr-tabs button{padding:4px 2px; border:none; background:transparent; font-size:15px; color:#5b6b66; position:relative; cursor:pointer; font-weight:500;}
+  .mr-tabs button{padding:4px 2px; border:none; background:transparent; font-size:14px; color:#5b6b66; position:relative; cursor:pointer; font-weight:500;}
   .mr-tabs button.on{color:#0c3d2b; font-weight:700;}
   .mr-tabs button.on::after{content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:#0d8f6e; border-radius:2px 2px 0 0;}
   .mr-sortbar{display:flex; align-items:center; gap:8px; padding:10px 14px; background:transparent; overflow:auto; scrollbar-width:none;}
@@ -1905,6 +1906,96 @@
   .md-time .tm{background:#f8f9fb; border-radius:8px; padding:14px 12px; text-align:center;}
   /* 热招标识 */
   .hot-tag{display:inline-block; margin-left:6px; font-size:10px; font-weight:600; color:#fff; background:#f44336; border-radius:4px; padding:1px 5px; vertical-align:middle;}
+  /* ===== 想在哪里工作（整页） ===== */
+  #p-mini #m-rec{position:relative;}
+  .mr-where{display:none; position:absolute; inset:0; background:#F5F7FA; z-index:80; flex-direction:column;}
+  .mr-where.on{display:flex;}
+  .where-head{display:flex; align-items:center; gap:10px; padding:42px 14px 12px; background:linear-gradient(180deg,#C6FCFD 0%,#E0FCFD 100%);}
+  .where-back{font-size:22px; color:#0c3d2b; cursor:pointer; line-height:1;}
+  .where-title{font-size:16px; font-weight:700; color:#0c3d2b;}
+  .where-search{display:flex; align-items:center; gap:6px; margin:12px 14px; background:#fff; border-radius:18px; padding:8px 14px;}
+  .ws-city{display:flex; align-items:center; gap:3px; font-size:14px; font-weight:600; color:#0c3d2b; white-space:nowrap; cursor:pointer;}
+  .ws-arrow{font-size:11px; opacity:.7; line-height:1;}
+  .ws-div{width:1px; height:16px; background:#e5e7eb; margin:0 4px; flex:0 0 auto;}
+  .city-more-cell{color:#0d8f6e; font-weight:600;}
+  .where-search input{border:none; background:transparent; flex:1; font-size:13px; outline:none;}
+  .where-body{flex:1; overflow:auto; padding:0 16px 24px;}
+  .where-body::-webkit-scrollbar{display:none;}
+  .where-sec{margin-bottom:18px;}
+  .where-sec-h{font-size:12px; font-weight:700; color:#9ca3af; margin:8px 0;}
+  .where-loc{display:flex; align-items:center; gap:10px; background:#fff; border-radius:10px; padding:14px; cursor:pointer;}
+  .where-loc .wl-ico{font-size:18px;}
+  .where-loc .wl-txt{flex:1; min-width:0;}
+  .where-loc .wl-name{font-size:14px; color:#1f2937; font-weight:600; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .where-loc .wl-sub{font-size:11px; color:#9ca3af; margin-top:2px;}
+  .where-loc .wl-reloc{font-size:12px; color:#0d8f6e; font-weight:600; flex:0 0 auto; margin-left:8px;}
+  .wa-item{display:flex; align-items:center; gap:10px; background:#fff; border-radius:10px; padding:12px 14px; margin-bottom:8px;}
+  .wa-item .wa-pin{font-size:16px; color:#0d8f6e;}
+  .wa-item .wa-txt{flex:1; min-width:0;}
+  .wa-item .wa-name{font-size:14px; color:#1f2937; font-weight:600; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .wa-item .wa-sub{font-size:11px; color:#9ca3af; margin-top:2px;}
+  .wa-item .wa-ico{font-size:15px; color:#bbb; padding:4px 6px; cursor:pointer;}
+  .wa-item .wa-ico:hover{color:#4b5563;}
+  .wa-add{display:flex; align-items:center; gap:8px; justify-content:center; background:#fff; border:1px dashed #cbd5e1; border-radius:10px; padding:12px; color:#0d8f6e; font-size:13px; font-weight:600; cursor:pointer; margin-top:4px;}
+  .wa-add.disabled{color:#bbb; border-color:#e5e7eb; cursor:not-allowed;}
+  .city-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:10px;}
+  .city-cell{background:#fff; border-radius:8px; padding:12px 0; text-align:center; font-size:13px; color:#374151; cursor:pointer; border:1px solid #eef0f2; position:relative;}
+  .city-cell.on{background:#E0FCFD; color:#0d8f6e; border-color:#0d8f6e;}
+  .city-cell .cc-n{position:absolute; top:4px; right:7px; font-size:10px; color:#9ca3af;}
+  .city-more{margin-top:10px; text-align:center; font-size:13px; color:#0d8f6e; font-weight:600; cursor:pointer; background:#fff; border-radius:8px; padding:12px;}
+  /* 全量城市选择页 */
+  .mr-city-more{display:none; position:absolute; inset:0; background:#F5F7FA; z-index:90; flex-direction:column;}
+  .mr-city-more.on{display:flex;}
+  .city-more-wrap{flex:1; display:flex; position:relative; min-height:0;}
+  .city-more-body{flex:1; overflow:auto; padding:0 16px 24px; padding-right:30px;}
+  .city-az-sec{margin-bottom:4px;}
+  .city-az-letter{font-size:12px; font-weight:700; color:#9ca3af; margin:6px 0 4px; background:#F5F7FA; padding:2px 4px;}
+  .city-az{position:absolute; right:4px; top:0; bottom:0; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:1px; font-size:11px; color:#0d8f6e; width:22px;}
+  .city-az-i{padding:1px 2px; cursor:pointer; line-height:1.25; user-select:none;}
+  .city-az-i:active{font-weight:700;}
+  .cm-search{display:flex; align-items:center; gap:6px; margin:10px 14px 4px; background:#fff; border-radius:18px; padding:9px 14px; box-shadow:0 1px 4px rgba(15,61,43,.06);}
+  .cm-search input{border:none; background:transparent; flex:1; font-size:13px; outline:none;}
+  /* 地图选点弹层 */
+  .mr-mappick{display:none; position:absolute; inset:0; z-index:95; background:rgba(0,0,0,.35);}
+  .mr-mappick.on{display:block;}
+  .mpk-card{position:absolute; left:0; right:0; bottom:0; top:8%; background:#fff; border-radius:16px 16px 0 0; display:flex; flex-direction:column; overflow:hidden;}
+  .mpk-head{display:flex; align-items:center; justify-content:space-between; padding:14px 16px; border-bottom:1px solid #f0f2f5; font-size:15px; font-weight:700; color:#1f2937;}
+  .mpk-head .mpk-cancel,.mpk-head .mpk-ok{font-size:14px; font-weight:600; cursor:pointer;}
+  .mpk-head .mpk-cancel{color:#9ca3af;}
+  .mpk-head .mpk-ok{color:#0d8f6e;}
+  .mpk-search{display:flex; align-items:center; gap:6px; margin:12px 16px; background:#f3f4f6; border-radius:18px; padding:9px 14px;}
+  .mpk-search input{border:none; background:transparent; flex:1; font-size:13px; outline:none;}
+  .mpk-map{flex:0 0 200px; margin:0 16px; border-radius:12px; background:linear-gradient(135deg,#e7f0ee 0%,#dfeaf6 100%); position:relative; display:flex; align-items:center; justify-content:center; overflow:hidden;}
+  .mpk-map .mpk-pin{font-size:34px; filter:drop-shadow(0 3px 4px rgba(0,0,0,.2));}
+  .mpk-map .mpk-map-tip{position:absolute; bottom:8px; font-size:11px; color:#6b7280; background:rgba(255,255,255,.7); padding:2px 8px; border-radius:8px;}
+  .mpk-pois{flex:1; overflow:auto; padding:8px 16px 16px;}
+  .mpk-pois::-webkit-scrollbar{display:none;}
+  .poi-row{display:flex; align-items:center; gap:10px; padding:12px 4px; border-bottom:1px solid #f3f4f6; cursor:pointer;}
+  .poi-row .poi-ico{font-size:16px; color:#0d8f6e;}
+  .poi-row .poi-txt{flex:1; min-width:0;}
+  .poi-row .poi-name{font-size:14px; color:#1f2937; font-weight:600;}
+  .poi-row .poi-sub{font-size:12px; color:#9ca3af; margin-top:3px;}
+  .poi-row .poi-ck{color:#0d8f6e; font-size:14px; opacity:0;}
+  .poi-row.on .poi-ck{opacity:1;}
+  /* 删除确认 */
+  .mr-delmask{display:none; position:absolute; inset:0; z-index:92; background:rgba(0,0,0,.4);}
+  .mr-delmask.on{display:block;}
+  .del-box{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:78%; max-width:300px; background:#fff; border-radius:14px; padding:20px 18px; text-align:center;}
+  .del-box .del-t{font-size:15px; color:#1f2937; line-height:1.5;}
+  .del-box .del-btns{display:flex; gap:12px; margin-top:18px;}
+  .del-box .del-btns span{flex:1; padding:10px 0; border-radius:10px; font-size:14px; font-weight:600; cursor:pointer;}
+  .del-box .del-cancel{background:#f3f4f6; color:#374151;}
+  .del-box .del-ok{background:#ff4d4f; color:#fff;}
+  /* 我的资料—常住地址卡片 */
+  .mpv-addr-label{font-size:13px; color:#909399; margin:7px 0 0;}
+  .mpv-addr-card{display:flex; align-items:center; gap:10px; background:#f8f9fb; border-radius:10px; padding:12px; margin:10px 0; cursor:pointer;}
+  .mpv-addr-card .mac-map{width:46px; height:46px; border-radius:8px; background:linear-gradient(135deg,#e7f0ee,#dfeaf6); display:flex; align-items:center; justify-content:center; font-size:22px; flex:0 0 auto;}
+  .mpv-addr-card .mac-txt{flex:1; min-width:0;}
+  .mpv-addr-card .mac-name{font-size:13px; color:#1f2937; font-weight:600; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .mpv-addr-card .mac-sub{font-size:11px; color:#9ca3af; margin-top:2px;}
+  .mpv-addr-card .mac-arrow{color:#bbb; font-size:16px; flex:0 0 auto;}
+  .md-ent-row .ent-dist{color:#9ca3af; flex:0 0 auto;}
+  .md-ent-row .ent-dist::before{content:'·'; margin-right:6px; color:#d1d5db;}
   /* 报名要求列表 */
   .md-req-list{margin:0; padding:0 0 0 16px;}
   .md-req-list li{font-size:13px; color:#555; line-height:1.9;}
@@ -5532,8 +5623,8 @@
         <div class="mscreen" id="m-rec" style="display:none" data-page-node-id="wNeBfJpXkFYK3xi36JC1Mt">
           <div class="mr-header" id="mr-header" data-page-node-id="cIgBBBY6IxPQomW179ASwA">
             <div class="mr-top" data-page-node-id="R1EtqnIfMnK4doYrVD8TNy">
-              <div class="mr-city" id="mr-city" onclick="openCityPicker()" data-page-node-id="oQtAaDV4tgNqq7vdKyWDrD"><span id="mr-city-txt" data-page-node-id="Yhv4nWhONEdnh6fRh7vs5N">全国</span><span class="arrow" data-page-node-id="p69nt5hHy8P0WFUKRKgZLb">▾</span></div>
-              <div class="mr-search" data-page-node-id="1CGlr71MZVoTKjeeceRIpy"><input id="mr-kw" placeholder="搜索企业 / 岗位" oninput="renderRec()" data-page-node-id="qBl28cRwFOp2bp1gFlyDHC"/></div>
+              <div class="mr-city" id="mr-city" onclick="openWhere()" data-page-node-id="oQtAaDV4tgNqq7vdKyWDrD"><span id="mr-city-txt" data-page-node-id="Yhv4nWhONEdnh6fRh7vs5N">全国</span><span class="arrow" data-page-node-id="p69nt5hHy8P0WFUKRKgZLb">▾</span></div>
+              <div class="mr-search" data-page-node-id="1CGlr71MZVoTKjeeceRIpy"><input id="mr-kw" placeholder="搜索企业 / 岗位" oninput="mrKwDebounce()" data-page-node-id="qBl28cRwFOp2bp1gFlyDHC"/></div>
               <div class="mr-capsules" data-page-node-id="TfzIf0FHzo97JClKEKC8PO">
                 <div class="mr-capsule" data-page-node-id="DXyI42AyBcWrAZhnvob2nj"><span class="c-dots" data-page-node-id="CsQ5FeAi3vvLDVGcHTr4Ix"><i data-page-node-id="ZpT8DW6ty69l1vfuxeif5q"></i><i data-page-node-id="NPHFFFeWROmbupl1matJRg"></i><i data-page-node-id="RLOqAn9cahlOtmlweeavDq"></i></span></div>
                 <div class="mr-capsule" data-page-node-id="ZFHiSjTKMYyW9tYnbbgchw"><span class="c-circle" data-page-node-id="uAOTbOkTURyOvqIgRXRCsr"></span></div>
@@ -5543,19 +5634,6 @@
             <div class="mr-sortbar" id="m-rec-sort" data-page-node-id="467GqeK8eRCCxV9yZYP0pR"></div>
           </div>
           <div id="m-rec-body" data-page-node-id="Mnn0eomJMOYxCIHW3cgHQz"></div>
-          <div class="mr-city-picker" id="mrCityPicker" data-page-node-id="UZqQPLRHrvvHRoM1T8mmnw">
-            <div class="cp-head" data-page-node-id="npJDFDGxFtZwdTXKV2UZzL">
-              <div class="cp-back" onclick="closeCityPicker()" data-page-node-id="LDYLqhhtnqUi2k2zkF9Cw8">‹</div>
-              <div class="cp-title" data-page-node-id="Rem2GNh9O7uBKv7Jjg1igQ">选择城市</div>
-              <div class="mr-capsules" data-page-node-id="aszC4RuE1RDjWemXe3d8XZ">
-                <div class="mr-capsule" data-page-node-id="Y6nmYNOofo7PkMknGVCd3b"><span class="c-dots" data-page-node-id="443rDG86KHtPxwhmgqFviQ"><i data-page-node-id="VGVlWaNoHHyqLcUnNzMlaG"></i><i data-page-node-id="n5THTlQA2dfHBHqUhjrTwZ"></i><i data-page-node-id="X7Fq34TNvIB2n3DthbeY4F"></i></span></div>
-                <div class="mr-capsule" data-page-node-id="n2GUcnXoBLp6SEk5IxR20a"><span class="c-circle" data-page-node-id="6DWlQw9jMa4nPQSZPrZb40"></span></div>
-              </div>
-            </div>
-            <div class="cp-search" data-page-node-id="H2lY14MYyRspHiUPfZ0kd8"><span style="font-size:13px" data-page-node-id="K0c56zYR7rqtFTFA36SFif">🔍</span><input id="cityKw" placeholder="搜索城市" oninput="renderCityList()" data-page-node-id="v26qeBK0XwnnRtw7G4x4Co"/></div>
-            <div class="cp-current" data-page-node-id="IkskR7ylZYtzfAcDx45Mn4">当前城市：<span id="cpCurCity" data-page-node-id="CIrZgAUk2Yr3VQdNY0SB5m">上海</span></div>
-            <div class="cp-body" id="cpBody" data-page-node-id="QEaVvFzYZMcNAkCbi8axlJ"></div>
-          </div>
           <div class="mr-pop" id="mr-pop" onclick="closeMrPop()">
             <div class="mp-panel" onclick="event.stopPropagation()">
               <div class="mp-body"></div>
@@ -5692,6 +5770,50 @@
         <button data-m="m-taskhall" onclick="nav('mini','m-taskhall')" data-page-node-id="44BYoDzIGQzXB8DdHbmpnx">任务大厅</button>
         <button data-m="m-msg" onclick="nav('mini','m-msg')" data-page-node-id="l83bvIM8h2goGGBYDOnX2v">消息</button>
         <button data-m="m-me" onclick="nav('mini','m-me')" data-page-node-id="21TMyvvFTsXRJqsOAfq5Xg">我的</button>
+      </div>
+      <!-- ===== 想在哪里工作（整页，公共层：盖住 Tab 栏） ===== -->
+      <div class="mr-where" id="mrWhere">
+        <div class="where-head">
+          <div class="where-back" onclick="closeWhere()">‹</div>
+          <div class="where-title">想在哪里工作</div>
+        </div>
+        <div class="where-search"><div class="ws-city" onclick="openCityMore()"><span id="wsCityTxt">全国</span><span class="ws-arrow">▾</span></div><span class="ws-div"></span><span style="font-size:13px">🔍</span><input id="whereKw" placeholder="搜索地点" oninput="renderWherePOI()" /></div>
+        <div class="where-body" id="whereBody"></div>
+      </div>
+      <!-- ===== 选择城市（整页，公共层：盖住 Tab 栏） ===== -->
+      <div class="mr-city-more" id="mrCityMore">
+        <div class="where-head">
+          <div class="where-back" onclick="closeCityMore()">‹</div>
+          <div class="where-title">选择城市</div>
+        </div>
+        <div class="cm-search"><span style="font-size:13px">🔍</span><input id="cmKw" placeholder="搜索城市" oninput="renderCityMore()" /></div>
+        <div class="city-more-wrap">
+          <div class="where-body city-more-body" id="cityMoreBody"></div>
+          <div class="city-az" id="cityAZ"></div>
+        </div>
+      </div>
+      <!-- ===== 地图选点弹层（公共层，复用：常用地址 / 常住地址） ===== -->
+      <div class="mr-mappick" id="mrMapPick">
+        <div class="mpk-card">
+          <div class="mpk-head">
+            <span class="mpk-cancel" onclick="closeMapPick()">取消</span>
+            <span>选择地点</span>
+            <span class="mpk-ok" onclick="confirmMapPick()">确定</span>
+          </div>
+          <div class="mpk-search"><span style="font-size:13px">🔍</span><input id="mpkKw" placeholder="搜索地点 / 城市" oninput="renderMapPOI()" /></div>
+          <div class="mpk-map"><div class="mpk-pin">📍</div><div class="mpk-map-tip">地图选点（演示）</div></div>
+          <div class="mpk-pois" id="mpkPois"></div>
+        </div>
+      </div>
+      <!-- ===== 删除常用地址确认（公共层） ===== -->
+      <div class="mr-delmask" id="mrDelAddr">
+        <div class="del-box" onclick="event.stopPropagation()">
+          <div class="del-t">确定删除该常用地址？</div>
+          <div class="del-btns">
+            <span class="del-cancel" onclick="closeDelAddr()">取消</span>
+            <span class="del-ok" onclick="doDelAddr()">删除</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -21113,7 +21235,7 @@
   const TS_HOT=['今天班次','明天班次','周末班次'];
   let recFilter={ brands:[], types:['直面','抢班'], urgent:false, hot:false, latest:false, distSel:['不限'], paySel:['不限'], noExp:false,
     tsHot:[], tsWeek:['全部'], tsPeriod:['全天'], tsDur:[] };
-  function recCity(){ return (document.getElementById('mr-city-txt')||{}).textContent||''; }
+  function recCity(){ return recPlaceCity(); }
   function shiftDur(s){ let a=parseInt(s.start.split(':')[0],10), b=parseInt(s.end.split(':')[0],10); if(b<a) b+=24; return b-a; }
   /* ---------- 抢班演示数据（带具体班次日期，支撑时间班次筛选） ---------- */
   const grabJobs=[
@@ -21146,17 +21268,19 @@
   ];
   function recFilteredJobs(){
     const kw=(document.getElementById('mr-kw')||{}).value||'';
-    const F=recFilter; const city=recCity();
+    const F=recFilter; const city=recPlaceCity();
     let list=recJobs.slice();
     list=list.filter(function(j){ const et=j.empType||'灵工'; if(et!=='灵工') return false; const d=demands.find(function(x){return x.id===j.demandId;}); if(d && d.status!=='招聘中') return false; return true; });
     if(kw.trim()) list=list.filter(function(j){return j.title.indexOf(kw.trim())>=0||j.ent.indexOf(kw.trim())>=0;});
-    if(city && city!=='全国') list=list.filter(function(j){ const c=(j.city)||(function(){ const d=demands.find(function(x){return x.id===j.demandId;}); return (d&&d.city)||j.loc||''; })(); return c.indexOf(city)>=0; });
+    if(city) list=list.filter(function(j){ const c=(j.city)||(function(){ const d=demands.find(function(x){return x.id===j.demandId;}); return (d&&d.city)||j.loc||''; })(); return c.indexOf(city)>=0; });
+    // 计算每个岗位到当前基准点的距离（跨城返回 null）
+    list.forEach(function(j){ j._dist=jobDistance(j); });
     if(F.brands.length) list=list.filter(function(j){ return F.brands.indexOf(j.ent)>=0; });
     if(F.urgent) list=list.filter(function(j){ return !!j.urgent; });
     if(F.hot) list=list.filter(function(j){ return jobHot(normalizeJob(j)); });
     if(F.latest) list=list.filter(function(j){ return ['今天','1天前','3天前'].indexOf(j.pub)>=0; });
     const distSel=F.distSel||['不限'];
-    if(distSel.indexOf('不限')<0){ const dmax=distSel.indexOf('5km内')>=0?5:3; list=list.filter(function(j){ return (j.dist||0) <= dmax; }); }
+    if(distSel.indexOf('不限')<0){ const dmax=distSel.indexOf('10km内')>=0?10:(distSel.indexOf('5km内')>=0?5:3); list=list.filter(function(j){ return j._dist!=null && j._dist<=dmax; }); }
     const paySel=F.paySel||['不限'];
     if(paySel.indexOf('不限')<0){ list=list.filter(function(j){ return (j.tags||[]).some(function(t){ return paySel.indexOf(t.t)>=0; }); }); }
     if(F.noExp) list=list.filter(function(j){ return j.exp && !/\d/.test(j.exp); });
@@ -21179,11 +21303,12 @@
     return schedOk && periodOk && durOk;
   }
   function grabFilteredJobs(){
-    const F=recFilter; const city=recCity();
+    const F=recFilter; const city=recPlaceCity();
     return grabJobs.filter(function(g){
-      if(city && city!=='全国'){ if((g.city||'').indexOf(city)<0 && (g.loc||'').indexOf(city)<0) return false; }
+      if(city){ if((g.city||'').indexOf(city)<0 && (g.loc||'').indexOf(city)<0) return false; }
       if(F.brands.length && F.brands.indexOf(g.ent)<0) return false;
-      if((F.distSel||['不限']).indexOf('不限')<0){ const dmax=(F.distSel||[]).indexOf('5km内')>=0?5:3; if((g.dist||0)>dmax) return false; }
+      const gd=jobDistance(g);
+      if((F.distSel||['不限']).indexOf('不限')<0){ const dmax=(F.distSel||[]).indexOf('10km内')>=0?10:((F.distSel||[]).indexOf('5km内')>=0?5:3); if(gd==null||gd>dmax) return false; }
       if(F.urgent && !g.urgent) return false;
       if(F.hot && !g.hot) return false;
       if(F.latest && ['今天','1天前','3天前'].indexOf(g.pub)<0) return false;
@@ -21193,6 +21318,8 @@
     });
   }
   function clearRecFilter(){ const k=document.getElementById('mr-kw'); if(k) k.value=''; renderRec(); }
+  let mrKwTimer=null;
+  function mrKwDebounce(){ if(mrKwTimer) clearTimeout(mrKwTimer); mrKwTimer=setTimeout(function(){ renderRec(); }, 500); }
   function renderRec(){
     const sub=document.getElementById('m-rec-sub'); if(!sub) return;
     sub.innerHTML=`<button class="${recTab==='recruit'?'on':''}" onclick="recTab='recruit';recFilter.types=['直面','抢班'];renderRec()">岗位招聘</button>
@@ -21204,7 +21331,6 @@
     const list=recFilteredJobs();
     const kw=(document.getElementById('mr-kw')||{}).value||'';
     body.innerHTML=`
-      ${kw.trim()?`<div class="mr-filter-tip"><span>已筛选：关键词「${kw.trim()}」　共 ${list.length} 个岗位</span><span class="clear" onclick="clearRecFilter()">清空 ✕</span></div>`:''}
       <div class="mr-list">
         ${list.length? list.map(function(j){
           const i=recJobs.indexOf(j);
@@ -21224,7 +21350,7 @@
               <div class="tags">${showTags.map(function(t){return `<span class="tag ${t.c}">${t.t}</span>`;}).join('')}</div>
               <div class="ent-row">
                 <div class="logo-small" style="background:${j.logo}">${j.logoTxt}</div>
-                <div class="ent-info"><span class="ent-name" title="${escAttr(entName)}">${titleName}</span><span class="ent-city">${j.city}</span>${j.dist!=null&&j.dist!==''?`<span class="ent-dist">${fmtDist(j.dist)}</span>`:''}<span class="ent-pub">${j.pub}发布</span></div>
+                <div class="ent-info"><span class="ent-name" title="${escAttr(entName)}">${titleName}</span><span class="ent-city">${j.city}</span>${j._dist!=null?`<span class="ent-dist">${fmtDist(j._dist)}</span>`:''}<span class="ent-pub">${j.pub}发布</span></div>
               </div>
             </div>
           </div>`;
@@ -21239,10 +21365,11 @@
     if(!list.length){ body.innerHTML=`<div class="rec-empty"><div class="ic">🕐</div><div class="t">暂无符合条件的班次</div><div class="d">试试调整筛选条件</div></div>`; return; }
     body.innerHTML=`<div class="mr-list">`+list.map(function(g){
       const ms=g.shifts.filter(grabShiftMatch);
+      const gd=jobDistance(g);
       return `<div class="gb-card">
         <div class="gb-head"><div class="logo-small" style="background:${g.logo}">${g.logoTxt}</div>
           <div class="gb-title">${g.title}<span class="gb-tag">兼职岗位</span><span class="gb-income">收入秒结</span></div></div>
-        <div class="gb-meta">${g.price}元/时 · ${g.store} · 距您${g.dist}km</div>
+        <div class="gb-meta">${g.price}元/时 · ${g.store}${gd!=null?` · 距您${fmtDist(gd)}`:''}</div>
         <div class="gb-shift-h">可抢班次</div>
         ${ms.map(function(s){ const left=s.total-s.taken; return `<div class="gb-shift">
           <div class="gb-shift-l"><div class="gb-shift-d">${s.date} ${s.wd}</div><div class="gb-shift-t">${s.start}-${s.end} · ${s.price}</div></div>
@@ -21368,36 +21495,167 @@
   }
   function openTimePop(chipEl){ openMrPop(timeBodyHtml(),`<button class="btn ghost" onclick="resetTimeFilter();reTime()">重置</button><button class="btn primary" onclick="if(recFilter.types.length===1) recTab=(recFilter.types[0]==='抢班'?'grab':'recruit'); closeMrPop(); renderRec()">确定</button>`, chipEl); }
 
-  /* ---------- 推荐页：无需经验 / 城市选择 ---------- */
-  function openCityPicker(){
-    const p=document.getElementById('mrCityPicker'); if(!p) return;
-    document.getElementById('cpCurCity').textContent=document.getElementById('mr-city-txt').textContent;
-    const ik=document.getElementById('cityKw'); if(ik) ik.value='';
-    renderCityList(); p.classList.add('on');
+  /* ---------- 推荐页：定位体系（当前定位 / 常用地址 / 城市） ---------- */
+  // 城市坐标表（演示用，经纬度为近似市中心），用于距离计算
+  const CITY_COORD={'北京':{lat:39.9042,lng:116.4074},'上海':{lat:31.2304,lng:121.4737},'广州':{lat:23.1291,lng:113.2644},'深圳':{lat:22.5431,lng:114.0579},'杭州':{lat:30.2741,lng:120.1551},'武汉':{lat:30.5928,lng:114.3055},'成都':{lat:30.5728,lng:104.0668},'重庆':{lat:29.5630,lng:106.5516},'西安':{lat:34.3416,lng:108.9398},'天津':{lat:39.3434,lng:117.3616},'南京':{lat:32.0603,lng:118.7969},'苏州':{lat:31.2989,lng:120.5853},'广东':{lat:23.1291,lng:113.2644}};
+  // 重新定位的演示候选点（点一次轮换）
+  const REC_LOC_DEMOS=[
+    {name:'中汇人寿大厦(北京)',city:'北京',lat:39.9097,lng:116.4179},
+    {name:'西湖文化广场(杭州)',city:'杭州',lat:30.2790,lng:120.1560},
+    {name:'陆家嘴环路(上海)',city:'上海',lat:31.2397,lng:121.4998}
+  ];
+  let recLocIndex=0;
+  let recLoc={name:REC_LOC_DEMOS[0].name,city:REC_LOC_DEMOS[0].city,lat:REC_LOC_DEMOS[0].lat,lng:REC_LOC_DEMOS[0].lng};
+  let recCommon=[];   // 常用地址：{name,city,lat,lng}
+  let recPlace={type:'loc',ref:recLoc}; // 当前生效地点：loc / addr / city
+  let wsScope='全国'; // 「想在哪里工作」顶部搜索范围城市（下拉选择仅改范围，选中地点后才生效到左上角）
+  function recPlaceCity(){ if(recPlace.type==='city') return recPlace.city; return recPlace.ref.city; }
+  function recPlaceName(){ if(recPlace.type==='city') return recPlace.city; return recPlace.ref.name; }
+  function recBaseCoord(){
+    if(recPlace.type==='city') return null; // 仅选城市不提供距程基准
+    return recPlace.ref;
   }
-  function closeCityPicker(){ const p=document.getElementById('mrCityPicker'); if(p) p.classList.remove('on'); }
-  const MR_HOT=['全国','杭州','上海','北京','深圳','广州','成都','重庆','武汉','西安'];
-  const MR_CITIES=['全国','北京','上海','广州','深圳','杭州','成都','重庆','武汉','西安','南京','苏州','天津','长沙','郑州','青岛','宁波','东莞','无锡','佛山','合肥','昆明','大连','福州','厦门','哈尔滨','济南','温州','沈阳','石家庄'];
-  function renderCityList(){
-    const kw=(document.getElementById('cityKw')||{}).value||'';
-    const body=document.getElementById('cpBody'); if(!body) return;
-    const cur=document.getElementById('cpCurCity').textContent;
-    const kwf=kw.trim();
-    if(kwf){
-      const list=MR_CITIES.filter(function(c){return c.indexOf(kwf)>=0;});
-      if(!list.length){ body.innerHTML='<div class="cp-empty" style="display:block">无匹配城市</div>'; return; }
-      body.innerHTML='<div class="cp-group"><div class="cp-group-h">全部城市</div><div class="cp-grid">'+list.map(function(c){return '<div class="cp-cell '+(c===cur?'on':'')+'" onclick="selectCity(\''+c+'\')">'+c+'</div>';}).join('')+'</div></div>';
-      return;
-    }
-    const hot=MR_HOT.map(function(c){return '<div class="cp-cell '+(c===cur?'on':'')+'" onclick="selectCity(\''+c+'\')">'+c+'</div>';}).join('');
-    const all=MR_CITIES.map(function(c){return '<div class="cp-cell '+(c===cur?'on':'')+'" onclick="selectCity(\''+c+'\')">'+c+'</div>';}).join('');
-    body.innerHTML='<div class="cp-group"><div class="cp-group-h">推荐访问</div><div class="cp-grid">'+hot+'</div></div><div class="cp-group"><div class="cp-group-h">全部城市</div><div class="cp-grid">'+all+'</div></div>';
+  function haversine(a,b){ if(!a||!b) return null; const R=6371; const dLat=(b.lat-a.lat)*Math.PI/180, dLng=(b.lng-a.lng)*Math.PI/180; const la1=a.lat*Math.PI/180, la2=b.lat*Math.PI/180; const h=Math.sin(dLat/2)*Math.sin(dLat/2)+Math.cos(la1)*Math.cos(la2)*Math.sin(dLng/2)*Math.sin(dLng/2); return 2*R*Math.asin(Math.sqrt(h)); }
+  // 岗位工作地点坐标：取所属城市坐标 + 由工作地点字符串生成的固定偏移（多个工作地点以第一个计算）
+  function jobCoord(j){
+    const city=j.city||'北京'; const c=CITY_COORD[city]||CITY_COORD['北京'];
+    const s=String(j.loc||j.store||j.title||''); let h=0; for(let i=0;i<s.length;i++){h=(h*131+s.charCodeAt(i))%99991;}
+    const off=(h/99991)*0.12-0.06; const off2=(((h*7)%99991)/99991)*0.12-0.06;
+    return {lat:c.lat+off, lng:c.lng+off2};
   }
-  function selectCity(c){
-    document.getElementById('mr-city-txt').textContent=c;
-    closeCityPicker();
-    renderRec();
+  // 距离计算：跨城或仅选城市 → 返回 null（不显示）
+  function jobDistance(j){ const base=recBaseCoord(); if(!base) return null; if((j.city||'')!==recPlaceCity()) return null; return haversine(base, jobCoord(j)); }
+  // 顶部显示名（决策1：优先定位/常用地址名称，选中跨城市显示城市名）
+  function updateTopCity(){ const t=document.getElementById('mr-city-txt'); if(t){ const full=recPlaceName(); const disp=full.length>5?full.slice(0,5)+'…':full; t.textContent=disp; t.title=full; } }
+  /* —— 想在哪里工作 整页 —— */
+  function openWhere(){ const p=document.getElementById('mrWhere'); if(p) p.classList.add('on'); wsScope=recPlaceCity(); const ik=document.getElementById('whereKw'); if(ik) ik.value=''; renderWherePage(); }
+  function closeWhere(){ const p=document.getElementById('mrWhere'); if(p) p.classList.remove('on'); }
+  function cityJobCounts(){ const m={}; recJobs.forEach(function(j){ if(j.city){ m[j.city]=(m[j.city]||0)+1; } }); return m; }
+  function hotCities(){ const m=cityJobCounts(); return Object.keys(m).sort(function(a,b){return m[b]-m[a];}); }
+  // 全量城市（按拼音首字母分组，供「更多」整页 A-Z 索引）
+  const MR_CITY_AZ=[
+    {g:'B', list:['北京','保定','蚌埠']},
+    {g:'C', list:['成都','重庆','长沙','常州','长春']},
+    {g:'D', list:['东莞','大连','东营','丹东']},
+    {g:'F', list:['佛山','福州','抚州','阜阳']},
+    {g:'G', list:['广州','贵阳','桂林']},
+    {g:'H', list:['杭州','合肥','哈尔滨','海口','呼和浩特','惠州','湖州']},
+    {g:'J', list:['济南','嘉兴','金华','江门']},
+    {g:'K', list:['昆明','昆山']},
+    {g:'L', list:['兰州','洛阳','廊坊','临沂','柳州']},
+    {g:'N', list:['南京','南昌','南宁','南通','南阳','宁波']},
+    {g:'Q', list:['青岛','泉州','秦皇岛']},
+    {g:'S', list:['上海','深圳','苏州','沈阳','绍兴','石家庄','汕头']},
+    {g:'T', list:['天津','唐山','太原','台州']},
+    {g:'W', list:['武汉','无锡','温州','潍坊','芜湖','威海']},
+    {g:'X', list:['西安','厦门','徐州','湘潭']},
+    {g:'Y', list:['扬州','烟台','宜昌','银川']},
+    {g:'Z', list:['郑州','珠海','中山','镇江','淄博','湛江']}
+  ];
+  function renderWherePOI(){ // 顶部组合栏搜索：在左侧所选城市范围内搜地点，选中地点后才生效为距程基准
+    const kw=(document.getElementById('whereKw')||{}).value||'';
+    const k=kw.trim();
+    if(!k){ renderWherePage(); return; }
+    const body=document.getElementById('whereBody'); if(!body) return;
+    const list=MR_POIS.filter(function(p){ return (wsScope==='全国'||p.city===wsScope) && (p.name.indexOf(k)>=0||p.city.indexOf(k)>=0); });
+    body.innerHTML='<div class="where-sec"><div class="where-sec-h">'+wsScope+' · 地点</div>'+
+      (list.length? list.map(function(p){ var gi=MR_POIS.indexOf(p); return '<div class="wa-item" onclick="usePOI('+gi+')"><span class="wa-pin">📍</span><div class="wa-txt"><div class="wa-name">'+p.name+'</div><div class="wa-sub">'+(p.addr||p.city)+'</div></div></div>'; }).join('')
+      : '<div style="text-align:center;color:#9ca3af;padding:30px 0">该城市暂无匹配地点，可切换左侧城市</div>')+'</div>';
   }
+  function renderWherePage(){
+    const body=document.getElementById('whereBody'); if(!body) return;
+    let html='';
+    // 当前定位
+    html+='<div class="where-sec"><div class="where-sec-h">当前定位</div>'+
+      '<div class="where-loc" onclick="useLoc()"><span class="wl-ico">📍</span><div class="wl-txt"><div class="wl-name">'+recLoc.name+'</div><div class="wl-sub">'+recLoc.city+'</div></div><span class="wl-reloc" onclick="event.stopPropagation();relocate()">重新定位</span></div></div>';
+    // 常用地址
+    html+='<div class="where-sec"><div class="where-sec-h">常用地址</div>';
+    recCommon.forEach(function(a,i){ html+='<div class="wa-item"><span class="wa-pin">📍</span><div class="wa-txt" onclick="useAddr('+i+')"><div class="wa-name">'+a.name+'</div><div class="wa-sub">'+a.city+'</div></div><span class="wa-ico" onclick="editAddr('+i+')">✎</span><span class="wa-ico" onclick="askDelAddr('+i+')">🗑</span></div>'; });
+    if(recCommon.length<5){ html+='<div class="wa-add" onclick="addAddr()">+ 添加常用地址（'+recCommon.length+'/5）</div>'; } else { html+='<div class="wa-add disabled">常用地址已达上限（5/5）</div>'; }
+    html+='</div>';
+    // 看看其他城市岗位（写死名单，更多作为第 8 格紧跟宁波）
+    const otherCities=['全国','上海','北京','杭州','深圳','武汉','宁波'];
+    html+='<div class="where-sec"><div class="where-sec-h">看看其他城市岗位</div><div class="city-grid">'+
+      otherCities.map(function(c){return '<div class="city-cell '+(recPlace.type==='city'&&recPlaceCity()===c?'on':'')+'" onclick="selectCity(\''+c+'\')">'+c+'</div>';}).join('')+
+      '<div class="city-cell city-more-cell" onclick="openCityMore()">更多 ›</div></div></div>';
+    body.innerHTML=html;
+    const wt=document.getElementById('wsCityTxt'); if(wt) wt.textContent=wsScope;
+  }
+  function relocate(){ recLocIndex=(recLocIndex+1)%REC_LOC_DEMOS.length; const d=REC_LOC_DEMOS[recLocIndex]; recLoc={name:d.name,city:d.city,lat:d.lat,lng:d.lng}; if(recPlace.type==='loc') recPlace={type:'loc',ref:recLoc}; updateTopCity(); renderWherePage(); renderRec(); toast('已重新定位：'+d.name); }
+  function useLoc(){ recPlace={type:'loc',ref:recLoc}; updateTopCity(); closeWhere(); renderRec(); }
+  function useAddr(i){ recPlace={type:'addr',ref:recCommon[i]}; updateTopCity(); closeWhere(); renderRec(); }
+  function addAddr(){ openMapPick(function(poi){ if(recCommon.length>=5){ toast('常用地址最多 5 个'); return; } recCommon.push(poi); renderWherePage(); renderRec(); }); }
+  function editAddr(i){ openMapPick(function(poi){ recCommon[i]=poi; if(recPlace.type==='addr'&&recPlace.ref===recCommon[i-1]) recPlace={type:'addr',ref:recCommon[i]}; renderWherePage(); renderRec(); }); }
+  let mrDelIdx=-1;
+  function askDelAddr(i){ mrDelIdx=i; document.getElementById('mrDelAddr').classList.add('on'); }
+  function closeDelAddr(){ mrDelIdx=-1; document.getElementById('mrDelAddr').classList.remove('on'); }
+  function doDelAddr(){ if(mrDelIdx<0) return; const a=recCommon[mrDelIdx]; recCommon.splice(mrDelIdx,1); if(recPlace.type==='addr'&&recPlace.ref===a){ recPlace={type:'loc',ref:recLoc}; updateTopCity(); } closeDelAddr(); renderWherePage(); renderRec(); }
+  function selectCity(c){ if(c==='全国'){ recPlace={type:'loc',ref:recLoc}; } else { recPlace={type:'city',city:c}; } updateTopCity(); closeWhere(); closeCityMore(); renderRec(); }
+  // 顶部组合栏：下拉选城市 → 仅作为右侧搜索的范围，不直接生效到左上角
+  function pickScopeCity(c){
+    wsScope=c;
+    const wt=document.getElementById('wsCityTxt'); if(wt) wt.textContent=c;
+    const ik=document.getElementById('whereKw'); if(ik){ ik.value=''; }
+    closeCityMore(); renderWherePage();
+  }
+  // 选中搜索结果中的地点 → 生效为距程基准，左上角更新为该地点名
+  function usePOI(i){ const p=MR_POIS[i]; if(!p) return; recPlace={type:'addr',ref:{name:p.name,city:p.city,lat:p.lat,lng:p.lng}}; updateTopCity(); closeWhere(); renderRec(); toast('已选择：'+p.name); }
+  /* —— 全量城市选择页（按岗位数降序） —— */
+  function renderCityMore(kw){
+    const b=document.getElementById('cityMoreBody'); if(!b) return;
+    kw=(kw||(document.getElementById('cmKw')||{}).value||'').trim();
+    const cur=recLoc.city; // 「当前城市」区仅显示定位城市，A-Z 列表同步去重
+    let html='<div class="where-sec"><div class="where-sec-h">当前城市</div><div class="city-grid">'+
+      '<div class="city-cell '+(wsScope===recLoc.city?'on':'')+'" onclick="pickScopeCity(\''+recLoc.city+'\')">'+recLoc.city+'</div></div></div>';
+    MR_CITY_AZ.forEach(function(sec){
+      const lst=sec.list.filter(function(c){ return c!==cur && (!kw || c.indexOf(kw)>=0); });
+      if(!lst.length) return;
+      html+='<div class="city-az-sec" id="az-'+sec.g+'"><div class="city-az-letter">'+sec.g+'</div><div class="city-grid">'+
+        lst.map(function(c){return '<div class="city-cell '+(wsScope===c?'on':'')+'" onclick="pickScopeCity(\''+c+'\')">'+c+'</div>';}).join('')+
+        '</div></div>';
+    });
+    b.innerHTML=html;
+    const az=document.getElementById('cityAZ');
+    if(az) az.innerHTML=MR_CITY_AZ.map(function(sec){return '<span class="city-az-i" onclick="azJump(\''+sec.g+'\')">'+sec.g+'</span>';}).join('');
+    b.scrollTop=0;
+  }
+  function openCityMore(){
+    const p=document.getElementById('mrCityMore'); if(p) p.classList.add('on');
+    const ik=document.getElementById('cmKw'); if(ik) ik.value='';
+    renderCityMore('');
+  }
+  function azJump(g){ const el=document.getElementById('az-'+g); if(el) el.scrollIntoView({behavior:'instant',block:'start'}); }
+  function closeCityMore(){ const p=document.getElementById('mrCityMore'); if(p) p.classList.remove('on'); }
+  /* —— 地图选点弹层（复用于常用地址与常住地址） —— */
+  const MR_POIS=[
+    {name:'西湖文化广场',city:'杭州',addr:'浙江省杭州市拱墅区中山北路518号',lat:30.2790,lng:120.1560},
+    {name:'杭州东站',city:'杭州',addr:'浙江省杭州市上城区全福桥路2号',lat:30.2907,lng:120.2126},
+    {name:'陆家嘴环路',city:'上海',addr:'上海市浦东新区陆家嘴环路1000号',lat:31.2397,lng:121.4998},
+    {name:'上海虹桥站',city:'上海',addr:'上海市闵行区申虹路1500号',lat:31.1940,lng:121.3200},
+    {name:'国贸写字楼',city:'北京',addr:'北京市朝阳区建国门外大街1号',lat:39.9088,lng:116.4595},
+    {name:'北京南站',city:'北京',addr:'北京市丰台区永外大街车站路12号',lat:39.8657,lng:116.3786},
+    {name:'天河体育中心',city:'广州',addr:'广东省广州市天河区天河路299号',lat:23.1357,lng:113.3245},
+    {name:'广州南站',city:'广州',addr:'广东省广州市番禺区南站北路',lat:22.9890,lng:113.2710},
+    {name:'深圳北站',city:'深圳',addr:'广东省深圳市龙华区致远中路28号',lat:22.5870,lng:114.0290},
+    {name:'华强北',city:'深圳',addr:'广东省深圳市福田区华强北路1010号',lat:22.5470,lng:114.0850},
+    {name:'武汉光谷',city:'武汉',addr:'湖北省武汉市洪山区珞瑜路727号',lat:30.4760,lng:114.4040},
+    {name:'春熙路',city:'成都',addr:'四川省成都市锦江区春熙路步行街29号',lat:30.6570,lng:104.0810},
+    {name:'天府广场',city:'成都',addr:'四川省成都市青羊区人民西路2号',lat:30.6570,lng:104.0660},
+    {name:'成都东站',city:'成都',addr:'四川省成都市成华区邛崃山路333号',lat:30.6300,lng:104.1400},
+    {name:'环球中心',city:'成都',addr:'四川省成都市武侯区天府大道北段1700号',lat:30.5730,lng:104.0620},
+    {name:'地铁1号线',city:'成都',addr:'五根松--韦家碾',lat:30.5728,lng:104.0668},
+    {name:'地铁18号线',city:'成都',addr:'火车南站--天府机场北',lat:30.5728,lng:104.0668},
+    {name:'重庆解放碑',city:'重庆',addr:'重庆市渝中区民族路88号',lat:29.5630,lng:106.5760},
+    {name:'西安钟楼',city:'西安',addr:'陕西省西安市碑林区东大街与北大街交汇处',lat:34.2615,lng:108.9480},
+    {name:'南京新街口',city:'南京',addr:'江苏省南京市秦淮区中山东路18号',lat:32.0410,lng:118.7800},
+    {name:'苏州工业园区',city:'苏州',addr:'江苏省苏州市工业园区星桂街68号',lat:31.3250,lng:120.7200}
+  ];
+  let mrMapCb=null, mrMapSel=null;
+  function openMapPick(cb, init){ mrMapCb=cb; mrMapSel=init||null; const ik=document.getElementById('mpkKw'); if(ik) ik.value=''; document.getElementById('mrMapPick').classList.add('on'); renderMapPOI(); }
+  function closeMapPick(){ document.getElementById('mrMapPick').classList.remove('on'); mrMapCb=null; mrMapSel=null; }
+  function renderMapPOI(){ const kw=(document.getElementById('mpkKw')||{}).value||''; const k=kw.trim(); const list=k?MR_POIS.filter(function(p){return p.name.indexOf(k)>=0||p.city.indexOf(k)>=0;}) : MR_POIS; const box=document.getElementById('mpkPois'); if(!box) return; box.innerHTML=list.map(function(p){ const gi=MR_POIS.indexOf(p); const on=mrMapSel&&mrMapSel.name===p.name; return '<div class="poi-row '+(on?'on':'')+'" onclick="pickMapPOI('+gi+')"><span class="poi-ico">📍</span><div class="poi-txt"><div class="poi-name">'+p.name+'</div><div class="poi-sub">'+(p.addr||p.city)+'</div></div><span class="poi-ck">✓</span></div>'; }).join('')||'<div style="text-align:center;color:#9ca3af;padding:30px 0">无匹配地点</div>'; }
+  function pickMapPOI(i){ mrMapSel=MR_POIS[i]; renderMapPOI(); }
+  function confirmMapPick(){ if(!mrMapSel){ toast('请选择一个地点'); return; } if(mrMapCb) mrMapCb(mrMapSel); closeMapPick(); }
 
   /* ---------- 岗位详情 ---------- */
   let mdReqOpen=true;
@@ -21437,10 +21695,10 @@
       <div class="tags">${tags.map(t=>`<span class="tag ${t.c}">${t.t}</span>`).join('')}</div>
       <div class="md-ent-row">
         <div class="logo-small" style="background:${j.logo}">${j.logoTxt}</div>
-        <div class="ent-info"><span class="ent-name">${j.ent}</span><span class="ent-city">${j.city}</span></div>
+        <div class="ent-info"><span class="ent-name">${j.ent}</span><span class="ent-city">${j.city}</span>${(jobDistance(j)!=null)?`<span class="ent-dist">${fmtDist(jobDistance(j))}</span>`:''}</div>
       </div>
       <div class="sub">招 ${j.head} 人 · 已报名 ${ap} 人 · ${j.pub}发布</div>
-      <div class="md-banner" style="background:#f0f7ff;color:var(--primary)"><span>🛡 平台免费保障：在岗意外险 0 元享</span><span class="arrow">›</span></div>
+      <div class="md-banner" style="background:#f6f8f7;color:#1f2937;gap:8px;justify-content:flex-start"><span style="background:var(--primary);color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:4px;white-space:nowrap">保险</span><span>享受出勤保险，保障服务期间人身安全</span></div>
       <div class="md-sec">
         <div class="md-sec-h"><span>岗位职责</span></div>
         <ul class="md-duty">${j.duties.map(x=>`<li>${x}</li>`).join('')}</ul>
@@ -22225,9 +22483,8 @@
     } else if(pfStep===2){
       if(!miniUser.faceVerified){ toast('请先完成人脸识别'); return; }
     } else if(pfStep===3){
-      const a=document.getElementById('pf-addr').value.trim();
-      if(!a){ toast('请填写常住地址'); return; }
-      miniUser.addr=a; miniUser.gender=(document.getElementById('pf-gender').value||'').trim(); miniUser.birth=(document.getElementById('pf-birth').value||'').trim();
+      if(!miniUser.addr){ toast('请选择常住地址'); return; }
+      miniUser.gender=(document.getElementById('pf-gender').value||'').trim(); miniUser.birth=(document.getElementById('pf-birth').value||'').trim();
     } else if(pfStep===6){
       const l=document.getElementById('pf-like'); if(l) miniUser.like=l.value;
       const w=document.getElementById('pf-want'); if(w) miniUser.want=w.value;
@@ -22261,8 +22518,13 @@
       '</div>';
   }
   function pfStep3(){
+    const v=miniUser.addr||'';
+    const init=miniUser.addr?('{name:\''+(miniUser.addr||'').replace(/'/g,'')+'\',city:\''+(miniUser.addrCity||'')+'\'}'.replace(/\\'/g,'\'')):'null';
     return '<div class="pf-card"><div class="pf-q">个人档案</div>'+
-      '<div class="pf-field"><label>常住地址<span class="req">*</span></label><input class="pf-input" id="pf-addr" value="'+(miniUser.addr||'')+'" placeholder="如：北京市朝阳区xx街道"/></div>'+
+      '<div class="pf-field"><label>常住地址<span class="req">*</span></label>'+
+      '<div class="mpv-addr-card" onclick="openMapPick(function(p){miniUser.addr=p.name;miniUser.addrCity=p.city;renderProfileSteps(3);},'+init+')">'+
+      '<div class="mac-map">📍</div><div class="mac-txt"><div class="mac-name">'+(v||'请选择常住地址')+'</div><div class="mac-sub">'+(v?'点击可重新选择':'在地图上选择你的常住地点')+'</div></div><div class="mac-arrow">›</div></div>'+
+      '</div>'+
       '<div class="pf-field"><label>性别</label><input class="pf-input" id="pf-gender" value="'+(miniUser.gender||'')+'" placeholder="男 / 女"/></div>'+
       '<div class="pf-field"><label>出生日期</label><input class="pf-input" id="pf-birth" value="'+(miniUser.birth||'')+'" placeholder="如：1995-08-12"/></div></div>';
   }
@@ -22471,6 +22733,18 @@
   /* ===================== C 端「我的资料」页（员工档案 + 简历） ===================== */
   function openMyProfile(){ nav('mini','m-profile-view'); }
   function mpvRow(k,v){ return '<div class="mpv-row"><span class="mpv-k">'+k+'</span><span class="mpv-v">'+v+'</span></div>'; }
+  function mpvAddrCard(){
+    const u=miniUser; const v=u.addr||'';
+    return '<div class="mpv-addr-label">常住地址</div>'+
+      '<div class="mpv-addr-card" onclick="editProfileAddr()">'+
+      '<div class="mac-map">📍</div>'+
+      '<div class="mac-txt"><div class="mac-name">'+(v||'请选择常住地址')+'</div>'+
+      '<div class="mac-sub">'+(v?'点击可重新选择':'在地图上选择你的常住地点')+'</div></div>'+
+      '<div class="mac-arrow">›</div></div>';
+  }
+  function editProfileAddr(){
+    openMapPick(function(poi){ miniUser.addr=poi.name; miniUser.addrCity=poi.city; renderMyProfile(); }, miniUser.addr?{name:miniUser.addr,city:(miniUser.addrCity||'')}:null);
+  }
   function isIdcardExpired(s){ if(!s) return false; const t=Date.parse(s+'T00:00:00'); if(isNaN(t)) return false; return t<Date.now(); }
   function renderMyProfile(){
     const box=document.getElementById('m-profile-view'); if(!box) return;
@@ -22478,7 +22752,7 @@
     box.innerHTML=
       '<div class="mhead mpv-head"><span class="rn-back" onclick="nav(\'mini\',\'m-me\')">‹</span>我的资料</div>'+
       '<div class="mpv-progress"><div class="mpv-prog-lab">完善档案进度</div><div class="mpv-prog-bar"><div class="mpv-prog-in" style="width:70%"></div></div><div class="mpv-prog-pct">70%</div></div>'+
-      '<div class="mpv-card"><div class="mpv-card-t">基本信息</div>'+mpvRow('姓名',u.realnameName||u.name||'—')+mpvRow('手机号（登录账号）',u.phone||'—')+mpvRow('证件号',u.idcard||'—')+mpvRow('常住地址',u.addr||'—')+'</div>'+
+      '<div class="mpv-card"><div class="mpv-card-t">基本信息</div>'+mpvRow('姓名',u.realnameName||u.name||'—')+mpvRow('手机号（登录账号）',u.phone||'—')+mpvRow('证件号',u.idcard||'—')+mpvAddrCard()+'</div>'+
       '<div class="mpv-card"><div class="mpv-card-t">兼职偏好</div>'+((u.like||u.want||u.brand)?(mpvRow('喜欢的兼职',u.like||'—')+mpvRow('想做的兼职',u.want||'—')+mpvRow('偏好品牌/企业',u.brand||'—')):'<div class="mpv-empty">未设置</div>')+'<div class="mpv-res-acts"><span class="mpv-res-link" onclick="openMePrefs()">完善偏好</span></div>'+'</div>'+
       (function(){ const exp=u.idcardExp||''; const expired=exp&&isIdcardExpired(exp); const idStatus=expired?'<span style="color:#ff4d4f">已认证（已过期）</span>':'已认证'; const expRow=exp?mpvRow('有效期至','<span style="color:'+(expired?'#ff4d4f':'#8c8c8c')+'">'+exp+'</span>'):''; const recBtn='<div class="mpv-res-acts"><span class="mpv-res-link" onclick="startRecertify()">'+(expired?'立即更新':'重新认证')+'</span></div>'; return u.realname?('<div class="mpv-card"><div class="mpv-card-t">我的证件</div>'+mpvRow('身份证',idStatus)+expRow+recBtn+'</div>'):('<div class="mpv-card"><div class="mpv-card-t">我的证件</div>'+mpvRow('身份证','未认证')+'<button class="mpv-real-btn" onclick="nav(\'mini\',\'m-realname\');renderRealname(1)">去完成实名认证</button></div>'); })()+
       mpvCertSection()+
