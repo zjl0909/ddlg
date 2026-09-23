@@ -3294,7 +3294,7 @@
 
   /* ===== 企业小程序登录页 ===== */
   #p-ent-mini{position:relative;}
-  .em2-login{position:absolute;inset:0;z-index:60;border-radius:38px;overflow:auto;}
+  .em2-login{position:absolute;inset:0;z-index:60;border-radius:0;overflow:auto;display:flex;flex-direction:column;}
   .em2-login::-webkit-scrollbar{display:none;}
   .em2-login .em2lg-bg{width:100%;height:100%;display:flex;flex-direction:column;background:#F4F2FB;}
   .em2-login .em2lg-wrap{width:100%;max-width:330px;margin:0 auto;flex:1;display:flex;flex-direction:column;padding:100px 28px 24px;box-sizing:border-box;}
@@ -3321,7 +3321,7 @@
   .em2-login .em2lg-link{color:#1A5BB8;cursor:pointer;font-size:13px;}
 
   /* ===== 企业小程序忘记密码页（em2 风格，3 步） ===== */
-  .em2-forgot{position:absolute;inset:0;z-index:61;border-radius:38px;overflow:hidden;background:#F4F2FB;display:flex;flex-direction:column;justify-content:flex-start;align-items:stretch;padding:0;}
+  .em2-forgot{position:absolute;inset:0;z-index:61;border-radius:0;overflow:hidden;background:#F4F2FB;display:flex;flex-direction:column;justify-content:flex-start;align-items:stretch;padding:0;}
   .em2fg-wrap{width:100%;height:100%;max-width:none;background:#F4F2FB;overflow:hidden;}
   .em2-forgot .em2fg-hero{position:relative;height:100px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:0 24px;background:linear-gradient(160deg,#D5E9FF 0%,#7FB0E8 100%);overflow:hidden;text-align:center;}
   .em2-forgot .em2fg-hero::before{content:"";position:absolute;left:-34px;bottom:-54px;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.12),rgba(255,255,255,0) 70%);}
@@ -3419,19 +3419,19 @@
   .em2-switch input:checked + .slider::before{transform:translateX(18px);}
   /* ===== 企业端 招聘统计（e-recruit-stat） ===== */
   /* 通用日期范围筛选控件（三端复用） */
-  .date-range{position:relative;display:inline-block;vertical-align:middle;}
-  .dr-trigger{display:inline-flex;align-items:center;gap:8px;min-width:196px;padding:6px 12px;border:1px solid #d9d9e3;border-radius:8px;background:#fff;cursor:pointer;font-size:13px;color:#333;}
-  .dr-label{flex:none;font-size:13px;color:#666;font-weight:500;padding-right:6px;border-right:1px solid #eee;}
-  .dr-text{flex:1;color:#333;}
+  .date-range{position:relative;display:inline-flex;align-items:center;gap:8px;vertical-align:middle;}
+  .dr-label{flex:none;font-size:13px;color:#666;font-weight:500;}
+  .dr-trigger{display:inline-flex;align-items:center;gap:8px;min-width:230px;padding:6px 10px;border:1px solid #d9d9e3;border-radius:8px;background:#fff;cursor:pointer;font-size:13px;color:#333;}
+  .dr-text{flex:1;color:#333;text-align:left;white-space:nowrap;}
   .dr-text.ph{color:#9aa0ad;}
-  .dr-clear{font-size:12px;color:#999;padding-left:10px;border-left:1px solid #eee;cursor:pointer;}
-  .dr-clear:hover{color:#e24b4a;}
-  .em2-root .dr-trigger{min-width:170px;gap:6px;padding:6px 10px;}
-  .em2-root .dr-label{padding-right:5px;}
+  .dr-ic{flex:none;display:block;}
+  .em2-root .dr-trigger{min-width:170px;gap:6px;padding:5px 8px;}
   /* 月历范围选择面板（PC端双月并排 / em2手机端单月） */
   .dr-cal{position:absolute;top:calc(100% + 6px);left:0;z-index:9999;background:#fff;border:1px solid #e2e2ea;border-radius:10px;padding:12px 14px 10px;box-shadow:0 6px 20px rgba(20,20,60,.15);width:520px;}
   .dr-cal-h{display:flex;align-items:center;justify-content:space-between;font-size:13px;color:#333;margin-bottom:8px;}
-  .dr-cal-prev,.dr-cal-next{cursor:pointer;padding:0 10px;color:#3771eb;font-size:16px;user-select:none;}
+  .dr-cal-title{flex:1;text-align:center;font-size:14px;color:#333;font-weight:500;}
+  .dr-cal-prev,.dr-cal-next{cursor:pointer;padding:0 10px;color:#666;font-size:18px;user-select:none;}
+  .dr-cal-prev:hover,.dr-cal-next:hover{color:#3771eb;}
   .dr-mws{display:flex;gap:18px;}
   .dr-mw{flex:1;}
   .dr-mh{font-size:13px;color:#333;text-align:center;margin-bottom:6px;font-weight:500;}
@@ -3440,7 +3440,7 @@
   .dr-cal-grid .dr-wk{color:#aaa;font-size:11px;padding:4px 0;}
   .dr-cal-grid .dr-d{cursor:pointer;color:#333;}
   .dr-cal-grid .dr-d:hover{background:#f0f4fb;}
-  .dr-cal-grid .dr-d.on{background:#3771eb;color:#fff;}
+  .dr-cal-grid .dr-d.on{background:#3771eb;color:#fff;border-radius:50%;font-weight:600;}
   .dr-cal-grid .dr-d.in{background:#e6f1fb;}
   .dr-cal-f{display:flex;align-items:center;justify-content:space-between;border-top:1px solid #f0f0f4;margin-top:10px;padding-top:10px;}
   .dr-hint{font-size:12px;color:#9aa0ad;}
@@ -3634,6 +3634,30 @@
   #report-policy .pol-pg-cur{color:#5b6170;white-space:nowrap;}
   #report-policy .pol-pg-size{display:inline-flex;align-items:center;gap:6px;color:#5b6170;white-space:nowrap;}
   #report-policy .pol-pg-size select{height:30px;padding:0 6px;border:1px solid var(--border-base);border-radius:4px;background:#fff;font-size:12px;font-family:inherit;color:var(--text-regular);outline:none;cursor:pointer;}
+  /* ===== 运营后台 · RPO招聘 · 结算明细分析（2026-09-23，复用招聘管理列+2列结算） ===== */
+  #report-settle .pol-head{display:flex;align-items:center;gap:8px;padding:2px 0 12px;flex-wrap:wrap;}
+  #report-settle .pol-title{font-size:15px;font-weight:600;color:#1f2330;margin-right:6px;white-space:nowrap;}
+  #report-settle .pol-btn{display:inline-flex;align-items:center;gap:4px;height:30px;padding:0 10px;border:1px solid #E6E6F0;background:#fff;color:#41465a;border-radius:6px;font-size:13px;font-family:inherit;cursor:pointer;white-space:nowrap;transition:.15s;}
+  #report-settle .pol-btn:hover{border-color:var(--primary);color:var(--primary);}
+  #report-settle .pol-right{margin-left:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  #report-settle .pol-search{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 10px;border:1px solid #E6E6F0;border-radius:6px;background:#fff;color:#8a90a0;}
+  #report-settle .pol-search input{border:none;outline:none;background:transparent;font-size:13px;font-family:inherit;color:#1f2330;}
+  #report-settle .pol-filterbar{display:flex;align-items:center;gap:8px;padding:0 0 12px;flex-wrap:wrap;font-size:13px;color:#5b6170;}
+  #report-settle .pol-filterbar select{height:30px;padding:0 8px;border:1px solid #E6E6F0;border-radius:6px;background:#fff;font-size:13px;font-family:inherit;color:#1f2330;outline:none;}
+  #report-settle .pol-colset{position:relative;display:flex;flex-wrap:wrap;gap:8px 16px;padding:10px 12px;margin-bottom:10px;background:#fafbfc;border:1px solid #E6E6F0;border-radius:8px;font-size:13px;color:#41465a;}
+  #report-settle .pol-colset .cs-item{display:flex;align-items:center;gap:6px;cursor:pointer;white-space:nowrap;}
+  #report-settle .pol-wrap{border:1px solid #ECE9FF;border-radius:10px;overflow:auto;max-width:100%;background:#fff;}
+  #report-settle table.pol-table{border-collapse:separate;border-spacing:0;width:max-content;min-width:100%;font-size:12px;}
+  #report-settle .pol-table th,#report-settle .pol-table td{padding:9px 12px;border-bottom:1px solid var(--border-extra-light);text-align:left;white-space:nowrap;background:#fff;color:#1f2330;}
+  #report-settle .pol-table thead th{background:#fafbfc;font-weight:600;color:#5b6170;position:sticky;top:0;z-index:3;}
+  #report-settle .pol-table tbody tr:last-child td{border-bottom:none;}
+  #report-settle .pol-table tbody tr:hover td{background:#FAFAFF;}
+  #report-settle .pol-table th.pol-num,#report-settle .pol-table td.pol-num{text-align:right;font-variant-numeric:tabular-nums;}
+  #report-settle .pol-pill{display:inline-block;padding:1px 8px;border-radius:9px;font-size:12px;line-height:1.7;}
+  #report-settle .pol-empty{text-align:center;color:var(--text-placeholder);padding:40px 0 !important;}
+  #report-settle .pol-pager{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0 0;flex-wrap:wrap;}
+  #report-settle .pol-pg-total{color:#5b6170;}
+
   /* ===== 额外政策申请 · 新建数据抽屉（左名右值 · 双列，2026-09-21 按截图） ===== */
   .drawer.pol-drawer{min-width:720px;max-width:64vw;}
   #drawerBody .polf-sub{font-size:14px;font-weight:600;color:#1f2330;margin:0 0 12px;padding-left:8px;border-left:3px solid var(--primary);line-height:1.5;}
@@ -3830,11 +3854,9 @@
 .em2-root .nav { background:#D5E9FF; padding:10px 16px 16px;
     display:flex; justify-content:space-between; align-items:center; color:#1A5BB8; position:relative; z-index:2; }
 .em2-root .nav .title { flex:1; text-align:center; font-size:14px; font-weight:600; color:#1A5BB8; }
-.em2-root .nav .mini-caps { flex:0 0 auto; }
 .em2-root .nav .nav-right { display:flex; align-items:center; gap:12px; }
 .em2-root .em2-topbar { background:#D5E9FF; padding:10px 16px; display:flex; align-items:center; justify-content:space-between; position:relative; z-index:2; }
 .em2-root .em2-topbar-t { font-size:14px; font-weight:700; color:#1A5BB8; }
-.em2-root .em2-topbar .mini-caps { flex:0 0 auto; }
 .em2-root .nav-stats { position:sticky; top:0; z-index:10; background:#D5E9FF; padding:0;  color:#1A5BB8; }
 .em2-root .nav-stats .stats-tabs { background:transparent; padding:8px 16px 6px; gap:16px; }
 .em2-root .nav .back { position:absolute; left:10px; top:50%; transform:translateY(-50%); display:flex; align-items:center; cursor:pointer; z-index:2; padding:8px; margin-left:-8px; }
@@ -4524,7 +4546,7 @@
             <div class="srch-sel filter-pair" style="flex:1.3;min-width:180px" data-page-node-id="jrMpiPvDuKivLwq1n4gRKR"><label data-page-node-id="Cl6Yok1FfCD8lkaQZEdiWx">项目经理</label><input class="inp" id="ad-pm" placeholder="搜索 / 选择项目经理" oninput="adPmSrch(this.value)" onfocus="adPmSrch(this.value)" autocomplete="off" data-page-node-id="rdzrzdvG48ffztFssM1U3o"/><div class="srch-sel-menu" id="ad-pm-menu" style="display:none" data-page-node-id="pLQrYRUkThdrheliZn9nrv"></div></div>
             <div class="filter-pair" style="flex:1;min-width:150px" data-page-node-id="Cql3DsT5V9Xo4wrHv6FsHp"><label data-page-node-id="rrB0CoRknU8wlF4U2rRhvt">需求来源</label><select class="select" id="ad-source" data-page-node-id="C3FXidvFIbHu3I3pF7rDte"><option value="" data-page-node-id="bC0CEwMMAgCO17GGZyFenx">全部</option><option value="manual" data-page-node-id="Z876rffNNrIGgEKche7joz">手动录入</option><option value="pc" data-page-node-id="L9pCXgPKNhhtagvdU3RBmG">企业PC端</option><option value="mini" data-page-node-id="OxPEuFBeEaIdfsvEnX4Raa">企业小程序</option><option value="批量导入" data-page-node-id="T2iNDuuGLqsvz2fVRAbYiZ">批量导入</option></select></div>
             <div class="filter-pair" style="flex:0 0 auto;min-width:120px" data-page-node-id="JmSkKhFyp58mkV5dNsUdhG"><label data-page-node-id="Cn5BpFqbOMZgeBvNfj3e6F">状态</label><select class="select" id="ad-status" onchange="adPage=1;renderAdminDemand()" data-page-node-id="Fau2sFuvCaXfgSoO9WIgHX"><option value="全部" data-page-node-id="JalcTprwh3j5Wp5H56lY7J">全部</option><option data-page-node-id="OW4s2cIeYDYyRyGaNCxeno">草稿</option><option data-page-node-id="E3VHENDbCOGbOw9g1zY6Cy">待审核</option><option data-page-node-id="XNnkMwZeR6sRZRKAeljHX7">招聘中</option><option data-page-node-id="2grKeBUkIQYIbUAUJLNlS0">已结束</option></select></div>
-            <div class="filter-pair range" style="flex:0 0 auto;width:220px" data-page-node-id="ITRozLip7Oj1Izg2HlseNF"><label data-page-node-id="LqZsiviMqJ70hmAvdJLqMX">创建时间</label><div class="date-range-wrap" data-page-node-id="56hIulievhD63TQodY0ahR"><input class="inp date-range-display" id="ad-crange" readonly placeholder="开始 - 结束" onclick="openDateRangePicker(this,'ad-cstart','ad-cend')" data-page-node-id="oGlvMoPAiiRzxWwnLGPg2K"/><input type="hidden" id="ad-cstart" data-page-node-id="h6OaurdzoT40JXmee6geaf"/><input type="hidden" id="ad-cend" data-page-node-id="Z9BnwqvbpovPWIgcA4XCg4"/></div></div>
+            <div class="filter-pair range" style="flex:0 0 auto;width:220px" data-page-node-id="ITRozLip7Oj1Izg2HlseNF"><label data-page-node-id="LqZsiviMqJ70hmAvdJLqMX">创建时间</label><div class="date-range-wrap" data-page-node-id="56hIulievhD63TQodY0ahR"><input class="inp date-range-display" id="ad-crange" readonly placeholder="开始日期 → 结束日期" onclick="openDateRangePicker(this,'ad-cstart','ad-cend')" data-page-node-id="oGlvMoPAiiRzxWwnLGPg2K"/><input type="hidden" id="ad-cstart" data-page-node-id="h6OaurdzoT40JXmee6geaf"/><input type="hidden" id="ad-cend" data-page-node-id="Z9BnwqvbpovPWIgcA4XCg4"/></div></div>
             <div class="filter-actions-inline" data-page-node-id="jJQwisDpsWXQuQX5ZZhZAk">
               <button class="btn" onclick="adPage=1;renderAdminDemand()" data-page-node-id="QZdPvFk0aA3HnMuJjfG6A6">搜索</button>
               <button class="btn ghost" onclick="adReset()" data-page-node-id="DAZPWML111cAI0niBvJHjr">重置</button>
@@ -4553,9 +4575,9 @@
             <div class="filter-pair" data-page-node-id="b0Ue2BzHjHqG4GtATsigO4"><label data-page-node-id="JPuxEWVHRSoC4HDUCIYKK5">岗位</label><input class="inp" id="ap-post" placeholder="岗位名称" data-page-node-id="fdg1WCdRQR5bAdhM0WnpxY"/></div>
             <div class="filter-pair" style="min-width:120px;max-width:180px" data-page-node-id="iU5REhfmOCYFJd3MrNjR7f"><label data-page-node-id="c1hYhcAwLQv0iJ2ooCb0a9">城市</label><select class="select" id="ap-city" data-page-node-id="vi0YimpKksVR7dQVRcRbRL"><option value="全部" data-page-node-id="GI9u0RfaV3SyQYkHdIWHyM">全部城市</option></select></div>
             <div class="filter-pair" data-page-node-id="Tfd7Tnm1mDsl2XxvPU4sQG"><label data-page-node-id="WBao76dOYbw2a8JKMXZlwI">来源</label><select class="select" id="ap-src" data-page-node-id="y2j33yqAWIQnto5TuX8uqf"><option value="全部" data-page-node-id="jCW9FaKvfHfaB0vKoAInpZ">全部来源</option><option value="手动录入">手动录入</option><option value="Boss直聘">Boss直聘</option><option value="智联招聘">智联招聘</option><option value="前程无忧">前程无忧</option><option value="猎聘">猎聘</option><option value="58同城">58同城</option><option value="内部推荐">内部推荐</option><option value="人才库导入">人才库导入</option><option value="灵工小程序">灵工小程序</option><option value="海报扫码">海报扫码</option><option value="其他">其他</option></select></div>
-            <div class="filter-pair range" data-page-node-id="37JGWRfsJG5pQGxotFD038"><label data-page-node-id="bdSb7OvsQg6GEG4qgB6nUz">创建时间</label><div class="date-range-wrap" data-page-node-id="DT6go6nbH0xNPmryzZoKWE"><input class="inp date-range-display" id="ap-crange" readonly placeholder="开始 - 结束" onclick="openDateRangePicker(this,'ap-cstart','ap-cend')" data-page-node-id="Ez4nwxne6esGKKKU7AshYI"/><input type="hidden" id="ap-cstart" data-page-node-id="UZYT64X5B2IkuGT81hMYnP"/><input type="hidden" id="ap-cend" data-page-node-id="1DjECZD2XaPx8o54hWcCed"/></div></div>
-            <div class="filter-pair range" data-page-node-id="Fe4hajuvVB8a9UoFa2auPn"><label data-page-node-id="I1YAyDWwmh5QzR6BC2l1fZ">更新时间</label><div class="date-range-wrap" data-page-node-id="q0r9DhlYpRqBONtEP0QM0o"><input class="inp date-range-display" id="ap-urange" readonly placeholder="开始 - 结束" onclick="openDateRangePicker(this,'ap-ustart','ap-uend')" data-page-node-id="58uatyOhm4OoAZrDTL0dyU"/><input type="hidden" id="ap-ustart" data-page-node-id="z43N2aMBCjT8VClunVYrYa"/><input type="hidden" id="ap-uend" data-page-node-id="IyY4LyyfPnneeXEYt6p6eF"/></div></div>
-            <div class="filter-pair range" data-page-node-id="ZdqPNjSmzFGxDISh7OcXVi"><label data-page-node-id="daP3J2P290FuRSqRGhzdR3">面试时间</label><div class="date-range-wrap" data-page-node-id="F7957pUlTwVm5mjLdfNj5q"><input class="inp date-range-display" id="ap-ivrange" readonly placeholder="开始 - 结束" onclick="openDateRangePicker(this,'ap-ivstart','ap-ivend')" data-page-node-id="1FTYHiVAk5Wb69bxFAhP3m"/><input type="hidden" id="ap-ivstart" data-page-node-id="J2wF0Lgu8oaJgOz6nwKsFf"/><input type="hidden" id="ap-ivend" data-page-node-id="Bdo561yyhOGOwCBNWgajxF"/></div></div>
+            <div class="filter-pair range" data-page-node-id="37JGWRfsJG5pQGxotFD038"><label data-page-node-id="bdSb7OvsQg6GEG4qgB6nUz">创建时间</label><div class="date-range-wrap" data-page-node-id="DT6go6nbH0xNPmryzZoKWE"><input class="inp date-range-display" id="ap-crange" readonly placeholder="开始日期 → 结束日期" onclick="openDateRangePicker(this,'ap-cstart','ap-cend')" data-page-node-id="Ez4nwxne6esGKKKU7AshYI"/><input type="hidden" id="ap-cstart" data-page-node-id="UZYT64X5B2IkuGT81hMYnP"/><input type="hidden" id="ap-cend" data-page-node-id="1DjECZD2XaPx8o54hWcCed"/></div></div>
+            <div class="filter-pair range" data-page-node-id="Fe4hajuvVB8a9UoFa2auPn"><label data-page-node-id="I1YAyDWwmh5QzR6BC2l1fZ">更新时间</label><div class="date-range-wrap" data-page-node-id="q0r9DhlYpRqBONtEP0QM0o"><input class="inp date-range-display" id="ap-urange" readonly placeholder="开始日期 → 结束日期" onclick="openDateRangePicker(this,'ap-ustart','ap-uend')" data-page-node-id="58uatyOhm4OoAZrDTL0dyU"/><input type="hidden" id="ap-ustart" data-page-node-id="z43N2aMBCjT8VClunVYrYa"/><input type="hidden" id="ap-uend" data-page-node-id="IyY4LyyfPnneeXEYt6p6eF"/></div></div>
+            <div class="filter-pair range" data-page-node-id="ZdqPNjSmzFGxDISh7OcXVi"><label data-page-node-id="daP3J2P290FuRSqRGhzdR3">面试时间</label><div class="date-range-wrap" data-page-node-id="F7957pUlTwVm5mjLdfNj5q"><input class="inp date-range-display" id="ap-ivrange" readonly placeholder="开始日期 → 结束日期" onclick="openDateRangePicker(this,'ap-ivstart','ap-ivend')" data-page-node-id="1FTYHiVAk5Wb69bxFAhP3m"/><input type="hidden" id="ap-ivstart" data-page-node-id="J2wF0Lgu8oaJgOz6nwKsFf"/><input type="hidden" id="ap-ivend" data-page-node-id="Bdo561yyhOGOwCBNWgajxF"/></div></div>
             <div class="filter-pair" data-page-node-id="gITDTCUVpMrvA3azQx7kHW"><label data-page-node-id="xe2QE7yhE0w7ou0mNdQlnm">跟进人</label><input class="inp" id="ap-follower" placeholder="跟进人姓名" data-page-node-id="W3Gdz2qfj0MVioqiqJVAQs"/></div>
             <div class="filter-pair" data-page-node-id="GxwwVFtCZ1lEjG9NjoRSDj"><label data-page-node-id="zmO6rz6ySVXAEf5OlfqcWH">跟进人部门</label><select class="select" id="ap-fgroup" data-page-node-id="c1aaUJfgJLQP6LbHFfGHs0"><option value="全部" data-page-node-id="2FurZo9geoLc59xD93qw5I">全部部门</option></select></div>
             <div class="filter-pair" style="min-width:220px;max-width:280px" data-page-node-id="Cq1J2WnZclknNhioXnjbjj"><label data-page-node-id="OKaF9mO4HKt8D6Kbs8TgIo">留存待跟进日期</label><input class="inp" type="date" id="ap-nextfollow" data-page-node-id="H7aoPRFDYpZq13IZv7DhAt"/></div>
@@ -4760,7 +4782,7 @@
         <div class="crumb" data-page-node-id="FXH5KDCCI9WDDxjAgUnjSc">系统设置 <span class="sep" data-page-node-id="JZmPTjty9wHHe2kEY7L34H">/</span> 操作日志</div>
         <div class="card" data-page-node-id="D4WgYNySz8rqbto8hpgsew">
           <div class="filter-row" style="align-items:flex-start; flex-wrap:wrap; row-gap:10px" data-page-node-id="ECC64BM6qpswCB5nHHcGwB">
-          <div class="filter-pair" data-page-node-id="N6wH0rddoXGNbBdJQbTOG3"><label data-page-node-id="zOOieHFY4ywH0QCbEZUhiY">操作日期</label><div class="date-range-wrap" data-page-node-id="WDnUnFqEXCND3JBWUPAT62"><input class="inp date-range-display" id="ao-crange" readonly placeholder="开始 - 结束" onclick="openDateRangePicker(this,'ao-start','ao-end')" data-page-node-id="AlMH08o4f15NZLkrOrSrPA"/><input type="hidden" id="ao-start" data-page-node-id="RIXGzhAmfRmxJKdEpTVWTM"/><input type="hidden" id="ao-end" data-page-node-id="UZWyUYmoj2ABNV7MNQNia0"/></div></div>
+          <div class="filter-pair" data-page-node-id="N6wH0rddoXGNbBdJQbTOG3"><label data-page-node-id="zOOieHFY4ywH0QCbEZUhiY">操作日期</label><div class="date-range-wrap" data-page-node-id="WDnUnFqEXCND3JBWUPAT62"><input class="inp date-range-display" id="ao-crange" readonly placeholder="开始日期 → 结束日期" onclick="openDateRangePicker(this,'ao-start','ao-end')" data-page-node-id="AlMH08o4f15NZLkrOrSrPA"/><input type="hidden" id="ao-start" data-page-node-id="RIXGzhAmfRmxJKdEpTVWTM"/><input type="hidden" id="ao-end" data-page-node-id="UZWyUYmoj2ABNV7MNQNia0"/></div></div>
           <div class="filter-pair" data-page-node-id="BnLLmxJib0daGM9UUznGMH"><label data-page-node-id="Q0ZMmMjM1LmRWBUrOsuyo6">所属企业</label><div class="srch-sel" style="position:relative;flex:1;min-width:160px" data-page-node-id="kocwjT3G2EpR3LYuGkPNdM"><input class="inp" id="ao-ent-input" placeholder="搜索/选择企业" style="width:100%;min-width:160px" oninput="aoEntSearch(this.value)" onfocus="aoEntSearch(this.value)" autocomplete="off" data-page-node-id="sY4CYdb1Wr2nB5ZextLqKY"/><input type="hidden" id="ao-ent" value="" data-page-node-id="sf0W6xgAeWACaIZEiiSH72"/><div class="srch-sel-menu" id="ao-ent-menu" style="display:none;position:absolute;top:100%;left:0;right:0;margin-top:4px;background:#fff;border:1px solid var(--border-light);border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.12);z-index:50;max-height:240px;overflow:auto;padding:4px 0" data-page-node-id="3pzPLvXh9hP1fD9SEGCwdN"></div></div></div>
           <div class="filter-pair" data-page-node-id="RgJuj3FKgcPxvNWCzEntTY"><label data-page-node-id="EuYaLryFAK4bnrQM7mYBrA">操作人</label><input class="inp" id="ao-op" placeholder="姓名/账号" style="min-width:120px" data-page-node-id="oA6r7bhCRRUrkI6o87Bs9H"/></div>
           <div class="filter-pair" data-page-node-id="lQtglBi1GO6meqXkNMK0N3"><label data-page-node-id="deLJijPwmFS7gvVBsglFgm">操作类型</label><select class="select" id="ao-type" data-page-node-id="VD5lPtE9eeYlkEbyqACYw6"><option value="" data-page-node-id="MHGjpQTQGWwNipNBHfKrFn">全部</option><option data-page-node-id="0DBj7nsleMffLLU0oz4AA0">登录/登出</option><option data-page-node-id="7HhGFUnwwfZvMkHbb4s2JS">企业账户变更</option><option data-page-node-id="pk0m4YFtowidRCsSGHdHdv">模块授权</option><option data-page-node-id="lJdWYZr4MUvpoyQqNtYdYX">运营人员角色配置</option></select></div>
@@ -4998,10 +5020,10 @@
               </div>
             </div>
             <div class="date-range" id="ors-dr" data-page-node-id="ARSdw" data-cb="orsOnRange">
+              <span class="dr-label">日期</span>
               <div class="dr-trigger" onclick="drCalToggle('ors-dr', event)">
-                <span class="dr-label">日期</span>
-                <span class="dr-text ph" id="ors-dr-text">开始 - 结束</span>
-                <span class="dr-clear" onclick="drCalClear('ors-dr', event)">清空</span>
+                <span class="dr-text ph" id="ors-dr-text">开始日期 → 结束日期</span>
+                <svg class="dr-ic" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#9aa0ad" stroke-width="1.8" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"></rect><path d="M3.5 9.5h17"></path><path d="M8 2.5v4M16 2.5v4"></path></svg>
               </div>
               <input type="hidden" id="ors-dr-start">
               <input type="hidden" id="ors-dr-end">
@@ -5135,10 +5157,30 @@
 
           <!-- 结算明细分析 -->
           <div id="report-settle" class="report-panel" style="display:none;">
-            <div style="min-height:300px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--text-secondary);gap:12px;">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#ic-data"/></svg>
-              <div>结算明细分析 - 模块开发中</div>
+            <div class="pol-head">
+              <span class="pol-title">结算明细分析</span>
+              <div class="pol-right">
+                <span class="pol-search"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input id="settle-kw" style="width:150px" placeholder="搜索姓名/岗位/企业" oninput="settleSetKw(this.value)"></span>
+                <button class="pol-btn" onclick="settleToggleFilter()">筛选</button>
+                <button class="pol-btn" onclick="settleToggleColSet()">显示列</button>
+                <button class="pol-btn" id="settle-sort-btn" onclick="settleToggleSort()">排序</button>
+                <button class="pol-btn" onclick="settleResetFilter()">刷新</button>
+              </div>
             </div>
+            <div class="pol-filterbar" id="settle-filterbar" style="display:none">
+              <span>是否结算</span>
+              <select id="settle-f-flag" onchange="settleSetFlag(this.value)">
+                <option value="全部">全部</option><option value="已结算">已结算</option><option value="待结算">待结算</option><option value="不结算">不结算</option>
+              </select>
+            </div>
+            <div class="pol-colset" id="settle-colset" style="display:none"></div>
+            <div class="pol-wrap">
+              <table class="pol-table" id="settle-table">
+                <thead id="settle-thead"></thead>
+                <tbody id="settle-tbody"></tbody>
+              </table>
+            </div>
+            <div class="pager pol-pager" id="settle-pager"></div>
           </div>
 
           <!-- 招聘周报 -->
@@ -5315,7 +5357,7 @@
             <div class="filter-pair" style="flex:1.5;min-width:220px" data-page-node-id="ffExhVvDWn9rdPCCsyywCw"><label data-page-node-id="VKHdfQsFJsXYkttAUZk6R7">岗位</label><input class="inp" id="ed-q" placeholder="请输入岗位名称" oninput="edPage=1;renderEntDemand()" data-page-node-id="4a58rCRE396Qz8kUOPqUFK"/></div>
             <div class="filter-pair" style="flex:1;min-width:160px" data-page-node-id="IKeRgIFQ9frXcbjrnfMP1s"><label data-page-node-id="icfhCBDFKAHO6TG45QxlwA">所属部门</label><input class="inp" id="ed-dept" placeholder="请输入所属部门" oninput="edPage=1;renderEntDemand()" data-page-node-id="i5idGcyXPkfYPInLi8rx0j"/></div>
             <div class="filter-pair" style="flex:0 0 auto;min-width:120px" data-page-node-id="AW3Ff2DSIWrqtiz9fQEIrf"><label data-page-node-id="ttmVLAvfrZzBX8pIlfBWjI">状态</label><select class="select" id="ed-status" onchange="edPage=1;renderEntDemand()" data-page-node-id="iOYq7KOpMA6H0sq1jspmNN"><option value="全部" data-page-node-id="BOYyynWI8vQddwIlxa1IGY">全部状态</option><option data-page-node-id="ejMoGIB4FRd6YPCmO20dmv">草稿</option><option data-page-node-id="EWzoNBJM6AuMjZOMEJZzZG">待审核</option><option data-page-node-id="1ew55DH2XfxHmskNy79h4h">招聘中</option><option data-page-node-id="FGBQ6TG77WT5hyBnqgag3D">已结束</option></select></div>
-            <div class="filter-pair range" style="flex:1.4;min-width:240px" data-page-node-id="6ZVrHDPMB98N66MWzPq8rT"><label data-page-node-id="A2mEbAy6wPwEBellar3ilf">创建时间</label><div class="date-range-wrap" data-page-node-id="CKRuXaZzrPjADhbqCXsnUv"><input class="inp date-range-display" id="ed-crange" readonly placeholder="开始 - 结束" onclick="openDateRangePicker(this,'ed-cstart','ed-cend')" data-page-node-id="olm1MxDzW9KiZXW4miEdTl"/><input type="hidden" id="ed-cstart" data-page-node-id="FXue4FzlZQsqErPCPnLUrA"/><input type="hidden" id="ed-cend" data-page-node-id="VCCThjUaxixBHG1yXXIcJO"/></div></div>
+            <div class="filter-pair range" style="flex:1.4;min-width:240px" data-page-node-id="6ZVrHDPMB98N66MWzPq8rT"><label data-page-node-id="A2mEbAy6wPwEBellar3ilf">创建时间</label><div class="date-range-wrap" data-page-node-id="CKRuXaZzrPjADhbqCXsnUv"><input class="inp date-range-display" id="ed-crange" readonly placeholder="开始日期 → 结束日期" onclick="openDateRangePicker(this,'ed-cstart','ed-cend')" data-page-node-id="olm1MxDzW9KiZXW4miEdTl"/><input type="hidden" id="ed-cstart" data-page-node-id="FXue4FzlZQsqErPCPnLUrA"/><input type="hidden" id="ed-cend" data-page-node-id="VCCThjUaxixBHG1yXXIcJO"/></div></div>
             <div class="filter-actions-inline" data-page-node-id="YbdUeTkMdt5bKI1ERdGXZU">
               <button class="btn sm" onclick="edPage=1;renderEntDemand()" data-page-node-id="wjQK7OeFbJnjizCxZTR4DB">搜索</button>
               <button class="btn ghost sm" onclick="edReset()" data-page-node-id="T1bGp8ehxnnvhVziBuYXje">重置</button>
@@ -5345,7 +5387,7 @@
             <div class="filter-pair" style="flex:1.2;min-width:140px" data-page-node-id="mrSxXONX9X9fuJdT0bPVv4"><label data-page-node-id="3TpSc20xO9XRdRaOkXu4Gm">岗位</label><input class="inp" id="ep-post" placeholder="岗位名称" data-page-node-id="zk8fsh4scC5Se0UI1quEuA"/></div>
             <div class="filter-pair" style="flex:0 0 auto;min-width:110px" data-page-node-id="T7t7wBk1NxLdepawvaMZkD"><label data-page-node-id="faueUakbnaTbr7RJ0G9MIo">岗位类型</label><select class="select" id="ep-type" data-page-node-id="3OtEQCCUO0Q22lDXPFkUjZ"><option value="全部" data-page-node-id="hNvZT8ZbbeoHcsOfD1qdiB">全部</option></select></div>
             <div class="filter-pair" style="flex:1;min-width:120px" data-page-node-id="j77UnMxAGlMTWXkELbA2gj"><label data-page-node-id="Y1CbZgvr6EfGghnyjTbHxG">姓名</label><input class="inp" id="ep-name" placeholder="候选人姓名" data-page-node-id="vTE1k9YVpBl0NxMKMS7Ee0"/></div>
-            <div class="filter-pair range" style="flex:1 1 0;min-width:170px" data-page-node-id="iwQH5n1uKLpHN608NSvM3x"><label data-page-node-id="lGHiEEfPtJG9aA8xEQMMRi">面试时间</label><div class="date-range-wrap" data-page-node-id="ipmrHDrvLdBnLi65cFm7Oj"><input class="inp date-range-display" id="ep-ivrange" readonly placeholder="开始 - 结束" onclick="openDateRangePicker(this,'ep-ivstart','ep-ivend')" data-page-node-id="GDbCp1LHuTHtlOaSiEz79E"/><input type="hidden" id="ep-ivstart" data-page-node-id="Izm0N465eqhNhdW7mRWGCA"/><input type="hidden" id="ep-ivend" data-page-node-id="HGoauTljo9eHku7GRPPnSs"/></div></div>
+            <div class="filter-pair range" style="flex:1 1 0;min-width:170px" data-page-node-id="iwQH5n1uKLpHN608NSvM3x"><label data-page-node-id="lGHiEEfPtJG9aA8xEQMMRi">面试时间</label><div class="date-range-wrap" data-page-node-id="ipmrHDrvLdBnLi65cFm7Oj"><input class="inp date-range-display" id="ep-ivrange" readonly placeholder="开始日期 → 结束日期" onclick="openDateRangePicker(this,'ep-ivstart','ep-ivend')" data-page-node-id="GDbCp1LHuTHtlOaSiEz79E"/><input type="hidden" id="ep-ivstart" data-page-node-id="Izm0N465eqhNhdW7mRWGCA"/><input type="hidden" id="ep-ivend" data-page-node-id="HGoauTljo9eHku7GRPPnSs"/></div></div>
             <div class="filter-actions-inline" style="flex:0 0 auto;white-space:nowrap" data-page-node-id="Jx6ihBQteIAOreiBbZ0byj">
               <button class="btn sm" onclick="renderEntProgress()" data-page-node-id="u4qQR7wbwgtHDWOE1SM2LZ">搜索</button>
               <button class="btn sm ghost" onclick="epReset()" data-page-node-id="GOiPuIj9xlrM5d9X7Bmkyj">重置</button>
@@ -5433,7 +5475,7 @@
         <div class="crumb" data-page-node-id="sPtiF0hZ0t8QF4aGap4tDK">系统设置 <span class="sep" data-page-node-id="uwha0lmW3rhNDWKe4KZuFX">/</span> 操作日志</div>
         <div class="card" data-page-node-id="wHLqEaWccexW6GUlXV5u1Y">
         <div class="filter-row" data-page-node-id="bjMOjGDu1PnkzNCrEcOCtJ">
-          <div class="filter-pair" data-page-node-id="lHnK0PUyHPNvV9FgJwOMbw"><label data-page-node-id="57iE244HliJ4M2Zs6xTd9z">操作日期</label><div class="date-range-wrap" data-page-node-id="vfsSGuTse2zogQijX80NMs"><input class="inp date-range-display" id="eo-crange" readonly placeholder="开始 - 结束" onclick="openDateRangePicker(this,'eo-start','eo-end')" data-page-node-id="3LwjuFe08GXOYrTDw7KcC9"/><input type="hidden" id="eo-start" data-page-node-id="XWrgDfENOgt1GOJui9ceeV"/><input type="hidden" id="eo-end" data-page-node-id="q0i9szkd7bnkYP7IBhtxF5"/></div></div>
+          <div class="filter-pair" data-page-node-id="lHnK0PUyHPNvV9FgJwOMbw"><label data-page-node-id="57iE244HliJ4M2Zs6xTd9z">操作日期</label><div class="date-range-wrap" data-page-node-id="vfsSGuTse2zogQijX80NMs"><input class="inp date-range-display" id="eo-crange" readonly placeholder="开始日期 → 结束日期" onclick="openDateRangePicker(this,'eo-start','eo-end')" data-page-node-id="3LwjuFe08GXOYrTDw7KcC9"/><input type="hidden" id="eo-start" data-page-node-id="XWrgDfENOgt1GOJui9ceeV"/><input type="hidden" id="eo-end" data-page-node-id="q0i9szkd7bnkYP7IBhtxF5"/></div></div>
           <div class="filter-pair" data-page-node-id="F7ScJ4VLT7vigfX5v0RLWI"><label data-page-node-id="rTSDW4cVp2E5GrdrBDS2Fv">操作人</label><input class="inp" id="eo-op" placeholder="姓名/账号" style="min-width:120px" data-page-node-id="6i92gLLFr1yBfWRMPXby1j"/></div>
           <div class="filter-pair" data-page-node-id="T08C8rMKlvGFiTIFRkcPbY"><label data-page-node-id="UE0owixrxpj5J8bPJdLPuR">操作类型</label><select class="select" id="eo-type" data-page-node-id="pQeQ0FMe2f940Uqi83tj3X"><option value="" data-page-node-id="S0LfVEYEwYigD61S06XTUD">全部</option><option data-page-node-id="sOCvZuAV2tiNT8W6VoYFQg">登录/登出</option><option data-page-node-id="yAPZKKkpKeH2iL3rkcpAT1">成员变更</option><option data-page-node-id="hGUIfRWfmShk6MUDAJhQvV">组织架构调整</option><option data-page-node-id="01oqyEcAARFaXx7NHUR7DR">角色变更</option><option data-page-node-id="yS41YE6BI0pJRHSAyRHVGy">招聘需求</option><option data-page-node-id="EkEG0nmaBWSLtIJX3MO0lN">面试安排</option><option data-page-node-id="NHZzTreJ20lnZ1atVBPyMC">任务派发</option></select></div>
           <div class="filter-pair" data-page-node-id="OpcBkuRVAXZipUVpYsj3uL"><label data-page-node-id="j7qXjdfT4Y1ffCUDBZYFfU">结果</label><select class="select" id="eo-result" data-page-node-id="wLycyWDDQ5dHUvEFJEsEC8"><option value="" data-page-node-id="myl9K4f6TcprqWYzAIbZhk">全部</option><option data-page-node-id="F4dtSlVIOF4hPz8rk2KB0o">成功</option><option data-page-node-id="vitSLonNgV3820rU9GWLQK">失败</option></select></div>
@@ -5602,10 +5644,10 @@
             </select>
           </div>
           <div class="date-range" id="ers-dr" data-page-node-id="ERSdw" data-cb="ersOnRange">
+            <span class="dr-label">日期</span>
             <div class="dr-trigger" onclick="drCalToggle('ers-dr', event)">
-              <span class="dr-label">日期</span>
-              <span class="dr-text ph" id="ers-dr-text">开始 - 结束</span>
-              <span class="dr-clear" onclick="drCalClear('ers-dr', event)">清空</span>
+              <span class="dr-text ph" id="ers-dr-text">开始日期 → 结束日期</span>
+              <svg class="dr-ic" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#9aa0ad" stroke-width="1.8" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"></rect><path d="M3.5 9.5h17"></path><path d="M8 2.5v4M16 2.5v4"></path></svg>
             </div>
             <input type="hidden" id="ers-dr-start">
             <input type="hidden" id="ers-dr-end">
@@ -5892,10 +5934,6 @@
 <div class="phone-stage" id="em2-phoneStage" data-page-node-id="yWQP2uHxBVHNwjXjRmdrZL">
 <div class="phone" data-page-node-id="UgZ1NPjAko97LZA8RIokCa">
 <div class="em2-login" id="em2-login" style="display:none" data-page-node-id="gUFVqbjoxEbApOPqC0I0EB">
-  <div class="em2-topbar">
-    <span></span>
-    <span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
-  </div>
   <div class="em2lg-bg" data-page-node-id="KM9CktWPDmDXJwbYU4CoHE">
     <div class="em2lg-wrap" data-page-node-id="yg5M0j2Q5NMiMN3qJoXPet">
       <div class="em2lg-brand" data-page-node-id="CmAhQzRuQlIVl0DZjbRkOD"><span class="em2lg-badge" data-page-node-id="XuH0OdIysnLauAFN1ahUNN">企</span><span class="em2lg-name" data-page-node-id="CaXLXpIG12nUBKekYKz9P4">企业小程序</span></div>
@@ -5926,7 +5964,6 @@
   <div class="em2-forgot" id="em2-forgot" style="display:none" data-page-node-id="nhhHGOhihepiHkbbudN1MM">
     <div class="em2-topbar">
       <span></span>
-      <span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
     </div>
     <div class="em2fg-wrap" data-page-node-id="MKex1ifCeQiDqhbWW8Xux9">
       <div class="em2fg-hero" data-page-node-id="TGwqVWmoLCmpMnmIDZuNP8">
@@ -5983,7 +6020,6 @@
   <div id="em2-page-recruit" data-page-node-id="gTHpmfJFzuBIvAPOYBhBFN">
     <div class="em2-topbar">
       <span class="em2-topbar-t">招聘</span>
-      <span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
     </div>
 
     <div class="em2-chips" id="em2-chips" data-page-node-id="xCGFTskDriK0ruUgIsgf4Q">
@@ -6057,7 +6093,7 @@
   </div>
 
   <!-- 全局消息铃铛（企业小程序各主 Tab 页右上角，含未读角标） -->
-  <div id="em2-bell" onclick="openEntMsg()" style="position:absolute; top:52px; right:12px; z-index:55; width:30px; height:30px; border-radius:50%; background:#fff; border:1px solid #e3ecf7; box-shadow:0 2px 6px rgba(26,91,184,.12); display:flex; align-items:center; justify-content:center; cursor:pointer;">
+  <div id="em2-bell" onclick="openEntMsg()" style="position:absolute; top:7px; right:12px; z-index:60; width:30px; height:30px; border-radius:50%; background:#fff; border:1px solid #e3ecf7; box-shadow:0 2px 6px rgba(26,91,184,.12); display:flex; align-items:center; justify-content:center; cursor:pointer;">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3a6 6 0 0 0-6 6v3.5l-1.6 3A1 1 0 0 0 5.3 17h13.4a1 1 0 0 0 .9-1.5L18 12.5V9a6 6 0 0 0-6-6Z" stroke="#1A5BB8" stroke-width="1.8" stroke-linejoin="round"/><path d="M9.5 19.5a2.5 2.5 0 0 0 5 0" stroke="#1A5BB8" stroke-width="1.8" stroke-linecap="round"/></svg>
     <span id="em2-bellBadge" style="position:absolute; top:-4px; right:-4px; min-width:15px; height:15px; border-radius:8px; background:#ff4d4f; color:#fff; font-size:10px; line-height:15px; text-align:center; padding:0 3px; display:none;">0</span>
   </div>
@@ -6067,7 +6103,6 @@
     <div class="nav">
       <span class="back" onclick="closeEntMsg()"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="#1A5BB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       <span class="title" style="display:block; text-align:center;">消息</span>
-      <span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
     </div>
     <div class="content" id="em-msg-body" style="padding:0; background:#fff;"></div>
   </div>
@@ -6077,7 +6112,6 @@
     <div class="nav" data-page-node-id="eleqjnjiaDq6xJeSQ4Qo6D">
       <span class="back" onclick="closeJobs()" data-page-node-id="87MM5SIQHHZrdpl6ssLsCC"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" data-page-node-id="7TCsu2HXhqS4u3ympY5qmZ"><path d="M15 6l-6 6 6 6" stroke="#1A5BB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="jVDAFlY46Cmw6ThDyKyHwJ"/></svg></span>
       <span class="title" data-page-node-id="iQW7ihJRGshp2jBxFVt1xZ">岗位需求</span>
-      <span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
     </div>
     <div class="content" data-page-node-id="dJmF1RMI5gfDqIELk6iYUK">
       <div id="em2-jobsList" data-page-node-id="P2j9XSxEh8iGbuykkqbPT1"></div>
@@ -6089,7 +6123,6 @@
     <div class="nav" data-page-node-id="1BAgl767JqkHikrDkebVSD">
       <span class="back" onclick="closeTodo()" data-page-node-id="h4DnZC7T7ydDB2mF4qEZDo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" data-page-node-id="5KjoxSGaVmy9KEu765TJtr"><path d="M15 6l-6 6 6 6" stroke="#1A5BB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="n31kzEcfiwUYfkdWlLESi4"/></svg></span>
       <span class="title" id="em2-todoTitle" data-page-node-id="o8NGc6qEYeZEqOOFNr3QAM">待处理</span>
-      <span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
     </div>
     <div class="content" data-page-node-id="AbfuDinSk6DdQuj2lEYuwU">
       <div id="em2-todoList" data-page-node-id="eE2DODrHHY9Z3ykI3qFmg5"></div>
@@ -6101,7 +6134,6 @@
     <div class="nav" data-page-node-id="iAMjnXgLL5uEDL8RHpUMLt">
       <span class="back" onclick="closeWaitIv()" data-page-node-id="wzbNsAG9iqsaikSeHoQg9O"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" data-page-node-id="WvO7sdIQxah9aW9v5oDuyh"><path d="M15 6l-6 6 6 6" stroke="#1A5BB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="dPUCGA261xNOr1XGlAxOZE"/></svg></span>
       <span class="title" id="em2-waitIvTitle" data-page-node-id="IyrvKuK4PBgCp0LjtMwztZ">待面试</span>
-      <span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
     </div>
     <div class="content" data-page-node-id="kjGdrqUAQSZYHPeLjGE8IW">
       <div id="em2-waitIvList" data-page-node-id="2wNQVtdNUXCfAvk8FiMqxk"></div>
@@ -6113,7 +6145,6 @@
     <div class="nav" data-page-node-id="ZnTLw8xc8DKzkXDQfWceZi">
       <span class="back" onclick="closeOffer()" data-page-node-id="3wX5jMlf4uTMD17h7xDDAR"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" data-page-node-id="bPUBbmL7z9svRxN6oXgE08"><path d="M15 6l-6 6 6 6" stroke="#1A5BB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="fP2iVAjZCkAXSWDeHMorHU"/></svg></span>
       <span class="title" id="em2-offerTitle" data-page-node-id="WM7UL9Mgl16oONd7SrNEIm">已发 Offer</span>
-      <span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
     </div>
     <div class="content" data-page-node-id="jF2YGe2A8zIOMf2ENb67QI">
       <div id="em2-offerList" data-page-node-id="EXChCIMZ8BvlgPEeF0ypBC"></div>
@@ -6125,7 +6156,6 @@
     <div class="nav" data-page-node-id="cGnKtYGWq2rSD9Ccm4oxP0">
       <span class="back" onclick="closeHire()" data-page-node-id="sL3OLjVF6YgHmwhcOy9eHI"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" data-page-node-id="dx58Ye85nfvUDQxc9nHC8q"><path d="M15 6l-6 6 6 6" stroke="#1A5BB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="YJD7e4Q7qbGjFa6IA7P2VI"/></svg></span>
       <span class="title" id="em2-hireTitle" data-page-node-id="3DwLy2baVnZ1hixnWT3Nxs">待入职</span>
-      <span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
     </div>
     <div class="content" data-page-node-id="cKZok6pdDUuqyZaXB8PgdP">
       <div id="em2-hireList" data-page-node-id="5JoxM0EMaGhT5KFVGiOWjg"></div>
@@ -6140,7 +6170,6 @@
       </span>
       <span class="title" id="em2-pubTitle" data-page-node-id="JRKiMMlSYayGhzDBK3LNyY">发布新需求</span>
       <span class="nav-edit" id="em2-pubEdit" style="display:none" onclick="em2EnterEdit()" data-page-node-id="D94dnPl1sckqvx4IbWmOnA">编辑</span>
-      <span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
     </div>
 
     <div class="form" id="em2-pubForm" data-page-node-id="nXCNkm9hPUxGFHhzohectF">
@@ -6477,7 +6506,6 @@
   <div id="em2-page-attendance" style="display:none" data-page-node-id="6mOFfvvZWgyw6DQ4EEvKrs">
     <div class="em2-topbar">
       <span class="em2-topbar-t">出勤</span>
-      <span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
     </div>
     <div class="screen" data-page-node-id="ORvYvktFvhYLAzZ1Gxh63d">
       <div class="placeholder" data-page-node-id="fms5yJQlwxB5iQ3WdsZ7cC">
@@ -6492,7 +6520,6 @@
   <div id="em2-page-tasks" style="display:none" data-page-node-id="IPz5JexsfgWQpZy0dgHAAf">
     <div class="em2-topbar">
       <span class="em2-topbar-t">任务管理</span>
-      <span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
     </div>
     <div class="screen" data-page-node-id="XXQ4cgJIkzKrZ8DnmCxuIn">
       <div class="placeholder" data-page-node-id="GapnTeuJyMjcyJodEi7oqg">
@@ -6507,7 +6534,6 @@
   <div id="em2-page-stats" style="display:none; flex-direction:column; background:#F8F7FC;" data-page-node-id="M33johgKKJybPbCNutZkVN">
     <div class="em2-topbar">
       <span class="em2-topbar-t">统计</span>
-      <span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
     </div>
     <div class="screen" id="em2-statsScreen" data-page-node-id="7uYI8UTtnoKicnCwvJ0FWp">
       <div class="nav nav-stats" data-page-node-id="Toclz17pVBulvgfSBe5HLC">      <!-- 二级 Tab -->
@@ -6536,10 +6562,10 @@
           </div>
           <div class="stats-filter stats-filter-in" data-page-node-id="yWfl75NWecXK9KNyby6RIA">
             <div class="date-range" id="em2-dr" data-page-node-id="Em2DDt8OqKuriqcL8192" data-cb="em2OnRange">
+              <span class="dr-label">日期</span>
               <div class="dr-trigger" onclick="drCalToggle('em2-dr', event)">
-                <span class="dr-label">日期</span>
-                <span class="dr-text ph" id="em2-dr-text">开始 - 结束</span>
-                <span class="dr-clear" onclick="drCalClear('em2-dr', event)">清空</span>
+                <span class="dr-text ph" id="em2-dr-text">开始日期 → 结束日期</span>
+                <svg class="dr-ic" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#9aa0ad" stroke-width="1.8" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"></rect><path d="M3.5 9.5h17"></path><path d="M8 2.5v4M16 2.5v4"></path></svg>
               </div>
               <input type="hidden" id="em2-dr-start">
               <input type="hidden" id="em2-dr-end">
@@ -6668,7 +6694,6 @@
   <div id="em2-page-mine" style="display:none" data-page-node-id="F3qddBqOMV4FZQT04IT09x">
     <div class="em2-topbar">
       <span class="em2-topbar-t">我的</span>
-      <span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
     </div>
     <div class="em2-mine" id="em2-mine-host" data-page-node-id="88XzKpKYyJwHIfcnZsl97Q"></div>
   </div>
@@ -8507,7 +8532,6 @@
     const t = document.getElementById('em2-page-' + id);
     if (t) t.style.display = 'flex';
     document.querySelector('.em2-root .tabbar').style.display = 'none';
-    const bell = document.getElementById('em2-bell'); if (bell) bell.style.display = 'none';
     window.scrollTo(0,0);
   }
   function closePage(id){
@@ -8963,7 +8987,7 @@
   function em2OnRange(){ em2RenderFunnel(); em2RenderConv(); renderHireTrend(); }
   function renderStaticStats(){
     var s=document.getElementById('em2-dr-start'), e=document.getElementById('em2-dr-end'), t=document.getElementById('em2-dr-text');
-    if(s) s.value=''; if(e) e.value=''; if(t){ t.textContent='开始 - 结束'; t.classList.add('ph'); }
+    if(s) s.value=''; if(e) e.value=''; if(t){ t.textContent='开始日期 → 结束日期'; t.classList.add('ph'); }
     em2RefreshAll();
     renderJobCycle('全部');
   }
@@ -9240,14 +9264,19 @@
   }
 
   // 初始化：渲染默认"全部"状态。
-  // 注意：renderJob 依赖 todayStr/isoDate/ivDateStrOf/ivTimeOf 等工具函数（定义在更靠后的 <script> 块），
-  // 跨 <script> 块函数声明不会向前 hoist，故必须用 setTimeout 延后到所有工具函数定义之后再执行，
-  // 否则会抛 ReferenceError: todayStr is not defined，导致首页 5 列数字停留在 HTML 默认值。
-  setTimeout(() => renderJob('全部'), 0);
+  // renderJob 内部会读取 progresses（岗位报名线索，定义在后续 <script> 块），
+  // 因此必须等整篇文档解析、所有同步脚本执行完毕后再触发。
+  // 不能用 setTimeout(...,0) —— HTML 解析器会在各 <script> 块之间让出，
+  // 计时器可能早于后续脚本执行，导致 progresses is not defined、首页数字恒为空。
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => renderJob('全部'));
+  } else {
+    renderJob('全部');
+  }
 
 // ===== 手机框等比自适应（保持手机纵横比，跟随浏览器视口缩放）=====
 (function () {
-  const PW = 350, PH = 700, MARGIN = 24, MAX_SCALE = 1.4, MIN_SCALE = 0.3;
+  const PW = 350, PH = 700, MARGIN = 24, MAX_SCALE = 1, MIN_SCALE = 0.3;
   function fitPhone() {
     const stage = document.getElementById('em2-phoneStage');
     const phone = document.querySelector('.em2-root .phone');
@@ -15178,6 +15207,7 @@
     const sel=document.getElementById('dataReportSelect'); if(sel) sel.value=key;
     if(key==='weekly'){ if(window.renderWeeklyReport) window.renderWeeklyReport(); }
     if(key==='policy'){ if(window.renderPolicyList) window.renderPolicyList(); }
+    if(key==='settle'){ if(window.renderSettleList) window.renderSettleList(); }
   }
 
   /* ===== 运营后台-需求管理 渲染 ===== */
@@ -21275,7 +21305,9 @@
   /* ---------- Tab2 推荐 ---------- */
   let recTab='recruit';           // recruit=岗位招聘 grab=抢班
   /* ---------- 推荐页筛选状态（chip 多选：组内或、组间且） ---------- */
-  const TODAY='2026-09-22', TOMORROW='2026-09-23';
+  /* 推荐页「今天/明天班次」筛选用日期串。注意：不能占用顶层 TODAY/TOMORROW 名称，
+     统计报表模块（RPO招聘/招聘统计）依赖顶层 TODAY 为 Date，被字符串覆盖会导致该模块整段初始化中断。 */
+  const REC_TODAY='2026-09-22', REC_TOMORROW='2026-09-23';
   // 品牌数据源：运营后台「企业管理处」维护的企业（取 logo + 简称首字），按岗位去重
   const REC_BRANDS=(function(){ const m={}; recJobs.forEach(function(j){ const k=j.ent; if(!k) return; if(!m[k]) m[k]={name:k,logo:j.logo||'#888',logoTxt:j.logoTxt||(k?k.slice(0,1):'?')}; }); return Object.keys(m).map(function(k){return m[k];}); })();
   const TS_WEEK=['全部','周一','周二','周三','周四','周五','周六','周日'];
@@ -21340,7 +21372,7 @@
     let weekOk=true;
     if(!(F.tsWeek.length===1 && F.tsWeek[0]==='全部')){ weekOk = F.tsWeek.indexOf(s.wd)>=0; }
     let hotOk=true;
-    if(F.tsHot.length){ hotOk = F.tsHot.some(function(h){ if(h==='今天班次') return s.date===TODAY; if(h==='明天班次') return s.date===TOMORROW; if(h==='周末班次') return s.wd==='周六'||s.wd==='周日'; return false; }); }
+    if(F.tsHot.length){ hotOk = F.tsHot.some(function(h){ if(h==='今天班次') return s.date===REC_TODAY; if(h==='明天班次') return s.date===REC_TOMORROW; if(h==='周末班次') return s.wd==='周六'||s.wd==='周日'; return false; }); }
     const schedOk = weekOk || hotOk;
     let periodOk=true;
     if(!(F.tsPeriod.length===1 && F.tsPeriod[0]==='全天')){
@@ -23977,7 +24009,7 @@
   }
   function renderERecruitStat(){
     var s=document.getElementById('ers-dr-start'), e=document.getElementById('ers-dr-end'), t=document.getElementById('ers-dr-text');
-    if(s) s.value=''; if(e) e.value=''; if(t){ t.textContent='开始 - 结束'; t.classList.add('ph'); }
+    if(s) s.value=''; if(e) e.value=''; if(t){ t.textContent='开始日期 → 结束日期'; t.classList.add('ph'); }
     ersRender();
     ersWatchWidth();
   }
@@ -23993,6 +24025,9 @@
     DR_VIEW[pk]={y:base.getFullYear(), m:base.getMonth(), sv:sv, ev:ev};
     drCalRender(pk);
     cal.style.display='block';
+    var r=cal.getBoundingClientRect();
+    if(r.right>window.innerWidth-8){ cal.style.left='auto'; cal.style.right='0'; }
+    else { cal.style.left=''; cal.style.right=''; }
   }
   function drCalMonth(pk, y, m, sv, ev){
     var first=new Date(y,m,1), startW=first.getDay(), days=new Date(y,m+1,0).getDate();
@@ -24018,11 +24053,18 @@
     var isEm2=!!(root&&root.closest&&root.closest('.em2-root'));
     var y2=(m===11)?(y+1):y, m2=(m+1)%12;
     var months = isEm2 ? drCalMonth(pk,y,m,sv,ev) : (drCalMonth(pk,y,m,sv,ev)+drCalMonth(pk,y2,m2,sv,ev));
-    var hint = (sv&&ev)?('已选 '+sv+' 至 '+ev) : (sv?'请选择结束日期':'请选择起止日期');
+    var title = isEm2 ? (y+'年'+(m+1)+'月') : ('📅 '+y+'年'+(m+1)+'月 — '+y2+'年'+(m2+1)+'月');
+    var hint;
+    if(sv&&ev){ var n=Math.round((new Date(ev+'T00:00:00')-new Date(sv+'T00:00:00'))/86400000)+1; hint='已选 '+n+' 天'; }
+    else if(sv){ hint='请选择结束日期'; }
+    else { hint='请选择起止日期'; }
     var okCls = (sv&&ev)?'dr-ok':'dr-ok dr-dis';
-    var html='<div class="dr-cal-h"><span class="dr-cal-prev" onclick="drCalStep(\''+pk+'\',-1,event)">‹</span><span class="dr-cal-next" onclick="drCalStep(\''+pk+'\',1,event)">›</span></div>';
+    var wipe = isEm2
+      ? '<span class="dr-cancel" onclick="drCalCancel(\''+pk+'\',event)">取消</span>'
+      : '<span class="dr-cancel" onclick="drCalWipe(\''+pk+'\',event)">清除</span>';
+    var html='<div class="dr-cal-h"><span class="dr-cal-prev" onclick="drCalStep(\''+pk+'\',-1,event)">‹</span><span class="dr-cal-title">'+title+'</span><span class="dr-cal-next" onclick="drCalStep(\''+pk+'\',1,event)">›</span></div>';
     html+='<div class="dr-mws">'+months+'</div>';
-    html+='<div class="dr-cal-f"><span class="dr-hint">'+hint+'</span><span class="dr-btns"><span class="dr-cancel" onclick="drCalCancel(\''+pk+'\',event)">取消</span><span class="'+okCls+'" onclick="drCalOk(\''+pk+'\',event)">确定</span></span></div>';
+    html+='<div class="dr-cal-f"><span class="dr-hint">'+hint+'</span><span class="dr-btns">'+wipe+'<span class="'+okCls+'" onclick="drCalOk(\''+pk+'\',event)">确定</span></span></div>';
     cal.innerHTML=html;
   }
   function drCalStep(pk,n,ev){
@@ -24046,7 +24088,7 @@
     var v=DR_VIEW[pk]; if(!v||!(v.sv&&v.ev)) return;
     var s=document.getElementById(pk+'-start'), e=document.getElementById(pk+'-end'), t=document.getElementById(pk+'-text');
     if(s) s.value=v.sv; if(e) e.value=v.ev;
-    if(t){ t.textContent=v.sv+' ~ '+v.ev; t.classList.remove('ph'); }
+    if(t){ t.textContent=v.sv+' → '+v.ev; t.classList.remove('ph'); }
     var cal=document.getElementById(pk+'-cal'); if(cal) cal.style.display='none';
     var box=document.getElementById(pk), cb=box?box.dataset.cb:''; if(cb&&window[cb]) window[cb]();
   }
@@ -24058,9 +24100,19 @@
     if(ev&&ev.stopPropagation) ev.stopPropagation();
     var s=document.getElementById(pk+'-start'), e=document.getElementById(pk+'-end'), t=document.getElementById(pk+'-text');
     if(s) s.value=''; if(e) e.value='';
-    if(t){ t.textContent='开始 - 结束'; t.classList.add('ph'); }
+    if(t){ t.textContent='开始日期 → 结束日期'; t.classList.add('ph'); }
     var cal=document.getElementById(pk+'-cal'); if(cal) cal.style.display='none';
     var box=document.getElementById(pk), cb=box?box.dataset.cb:''; if(cb&&window[cb]) window[cb]('','');
+  }
+  function drCalWipe(pk,ev){
+    if(ev&&ev.stopPropagation) ev.stopPropagation();
+    var v=DR_VIEW[pk]; if(v){ v.sv=''; v.ev=''; }
+    var had=!!((document.getElementById(pk+'-start')&&document.getElementById(pk+'-start').value)||(document.getElementById(pk+'-end')&&document.getElementById(pk+'-end').value));
+    var s=document.getElementById(pk+'-start'), e=document.getElementById(pk+'-end'), t=document.getElementById(pk+'-text');
+    if(s) s.value=''; if(e) e.value='';
+    if(t){ t.textContent='开始日期 → 结束日期'; t.classList.add('ph'); }
+    if(had){ var box=document.getElementById(pk), cb=box?box.dataset.cb:''; if(cb&&window[cb]) window[cb]('',''); }
+    drCalRender(pk);
   }
   document.addEventListener('click', function(ge){
     var tg=ge.target;
@@ -24981,6 +25033,106 @@
   window.rpkColsAll=rpkColsAll; window.rpkColsNone=rpkColsNone; window.rpkSort=rpkSort;
   window.rpkRefresh=rpkRefresh; window.rpkPick=rpkPick; window.rpkConfirm=rpkConfirm;
   window.renderPolicyList = renderPolicyList;
+
+  /* ===== 运营后台 · RPO招聘 · 结算明细分析（2026-09-23，数据源=招聘管理岗位报名线索 progresses） ===== */
+  var settleKw='', settleFlag='全部', settleSortDesc=false, settlePage=1, SETTLE_SIZE=10, settleColMap=null;
+  var SETTLE_EXTRA=[
+    {key:'settleFlag', label:'是否结算', fixed:true, render:function(p){ return settleFlagHtml(p); }},
+    {key:'settleAmt',  label:'结算金额', fixed:true, num:true, render:function(p){ return settleAmtHtml(p); }}
+  ];
+  function settleFlagOf(p){
+    if(['已入职','已达标','已离职'].indexOf(p.status)>=0) return '已结算';
+    if(p.status==='已结束') return '不结算';
+    return '待结算';
+  }
+  function settlePriceOf(p){
+    var d=demands.find(function(x){ return x.id===p.demandId; })||{};
+    var t=d.type||'';
+    if(t.indexOf('骑手')>=0||t.indexOf('外勤')>=0||t.indexOf('配送')>=0||t.indexOf('装维')>=0||t.indexOf('运输')>=0) return 1200;
+    if(t.indexOf('网络优化')>=0||t.indexOf('工程师')>=0) return 1500;
+    if(t.indexOf('推广')>=0||t.indexOf('市场')>=0||t.indexOf('公关')>=0) return 900;
+    if(t.indexOf('客服')>=0) return 700;
+    if(t.indexOf('营业厅')>=0||t.indexOf('门店')>=0||t.indexOf('零售')>=0||t.indexOf('百货')>=0) return 800;
+    return 800;
+  }
+  function settleAmtOf(p){ return settleFlagOf(p)==='已结算' ? settlePriceOf(p) : null; }
+  function settleFlagHtml(p){
+    var s2=settleFlagOf(p);
+    if(s2==='已结算') return polPill('已结算','#e8f7ee','#1a9c53');
+    if(s2==='不结算') return polPill('不结算','#f2f3f7','#8a90a0');
+    return polPill('待结算','#fff4e5','#c77700');
+  }
+  function settleAmtHtml(p){ var a=settleAmtOf(p); return a? ('¥'+a.toFixed(2)) : '—'; }
+  function getSettleColMap(){
+    if(settleColMap) return settleColMap;
+    var m=getApColMap(); var out={};
+    apProgressCols.forEach(function(c){ out[c.key]= c.fixed ? true : !!m[c.key]; });
+    settleColMap=out; return out;
+  }
+  function getSettleVisCols(){
+    var m=getSettleColMap();
+    // 结算明细为只读同步视图：姓名/线索状态两列去掉招聘管理的「详情/编辑」入口，仅做展示。
+    var base=apProgressCols.filter(function(c){ return c.fixed || m[c.key]; }).map(function(c){
+      if(c.key==='name')   return Object.assign({}, c, { render:function(p){ return p.name||'—'; } });
+      if(c.key==='status') return Object.assign({}, c, { render:function(p){ return progTag(p.status); } });
+      return c;
+    });
+    return base.concat(SETTLE_EXTRA);
+  }
+  function settleRows(){
+    var rows=progresses.filter(function(p){
+      if(settleFlag!=='全部' && settleFlagOf(p)!==settleFlag) return false;
+      if(settleKw){ var str=(p.name+' '+p.phone+' '+p.post+' '+p.ent+' '+(p.follower||'')).toLowerCase(); if(str.indexOf(settleKw.toLowerCase())<0) return false; }
+      return true;
+    });
+    if(settleSortDesc) rows=rows.slice().sort(function(a,b){ return (settleAmtOf(b)||0)-(settleAmtOf(a)||0); });
+    return rows;
+  }
+  function renderSettleList(){
+    var thead=document.getElementById('settle-thead'), tbody=document.getElementById('settle-tbody');
+    if(!thead||!tbody) return;
+    var cols=getSettleVisCols();
+    var rows=settleRows();
+    var max=Math.max(1,Math.ceil(rows.length/SETTLE_SIZE));
+    if(settlePage>max) settlePage=max; if(settlePage<1) settlePage=1;
+    var cur=rows.slice((settlePage-1)*SETTLE_SIZE,(settlePage-1)*SETTLE_SIZE+SETTLE_SIZE);
+    var totalSettled=rows.filter(function(r){return settleFlagOf(r)==='已结算';}).length;
+    var totalAmt=rows.reduce(function(s,r){ var a=settleAmtOf(r); return s+(a||0); },0);
+    var h='<tr>';
+    cols.forEach(function(c){ h+='<th class="'+(c.num?'pol-num':'')+'">'+c.label+'</th>'; });
+    h+='</tr>';
+    thead.innerHTML=h;
+    var b='';
+    if(!cur.length){ b='<tr><td colspan="'+cols.length+'" class="pol-empty">暂无数据</td></tr>'; }
+    cur.forEach(function(p){
+      b+='<tr>';
+      cols.forEach(function(c){ b+='<td class="'+(c.num?'pol-num':'')+'">'+c.render(p)+'</td>'; });
+      b+='</tr>';
+    });
+    tbody.innerHTML=b;
+    var pg=document.getElementById('settle-pager');
+    if(pg) pg.innerHTML=renderPagerHtml(rows.length, settlePage, SETTLE_SIZE, 'settleGoPrev','settleGoNext','settleGoPage','settleGoPage','settlePageSizeChange')
+      + ' <span class="pol-pg-total">已结算 '+totalSettled+' 条 · 结算金额合计 ¥'+totalAmt.toFixed(2)+'</span>';
+    var cs=document.getElementById('settle-colset');
+    if(cs && cs.style.display!=='none'){
+      cs.innerHTML=apProgressCols.filter(function(c){return !c.fixed;}).map(function(c){ return '<label class="cs-item"><input type="checkbox" '+(getSettleColMap()[c.key]?'checked':'')+' onchange="settleToggleCol(\''+c.key+'\',this.checked)"> '+c.label+'</label>'; }).join('');
+    }
+  }
+  function settleGoPrev(){ if(settlePage>1){ settlePage--; renderSettleList(); } }
+  function settleGoNext(){ settlePage++; renderSettleList(); }
+  function settleGoPage(p){ settlePage=p; renderSettleList(); }
+  function settlePageSizeChange(v){ SETTLE_SIZE=parseInt(v,10)||10; settlePage=1; renderSettleList(); }
+  function settleSetKw(v){ settleKw=String(v||'').trim(); settlePage=1; renderSettleList(); }
+  function settleSetFlag(v){ settleFlag=v; settlePage=1; renderSettleList(); }
+  function settleToggleSort(){ settleSortDesc=!settleSortDesc; var bt=document.getElementById('settle-sort-btn'); if(bt) bt.textContent=settleSortDesc?'排序（金额↓）':'排序'; renderSettleList(); }
+  function settleToggleFilter(){ var f=document.getElementById('settle-filterbar'); if(f) f.style.display = f.style.display==='none'?'flex':'none'; }
+  function settleToggleColSet(){ var m=document.getElementById('settle-colset'); if(!m) return; if(m.style.display==='none'){ renderSettleList(); m.style.display='block'; } else m.style.display='none'; }
+  function settleToggleCol(key,val){ var m=getSettleColMap(); m[key]=val; settlePage=1; renderSettleList(); }
+  function settleResetFilter(){ settleKw=''; settleFlag='全部'; settleSortDesc=false; settlePage=1; var k=document.getElementById('settle-kw'); if(k) k.value=''; var f=document.getElementById('settle-f-flag'); if(f) f.value='全部'; var bt=document.getElementById('settle-sort-btn'); if(bt) bt.textContent='排序'; renderSettleList(); }
+  window.renderSettleList = renderSettleList;
+  window.settleGoPrev = settleGoPrev; window.settleGoNext = settleGoNext; window.settleGoPage = settleGoPage; window.settlePageSizeChange = settlePageSizeChange;
+  window.settleSetKw = settleSetKw; window.settleSetFlag = settleSetFlag; window.settleToggleSort = settleToggleSort;
+  window.settleToggleFilter = settleToggleFilter; window.settleToggleColSet = settleToggleColSet; window.settleToggleCol = settleToggleCol; window.settleResetFilter = settleResetFilter;
   window.polGoPage = polGoPage; window.polSetSize = polSetSize; window.polSetKw = polSetKw;
   window.polToggleSort = polToggleSort; window.polToggleFilter = polToggleFilter;
   window.polSetFResult = polSetFResult; window.polSetFCity = polSetFCity; window.polResetFilter = polResetFilter;
@@ -25436,7 +25588,7 @@
     ['ors-ent','ors-proj','ors-emp'].forEach(function(id){ var el=document.getElementById(id); if(el) el.value=''; });
     ORS_INP={ent:'',proj:'',emp:''};
     var s=document.getElementById('ors-dr-start'), e=document.getElementById('ors-dr-end'), t=document.getElementById('ors-dr-text');
-    if(s) s.value=''; if(e) e.value=''; if(t){ t.textContent='开始 - 结束'; t.classList.add('ph'); }
+    if(s) s.value=''; if(e) e.value=''; if(t){ t.textContent='开始日期 → 结束日期'; t.classList.add('ph'); }
     orsRenderAll();
     orsWatchWidth();
   }
