@@ -1930,6 +1930,7 @@
   .md-sec-h .sec-ic{flex:0 0 auto; width:26px; height:26px; border-radius:8px; background:rgba(13,143,110,.12); display:flex; align-items:center; justify-content:center; font-size:14px;}
   .md-sec-h .toggle{font-size:12px; color:var(--text-secondary); cursor:pointer;}
   .md-duty,.md-req{margin:0; padding-left:16px; font-size:13px; color:var(--text-regular); line-height:1.8;}
+  .md-duty{white-space:pre-wrap;}
   .md-duty li,.md-req li{margin-bottom:4px;}
   .md-time{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
   .md-time .tm{background:#f8f9fb; border-radius:8px; padding:14px 12px; text-align:center;}
@@ -6326,7 +6327,7 @@
       <!-- 16. 岗位描述 -->
       <div class="f-col" data-page-node-id="zXViIHBKN24iWb3jHPVBzn">
         <div class="f-label" data-page-node-id="no6M153nPljFR7z6EL4P3I"><span class="req" data-page-node-id="44QYfmyJLPozvFkF0tNKJQ">*</span>岗位描述</div>
-        <button type="button" class="tmpl-btn" onclick="fillDescTemplate()" data-page-node-id="ZT3RUmfYDMcgJ9XHT7nyc3">＋ 套用餐饮模板</button>
+        <button type="button" class="tmpl-btn" onclick="applyDescTemplate('em2-jobDesc')" data-page-node-id="ZT3RUmfYDMcgJ9XHT7nyc3">＋ 套用通用模板</button>
         <textarea class="f-textarea" id="em2-jobDesc" placeholder="岗位职责、任职要求等"></textarea>
       </div>
 
@@ -7898,14 +7899,7 @@
     renderImgGrid();
   }
 
-  // ===== 岗位描述：餐饮模板 =====
-  function fillDescTemplate(){
-    document.getElementById('em2-jobDesc').value =
-      '【工作内容】\n负责门店日常营业、商品陈列与收银，协助顾客挑选商品。\n\n' +
-      '【岗位要求】\n年龄 18-50 岁，身体健康，服务意识强，有无经验均可。\n\n' +
-      '【班次要求】\n早班 06:00-12:00 / 中班 12:00-18:00 / 晚班 18:00-24:00，可轮班。\n\n' +
-      '【打卡要求】\n上下班指纹打卡，月休 4 天，迟到 3 次扣绩效。';
-  }
+  // ===== 岗位描述：套用模板复用全局 applyDescTemplate('em2-jobDesc') =====
 
   // ===== 城市三级勾选 =====
   const REGION_DATA = [
@@ -17313,18 +17307,41 @@
   document.addEventListener('click', function(e){ if(!(e.target.closest && (e.target.closest('.city-field')||e.target.closest('.cp-dd')||e.target.closest('.jt-combo')))){ var dds=document.querySelectorAll('.cp-dd'); for(var i=0;i<dds.length;i++){ dds[i].style.display='none'; popupUnbind(dds[i]); } } });
   function escHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
   function escAttr(s){ return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/'/g,"\\'"); }
-  const DESC_TEMPLATE = `【工作内容】
-负责门店日常营业、商品陈列与收银，协助顾客挑选商品。
-
-【岗位要求】
-年龄 18-50 岁，身体健康，服务意识强，有无经验均可。
-
-【班次要求】
-早班 06:00-12:00 / 中班 12:00-18:00 / 晚班 18:00-24:00，可轮班。
-
-【打卡要求】
-上下班指纹打卡，月休 4 天，迟到 3 次扣绩效。`;
-  function applyDescTemplate(p){ const ta=document.getElementById(p+'-desc'); if(!ta) return; const sep=ta.value.trim()? '\n\n' : ''; ta.value = (ta.value.trim() + sep + DESC_TEMPLATE).trim(); ta.dispatchEvent(new Event('input')); }
+  // 套用模板：单一数据源（结构化），目前仅一套通用模板；覆盖式套用
+  const JOB_DESC_TEMPLATES = {
+    generic: {
+      name: '通用模板',
+      sections: [
+        { title: '工作内容', items: [
+          '按时到岗，服从排班：按排班时间提前到店，更换工服、佩戴工牌；不迟到、不早退、不无故缺岗，缺勤需提前请假。',
+          '服从现场安排：听从店长/领班/厨师长指挥，完成指定岗位工作，不擅自离岗、换岗；有经验者优先，无经验可培训，但需手脚麻利、学习快。',
+          '完成岗位基础操作：按门店标准完成[具体岗位]相关工作，确保出品、服务或打包准确无误，符合食品安全与卫生规范。',
+          '遵守卫生规范：上岗前洗手消毒，接触食品时佩戴手套/口罩，不违规操作；能适应站立、走动、快节奏的工作环境。',
+          '保持区域整洁：随时清理负责区域的桌面、地面、台面，做到“人走台净”。',
+          '配合收尾工作：营业结束后协助完成餐具归位、垃圾清理、区域打扫等收尾工作。',
+          '及时反馈异常：遇到顾客投诉、设备故障等问题，第一时间上报负责人，不擅自处理。',
+          '礼貌沟通，有责任心：对待顾客和同事礼貌沟通，能接受晚班/周末/节假日排班者优先。'
+        ]},
+        { title: '打卡要求', items: [
+          '实行8小时工作制（具体以岗位排班为准）'
+        ]}
+      ]
+    }
+  };
+  function serializeDescTemplate(key){
+    const t = JOB_DESC_TEMPLATES[key] || JOB_DESC_TEMPLATES.generic;
+    return t.sections.map(function(s){
+      const head = '【' + s.title + '】';
+      const body = s.items.map(function(it, i){ return (i+1) + '、' + it; }).join('\n');
+      return head + '\n' + body;
+    }).join('\n\n');
+  }
+  function applyDescTemplate(boxId){
+    const ta = document.getElementById(boxId);
+    if(!ta) return;
+    ta.value = serializeDescTemplate('generic');
+    ta.dispatchEvent(new Event('input'));
+  }
 
   function demandForm(d, mode, readOnly, lockedEdit){
     mode = mode || 'admin';
@@ -17430,7 +17447,7 @@
     const ageField=fld(p,'年龄要求','',`<div class="age-pair"><input class="inp" id="${p}-age-min" value="${d?d.ageMin:18}" placeholder="18"/><span>~</span><input class="inp" id="${p}-age-max" value="${d?d.ageMax:70}" placeholder="70"/></div>`);
     const genderField=fld(p,'性别要求','',`<select class="select" id="${p}-gender">${genderOpts}</select>`);
     const expField=fld(p,'经验要求','',`<select class="select" id="${p}-exp">${expOpts}</select>`);
-    const descField=fldFull(p,'岗位描述',`<textarea class="inp" rows="4" id="${p}-desc" placeholder="请填写岗位描述，可套用餐饮模板" oninput="this.parentElement.querySelector('.desc-template-bar .counter').textContent=this.value.length+' / 500'">${d?d.desc||'':''}</textarea><div class="desc-template-bar"><a class="intro-link" onclick="applyDescTemplate('${p}')">＋ 套用餐饮模板</a><span class="counter">${(d&&d.desc?d.desc.length:0)} / 500</span></div>`,true);
+    const descField=fldFull(p,'岗位描述',`<textarea class="inp" rows="4" id="${p}-desc" placeholder="请填写岗位描述，可套用通用模板" oninput="this.parentElement.querySelector('.desc-template-bar .counter').textContent=this.value.length+' / 500'">${d?d.desc||'':''}</textarea><div class="desc-template-bar"><a class="intro-link" onclick="applyDescTemplate('${p}-desc')">＋ 套用通用模板</a><span class="counter">${(d&&d.desc?d.desc.length:0)} / 500</span></div>`,true);
     const attendanceField=fldFull(p,'出勤要求',attendanceHtml(p,d,isAdmin,initEmp),true);
     const remarkField=fldFull(p,'备注',`<textarea class="inp" rows="2" id="${p}-remarks" placeholder="其他补充说明" oninput="this.nextElementSibling.textContent=this.value.length+' / 500'">${d?d.remarks||'':''}</textarea><div class="counter">${(d&&d.remarks?d.remarks.length:0)} / 500</div>`);
     if(isAdmin){ followerPoolCache[p]= d?followerPoolNames(d.id):[]; }
