@@ -630,7 +630,14 @@
   .phone .mtab{position:absolute; bottom:0; left:0; right:0; height:56px; background:#fff; border-top:1px solid var(--border-lighter); display:flex;}
   .phone .mtab button{flex:1; border:none; background:transparent; font-size:11px; color:var(--text-regular); cursor:pointer; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px;}
   .phone .mtab button.active{color:var(--primary); font-weight:600;}
-  .mhead{background:linear-gradient(180deg,#C6FCFD 0%,#E0FCFD 100%); color:#0c3d2b; padding:46px 16px 16px; font-size:16px; font-weight:600;}
+  .mhead{background:linear-gradient(180deg,#C6FCFD 0%,#E0FCFD 100%); color:#0c3d2b; padding:16px 16px 16px; font-size:14px; font-weight:600; display:flex; align-items:center; justify-content:space-between;}
+  /* 顶部右侧功能按钮胶囊：●●● | — | ⊙ */
+  .mini-caps{display:inline-flex; align-items:center; gap:10px; height:30px; padding:0 12px; background:#fff; border-radius:16px; box-shadow:0 1px 4px rgba(12,61,43,.08); flex:0 0 auto;}
+  .mini-caps .mc-dots{display:flex; gap:2.5px;}
+  .mini-caps .mc-dots i{width:3.5px; height:3.5px; border-radius:50%; background:#0c3d2b;}
+  .mini-caps .mc-div{width:1px; height:14px; background:rgba(12,61,43,.18);}
+  .mini-caps .mc-circle{width:12px; height:12px; border:1.5px solid #0c3d2b; border-radius:50%; box-sizing:border-box; position:relative;}
+  .mini-caps .mc-circle::after{content:''; position:absolute; inset:2.5px; border-radius:50%; background:#0c3d2b;}
   /* 工作台/任务大厅/消息/我的：与推荐页统一的淡出渐变 + 吸顶 */
   #m-work,#m-taskhall,#m-msg,#m-me{background:#F5F7FA;}
   #m-work .mhead,#m-taskhall .mhead,#m-msg .mhead,#m-me .mhead{position:sticky; top:0; z-index:20; background:linear-gradient(180deg,#C6FCFD 0%,#E0FCFD 70%,#F5F7FA 100%);}
@@ -691,8 +698,9 @@
   /* 海报扫码报名表单单页 */
   #m-poster-apply{ display:flex; flex-direction:column; height:100%; overflow:hidden; background:#F5F7FA; }
   #m-poster-apply .pa-head{ flex:0 0 auto; position:relative; display:flex; align-items:center; gap:10px; padding:10px 16px; background:#fff; border-bottom:1px solid #ebeef5; }
-  #m-poster-apply .pa-head .back{ font-size:20px; color:#1B1B2F; cursor:pointer; padding:4px; }
-  #m-poster-apply .pa-head .title{ flex:1; font-size:16px; font-weight:700; color:#1B1B2F; text-align:center; padding-right:28px; }
+  #m-poster-apply .pa-head .back{ flex:0 0 44px; font-size:24px; color:#1B1B2F; cursor:pointer; margin-left:-8px; }
+  #m-poster-apply .pa-head .title{ flex:1; font-size:14px; font-weight:700; color:#1B1B2F; text-align:center; }
+  #m-poster-apply .pa-head .mini-caps{ flex:0 0 auto; }
   #m-poster-apply .pa-body{ flex:1; overflow:auto; padding:10px 12px 14px; scrollbar-width:none; -ms-overflow-style:none; }
   #m-poster-apply .pa-body::-webkit-scrollbar{ display:none; }
   #m-poster-apply .pa-card{ background:#fff; border-radius:12px; padding:12px 14px; margin-bottom:10px; box-shadow:0 2px 8px rgba(0,0,0,.04); }
@@ -750,8 +758,9 @@
   #m-apply-success .as-foot .btn.primary{ background:#0d8f6e; color:#fff; box-shadow:0 4px 12px rgba(13,143,110,.25); }
   #m-apply-success .as-body::-webkit-scrollbar{ display:none; }
   #m-apply-success .as-head{ flex:0 0 auto; position:relative; display:flex; align-items:center; gap:10px; padding:10px 16px; background:#fff; border-bottom:1px solid #ebeef5; box-sizing:border-box; }
-  #m-apply-success .as-head .back{ font-size:20px; color:#1B1B2F; cursor:pointer; padding:4px; }
-  #m-apply-success .as-head .head-title{ flex:1; font-size:16px; font-weight:700; color:#1B1B2F; text-align:center; padding-right:28px; }
+  #m-apply-success .as-head .back{ flex:0 0 44px; font-size:24px; color:#1B1B2F; cursor:pointer; margin-left:-8px; }
+  #m-apply-success .as-head .head-title{ flex:1; font-size:14px; font-weight:700; color:#1B1B2F; text-align:center; }
+  #m-apply-success .as-head .mini-caps{ flex:0 0 auto; }
   .ml8{margin-left:8px; font-size:13px; color:var(--text-regular);}
   .empty-link{background:transparent; border:none; color:var(--primary); cursor:pointer; font-size:12px; padding:2px 4px;}
   /* account & permission modules */
@@ -1746,7 +1755,7 @@
 
   /* ===== 推荐页 ===== */
   #m-rec{position:relative;}
-  .mr-header{position:sticky; top:0; z-index:20; background:linear-gradient(180deg,#C6FCFD 0%,#E0FCFD 70%,#F5F7FA 100%); padding:30px 16px 6px;}
+  .mr-header{position:sticky; top:0; z-index:20; background:linear-gradient(180deg,#C6FCFD 0%,#E0FCFD 70%,#F5F7FA 100%); padding:16px 16px 6px;}
   .mr-top{display:flex; align-items:center; gap:10px; padding:10px 14px 6px 6px;}
   .mr-city{font-size:14px; font-weight:700; color:#0c3d2b; display:flex; align-items:center; gap:4px; cursor:pointer; flex:0 0 auto; white-space:nowrap; max-width:90px;}
   .mr-city .arrow{font-size:16px; color:#0c3d2b; opacity:.85; line-height:1; margin-left:1px;}
@@ -1870,13 +1879,19 @@
   .gb-more{text-align:center; font-size:13px; color:#0d8f6e; padding:10px 0; cursor:pointer;}
 
   /* ===== 岗位详情页 ===== */
-  .md-header{position:relative; padding-top:38px; background:linear-gradient(180deg,#C6FCFD 0%,#E0FCFD 100%); overflow:hidden;}
-  .md-header .back{position:absolute; top:38px; left:8px; width:36px; height:36px; display:flex; align-items:center; justify-content:center; font-size:22px; color:var(--text-primary); cursor:pointer; z-index:3;}
+  .md-header{position:relative; background:linear-gradient(180deg,#C6FCFD 0%,#E0FCFD 100%); overflow:hidden;}
+  .md-topbar{position:relative; z-index:4; height:48px; display:flex; align-items:center; justify-content:space-between; padding:0 12px;}
+  .md-header .back{width:44px; height:44px; display:flex; align-items:center; justify-content:center; font-size:26px; color:var(--text-primary); cursor:pointer; z-index:4; margin-left:-8px;}
+  .md-topbar .topbar-caps{flex:0 0 auto;}
   .md-header .img-txt{position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:13px; text-align:center;}
-  .md-header .img-idx{position:absolute; top:38px; right:10px; background:rgba(0,0,0,.4); color:#fff; font-size:11px; padding:2px 8px; border-radius:10px; z-index:3;}
+  .md-header .img-idx{position:absolute; top:58px; right:10px; background:rgba(0,0,0,.4); color:#fff; font-size:11px; padding:2px 8px; border-radius:10px; z-index:3;}
   .md-gal{position:relative; width:100%; aspect-ratio:16/9; display:flex; overflow-x:auto; scroll-snap-type:x mandatory; background:#E0FCFD;}
   .md-gal-img{height:100%; width:100%; flex:0 0 100%; object-fit:cover; scroll-snap-align:start;}
-  .md-body{background:#fff; border-radius:16px 16px 0 0; margin-top:-16px; position:relative; z-index:1; padding:16px; padding-bottom:64px; min-height:300px;}
+  .md-body{background:#F5F7FA; border-radius:16px 16px 0 0; margin-top:-16px; position:relative; z-index:1; padding:0 0 64px; min-height:300px;}
+  .md-body > * + *{margin-top:10px;}
+  .md-card{background:#fff; padding:14px 16px;}
+  .md-body > .md-top:first-child{border-radius:16px 16px 0 0;}
+  .md-top{background:#fff;}
   .md-body .title-row{display:flex; align-items:flex-start; justify-content:space-between; gap:10px;}
   .md-body .title{font-size:18px; font-weight:700; color:var(--text-primary); line-height:1.3; flex:1;}
   .md-body .pay{font-size:18px; font-weight:800; color:#FF6B6B; white-space:nowrap;}
@@ -1890,15 +1905,29 @@
   .md-ent-row .ent-name{color:#374151; font-weight:500;}
   .md-ent-row .ent-city{color:#9ca3af;}
   .md-ent-row .ent-city::before{content:'·'; margin-right:6px; color:#d1d5db;}
-  .md-addr{background:#f8f9fb; border-radius:10px; padding:12px; margin:12px 0;}
-  .md-addr .r1{display:flex; align-items:center; justify-content:space-between;}
+  .md-addr{position:relative; overflow:hidden; border-radius:0; padding:12px; margin:0; border-left:none; border-right:none;
+    background-color:#e9f3ef;
+    background-image:
+      repeating-linear-gradient(0deg, transparent 0 20px, rgba(255,255,255,.6) 20px 22px),
+      repeating-linear-gradient(90deg, transparent 0 20px, rgba(255,255,255,.6) 20px 22px),
+      radial-gradient(30px 30px at 88% 26%, rgba(13,143,110,.22), transparent 70%),
+      radial-gradient(24px 24px at 10% 86%, rgba(56,140,209,.16), transparent 70%),
+      linear-gradient(180deg,#eef6f2,#e3efe9);
+    border:1px solid rgba(13,143,110,.14);
+    box-shadow:0 1px 4px rgba(0,0,0,.04);}
+  .md-addr::before{content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(255,255,255,.62), rgba(255,255,255,.4)); pointer-events:none;}
+  .md-addr::after{content:'📍'; position:absolute; right:2px; bottom:-10px; font-size:56px; opacity:.07; transform:rotate(6deg); pointer-events:none;}
+  .md-addr > *{position:relative; z-index:1;}
+  .md-addr .r1{display:flex; align-items:center; gap:8px;}
+  .md-addr .loc-pin{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px; border-radius:50%; background:var(--primary,#0d8f6e); color:#fff; font-size:15px; box-shadow:0 2px 6px rgba(13,143,110,.3); flex:0 0 auto;}
   .md-addr .name{font-size:15px; font-weight:700; color:var(--text-primary);}
   .md-addr .addr{font-size:12px; color:var(--text-secondary); margin-top:4px;}
   .md-addr .dist{font-size:12px; color:var(--primary); margin-top:2px;}
-  .md-banner{display:flex; align-items:center; justify-content:space-between; background:#e6f9ed; border-radius:8px; padding:10px 12px; margin:12px 0; color:#16a34a; font-size:13px;}
+  .md-banner{display:flex; align-items:center; justify-content:space-between; background:#e6f9ed; border-radius:0; padding:10px 16px; margin:0; color:#16a34a; font-size:13px;}
   .md-banner .arrow{color:var(--text-secondary);}
-  .md-sec{margin:16px 0;}
-  .md-sec-h{display:flex; align-items:center; justify-content:space-between; font-size:15px; font-weight:700; color:var(--text-primary); margin-bottom:10px;}
+  .md-sec{background:#fff; padding:14px 16px;}
+  .md-sec-h{display:flex; align-items:center; gap:8px; font-size:15px; font-weight:700; color:var(--text-primary); margin-bottom:10px;}
+  .md-sec-h .sec-ic{flex:0 0 auto; width:26px; height:26px; border-radius:8px; background:rgba(13,143,110,.12); display:flex; align-items:center; justify-content:center; font-size:14px;}
   .md-sec-h .toggle{font-size:12px; color:var(--text-secondary); cursor:pointer;}
   .md-duty,.md-req{margin:0; padding-left:16px; font-size:13px; color:var(--text-regular); line-height:1.8;}
   .md-duty li,.md-req li{margin-bottom:4px;}
@@ -1938,6 +1967,8 @@
   .wa-item .wa-ico:hover{color:#4b5563;}
   .wa-add{display:flex; align-items:center; gap:8px; justify-content:center; background:#fff; border:1px dashed #cbd5e1; border-radius:10px; padding:12px; color:#0d8f6e; font-size:13px; font-weight:600; cursor:pointer; margin-top:4px;}
   .wa-add.disabled{color:#bbb; border-color:#e5e7eb; cursor:not-allowed;}
+  .mpv-card .wa-item{border:1px solid #eef1f3; background:#fcfdfd;}
+  .mpv-card .wa-add{border-color:#dbe4ee;}
   .city-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:10px;}
   .city-cell{background:#fff; border-radius:8px; padding:12px 0; text-align:center; font-size:13px; color:#374151; cursor:pointer; border:1px solid #eef0f2; position:relative;}
   .city-cell.on{background:#E0FCFD; color:#0d8f6e; border-color:#0d8f6e;}
@@ -1997,16 +2028,28 @@
   .md-ent-row .ent-dist{color:#9ca3af; flex:0 0 auto;}
   .md-ent-row .ent-dist::before{content:'·'; margin-right:6px; color:#d1d5db;}
   /* 报名要求列表 */
-  .md-req-list{margin:0; padding:0 0 0 16px;}
-  .md-req-list li{font-size:13px; color:#555; line-height:1.9;}
+  .md-reqs{display:grid; grid-template-columns:repeat(2,1fr); gap:10px;}
+  .md-reqs .req-card.req-wide{grid-column:1 / -1;}
+  .md-reqs.req-grid3{grid-template-columns:repeat(3,1fr);}
+  .md-reqs .req-card{background:#fff; border:1px solid var(--border-extra-light,#eee); border-radius:10px; padding:9px 8px; display:flex; align-items:center; gap:7px;}
+  .md-reqs .req-ic{flex:0 0 auto; width:24px; height:24px; border-radius:8px; background:rgba(13,143,110,.12); display:flex; align-items:center; justify-content:center; font-size:14px;}
+  .md-reqs .req-body{display:flex; flex-direction:column; gap:2px; min-width:0;}
+  .md-reqs .req-k{font-size:12px; font-weight:700; color:var(--text-primary);}
+  .md-reqs .req-v{font-size:12px; color:var(--text-regular); line-height:1.4; text-align:left; white-space:nowrap;}
+  .md-reqs .req-chips{display:flex; flex-wrap:wrap; gap:4px; margin-top:1px;}
+  .md-reqs .req-chips i{font-style:normal; font-size:11px; color:var(--primary); background:rgba(13,143,110,.1); border-radius:6px; padding:1px 6px; white-space:nowrap;}
+  .md-reqs .at-line{display:block; line-height:1.55; font-size:12px; color:var(--text-regular); white-space:nowrap;}
   /* 工作地点折叠 */
-  .addr-more{font-size:12px; color:var(--primary,#8B7BFF); margin-top:4px; cursor:pointer;}
-  .md-more-locs{background:#f8f9fb; border-radius:8px; padding:8px 12px; margin-top:8px;}
-  .md-more-locs .addr{font-size:12px; color:#666; padding:3px 0;}
+  .addr-more{font-size:12px; color:var(--primary,#8B7BFF); margin-left:8px; cursor:pointer;}
+  .md-more-locs{background:#f8f9fb; border-radius:0; padding:8px 16px; margin:0;}
+  .md-more-locs .addr-row{font-size:12px; color:var(--text-secondary); padding:4px 0;}
+  .md-more-locs .addr-row .sub{color:#888; margin-top:2px;}
   .md-time .tm .d{font-size:14px; font-weight:700; color:var(--text-primary); margin-bottom:6px;}
   .md-time .tm .t{font-size:12px; color:var(--text-secondary);}
-  .md-benefits{display:flex; gap:8px; flex-wrap:wrap;}
-  .md-benefits span{font-size:12px; padding:5px 10px; border-radius:12px; background:#fff0f3; color:#ff6b8a;}
+  .md-benefits{display:grid; grid-template-columns:repeat(4,1fr); gap:8px;}
+  .md-benefits .ben-cell{background:#fff; border:1px solid var(--border-extra-light,#eee); border-radius:10px; padding:10px 4px; display:flex; flex-direction:column; align-items:center; gap:6px;}
+  .md-benefits .ben-ic{flex:0 0 auto; width:30px; height:30px; border-radius:9px; background:rgba(13,143,110,.12); display:flex; align-items:center; justify-content:center; font-size:16px;}
+  .md-benefits .ben-name{font-size:11px; color:var(--text-regular); text-align:center; line-height:1.3;}
   /* 底部操作栏：作为 .phone 直接子元素，绝对定位吸底在 tab 之上 */
   .phone   .md-bottom{position:absolute; bottom:56px; left:0; right:0; background:#fff; border-top:1px solid var(--border-extra-light); padding:8px 12px; display:flex; z-index:20; box-shadow:0 -2px 8px rgba(0,0,0,.05);}
   .md-bottom .btn-primary{width:100%; background:var(--primary); color:#fff; border:none; border-radius:20px; height:40px; font-size:15px; font-weight:600; cursor:pointer;}
@@ -2395,9 +2438,10 @@
   .emp-acts span:active{opacity:.7;}
   .emq-card{font-size:14px; color:var(--text-primary); line-height:1.7;}
   /* ===== 我的报名列表与详情 ===== */
-  .msec-head{position:sticky; top:0; z-index:10; background:#fff; display:flex; align-items:center; justify-content:center; padding:38px 16px 10px; border-bottom:1px solid var(--border-extra-light);}
-  .msec-head .back{position:absolute; left:8px; width:36px; height:36px; display:flex; align-items:center; justify-content:center; font-size:22px; color:var(--text-primary); cursor:pointer;}
-  .msec-head .title{font-size:16px; font-weight:700; color:var(--text-primary);}
+  .msec-head{position:sticky; top:0; z-index:10; background:#fff; display:flex; align-items:center; justify-content:space-between; padding:14px 16px 10px; border-bottom:1px solid var(--border-extra-light);}
+  .msec-head .back{position:absolute; left:4px; width:44px; height:44px; display:flex; align-items:center; justify-content:center; font-size:26px; color:var(--text-primary); cursor:pointer;}
+  .msec-head .title{flex:1; text-align:center; font-size:14px; font-weight:700; color:var(--text-primary);}
+  .msec-head .mini-caps{flex:0 0 auto;}
   .ma-tabs{display:flex; background:#fff; border-bottom:1px solid var(--border-extra-light);}
   .ma-tabs .tab{flex:1; text-align:center; padding:12px 0; font-size:15px; color:var(--text-regular); position:relative; cursor:pointer;}
   .ma-tabs .tab.on{color:var(--primary); font-weight:700;}
@@ -2425,6 +2469,7 @@
   .mad-card .ent{font-size:12px; color:var(--text-secondary); margin-bottom:6px;}
   .mad-card .loc{font-size:12px; color:var(--text-secondary); display:flex; align-items:center; gap:4px; margin-bottom:10px;}
   .mad-card .pay{font-size:18px; font-weight:700; color:#f44336;}
+  .mad-view-job{display:flex; justify-content:flex-end; align-items:center; font-size:12px; font-weight:600; color:var(--primary); cursor:pointer; margin-top:2px;}
   .mad-timeline{padding-left:8px;}
   .mad-tl-item{display:flex; gap:12px; position:relative; padding-bottom:18px;}
   .mad-tl-item:last-child{padding-bottom:0;}
@@ -3053,8 +3098,8 @@
   .pf-head{display:flex;align-items:center;justify-content:center;position:relative;padding:12px;background:#fff;}
   /* 实名认证页 */
   .rn-wrap{height:100%;display:flex;flex-direction:column;background:#F5F7FA;}
-  .rn-head{position:relative;text-align:center;padding:46px 48px 16px;}
-  .rn-back{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:22px;color:#0c3d2b;cursor:pointer;z-index:2;}
+  .rn-head{position:relative;text-align:center;padding:16px;}
+  .rn-back{position:absolute;left:4px;top:50%;transform:translateY(-50%);width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:26px;color:#0c3d2b;cursor:pointer;z-index:2;}
   .rn-body{flex:1;overflow:auto;padding:16px;}
   .rn-card{background:#fff;border-radius:14px;padding:16px;box-shadow:0 2px 10px rgba(0,0,0,.04);}
   .rn-q{font-size:16px;font-weight:700;color:#1f2a44;margin-bottom:4px;}
@@ -3126,7 +3171,9 @@
 
   /* ===== C 端「我的」页 ===== */
   .me-wrap{min-height:100%;flex:1;padding-bottom:20px;position:relative;background:#F5F7FA;}
-  .me-head{display:flex;align-items:center;gap:12px;padding:50px 16px 20px;background:linear-gradient(180deg,#C6FCFD,#E0FCFD);color:#0c3d2b;}
+  .me-topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 0;background:linear-gradient(180deg,#C6FCFD,#E0FCFD);}
+  .me-topbar-t{font-size:14px;font-weight:700;color:#0c3d2b;}
+  .me-head{display:flex;align-items:center;gap:12px;margin:12px;padding:14px;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.04);color:#0c3d2b;}
   .me-avatar{width:52px;height:52px;border-radius:50%;background:rgba(13,143,110,.15);color:#0d8f6e;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;}
   .me-info{flex:1;}
   .me-name{font-size:17px;font-weight:700;display:flex;align-items:center;gap:8px;}
@@ -3134,10 +3181,19 @@
   .me-tag.ok{background:#E0FCFD;color:#0d8f6e;}
   .me-tag.warn{background:#ffd666;color:#874d00;}
   .me-head .me-sub{font-size:12px;color:#5b6b66;margin-top:4px;background:transparent;padding:0;}
+  .me-ins-tag{display:inline-flex; align-items:center; gap:5px; font-size:12px; font-weight:600; color:#8a9099; cursor:pointer;}
+  .me-ins-tag::before{content:''; width:6px; height:6px; border-radius:50%; background:#c0c4cc; flex:none;}
+  .me-ins-tag.ok{color:#0d8f6e;}
+  .me-ins-tag.ok::before{background:#0d8f6e;}
+  .insd-tag{display:inline-flex; align-items:center; gap:6px; font-size:14px; font-weight:700; color:#606266;}
+  .insd-tag::before{content:''; width:8px; height:8px; border-radius:50%; background:#c0c4cc; flex:none;}
+  .insd-tag.ok{color:#0d8f6e;}
+  .insd-tag.ok::before{background:#0d8f6e;}
+  .insd-msg{font-size:14px; color:#909399; margin-top:14px; line-height:1.6;}
+  .insd-msg.ok{color:#0d8f6e;}
   .me-income{background:#fff;margin:12px;border-radius:12px;padding:14px;box-shadow:0 2px 8px rgba(0,0,0,.04);}
   .me-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#f0f0f5;margin:0 12px;border-radius:12px;overflow:hidden;}
   .me-grid-item{background:#fff;padding:16px 4px;text-align:center;cursor:pointer;}
-  .me-pay{background:#fff;margin:12px;border-radius:12px;padding:14px;box-shadow:0 2px 8px rgba(0,0,0,.04);}
   .me-income-t{font-size:13px;color:#909399;margin-bottom:10px;}
   .me-income-row{display:flex;}
   .me-cell{flex:1;text-align:center;}
@@ -3145,8 +3201,6 @@
   .me-cell-l{font-size:11px;color:#909399;margin-top:4px;}
   .me-grid-ico{font-size:24px;}
   .me-grid-t{font-size:12px;color:#606266;margin-top:6px;}
-  .me-pay-t{font-size:13px;color:#909399;margin-bottom:10px;}
-  .me-pay-row{display:flex;justify-content:space-around;font-size:14px;color:#444;}
   .me-logout{width:calc(100% - 32px);margin:16px 16px;height:46px;border:1px solid #ffa39e;background:#fff;color:#cf1322;border-radius:12px;font-size:15px;cursor:pointer;}
   /* 我的偏好页 */
   .mepref-card{background:#fff;margin:12px;border-radius:12px;padding:14px;box-shadow:0 2px 8px rgba(0,0,0,.04);}
@@ -3176,7 +3230,12 @@
   .mpv-k{color:#909399;}
   .mpv-v{color:#222;}
   .mpv-real-btn{width:100%;height:36px;margin-top:10px;border:none;border-radius:18px;background:linear-gradient(135deg,#0d8f6e,#0bb89a);color:#fff;font-size:13px;font-weight:600;cursor:pointer;}
-  .mpv-head{position:relative;text-align:center;}
+  .mpv-head{position:relative;text-align:center;padding:16px;}
+  .rn-head .title,.mpv-head .title{ flex:1; text-align:center; font-size:14px; font-weight:600; color:#0c3d2b; }
+  .rn-head .mini-caps,.mpv-head .mini-caps{ flex:0 0 auto; }
+  .mhead.mprf-head{ position:relative; }
+  .mprf-head .title{ flex:1; text-align:center; font-size:14px; font-weight:600; color:#0c3d2b; }
+  .mprf-head .mini-caps{ flex:0 0 auto; }
   .mpv-tags{display:flex;flex-wrap:wrap;gap:8px;}
   .mpv-tag{padding:4px 12px;background:#f0f0f5;border-radius:14px;font-size:12px;color:#606266;}
   .mpv-empty{font-size:12px;color:#bbb;}
@@ -3189,8 +3248,6 @@
   .mpv-sub-t{font-size:12px;color:#909399;margin-bottom:6px;}
   .mpv-cert{background:#f7f8fa;border-radius:8px;padding:10px;margin-top:8px;}
   .mpv-cert-name{font-size:13px;color:#222;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  .mpv-cert-file{font-size:12px;color:#909399;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  .mpv-cert-file.none{color:#bbb;}
   .cert-badge{display:inline-block;font-size:11px;line-height:1;padding:3px 8px;border-radius:2px;font-weight:600;white-space:nowrap;}
   .cert-badge.ok{color:#18a058;background:rgba(24,160,88,.12);}
   .cert-badge.exp{color:#d03050;background:rgba(208,48,80,.12);}
@@ -3716,12 +3773,7 @@
 .em2-root .tabbar .tab .tl { font-size:11px; }
 .em2-root .tabbar .tab svg { display:block; }
 .em2-root #em2-page-recruit, .em2-root #em2-page-attendance, .em2-root #em2-page-tasks, .em2-root #em2-page-stats, .em2-root #em2-page-mine, .em2-root #em2-page-publish { display:flex; flex-direction:column; flex:1; min-height:0; }
-.em2-root .statusbar { position:relative; height:44px; background:#D5E9FF; display:flex;
-    justify-content:space-between; align-items:center;
-    padding:0 24px 0 28px; color:#1A5BB8; }
-.em2-root .statusbar .time { font-size:15px; font-weight:600; letter-spacing:0.5px; }
-.em2-root .statusbar .sys { display:flex; align-items:center; gap:6px; font-size:13px; }
-.em2-root .statusbar .sys svg { display:block; }
+
   /* 企业小程序：画布内弹窗（结束岗位需求等，不再覆盖整屏） */
   .em2-root .phone .em2-modal-mask{position:absolute; inset:0; z-index:60; background:rgba(27,27,47,.45); display:flex; align-items:center; justify-content:center; padding:14px; box-sizing:border-box;}
   .em2-root .phone .em2-modal{width:100%; max-width:300px; background:#fff; border-radius:14px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,.25);}
@@ -3774,12 +3826,18 @@
   .em2-root .phone .em2-intro-page .ep-btn{padding:6px 12px; font-size:13px; border:1px solid #E6E6F0; border-radius:8px; background:#fff; color:#1B1B2F; cursor:pointer}
   .em2-root .phone .em2-intro-page .ep-btn:disabled{color:#C0C0D0; border-color:#F0F0F5; cursor:not-allowed}
   .em2-root .phone .em2-intro-page .ep-info{font-size:13px; color:#6B6B82}
-.em2-root .nav { background:#D5E9FF; padding:4px 20px 16px;
-    display:flex; justify-content:center; align-items:center; color:#1A5BB8; position:relative; z-index:2; }
-.em2-root .nav .title { font-size:17px; font-weight:600; }
+.em2-root .nav { background:#D5E9FF; padding:10px 16px 16px;
+    display:flex; justify-content:space-between; align-items:center; color:#1A5BB8; position:relative; z-index:2; }
+.em2-root .nav .title { flex:1; text-align:center; font-size:14px; font-weight:600; color:#1A5BB8; }
+.em2-root .nav .mini-caps { flex:0 0 auto; }
+.em2-root .nav .nav-right { display:flex; align-items:center; gap:12px; }
+.em2-root .em2-topbar { background:#D5E9FF; padding:10px 16px; display:flex; align-items:center; justify-content:space-between; position:relative; z-index:2; }
+.em2-root .em2-topbar-t { font-size:14px; font-weight:700; color:#1A5BB8; }
+.em2-root .em2-topbar .mini-caps { flex:0 0 auto; }
 .em2-root .nav-stats { position:sticky; top:0; z-index:10; background:#D5E9FF; padding:0;  color:#1A5BB8; }
 .em2-root .nav-stats .stats-tabs { background:transparent; padding:8px 16px 6px; gap:16px; }
-.em2-root .nav .back { position:absolute; left:20px; top:50%; transform:translateY(-50%); display:flex; align-items:center; cursor:pointer; z-index:2; }
+.em2-root .nav .back { position:absolute; left:10px; top:50%; transform:translateY(-50%); display:flex; align-items:center; cursor:pointer; z-index:2; padding:8px; margin-left:-8px; }
+.em2-root .nav .back svg { width:26px; height:26px; }
 .em2-root .em2-chips { display:flex; gap:10px; overflow-x:auto; overflow-y:hidden; padding:14px 20px;
     background:#D5E9FF; scrollbar-width:none;  color:#1A5BB8; }
 .em2-root .em2-chips::-webkit-scrollbar { display:none; width:0; height:0; }
@@ -5607,11 +5665,10 @@
     </div>
   </div>
     <div class="phone" data-page-node-id="dlWRAy0iYU4dOuOCFSXx8j">
-      <div class="statusbar" data-page-node-id="6tNQcnywfIA0jRBeYqCWq0"><span data-page-node-id="ZLLdYwSmp9kRvHzKmIKg4D">9:41</span><span data-page-node-id="9AmkTjl8v2lB4L4rpWc3Mi"></span><span data-page-node-id="pXfMs02EfVojuRvrHG2iDT">●●● 5G</span></div>
       <div class="screen" id="m-screen" data-page-node-id="eFPe6cmkoPsniTpfOMAyCK">
         <!-- ===== Tab1 工作台 ===== -->
         <div class="mscreen" id="m-work" data-page-node-id="t9vS32SC2TeLTJS9EHhwIU">
-          <div class="mhead" data-page-node-id="FdETFifp2yghMT99Gtp7uh">工作台</div>
+          <div class="mhead" data-page-node-id="FdETFifp2yghMT99Gtp7uh"><span>工作台</span><span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span></div>
           <div class="rec-empty" style="padding-top:120px" data-page-node-id="wQzo4J04fpznlfVwRUtrEu">
             <div class="ic" data-page-node-id="zHHtvESH2un6i7skoBFRns">🏠</div>
             <div class="t" data-page-node-id="QF9k96kBgXEZgn9j9FF29s">工作台</div>
@@ -5625,10 +5682,7 @@
             <div class="mr-top" data-page-node-id="R1EtqnIfMnK4doYrVD8TNy">
               <div class="mr-city" id="mr-city" onclick="openWhere()" data-page-node-id="oQtAaDV4tgNqq7vdKyWDrD"><span id="mr-city-txt" data-page-node-id="Yhv4nWhONEdnh6fRh7vs5N">全国</span><span class="arrow" data-page-node-id="p69nt5hHy8P0WFUKRKgZLb">▾</span></div>
               <div class="mr-search" data-page-node-id="1CGlr71MZVoTKjeeceRIpy"><input id="mr-kw" placeholder="搜索企业 / 岗位" oninput="mrKwDebounce()" data-page-node-id="qBl28cRwFOp2bp1gFlyDHC"/></div>
-              <div class="mr-capsules" data-page-node-id="TfzIf0FHzo97JClKEKC8PO">
-                <div class="mr-capsule" data-page-node-id="DXyI42AyBcWrAZhnvob2nj"><span class="c-dots" data-page-node-id="CsQ5FeAi3vvLDVGcHTr4Ix"><i data-page-node-id="ZpT8DW6ty69l1vfuxeif5q"></i><i data-page-node-id="NPHFFFeWROmbupl1matJRg"></i><i data-page-node-id="RLOqAn9cahlOtmlweeavDq"></i></span></div>
-                <div class="mr-capsule" data-page-node-id="ZFHiSjTKMYyW9tYnbbgchw"><span class="c-circle" data-page-node-id="uAOTbOkTURyOvqIgRXRCsr"></span></div>
-              </div>
+              <span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
             </div>
             <div class="mr-tabs" id="m-rec-sub" data-page-node-id="VoqiYHvSMx2ktNsAtFhb0T"></div>
             <div class="mr-sortbar" id="m-rec-sort" data-page-node-id="467GqeK8eRCCxV9yZYP0pR"></div>
@@ -5649,7 +5703,7 @@
 
         <!-- ===== Tab2.5 任务大厅 ===== -->
         <div class="mscreen" id="m-taskhall" style="display:none" data-page-node-id="k2EehNqnMpgXI9d3yMj8Qd">
-          <div class="mhead" data-page-node-id="Fl0GKx07XnU5SfVdPCmB8i">任务大厅</div>
+          <div class="mhead" data-page-node-id="Fl0GKx07XnU5SfVdPCmB8i"><span>任务大厅</span><span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span></div>
           <div class="rec-empty" style="padding-top:120px" data-page-node-id="ODA0CzcQPHIWPpDD03Lwak">
             <div class="ic" data-page-node-id="f5IAGDY1AuD8H3tPJtT7N3">📋</div>
             <div class="t" data-page-node-id="EubsSgkkznHTXGbGHXHywa">任务大厅</div>
@@ -5667,25 +5721,22 @@
           <div class="md-body" id="md-body" data-page-node-id="PFDgs8IrS9876C0fBp4HK5"></div>
         </div>
 
-        <!-- ===== Tab3 消息（通知中心：排班/收入/系统/报名/面试） ===== -->
+        <!-- ===== Tab3 消息（占位页：功能待补充） ===== -->
         <div class="mscreen" id="m-msg" style="display:none" data-page-node-id="vgwJzltt6Rl7wElE9q80wj">
-          <div class="mhead" style="font-size:22px; display:flex; justify-content:space-between; align-items:center;">
+          <div class="mhead" style="font-size:14px; display:flex; justify-content:space-between; align-items:center;">
             <span>消息</span>
-            <span style="position:relative; display:inline-block;">
-              <span id="m-msg-bell" onclick="miniMsgToggleUnread()" title="只看未读" style="font-size:18px; cursor:pointer; color:#bbb;">🔔</span>
-              <i id="m-msg-bell-dot" style="display:none; position:absolute; top:0; right:0; width:8px; height:8px; border-radius:50%; background:#ff4d4f; border:1.5px solid #E0FCFD;"></i>
-            </span>
+            <span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
           </div>
-          <div style="background:#fff; padding:10px 12px 0;">
-            <div class="pill-tabs" id="m-msg-tabs" style="margin-bottom:0;"></div>
+          <div class="rec-empty" style="padding-top:120px">
+            <div class="ic">💬</div>
+            <div class="t">消息</div>
+            <div class="d">页面占位，内容待补充</div>
           </div>
-          <div id="m-msg-count" style="display:flex; justify-content:space-between; align-items:center; font-size:12px; color:var(--text-secondary); padding:10px 16px; border-bottom:1px solid var(--border-lighter); background:#fff;"></div>
-          <div id="m-msg-list"></div>
         </div>
 
         <!-- ===== Tab4 我的 ===== -->
         <div class="mscreen" id="m-me" style="display:none" data-page-node-id="gmULXDczJ2bRvqqjm4pHoG">
-          <div class="mhead" data-page-node-id="bb0TwBb63bQZ7jE3C6VFGJ">我的</div>
+          <div class="mhead" data-page-node-id="bb0TwBb63bQZ7jE3C6VFGJ"><span>我的</span><span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span></div>
           <div class="rec-empty" style="padding-top:120px" data-page-node-id="5LsparCtgnXweBCDczpIvq">
             <div class="ic" data-page-node-id="WTdzYkgzyNlAKjyUJCu4tL">👤</div>
             <div class="t" data-page-node-id="zrwhmEyXihrCF1gLAdGeWy">我的</div>
@@ -5698,6 +5749,7 @@
           <div class="msec-head" data-page-node-id="hBVXuaMU0djDqDY8wYvbp5">
             <div class="back" onclick="nav('mini','m-me')" data-page-node-id="QXM6GKszI90x9RyY60WA8Z">‹</div>
             <div class="title" data-page-node-id="ZColmA689O3x56ywfQAryE">我的报名</div>
+            <span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
           </div>
           <div class="ma-tabs" id="ma-tabs" data-page-node-id="rgGhV0303MPWF6X9hb8HCz">
             <div class="tab on" data-tab="job" onclick="myApplyTab='job';renderMyApplyList()" data-page-node-id="vgg7BGpT7GQbx9uXeZYWNZ">岗位报名 <span class="num" data-page-node-id="K5j2Ag8CNcpg829CehbT3y">3</span></div>
@@ -5711,8 +5763,19 @@
           <div class="msec-head" data-page-node-id="ODkmfQzCoZHuvWBXLwhrnf">
             <div class="back" onclick="nav('mini','m-myapply')" data-page-node-id="I5HUbnoEqMhcGneXOFWTiS">‹</div>
             <div class="title" data-page-node-id="Be6rQL8YMO20DNGBwurOZu">岗位报名详情</div>
+            <span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
           </div>
           <div class="mad-body" id="mad-body" data-page-node-id="7ztY82CUD0lJo3JZP36RGC"></div>
+        </div>
+
+        <!-- ===== 投保详情（二级页） ===== -->
+        <div class="mscreen" id="m-insdetail" style="display:none">
+          <div class="msec-head">
+            <div class="back" onclick="nav('mini','m-me')">‹</div>
+            <div class="title">投保详情</div>
+            <span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
+          </div>
+          <div class="mad-body" id="insd-body"></div>
         </div>
 
         <!-- ===== 我的简历（二级页） ===== -->
@@ -5720,12 +5783,14 @@
           <div class="msec-head" data-page-node-id="vnb5bOFUEjUK7wX6EGHBqL">
             <div class="back" onclick="nav('mini','m-me')" data-page-node-id="TA6gHBZZmLTlYQq4SJXFP1">‹</div>
             <div class="title" data-page-node-id="LEEFZolTiHebTWEc3bo0c6">我的简历</div>
+            <span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
           </div>
           <div class="resume-body" id="resume-body" data-page-node-id="yUY4eLGcVXjDMW0IyAHP8j"></div>
         </div>
 
         <!-- ===== C 端登录/注册页（手机号+验证码，自动判断） ===== -->
         <div class="mscreen" id="m-login" style="display:none" data-page-node-id="9CwYYpA1Va1w1heizW1227">
+          <span class="mini-caps" style="position:absolute; top:14px; right:12px; z-index:40;"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
           <div class="ml-bg" data-v="b" data-page-node-id="YhIPa3IkmAjHvGdOiU6TGj">
             <div class="ml-logo" data-page-node-id="Sr93vvCoUE74cFiMeUiEuL"><span class="ml-badge" data-page-node-id="8fWSoqCeh0Tb4CU8zn8gIc">灵</span><span class="ml-name" data-page-node-id="n8DMHXStElCYf7T9WelOu8">灵工平台</span></div>
             <div class="ml-card" data-page-node-id="xDukmMxq5YvK00xsEX5HEH">
@@ -5826,6 +5891,10 @@
 <div class="phone-stage" id="em2-phoneStage" data-page-node-id="yWQP2uHxBVHNwjXjRmdrZL">
 <div class="phone" data-page-node-id="UgZ1NPjAko97LZA8RIokCa">
 <div class="em2-login" id="em2-login" style="display:none" data-page-node-id="gUFVqbjoxEbApOPqC0I0EB">
+  <div class="em2-topbar">
+    <span></span>
+    <span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
+  </div>
   <div class="em2lg-bg" data-page-node-id="KM9CktWPDmDXJwbYU4CoHE">
     <div class="em2lg-wrap" data-page-node-id="yg5M0j2Q5NMiMN3qJoXPet">
       <div class="em2lg-brand" data-page-node-id="CmAhQzRuQlIVl0DZjbRkOD"><span class="em2lg-badge" data-page-node-id="XuH0OdIysnLauAFN1ahUNN">企</span><span class="em2lg-name" data-page-node-id="CaXLXpIG12nUBKekYKz9P4">企业小程序</span></div>
@@ -5854,6 +5923,10 @@
 
   <!-- ===== 企业小程序忘记密码页（em2 风格，3 步：验证手机 → 设置密码 → 完成） ===== -->
   <div class="em2-forgot" id="em2-forgot" style="display:none" data-page-node-id="nhhHGOhihepiHkbbudN1MM">
+    <div class="em2-topbar">
+      <span></span>
+      <span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
+    </div>
     <div class="em2fg-wrap" data-page-node-id="MKex1ifCeQiDqhbWW8Xux9">
       <div class="em2fg-hero" data-page-node-id="TGwqVWmoLCmpMnmIDZuNP8">
         <div class="em2fg-title" data-page-node-id="okxEr3ILMgHUooKTK78Whp">找回密码</div>
@@ -5907,15 +5980,10 @@
 
   <!-- ===== 招聘页 ===== -->
   <div id="em2-page-recruit" data-page-node-id="gTHpmfJFzuBIvAPOYBhBFN">
-    <div class="statusbar" data-page-node-id="o5eCHgYGKW9OCpqbWP5lBn">
-      <span class="time" data-page-node-id="dq0TelhEHzYealhsfHxvJM">9:41</span>
-      <span class="sys" data-page-node-id="fizfQgBEvORKRDjBoAnFko">
-        <svg width="17" height="12" viewBox="0 0 17 12" fill="none" data-page-node-id="x3X9phRV7flW1UEsxyaU1X"><rect x="0.5" y="0.5" width="12" height="11" rx="2.5" stroke="#1A5BB8" stroke-width="1" data-page-node-id="1CC2lSooj3DDXgIUrAm9p7"/><rect x="2" y="2" width="9" height="8" rx="1" fill="#1A5BB8" data-page-node-id="7nsxbcrH8ovQM83AJFHnKD"/><rect x="14" y="3.5" width="2.5" height="5" rx="1" fill="#1A5BB8" data-page-node-id="goec9jEvoUycMhSYuzVNPG"/></svg>
-        <svg width="16" height="12" viewBox="0 0 16 12" fill="none" data-page-node-id="ByL3MgvWWnsnAAuBVTzz29"><path d="M8 11V6M5 9.5V6M11 8V6M2.5 11V6M13.5 11V6" stroke="#1A5BB8" stroke-width="1.6" stroke-linecap="round" data-page-node-id="xE9QLRe86HyAPajmWv0XZK"/></svg>
-        <svg width="25" height="12" viewBox="0 0 25 12" fill="none" data-page-node-id="sBlMukBHoFRZ8gqbL3kUDS"><rect x="0.5" y="0.5" width="20" height="11" rx="3" stroke="#1A5BB8" stroke-width="1" data-page-node-id="qKiu0DTdxqA1nbfxUEmBCH"/><rect x="2.5" y="2.5" width="13" height="7" rx="1.5" fill="#1A5BB8" data-page-node-id="63aHMtrbOqH7OZEyp37kIz"/><rect x="22" y="3.5" width="2.5" height="5" rx="1.2" fill="#1A5BB8" data-page-node-id="PWcPeEhD4cO7fOTjF11tUm"/></svg>
-      </span>
+    <div class="em2-topbar">
+      <span class="em2-topbar-t">招聘</span>
+      <span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
     </div>
-
 
     <div class="em2-chips" id="em2-chips" data-page-node-id="xCGFTskDriK0ruUgIsgf4Q">
       <button class="chip on" data-key="全部" onclick="selChip(this)" data-page-node-id="ICz1mcRDou7F3pCE5W0vVx">全部</button>
@@ -5988,34 +6056,27 @@
   </div>
 
   <!-- 全局消息铃铛（企业小程序各主 Tab 页右上角，含未读角标） -->
-  <div id="em2-bell" onclick="openEntMsg()" style="position:absolute; top:38px; right:12px; z-index:55; width:30px; height:30px; border-radius:50%; background:#fff; border:1px solid #e3ecf7; box-shadow:0 2px 6px rgba(26,91,184,.12); display:flex; align-items:center; justify-content:center; cursor:pointer;">
+  <div id="em2-bell" onclick="openEntMsg()" style="position:absolute; top:52px; right:12px; z-index:55; width:30px; height:30px; border-radius:50%; background:#fff; border:1px solid #e3ecf7; box-shadow:0 2px 6px rgba(26,91,184,.12); display:flex; align-items:center; justify-content:center; cursor:pointer;">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3a6 6 0 0 0-6 6v3.5l-1.6 3A1 1 0 0 0 5.3 17h13.4a1 1 0 0 0 .9-1.5L18 12.5V9a6 6 0 0 0-6-6Z" stroke="#1A5BB8" stroke-width="1.8" stroke-linejoin="round"/><path d="M9.5 19.5a2.5 2.5 0 0 0 5 0" stroke="#1A5BB8" stroke-width="1.8" stroke-linecap="round"/></svg>
     <span id="em2-bellBadge" style="position:absolute; top:-4px; right:-4px; min-width:15px; height:15px; border-radius:8px; background:#ff4d4f; color:#fff; font-size:10px; line-height:15px; text-align:center; padding:0 3px; display:none;">0</span>
   </div>
 
   <!-- ===== 消息通知页（铃铛入口，二级页） ===== -->
   <div id="em2-page-msg" class="subpage" style="display:none">
-    <div class="statusbar"><span class="time">9:41</span></div>
     <div class="nav">
       <span class="back" onclick="closeEntMsg()"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="#1A5BB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       <span class="title" style="display:block; text-align:center;">消息</span>
+      <span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
     </div>
     <div class="content" id="em-msg-body" style="padding:0; background:#fff;"></div>
   </div>
 
   <!-- ===== 岗位需求页（点击「需求人数」） ===== -->
   <div id="em2-page-jobs" class="subpage" style="display:none" data-page-node-id="9Plcy5QE21RtKL0nrF2yyJ">
-    <div class="statusbar" data-page-node-id="NgLYzIIq2qMfy3SlLeuAQe">
-      <span class="time" data-page-node-id="ijoHp4841n2qCGluo2XXXE">9:41</span>
-      <span class="sys" data-page-node-id="Cv4xwTeqRUtfSTKtHJgrKh">
-        <svg width="17" height="12" viewBox="0 0 17 12" fill="none" data-page-node-id="VYw0bnu1vS0CzKcPhVjurk"><rect x="0.5" y="0.5" width="12" height="11" rx="2.5" stroke="#1A5BB8" stroke-width="1" data-page-node-id="dn0L3XubTD6w4MWOQsDdDB"/><rect x="2" y="2" width="9" height="8" rx="1" fill="#1A5BB8" data-page-node-id="GyGftA1C6uHJyg0kqE4VYc"/><rect x="14" y="3.5" width="2.5" height="5" rx="1" fill="#1A5BB8" data-page-node-id="HAGcAD6EhwbhK79zB1HMTq"/></svg>
-        <svg width="16" height="12" viewBox="0 0 16 12" fill="none" data-page-node-id="qgIrjD1DoQm240Gk9hM5fF"><path d="M8 11V6M5 9.5V6M11 8V6M2.5 11V6M13.5 11V6" stroke="#1A5BB8" stroke-width="1.6" stroke-linecap="round" data-page-node-id="qxIO35xCjQcAByqqpXPgKU"/></svg>
-        <svg width="25" height="12" viewBox="0 0 25 12" fill="none" data-page-node-id="HDdbzGIw0VU8Vj59pqHohm"><rect x="0.5" y="0.5" width="20" height="11" rx="3" stroke="#1A5BB8" stroke-width="1" data-page-node-id="DvWKUD10dAYAMsqCiKmJTd"/><rect x="2.5" y="2.5" width="13" height="7" rx="1.5" fill="#1A5BB8" data-page-node-id="MwnXeXfTFDRaPJnp6MP49I"/><rect x="22" y="3.5" width="2.5" height="5" rx="1.2" fill="#1A5BB8" data-page-node-id="2XnpWh487al0U80s22kQLx"/></svg>
-      </span>
-    </div>
     <div class="nav" data-page-node-id="eleqjnjiaDq6xJeSQ4Qo6D">
       <span class="back" onclick="closeJobs()" data-page-node-id="87MM5SIQHHZrdpl6ssLsCC"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" data-page-node-id="7TCsu2HXhqS4u3ympY5qmZ"><path d="M15 6l-6 6 6 6" stroke="#1A5BB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="jVDAFlY46Cmw6ThDyKyHwJ"/></svg></span>
       <span class="title" data-page-node-id="iQW7ihJRGshp2jBxFVt1xZ">岗位需求</span>
+      <span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
     </div>
     <div class="content" data-page-node-id="dJmF1RMI5gfDqIELk6iYUK">
       <div id="em2-jobsList" data-page-node-id="P2j9XSxEh8iGbuykkqbPT1"></div>
@@ -6024,17 +6085,10 @@
 
   <!-- ===== 待处理页（点击「待处理」） ===== -->
   <div id="em2-page-todo" class="subpage" style="display:none" data-page-node-id="H6hWeK2kfTUDEaGS27Dy96">
-    <div class="statusbar" data-page-node-id="lUCteUnD6yVQlTNqoclZAj">
-      <span class="time" data-page-node-id="6QRW2HOrDB0uRoGeRD4hjL">9:41</span>
-      <span class="sys" data-page-node-id="G1vSfipB59FCyhbDjhCJJU">
-        <svg width="17" height="12" viewBox="0 0 17 12" fill="none" data-page-node-id="Fv8qiWMRvQAb1iWHFYdRKf"><rect x="0.5" y="0.5" width="12" height="11" rx="2.5" stroke="#1A5BB8" stroke-width="1" data-page-node-id="VvZnGeJZIkAL849U6Sru6N"/><rect x="2" y="2" width="9" height="8" rx="1" fill="#1A5BB8" data-page-node-id="TSFmgYedVrmCP0Ev8ZRFsr"/><rect x="14" y="3.5" width="2.5" height="5" rx="1" fill="#1A5BB8" data-page-node-id="2n4gbXqp0KYKp88oz5qWck"/></svg>
-        <svg width="16" height="12" viewBox="0 0 16 12" fill="none" data-page-node-id="5KRqGuY6alU9LkbAohKXfB"><path d="M8 11V6M5 9.5V6M11 8V6M2.5 11V6M13.5 11V6" stroke="#1A5BB8" stroke-width="1.6" stroke-linecap="round" data-page-node-id="DL93UuUIGVwssrG5FybRkb"/></svg>
-        <svg width="25" height="12" viewBox="0 0 25 12" fill="none" data-page-node-id="FIaGZC59XhxQdyeDm1hJNb"><rect x="0.5" y="0.5" width="20" height="11" rx="3" stroke="#1A5BB8" stroke-width="1" data-page-node-id="VeSggqb4CwLrj2F1U9flvv"/><rect x="2.5" y="2.5" width="13" height="7" rx="1.5" fill="#1A5BB8" data-page-node-id="HPTZNQ0CaWMaZJPmUTiSFQ"/><rect x="22" y="3.5" width="2.5" height="5" rx="1.2" fill="#1A5BB8" data-page-node-id="7Jpwq9EQ9JoGYEr8IoTzml"/></svg>
-      </span>
-    </div>
     <div class="nav" data-page-node-id="1BAgl767JqkHikrDkebVSD">
       <span class="back" onclick="closeTodo()" data-page-node-id="h4DnZC7T7ydDB2mF4qEZDo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" data-page-node-id="5KjoxSGaVmy9KEu765TJtr"><path d="M15 6l-6 6 6 6" stroke="#1A5BB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="n31kzEcfiwUYfkdWlLESi4"/></svg></span>
       <span class="title" id="em2-todoTitle" data-page-node-id="o8NGc6qEYeZEqOOFNr3QAM">待处理</span>
+      <span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
     </div>
     <div class="content" data-page-node-id="AbfuDinSk6DdQuj2lEYuwU">
       <div id="em2-todoList" data-page-node-id="eE2DODrHHY9Z3ykI3qFmg5"></div>
@@ -6043,17 +6097,10 @@
 
   <!-- ===== 待面试人员列表（点击「待面试」5列数字 + tab 复用） ===== -->
   <div id="em2-page-waitIv" class="subpage" style="display:none" data-page-node-id="YaPQqbuwRXSCwqHlDazxji">
-    <div class="statusbar" data-page-node-id="mNYLSDd36b9pz02N3GmAxH">
-      <span class="time" data-page-node-id="04N6yJeZAvdZRmQZ9TiACK">9:41</span>
-      <span class="sys" data-page-node-id="Kuo2kbzdH25m8riIf9cjCJ">
-        <svg width="17" height="12" viewBox="0 0 17 12" fill="none" data-page-node-id="o6nuWgUcgGy90iA3WpXv8s"><rect x="0.5" y="0.5" width="12" height="11" rx="2.5" stroke="#1A5BB8" stroke-width="1" data-page-node-id="WMSdbHUsoaScQ4GiuvvIW0"/><rect x="2" y="2" width="9" height="8" rx="1" fill="#1A5BB8" data-page-node-id="ga6mt6nZRidVu0hHqRUfmL"/><rect x="14" y="3.5" width="2.5" height="5" rx="1" fill="#1A5BB8" data-page-node-id="EWiFIuDyQZR4K0H9JbMyKr"/></svg>
-        <svg width="16" height="12" viewBox="0 0 16 12" fill="none" data-page-node-id="Tg5ldrO0NYIRssSnZaw6Ig"><path d="M8 11V6M5 9.5V6M11 8V6M2.5 11V6M13.5 11V6" stroke="#1A5BB8" stroke-width="1.6" stroke-linecap="round" data-page-node-id="iueF9uS4mlFDsIZYc1QIRd"/></svg>
-        <svg width="25" height="12" viewBox="0 0 25 12" fill="none" data-page-node-id="DebQvm4sSmHRl1OcGFNgJU"><rect x="0.5" y="0.5" width="20" height="11" rx="3" stroke="#1A5BB8" stroke-width="1" data-page-node-id="LrZMceVcPo7DvypFZ8CxMz"/><rect x="2.5" y="2.5" width="13" height="7" rx="1.5" fill="#1A5BB8" data-page-node-id="b3vIP6PjTqTqC1MefOLtNM"/><rect x="22" y="3.5" width="2.5" height="5" rx="1.2" fill="#1A5BB8" data-page-node-id="T3yYbu2l6gnnt3B5zXckU1"/></svg>
-      </span>
-    </div>
     <div class="nav" data-page-node-id="iAMjnXgLL5uEDL8RHpUMLt">
       <span class="back" onclick="closeWaitIv()" data-page-node-id="wzbNsAG9iqsaikSeHoQg9O"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" data-page-node-id="WvO7sdIQxah9aW9v5oDuyh"><path d="M15 6l-6 6 6 6" stroke="#1A5BB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="dPUCGA261xNOr1XGlAxOZE"/></svg></span>
       <span class="title" id="em2-waitIvTitle" data-page-node-id="IyrvKuK4PBgCp0LjtMwztZ">待面试</span>
+      <span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
     </div>
     <div class="content" data-page-node-id="kjGdrqUAQSZYHPeLjGE8IW">
       <div id="em2-waitIvList" data-page-node-id="2wNQVtdNUXCfAvk8FiMqxk"></div>
@@ -6062,17 +6109,10 @@
 
   <!-- ===== Offer 人员列表（点击「Offer」） ===== -->
   <div id="em2-page-offer" class="subpage" style="display:none" data-page-node-id="9TyKEMbIZcJ0HhyZCohXjq">
-    <div class="statusbar" data-page-node-id="94euaoeVyEZoSqVFaiMDwM">
-      <span class="time" data-page-node-id="Hm91NeXu3yrzBFbUCPoLzA">9:41</span>
-      <span class="sys" data-page-node-id="GG3MGVWpJxhjSvvPjzPPfK">
-        <svg width="17" height="12" viewBox="0 0 17 12" fill="none" data-page-node-id="Cu5Pf16ATRNtAPq3bPHUUL"><rect x="0.5" y="0.5" width="12" height="11" rx="2.5" stroke="#1A5BB8" stroke-width="1" data-page-node-id="CMkENSw0PzfgwFmj8w1jQ1"/><rect x="2" y="2" width="9" height="8" rx="1" fill="#1A5BB8" data-page-node-id="tCmhSGdM7Fwd1nYAfmoZ24"/><rect x="14" y="3.5" width="2.5" height="5" rx="1" fill="#1A5BB8" data-page-node-id="SUyHDeHLBzBflSNy0HVY7M"/></svg>
-        <svg width="16" height="12" viewBox="0 0 16 12" fill="none" data-page-node-id="LxN37ttq3mCMZ3Kh8rhnYO"><path d="M8 11V6M5 9.5V6M11 8V6M2.5 11V6M13.5 11V6" stroke="#1A5BB8" stroke-width="1.6" stroke-linecap="round" data-page-node-id="zAokcGN0rgPa2tXZNzYpOk"/></svg>
-        <svg width="25" height="12" viewBox="0 0 25 12" fill="none" data-page-node-id="DyHwJoX8BU7rW88yOL6Rxw"><rect x="0.5" y="0.5" width="20" height="11" rx="3" stroke="#1A5BB8" stroke-width="1" data-page-node-id="WYsjVrd6YH0EZJIC1I744J"/><rect x="2.5" y="2.5" width="13" height="7" rx="1.5" fill="#1A5BB8" data-page-node-id="3y0w20EdwBBS9hK6aAKjPf"/><rect x="22" y="3.5" width="2.5" height="5" rx="1.2" fill="#1A5BB8" data-page-node-id="UwC0kQyZMf5YwllZ3XmaMQ"/></svg>
-      </span>
-    </div>
     <div class="nav" data-page-node-id="ZnTLw8xc8DKzkXDQfWceZi">
       <span class="back" onclick="closeOffer()" data-page-node-id="3wX5jMlf4uTMD17h7xDDAR"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" data-page-node-id="bPUBbmL7z9svRxN6oXgE08"><path d="M15 6l-6 6 6 6" stroke="#1A5BB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="fP2iVAjZCkAXSWDeHMorHU"/></svg></span>
       <span class="title" id="em2-offerTitle" data-page-node-id="WM7UL9Mgl16oONd7SrNEIm">已发 Offer</span>
+      <span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
     </div>
     <div class="content" data-page-node-id="jF2YGe2A8zIOMf2ENb67QI">
       <div id="em2-offerList" data-page-node-id="EXChCIMZ8BvlgPEeF0ypBC"></div>
@@ -6081,17 +6121,10 @@
 
   <!-- ===== 录用/待入职 人员列表（点击「录用」） ===== -->
   <div id="em2-page-hire" class="subpage" style="display:none" data-page-node-id="SKafH2kysglYdRGYPOENn3">
-    <div class="statusbar" data-page-node-id="MAJTg0gsPFl9ET8Xgluw4y">
-      <span class="time" data-page-node-id="LfDlthX7gA21HwWFzx0cG7">9:41</span>
-      <span class="sys" data-page-node-id="SAVlZXS25G9LewAgWdSHCT">
-        <svg width="17" height="12" viewBox="0 0 17 12" fill="none" data-page-node-id="Yciyu1fZYRW4hgmYzCKoR7"><rect x="0.5" y="0.5" width="12" height="11" rx="2.5" stroke="#1A5BB8" stroke-width="1" data-page-node-id="xwUfzFsOUMFDGuwvTE2u55"/><rect x="2" y="2" width="9" height="8" rx="1" fill="#1A5BB8" data-page-node-id="as7PxYBGHfPC1hQMwWd4RI"/><rect x="14" y="3.5" width="2.5" height="5" rx="1" fill="#1A5BB8" data-page-node-id="7apDjxnwrpq0HCAHEMtb1L"/></svg>
-        <svg width="16" height="12" viewBox="0 0 16 12" fill="none" data-page-node-id="F6PPGdf9uoW89sh8f8c3OV"><path d="M8 11V6M5 9.5V6M11 8V6M2.5 11V6M13.5 11V6" stroke="#1A5BB8" stroke-width="1.6" stroke-linecap="round" data-page-node-id="e5otcEY9niwQ6HAJhkwod2"/></svg>
-        <svg width="25" height="12" viewBox="0 0 25 12" fill="none" data-page-node-id="WojKw68y6BlFJTLW9K8SyC"><rect x="0.5" y="0.5" width="20" height="11" rx="3" stroke="#1A5BB8" stroke-width="1" data-page-node-id="zjGm95l98vXpHGG5U2RkGW"/><rect x="2.5" y="2.5" width="13" height="7" rx="1.5" fill="#1A5BB8" data-page-node-id="9EFmV9QHYDTeIhEXdv4Hlm"/><rect x="22" y="3.5" width="2.5" height="5" rx="1.2" fill="#1A5BB8" data-page-node-id="DSDPXboq8PU6tOHIDjKnY0"/></svg>
-      </span>
-    </div>
     <div class="nav" data-page-node-id="cGnKtYGWq2rSD9Ccm4oxP0">
       <span class="back" onclick="closeHire()" data-page-node-id="sL3OLjVF6YgHmwhcOy9eHI"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" data-page-node-id="dx58Ye85nfvUDQxc9nHC8q"><path d="M15 6l-6 6 6 6" stroke="#1A5BB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="YJD7e4Q7qbGjFa6IA7P2VI"/></svg></span>
       <span class="title" id="em2-hireTitle" data-page-node-id="3DwLy2baVnZ1hixnWT3Nxs">待入职</span>
+      <span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
     </div>
     <div class="content" data-page-node-id="cKZok6pdDUuqyZaXB8PgdP">
       <div id="em2-hireList" data-page-node-id="5JoxM0EMaGhT5KFVGiOWjg"></div>
@@ -6100,21 +6133,13 @@
 
   <!-- ===== 发布岗位页 ===== -->
   <div id="em2-page-publish" style="display:none" class="form-page" data-page-node-id="72bmIwHxaPoC9ThJNwhDjJ">
-    <div class="statusbar" data-page-node-id="nMOINGb7A2cmOUjCDmgO62">
-      <span class="time" data-page-node-id="upXgLAjSc1VvdRv0sOXrBb">9:41</span>
-      <span class="sys" data-page-node-id="nE2s856xPFnsujZbrdniDs">
-        <svg width="17" height="12" viewBox="0 0 17 12" fill="none" data-page-node-id="N9f4heh9T85FQNZQlYVjO7"><rect x="0.5" y="0.5" width="12" height="11" rx="2.5" stroke="#1A5BB8" stroke-width="1" data-page-node-id="mGvhbrWbFt1vp7Ug9WVdBp"/><rect x="2" y="2" width="9" height="8" rx="1" fill="#1A5BB8" data-page-node-id="EAIarAdi1PGYltC0KTiVFG"/><rect x="14" y="3.5" width="2.5" height="5" rx="1" fill="#1A5BB8" data-page-node-id="aGCfwfhkNbHBRVlZBx6VUv"/></svg>
-        <svg width="16" height="12" viewBox="0 0 16 12" fill="none" data-page-node-id="dklL4QmH3S8M7k2WqAmsA2"><path d="M8 11V6M5 9.5V6M11 8V6M2.5 11V6M13.5 11V6" stroke="#1A5BB8" stroke-width="1.6" stroke-linecap="round" data-page-node-id="mFhFtfYNbAK2ff2EYHiqxN"/></svg>
-        <svg width="25" height="12" viewBox="0 0 25 12" fill="none" data-page-node-id="uPDh2XlssGLFdN5fcx2CgF"><rect x="0.5" y="0.5" width="20" height="11" rx="3" stroke="#1A5BB8" stroke-width="1" data-page-node-id="OhWthByVBP4QQBsvYjumFC"/><rect x="2.5" y="2.5" width="13" height="7" rx="1.5" fill="#1A5BB8" data-page-node-id="FayLkDEt645L66NY7PSG43"/><rect x="22" y="3.5" width="2.5" height="5" rx="1.2" fill="#1A5BB8" data-page-node-id="tCVA7yEVNKJvAs502E6IID"/></svg>
-      </span>
-    </div>
-
     <div class="nav" data-page-node-id="ZSrupgAhquCwLZAxHyVimi">
       <span class="back" onclick="closePublish()" data-page-node-id="9aYTR3A5zeFW7kXu3v3VMw">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" data-page-node-id="7zi5r5TrZQjN9kFeuFoSUX"><path d="M15 6l-6 6 6 6" stroke="#1A5BB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="V8wC7pUbzCCX4OMAwuQmLP"/></svg>
       </span>
       <span class="title" id="em2-pubTitle" data-page-node-id="JRKiMMlSYayGhzDBK3LNyY">发布新需求</span>
       <span class="nav-edit" id="em2-pubEdit" style="display:none" onclick="em2EnterEdit()" data-page-node-id="D94dnPl1sckqvx4IbWmOnA">编辑</span>
+      <span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
     </div>
 
     <div class="form" id="em2-pubForm" data-page-node-id="nXCNkm9hPUxGFHhzohectF">
@@ -6449,7 +6474,10 @@
 
   <!-- ===== 出勤页（留白） ===== -->
   <div id="em2-page-attendance" style="display:none" data-page-node-id="6mOFfvvZWgyw6DQ4EEvKrs">
-    <div class="statusbar" data-page-node-id="oXsGJr09ZHVmJyRjufL6AL"><span class="time" data-page-node-id="Qcwdp3DSWSQLszfK3ZXPoo">9:41</span></div>
+    <div class="em2-topbar">
+      <span class="em2-topbar-t">出勤</span>
+      <span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
+    </div>
     <div class="screen" data-page-node-id="ORvYvktFvhYLAzZ1Gxh63d">
       <div class="placeholder" data-page-node-id="fms5yJQlwxB5iQ3WdsZ7cC">
         <svg class="ico" viewBox="0 0 24 24" fill="none" data-page-node-id="SlJxzwEVQxVaOw5AdMk0es"><circle cx="12" cy="12" r="9" stroke="#C7D6E8" stroke-width="2" data-page-node-id="cG4XmW6I63LOTBSUfOQn1u"/><path d="M12 7v5l3 2" stroke="#C7D6E8" stroke-width="2" stroke-linecap="round" data-page-node-id="nPOyUC419SORSNCJ7vEnXy"/></svg>
@@ -6461,7 +6489,10 @@
 
   <!-- ===== 任务管理页（留白） ===== -->
   <div id="em2-page-tasks" style="display:none" data-page-node-id="IPz5JexsfgWQpZy0dgHAAf">
-    <div class="statusbar" data-page-node-id="ZVUx4JnUpzAxeiqO8lexAB"><span class="time" data-page-node-id="hRaHQGrkSbL7q7Rkbnr8Xn">9:41</span></div>
+    <div class="em2-topbar">
+      <span class="em2-topbar-t">任务管理</span>
+      <span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
+    </div>
     <div class="screen" data-page-node-id="XXQ4cgJIkzKrZ8DnmCxuIn">
       <div class="placeholder" data-page-node-id="GapnTeuJyMjcyJodEi7oqg">
         <svg class="ico" viewBox="0 0 24 24" fill="none" data-page-node-id="UjahNIB5oLngIrAHuPTEO9"><rect x="4" y="4" width="16" height="16" rx="3" stroke="#C7D6E8" stroke-width="2" data-page-node-id="RjKxRFGXC1BJd0DLw3ZjdN"/><path d="M8 12l3 3 5-6" stroke="#C7D6E8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="3DTF9lXprGYOuvQpVZkis7"/></svg>
@@ -6473,13 +6504,9 @@
 
   <!-- ===== 统计页（招聘统计 + 其他 4 个 Tab 建设中） ===== -->
   <div id="em2-page-stats" style="display:none; flex-direction:column; background:#F8F7FC;" data-page-node-id="M33johgKKJybPbCNutZkVN">
-    <div class="statusbar" data-page-node-id="Vkq4Qv8MaEzMXo5w6MeDpa">
-      <span class="time" data-page-node-id="Js8p59cnoZRPwO9nYQRjFB">9:41</span>
-      <span class="sys" data-page-node-id="ph9bBlOt21GWqY9RYhVBWh">
-        <svg width="17" height="12" viewBox="0 0 17 12" fill="none" data-page-node-id="TANXCxfV5hEoCaeKgs2B3P"><rect x="0.5" y="0.5" width="12" height="11" rx="2.5" stroke="#1A5BB8" stroke-width="1" data-page-node-id="uLJowYt7bxgLk8TujGPfmN"/><rect x="2" y="2" width="9" height="8" rx="1" fill="#1A5BB8" data-page-node-id="dqMHLMC3DV1xphOfOqBxsM"/><rect x="14" y="3.5" width="2.5" height="5" rx="1" fill="#1A5BB8" data-page-node-id="aZiQDkbpboFMKQuaZuFtSq"/></svg>
-        <svg width="16" height="12" viewBox="0 0 16 12" fill="none" data-page-node-id="2o98FlJnUsEXnqnQqat0ZX"><path d="M8 11V6M5 9.5V6M11 8V6M2.5 11V6M13.5 11V6" stroke="#1A5BB8" stroke-width="1.6" stroke-linecap="round" data-page-node-id="ljnTk8n88mgpEQ4dwWY2kl"/></svg>
-        <svg width="25" height="12" viewBox="0 0 25 12" fill="none" data-page-node-id="CA6jvBVZOaDjiPdoRtD17y"><rect x="0.5" y="0.5" width="20" height="11" rx="3" stroke="#1A5BB8" stroke-width="1" data-page-node-id="OXlS9PBRTHwRUyuWWhoUVR"/><rect x="2.5" y="2.5" width="13" height="7" rx="1.5" fill="#1A5BB8" data-page-node-id="prej6J98ArGdD23OB8jK9j"/><rect x="22" y="3.5" width="2.5" height="5" rx="1.2" fill="#1A5BB8" data-page-node-id="gZIxa6V9NEKuUF6zhso2dw"/></svg>
-      </span>
+    <div class="em2-topbar">
+      <span class="em2-topbar-t">统计</span>
+      <span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
     </div>
     <div class="screen" id="em2-statsScreen" data-page-node-id="7uYI8UTtnoKicnCwvJ0FWp">
       <div class="nav nav-stats" data-page-node-id="Toclz17pVBulvgfSBe5HLC">      <!-- 二级 Tab -->
@@ -6638,7 +6665,10 @@
 
   <!-- ===== 我的页 ===== -->
   <div id="em2-page-mine" style="display:none" data-page-node-id="F3qddBqOMV4FZQT04IT09x">
-    <div class="statusbar" data-page-node-id="2CsRl0HcFONeBN0P4FtWRz"><span class="time" data-page-node-id="TGOrBKbEy8kDLcp5Yx6SAO">9:41</span></div>
+    <div class="em2-topbar">
+      <span class="em2-topbar-t">我的</span>
+      <span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
+    </div>
     <div class="em2-mine" id="em2-mine-host" data-page-node-id="88XzKpKYyJwHIfcnZsl97Q"></div>
   </div>
 
@@ -9540,7 +9570,7 @@
       if(frame) frame.style.display='block';
       const t=document.getElementById(screenId); if(t) t.style.display='block';
       // 详情页属于「推荐」Tab 的二级页，底部 tab 高亮保持在推荐
-      const tabKey = (screenId==='m-detail') ? 'm-rec' : (screenId==='m-myapply'||screenId==='m-applydetail'||screenId==='m-resume'||screenId==='m-profile-view'||screenId==='m-meprefs') ? 'm-me' : screenId;
+      const tabKey = (screenId==='m-detail') ? 'm-rec' : (screenId==='m-myapply'||screenId==='m-applydetail'||screenId==='m-resume'||screenId==='m-profile-view'||screenId==='m-meprefs'||screenId==='m-insdetail') ? 'm-me' : screenId;
       platEl.querySelectorAll('.mtab button').forEach(b=>b.classList.toggle('active', b.dataset.m===tabKey));
       // 二级页（含登录/注册/资料/各类详情）隐藏底部 Tab，仅通过左上角返回
       const hideTab = ['m-detail','m-myapply','m-applydetail','m-resume','m-profile-view','m-meprefs','m-login','m-realname','m-poster-apply','m-apply-success'].indexOf(screenId)>=0;
@@ -9557,6 +9587,7 @@
       else if(screenId==='m-me') renderMe();
       else if(screenId==='m-myapply') renderMyApplyList();
       else if(screenId==='m-applydetail') renderApplyDetail();
+      else if(screenId==='m-insdetail') renderInsDetail();
       else if(screenId==='m-resume') renderResume();
       else if(screenId==='m-profile-view') renderMyProfile();
       else if(screenId==='m-meprefs') renderMePrefs();
@@ -11470,13 +11501,13 @@
   ENT_ORG[ENT]={ nodes: orgNodes, members: orgMembers };   // 企业端当前使用中国移动，直接用现有 rich 数据（其余企业由 loadOrg 懒加载）
   /* ===== 共享 demo：招聘需求（含上架状态/关联活动/灵工端标签） ===== */
   const demands=[
-    {id:'DE-20260801-001',ent:'中国移动北京朝阳分公司',dept:'营业厅部',name:'移动营业厅店员',head:20,hired:8,salary:'5K-8K',loc:'北京市朝阳区',status:'招聘中',type:'零售/百货',city:'北京',up:true,activity:'夏日高温补贴',rounds:2,source:'manual',tags:[{t:'日结',c:'b'},{t:'可兼职',c:'o'},{t:'包吃住',c:''},{t:'高额补贴',c:'g'}],materials:[{name:'健康证',type:'material',certNo:'JK-2024-009812',issueDate:'2024-05-20',expireDate:'2027-05-19'},{name:'护士证',type:'material',certNo:'HS-2022-003345',issueDate:'2022-09-01',expireDate:'2025-08-31'}],created:'2026/08/01 09:00:00'},
-    {id:'DE-20260720-001',ent:'中国移动北京朝阳分公司',dept:'渠道部',name:'移动渠道销售员',head:10,hired:3,salary:'5K-7K',loc:'北京市海淀区',status:'招聘中',type:'零售/百货',city:'北京',up:true,activity:'',viewers:['oa-2'],source:'pc',tags:[{t:'日结',c:'b'},{t:'就近上岗',c:''}],materials:[{name:'健康证',type:'material'}],created:'2026/07/20 10:30:00'},
+    {id:'DE-20260801-001',skills:['收银员职业资格证','普通话等级证书','电子商务师','计算机操作员'],ent:'中国移动北京朝阳分公司',dept:'营业厅部',name:'移动营业厅店员',head:20,hired:8,salary:'5K-8K',loc:'北京市朝阳区',status:'招聘中',type:'零售/百货',city:'北京',up:true,activity:'夏日高温补贴',rounds:2,source:'manual',tags:[{t:'日结',c:'b'},{t:'可兼职',c:'o'},{t:'包吃住',c:''},{t:'高额补贴',c:'g'}],materials:[{name:'健康证',type:'material',certNo:'JK-2024-009812',issueDate:'2024-05-20',expireDate:'2027-05-19'},{name:'护士证',type:'material',certNo:'HS-2022-003345',issueDate:'2022-09-01',expireDate:'2025-08-31'}],created:'2026/08/01 09:00:00'},
+    {id:'DE-20260720-001',skills:['普通话等级证书','电子商务师'],ent:'中国移动北京朝阳分公司',dept:'渠道部',name:'移动渠道销售员',head:10,hired:3,salary:'5K-7K',loc:'北京市海淀区',status:'招聘中',type:'零售/百货',city:'北京',up:true,activity:'',viewers:['oa-2'],source:'pc',tags:[{t:'日结',c:'b'},{t:'就近上岗',c:''}],materials:[{name:'健康证',type:'material'}],created:'2026/07/20 10:30:00'},
     {id:'DE-20260715-001',ent:'中国移动浙江分公司',dept:'市场部',name:'移动业务推广员',head:15,hired:6,salary:'6K-10K',loc:'上海市浦东新区',status:'招聘中',type:'市场/公关/广告/会展',city:'上海',up:true,activity:'老带新加薪券',source:'mini',tags:[{t:'日结',c:'b'},{t:'高薪',c:'o'}],created:'2026/07/15 14:00:00'},
-    {id:'DE-20260705-001',ent:'中国移动浙江分公司',dept:'运营部',name:'移动增值业务推广员',head:9,hired:0,salary:'6K-10K',loc:'上海市浦东新区',status:'招聘中',type:'市场/公关/广告/会展',city:'上海',up:true,activity:'',viewers:['oa-3'],source:'manual',tags:[{t:'灵活排班',c:''}],created:'2026/07/05 09:15:00'},
-    {id:'DE-20260622-001',ent:'中国移动广东公司',dept:'仓储部',name:'移动网络优化工程师',head:30,hired:18,salary:'4.5K-6K',loc:'北京市大兴区',status:'招聘中',type:'物流/运输',city:'北京',up:true,activity:'',source:'pc',tags:[{t:'日结',c:'b'},{t:'包吃住',c:''}],materials:[{name:'健康证',type:'material'},{name:'护士证',type:'material'}],created:'2026/06/22 11:00:00'},
-    {id:'DE-20260610-001',ent:'中国移动江苏公司',dept:'配送部',name:'移动装维外勤',head:25,hired:20,salary:'5K-7K',loc:'天津市东丽区',status:'招聘中',type:'物流/运输',city:'天津',up:true,activity:'高温补贴',source:'mini',tags:[{t:'日结',c:'b'},{t:'电动车补贴',c:'o'}],created:'2026/06/10 08:00:00'},
-    {id:'DE-20260508-001',ent:'中国移动北京公司',dept:'配送部',name:'移动外勤骑手',head:40,hired:35,salary:'6K-9K',loc:'北京市朝阳区',status:'已结束',type:'物流/运输',city:'北京',up:false,activity:'',source:'pc',tags:[{t:'日结',c:'b'},{t:'高薪',c:'o'}],created:'2026/05/08 16:45:00'},
+    {id:'DE-20260705-001',skills:['普通话等级证书','电子商务师'],ent:'中国移动浙江分公司',dept:'运营部',name:'移动增值业务推广员',head:9,hired:0,salary:'6K-10K',loc:'上海市浦东新区',status:'招聘中',type:'市场/公关/广告/会展',city:'上海',up:true,activity:'',viewers:['oa-3'],source:'manual',tags:[{t:'灵活排班',c:''}],created:'2026/07/05 09:15:00'},
+    {id:'DE-20260622-001',skills:['电工证'],ent:'中国移动广东公司',dept:'仓储部',name:'移动网络优化工程师',head:30,hired:18,salary:'4.5K-6K',loc:'北京市大兴区',status:'招聘中',type:'物流/运输',city:'北京',up:true,activity:'',source:'pc',tags:[{t:'日结',c:'b'},{t:'包吃住',c:''}],materials:[{name:'健康证',type:'material'},{name:'护士证',type:'material'}],created:'2026/06/22 11:00:00'},
+    {id:'DE-20260610-001',skills:['机动车驾驶证','高处作业证'],ent:'中国移动江苏公司',dept:'配送部',name:'移动装维外勤',head:25,hired:20,salary:'5K-7K',loc:'天津市东丽区',status:'招聘中',type:'物流/运输',city:'天津',up:true,activity:'高温补贴',source:'mini',tags:[{t:'日结',c:'b'},{t:'电动车补贴',c:'o'}],created:'2026/06/10 08:00:00'},
+    {id:'DE-20260508-001',skills:['机动车驾驶证'],ent:'中国移动北京公司',dept:'配送部',name:'移动外勤骑手',head:40,hired:35,salary:'6K-9K',loc:'北京市朝阳区',status:'已结束',type:'物流/运输',city:'北京',up:false,activity:'',source:'pc',tags:[{t:'日结',c:'b'},{t:'高薪',c:'o'}],created:'2026/05/08 16:45:00'},
     {id:'DE-20260415-001',ent:'中国移动上海公司',dept:'门店部',name:'移动门店店员',head:12,hired:12,salary:'4.5K-6K',loc:'上海市长宁区',status:'已结束',type:'零售/百货',city:'上海',up:false,activity:'',source:'manual',tags:[{t:'就近上岗',c:''}],created:'2026/04/15 10:20:00'},
     {id:'DE-20260310-001',ent:'中国移动北京朝阳分公司',dept:'会员部',name:'移动会员服务员',head:8,hired:0,salary:'4K-6K',loc:'北京市朝阳区',status:'草稿',type:'零售/百货',city:'北京',up:false,activity:'',source:'mini',tags:[],created:'2026/03/10 13:10:00'},
     {id:'DE-20260810-001',ent:'中国移动北京朝阳分公司',dept:'会员部',name:'移动会员服务员（短期）',head:6,hired:0,salary:'4K-6K',loc:'北京市朝阳区',status:'招聘中',type:'零售/百货',city:'北京',up:true,activity:'',source:'manual',tags:[],created:'2026/08/10 17:00:00'},
@@ -11502,14 +11533,14 @@
     {id:'DE-20260905-001',ent:'中国移动北京公司',dept:'市场部',name:'移动校园推广员',head:18,hired:0,salary:'5K-8K',loc:'北京市海淀区',status:'招聘中',type:'市场/公关/广告/会展',city:'北京',up:true,activity:'',source:'批量导入',empType:'灵工',projType:'移动其他',pm:'王运营',tags:[],created:'2026/09/05 09:30:00'},
     {id:'DE-20260906-001',ent:'中国移动上海公司',dept:'仓储部',name:'移动仓储备货员',head:12,hired:0,salary:'4.5K-6K',loc:'上海市浦东新区',status:'招聘中',type:'物流/运输',city:'上海',up:true,activity:'',source:'批量导入',empType:'短期工',projType:'移动其他',pm:'李顾问',tags:[],created:'2026/09/06 10:00:00'},
     {id:'DE-20260907-001',ent:'中国移动广东公司',dept:'市场部',name:'移动展会引导员',head:8,hired:0,salary:'5K-7K',loc:'广东省广州市',status:'招聘中',type:'市场/公关/广告/会展',city:'广东',up:true,activity:'',source:'批量导入',empType:'灵工',projType:'移动其他',pm:'王运营',tags:[],created:'2026/09/07 11:30:00'},
-    {id:'DE-20260910-001',ent:'永辉超市',dept:'门店运营',name:'永辉超市理货员',head:20,hired:0,salary:'4K-6K',loc:'北京市丰台区',status:'招聘中',type:'零售/百货',city:'北京',up:true,activity:'新人补贴',rounds:2,source:'manual',tags:[{t:'日结',c:'b'},{t:'可兼职',c:'o'}],materials:[{name:'健康证',type:'material'}],created:'2026/09/01 09:00:00'},
-    {id:'DE-20260901-002',ent:'顺丰速运',dept:'分拣中心',name:'顺丰快递分拣员',head:30,hired:0,salary:'5K-7K',loc:'北京市通州区',status:'招聘中',type:'物流',city:'北京',up:true,activity:'',rounds:2,source:'manual',tags:[{t:'日结',c:'b'},{t:'包吃住',c:''}],materials:[],created:'2026/09/01 09:10:00'},
-    {id:'DE-20260901-003',ent:'星巴克',dept:'门店',name:'星巴克咖啡师',head:10,hired:0,salary:'5K-8K',loc:'上海市徐汇区',status:'招聘中',type:'餐饮',city:'上海',up:false,activity:'',rounds:2,source:'manual',tags:[{t:'弹性排班',c:''}],materials:[],created:'2026/09/01 09:20:00'},
-    {id:'DE-20260901-004',ent:'链家地产',dept:'销售部',name:'链家房产顾问',head:15,hired:0,salary:'6K-12K',loc:'北京市西城区',status:'招聘中',type:'销售',city:'北京',up:true,activity:'开单奖',rounds:2,source:'manual',tags:[{t:'高薪',c:'o'},{t:'提成',c:'b'}],materials:[],created:'2026/09/01 09:30:00'},
-    {id:'DE-20260901-005',ent:'美团',dept:'地推部',name:'美团团购地推',head:25,hired:0,salary:'5K-9K',loc:'广州市天河区',status:'招聘中',type:'销售',city:'广州',up:true,activity:'冲单奖',rounds:2,source:'manual',tags:[{t:'日结',c:'b'},{t:'高薪',c:'o'}],materials:[],created:'2026/09/01 09:40:00'},
-    {id:'DE-20260908-001',ent:'中国移动北京朝阳分公司',dept:'营业厅部',name:'移动促销导购员',head:15,hired:0,salary:'22-35',salaryType:'时薪',loc:'北京市朝阳区',status:'招聘中',type:'零售/百货',city:'北京',up:true,activity:'',source:'manual',empType:'灵工',projType:'移动其他',pm:'王运营',tags:[],created:'2026/09/08 09:30:00'},
-    {id:'DE-20260909-001',ent:'中国移动浙江分公司',dept:'市场部',name:'移动活动协助员',head:12,hired:0,salary:'20-32',salaryType:'时薪',loc:'上海市浦东新区',status:'招聘中',type:'市场/公关/广告/会展',city:'上海',up:true,activity:'',source:'manual',empType:'灵工',projType:'移动其他',pm:'李顾问',tags:[],created:'2026/09/09 10:00:00'},
-    {id:'DE-20260911-001',ent:'中国移动上海公司',dept:'门店部',name:'移动门店兼职收银',head:10,hired:0,salary:'24-38',salaryType:'时薪',loc:'上海市长宁区',status:'招聘中',type:'零售/百货',city:'上海',up:true,activity:'',source:'manual',empType:'灵工',projType:'移动其他',pm:'李顾问',tags:[],created:'2026/09/11 11:00:00'}
+    {id:'DE-20260910-001',skills:['食品安全管理员'],ent:'永辉超市',dept:'门店运营',name:'永辉超市理货员',head:20,hired:0,salary:'4K-6K',loc:'北京市丰台区',status:'招聘中',type:'零售/百货',city:'北京',up:true,activity:'新人补贴',rounds:2,source:'manual',tags:[{t:'日结',c:'b'},{t:'可兼职',c:'o'}],materials:[{name:'健康证',type:'material'}],created:'2026/09/01 09:00:00'},
+    {id:'DE-20260901-002',skills:['叉车驾驶证'],ent:'顺丰速运',dept:'分拣中心',name:'顺丰快递分拣员',head:30,hired:0,salary:'5K-7K',loc:'北京市通州区',status:'招聘中',type:'物流',city:'北京',up:true,activity:'',rounds:2,source:'manual',tags:[{t:'日结',c:'b'},{t:'包吃住',c:''}],materials:[],created:'2026/09/01 09:10:00'},
+    {id:'DE-20260901-003',skills:['食品安全管理员'],ent:'星巴克',dept:'门店',name:'星巴克咖啡师',head:10,hired:0,salary:'5K-8K',loc:'上海市徐汇区',status:'招聘中',type:'餐饮',city:'上海',up:false,activity:'',rounds:2,source:'manual',tags:[{t:'弹性排班',c:''}],materials:[],created:'2026/09/01 09:20:00'},
+    {id:'DE-20260901-004',skills:['普通话等级证书','企业人力资源管理师'],ent:'链家地产',dept:'销售部',name:'链家房产顾问',head:15,hired:0,salary:'6K-12K',loc:'北京市西城区',status:'招聘中',type:'销售',city:'北京',up:true,activity:'开单奖',rounds:2,source:'manual',tags:[{t:'高薪',c:'o'},{t:'提成',c:'b'}],materials:[],created:'2026/09/01 09:30:00'},
+    {id:'DE-20260901-005',skills:['普通话等级证书','电子商务师'],ent:'美团',dept:'地推部',name:'美团团购地推',head:25,hired:0,salary:'5K-9K',loc:'广州市天河区',status:'招聘中',type:'销售',city:'广州',up:true,activity:'冲单奖',rounds:2,source:'manual',tags:[{t:'日结',c:'b'},{t:'高薪',c:'o'}],materials:[],created:'2026/09/01 09:40:00'},
+    {id:'DE-20260908-001',skills:['普通话等级证书'],ent:'中国移动北京朝阳分公司',dept:'营业厅部',name:'移动促销导购员',head:15,hired:0,salary:'22-35',salaryType:'时薪',loc:'北京市朝阳区',status:'招聘中',type:'零售/百货',city:'北京',up:true,activity:'',source:'manual',empType:'灵工',projType:'移动其他',pm:'王运营',tags:[],created:'2026/09/08 09:30:00'},
+    {id:'DE-20260909-001',skills:['普通话等级证书'],ent:'中国移动浙江分公司',dept:'市场部',name:'移动活动协助员',head:12,hired:0,salary:'20-32',salaryType:'时薪',loc:'上海市浦东新区',status:'招聘中',type:'市场/公关/广告/会展',city:'上海',up:true,activity:'',source:'manual',empType:'灵工',projType:'移动其他',pm:'李顾问',tags:[],created:'2026/09/09 10:00:00'},
+    {id:'DE-20260911-001',skills:['收银员职业资格证'],ent:'中国移动上海公司',dept:'门店部',name:'移动门店兼职收银',head:10,hired:0,salary:'24-38',salaryType:'时薪',loc:'上海市长宁区',status:'招聘中',type:'零售/百货',city:'上海',up:true,activity:'',source:'manual',empType:'灵工',projType:'移动其他',pm:'李顾问',tags:[],created:'2026/09/11 11:00:00'}
   ];
   /* 灵工/短期工演示薪资：按原型「薪资类型联动」规则，灵工/短期工默认日薪（合理日薪区间），全职保持月薪。
      以需求 ID 为键（避免按岗位名硬编码），并显式写入 salaryType，使单位严格跟随薪资类型；
@@ -11554,7 +11585,7 @@
     d.workHours = d.workHours || '每天8小时，双休';
     d.desc = d.desc || (`负责${d.type||''}相关岗位工作，按要求完成现场任务，服从班次排班与现场管理，提供必要岗位培训与安全作业保障。`);
     d.benefits = d.benefits || ['高温补贴','节日福利','岗前培训','绩效奖金'];
-    if(d.empType==='灵工' && !d.attendanceObj) d.attendanceObj={weeklyDays:'5',periods:['早班'],customPeriods:[]};
+    if(d.empType==='灵工' && !d.attendanceObj) d.attendanceObj={expectDuration:'1个月以上',weeklyDays:'每周5天以上',periods:[{name:'早班',start:'06:00',end:'12:00'}],customPeriods:[]};
     d.requirements = d.requirements || '';
     d.skills = d.skills || [];
     d.remarks = d.remarks || '';
@@ -11994,25 +12025,23 @@
      duties/reqs/workTime/benefits=详情页内容；demandId=关联的运营后台需求 ID */
   const recJobs=[
     {demandId:'DE-20260801-001',empType:'灵工',title:'移动营业厅店员',payNum:'220',payUnit:'元/日',salary:'150-260 元/日',
-     ent:'中国移动北京朝阳分公司',store:'移动朝阳建国路营业厅',loc:'北京市朝阳区',addr:'北京市朝阳区建国路 88 号',
+     ent:'中国移动北京朝阳分公司',store:'移动朝阳建国路营业厅',loc:'北京市朝阳区',addr:'北京市朝阳区建国路 88 号',locations:[{name:'移动朝阳建国路营业厅',addr:'北京市朝阳区建国路 88 号',dist:1.2},{name:'移动朝阳望京营业厅',addr:'北京市朝阳区望京街 6 号',dist:3.4}],
      head:12,edu:'不限',exp:'经验不限',age:'18-45岁',cat:'零售',dist:1.2,applied:38,pub:'今天',
      logo:'#e8453c',logoTxt:'移',urgent:true,hot:true,cert:false,
      tags:[{t:'日结',c:'tag-money'},{t:'限时补贴',c:'tag-time'},{t:'近期发布',c:'tag-blue'},],
      award:'完成首单额外奖励 ¥100',
      duties:['为到厅客户提供业务办理与终端销售服务，规范操作营业设备','协助移动产品陈列与推荐销售','维护厅内卫生与安全，执行安全生产规范','配合店长完成班次交接与账目核对'],
-     reqs:['年龄 18-45 岁，学历不限','身体健康，能适应厅内轮班','有服务行业经验者优先','无犯罪记录（需提供证明）'],
-     workTime:[{d:'周一至周五',t:'08:00-16:00'},{d:'周六周日',t:'轮休'}],
+     workTime:[{d:'期望兼职时长',t:'1个月以上'},{d:'每周出勤天数',t:'每周5天以上'},{d:'具体出勤时段',t:'早班 (06:00-12:00)、中班 (12:00-18:00)'}],
      benefits:['日结工资','免费工装','厅内工作餐','意外保险','就近分配']},
 
     {demandId:'DE-20260908-001',empType:'灵工',title:'移动促销导购员',payNum:'28',payUnit:'元/时',salary:'22-35 元/时',
-     ent:'中国移动北京朝阳分公司',store:'移动朝阳建国路营业厅',loc:'北京市朝阳区',addr:'北京市朝阳区建国路 88 号',
+     ent:'中国移动北京朝阳分公司',store:'移动朝阳建国路营业厅',loc:'北京市朝阳区',addr:'北京市朝阳区建国路 88 号',locations:[{name:'移动朝阳建国路营业厅',addr:'北京市朝阳区建国路 88 号',dist:1.2},{name:'移动朝阳望京营业厅',addr:'北京市朝阳区望京街 6 号',dist:3.4}],
      head:15,edu:'不限',exp:'经验不限',age:'18-45岁',cat:'零售',dist:1.2,applied:12,pub:'今天',
      logo:'#e8453c',logoTxt:'移',urgent:false,hot:true,cert:false,
      tags:[{t:'日结',c:'tag-money'},{t:'近期发布',c:'tag-blue'},],
      award:'',
      duties:['为到厅客户提供业务办理与终端销售引导服务','协助移动产品陈列与推荐销售','维护厅内卫生与安全，执行安全生产规范','配合店长完成班次交接'],
-     reqs:['年龄 18-45 岁，学历不限','身体健康，能适应厅内轮班','有服务行业经验者优先','无犯罪记录（需提供证明）'],
-     workTime:[{d:'周一至周五',t:'09:00-18:00'},{d:'周六周日',t:'轮休'}],
+     workTime:[{d:'期望兼职时长',t:'1个月以上'},{d:'每周出勤天数',t:'每周5天以上'},{d:'具体出勤时段',t:'早班 (06:00-12:00)、中班 (12:00-18:00)'}],
      benefits:['时结工资','免费工装','厅内工作餐','意外保险','就近分配']},
 
     {demandId:'DE-20260909-001',empType:'灵工',title:'移动活动协助员',payNum:'26',payUnit:'元/时',salary:'20-32 元/时',
@@ -12022,8 +12051,7 @@
      tags:[{t:'日结',c:'tag-money'},{t:'近期发布',c:'tag-blue'},],
      award:'',
      duties:['协助移动活动现场布置与秩序维护','引导客户参与活动并讲解权益','收集客户意向信息并反馈','配合活动物料收发'],
-     reqs:['年龄 18-45 岁，学历不限','沟通清晰，有活动协助经验者优先','能接受站立与走动作业'],
-     workTime:[{d:'周一至周日',t:'排班制'}],
+     workTime:[{d:'期望兼职时长',t:'长期稳定'},{d:'每周出勤天数',t:'每周5天以上'},{d:'具体出勤时段',t:'全天可接受'}],
      benefits:['时结工资','免费工装','意外保险']},
 
     {demandId:'DE-20260911-001',empType:'灵工',title:'移动门店兼职收银',payNum:'30',payUnit:'元/时',salary:'24-38 元/时',
@@ -12033,8 +12061,7 @@
      tags:[{t:'日结',c:'tag-money'},{t:'近期发布',c:'tag-blue'}],
      award:'',
      duties:['负责门店收银结算与对账','商品上架与价签维护','协助会员注册与促销活动执行','门店日常卫生保洁'],
-     reqs:['高中及以上学历','熟练使用收银系统','有零售收银经验者优先'],
-     workTime:[{d:'周一至周日',t:'排班制 8 小时'}],
+     workTime:[{d:'期望兼职时长',t:'长期稳定'},{d:'每周出勤天数',t:'每周5天以上'},{d:'具体出勤时段',t:'全天可接受'}],
      benefits:['时结工资','包餐','免费工装','意外保险']},
 
     {demandId:'DE-20260720-001',empType:'灵工',title:'移动渠道销售员',payNum:'190',payUnit:'元/日',salary:'130-230 元/日',
@@ -12044,8 +12071,7 @@
      tags:[{t:'日结',c:'tag-money'},{t:'近期发布',c:'tag-blue'},],
      award:'',
      duties:['负责收银结算与商品上架','门店日常卫生保洁与理货','协助会员注册与促销活动执行'],
-     reqs:['高中及以上学历','1 年以上零售/营业厅经验','熟练使用收银系统'],
-     workTime:[{d:'周一至周日',t:'排班制 8 小时'}],
+     workTime:[{d:'期望兼职时长',t:'长期稳定'},{d:'每周出勤天数',t:'每周5天以上'},{d:'具体出勤时段',t:'全天可接受'}],
      benefits:['日结工资','包餐','免费工装','意外保险']},
 
     {demandId:'DE-20260705-001',empType:'灵工',title:'移动增值业务推广员',payNum:'260',payUnit:'元/日',salary:'180-300 元/日',
@@ -12055,8 +12081,7 @@
      tags:[{t:'日结',c:'tag-money'},{t:'奖金奖励',c:'tag-time'},{t:'平台加薪',c:'tag-mkt'},],
      award:'销售达标额外奖金 ¥500/月',
      duties:['向到店客户推广移动产品与会员卡','完成月度推广指标','收集客户反馈并上报'],
-     reqs:['大专及以上学历','沟通表达能力强','接受销售提成考核'],
-     workTime:[{d:'周一至周五',t:'09:00-18:00'}],
+     workTime:[{d:'期望兼职时长',t:'3个月以上'},{d:'每周出勤天数',t:'每周5天以上'},{d:'具体出勤时段',t:'早班 (06:00-12:00)、中班 (12:00-18:00)'}],
      benefits:['销售提成','培训齐全','平台加薪','意外保险']},
 
     {demandId:'DE-20260622-001',empType:'灵工',title:'移动网络优化工程师',payNum:'180',payUnit:'元/日',salary:'120-200 元/日',
@@ -12066,8 +12091,7 @@
      tags:[{t:'日结',c:'tag-money'},{t:'限时补贴',c:'tag-time'},],
      award:'夜班每晚额外补贴 ¥50',
      duties:['按面单分拣包裹并装笼','扫描录入包裹信息','搬运与理货，保持场地整洁'],
-     reqs:['年龄 18-45 岁，身体健康','能接受夜班','服从现场调度'],
-     workTime:[{d:'白班',t:'08:00-17:00'},{d:'夜班',t:'20:00-次日05:00'}],
+     workTime:[{d:'期望兼职时长',t:'1个月以上'},{d:'每周出勤天数',t:'每周5天以上'},{d:'具体出勤时段',t:'早班 (06:00-12:00)、夜班 (00:00-06:00)'}],
      benefits:['包吃住','夜班补贴','日结工资','意外保险']},
 
     {demandId:'DE-20260610-001',empType:'灵工',title:'移动装维外勤',payNum:'240',payUnit:'元/日',salary:'160-260 元/日',
@@ -12077,25 +12101,23 @@
      tags:[{t:'日结',c:'tag-money'},{t:'平台加薪',c:'tag-mkt'},],
      award:'',
      duties:['负责片区快件揽收与派送','使用巴枪完成签收扫描','处理客户异常件反馈'],
-     reqs:['高中及以上学历','1 年以上配送经验，熟悉本地路况','持有电动车驾驶能力'],
-     workTime:[{d:'周一至周六',t:'08:30-18:30'}],
+     workTime:[{d:'期望兼职时长',t:'1个月以上'},{d:'每周出勤天数',t:'每周5天以上'},{d:'具体出勤时段',t:'中班 (12:00-18:00)、晚班 (18:00-24:00)'}],
      benefits:['电动车补贴','就近分配','日结工资','意外保险']},
 
     {demandId:'DE-20260508-001',empType:'灵工',title:'移动外勤骑手',payNum:'280',payUnit:'元/日',salary:'180-320 元/日',
-     ent:'中国移动北京公司',store:'移动朝阳望京营业厅',loc:'北京市朝阳区',addr:'北京市朝阳区望移动路 6 号',
+     ent:'中国移动北京公司',store:'移动朝阳望京营业厅',loc:'北京市朝阳区',addr:'北京市朝阳区望京街 6 号',locations:[{name:'移动朝阳望京营业厅',addr:'北京市朝阳区望京街 6 号',dist:5.4},{name:'移动朝阳建国路营业厅',addr:'北京市朝阳区建国路 88 号',dist:1.2}],
      head:40,edu:'不限',exp:'经验不限',age:'18-45岁',cat:'物流',dist:5.4,applied:88,pub:'2周前',
      logo:'#ffc300',logoTxt:'美',urgent:true,hot:true,cert:false,
      tags:[{t:'日结',c:'tag-money'},{t:'奖金奖励',c:'tag-time'},],
      award:'夏季冲单奖，月单量达标奖 ¥800',
      duties:['接单后按时取送餐品','维护客户评价与准时率','异常订单及时上报店长'],
-     reqs:['年龄 18-45 岁','自备电动车优先','熟悉配送范围道路'],
-     workTime:[{d:'午高峰',t:'10:30-14:00'},{d:'晚高峰',t:'16:30-21:00'}],
+     workTime:[{d:'期望兼职时长',t:'长期稳定'},{d:'每周出勤天数',t:'每周5天以上'},{d:'具体出勤时段',t:'中班 (12:00-18:00)、晚班 (18:00-24:00)'}],
      benefits:['冲单奖','灵活排班','日结工资','意外保险']},
-    {demandId:'DE-20260910-001',empType:'灵工',title:'永辉超市理货员',payNum:'180',payUnit:'元/日',salary:'150-200 元/日',ent:'永辉超市',store:'永辉朝阳万源路店',loc:'北京市丰台区',addr:'北京市丰台区万源路 1 号',head:20,edu:'不限',exp:'经验不限',age:'18-50岁',cat:'零售',dist:2.1,applied:12,pub:'今天',logo:'#f5a623',logoTxt:'永',urgent:false,hot:false,cert:false,tags:[{t:'日结',c:'tag-money'},{t:'近期发布',c:'tag-blue'},],award:'',duties:['货架商品陈列与补货','生鲜区理货与保鲜','协助顾客找货与收银'],reqs:['年龄 18-50 岁','身体健康，能站立作业','有零售经验优先'],workTime:[{d:'周一至周日',t:'排班制 8 小时'}],benefits:['日结工资','就近分配','意外保险']},
-    {demandId:'DE-20260901-002',empType:'灵工',title:'顺丰快递分拣员',payNum:'200',payUnit:'元/日',salary:'170-230 元/日',ent:'顺丰速运',store:'顺丰通州马驹桥分拣中心',loc:'北京市通州区',addr:'北京市通州区马驹桥物流园',head:30,edu:'不限',exp:'经验不限',age:'18-50岁',cat:'物流',dist:15,applied:20,pub:'今天',logo:'#000000',logoTxt:'顺',urgent:true,hot:false,cert:false,tags:[{t:'日结',c:'tag-money'},{t:'包吃住',c:''},],award:'夜班补贴 ¥40/晚',duties:['包裹分拣与装笼','扫描录入','场地保洁'],reqs:['年龄 18-50 岁','能适应夜班','服从调度'],workTime:[{d:'白班',t:'08:00-17:00'},{d:'夜班',t:'20:00-05:00'}],benefits:['包吃住','夜班补贴','日结工资']},
-    {demandId:'DE-20260901-003',empType:'灵工',title:'星巴克咖啡师',payNum:'210',payUnit:'元/日',salary:'180-240 元/日',ent:'星巴克',store:'星巴克徐汇正大店',loc:'上海市徐汇区',addr:'上海市徐汇区正大广场 1 层',head:10,edu:'高中',exp:'经验不限',age:'18-35岁',cat:'餐饮',dist:3,applied:8,pub:'1天前',logo:'#00704A',logoTxt:'星',urgent:false,hot:false,cert:false,tags:[{t:'弹性排班',c:'tag-blue'},],award:'',duties:['咖啡制作与出品','门店清洁与陈列','顾客服务'],reqs:['高中及以上','沟通良好','有餐饮经验优先'],workTime:[{d:'周一至周日',t:'排班制'}],benefits:['员工饮品','意外保险']},
-    {demandId:'DE-20260901-004',empType:'灵工',title:'链家房产顾问',payNum:'240',payUnit:'元/日',salary:'200-300 元/日',ent:'链家地产',store:'链家西城金融街店',loc:'北京市西城区',addr:'北京市西城区金融大街',head:15,edu:'大专',exp:'经验不限',age:'20-40岁',cat:'销售',dist:4,applied:15,pub:'2天前',logo:'#00b38a',logoTxt:'链',urgent:false,hot:false,cert:false,tags:[{t:'高薪',c:'tag-money'},{t:'提成',c:'tag-time'}],award:'开单提成上不封顶',duties:['房源客源开发与维护','带看与签约协助','客户跟进'],reqs:['大专及以上','沟通能力强','抗压能力强'],workTime:[{d:'周一至周日',t:'09:30-18:30'}],benefits:['高提成','培训齐全']},
-    {demandId:'DE-20260901-005',empType:'灵工',title:'美团团购地推',payNum:'220',payUnit:'元/日',salary:'180-260 元/日',ent:'美团',store:'美团天河岗顶推广点',loc:'广州市天河区',addr:'广州市天河区岗顶',head:25,edu:'不限',exp:'经验不限',age:'18-40岁',cat:'销售',dist:6,applied:18,pub:'3天前',logo:'#ffc300',logoTxt:'美',urgent:true,hot:false,cert:false,tags:[{t:'周结',c:'tag-money'},{t:'奖金奖励',c:'tag-time'}],award:'冲单奖 ¥300/周',duties:['团购套餐推广','商户拓展','地推拉新'],reqs:['年龄 18-40 岁','口齿伶俐','能跑外勤'],workTime:[{d:'周一至周日',t:'10:00-19:00'}],benefits:['冲单奖','意外保险']}
+    {demandId:'DE-20260910-001',empType:'灵工',title:'永辉超市理货员',payNum:'180',payUnit:'元/日',salary:'150-200 元/日',ent:'永辉超市',store:'永辉朝阳万源路店',loc:'北京市丰台区',addr:'北京市丰台区万源路 1 号',head:20,edu:'不限',exp:'经验不限',age:'18-50岁',cat:'零售',dist:2.1,applied:12,pub:'今天',logo:'#f5a623',logoTxt:'永',urgent:false,hot:false,cert:false,tags:[{t:'日结',c:'tag-money'},{t:'近期发布',c:'tag-blue'},],award:'',duties:['货架商品陈列与补货','生鲜区理货与保鲜','协助顾客找货与收银'],workTime:[{d:'期望兼职时长',t:'长期稳定'},{d:'每周出勤天数',t:'每周5天以上'},{d:'具体出勤时段',t:'全天可接受'}],benefits:['日结工资','就近分配','意外保险']},
+    {demandId:'DE-20260901-002',empType:'灵工',title:'顺丰快递分拣员',payNum:'200',payUnit:'元/日',salary:'170-230 元/日',ent:'顺丰速运',store:'顺丰通州马驹桥分拣中心',loc:'北京市通州区',addr:'北京市通州区马驹桥物流园',head:30,edu:'不限',exp:'经验不限',age:'18-50岁',cat:'物流',dist:15,applied:20,pub:'今天',logo:'#000000',logoTxt:'顺',urgent:true,hot:false,cert:false,tags:[{t:'日结',c:'tag-money'},{t:'包吃住',c:''},],award:'夜班补贴 ¥40/晚',duties:['包裹分拣与装笼','扫描录入','场地保洁'],workTime:[{d:'期望兼职时长',t:'1个月以上'},{d:'每周出勤天数',t:'每周5天以上'},{d:'具体出勤时段',t:'早班 (06:00-12:00)、夜班 (00:00-06:00)'}],benefits:['包吃住','夜班补贴','日结工资']},
+    {demandId:'DE-20260901-003',empType:'灵工',title:'星巴克咖啡师',payNum:'210',payUnit:'元/日',salary:'180-240 元/日',ent:'星巴克',store:'星巴克徐汇正大店',loc:'上海市徐汇区',addr:'上海市徐汇区正大广场 1 层',head:10,edu:'高中',exp:'经验不限',age:'18-35岁',cat:'餐饮',dist:3,applied:8,pub:'1天前',logo:'#00704A',logoTxt:'星',urgent:false,hot:false,cert:false,tags:[{t:'弹性排班',c:'tag-blue'},],award:'',duties:['咖啡制作与出品','门店清洁与陈列','顾客服务'],workTime:[{d:'期望兼职时长',t:'长期稳定'},{d:'每周出勤天数',t:'每周5天以上'},{d:'具体出勤时段',t:'全天可接受'}],benefits:['员工饮品','意外保险']},
+    {demandId:'DE-20260901-004',empType:'灵工',title:'链家房产顾问',payNum:'240',payUnit:'元/日',salary:'200-300 元/日',ent:'链家地产',store:'链家西城金融街店',loc:'北京市西城区',addr:'北京市西城区金融大街',head:15,edu:'大专',exp:'经验不限',age:'20-40岁',cat:'销售',dist:4,applied:15,pub:'2天前',logo:'#00b38a',logoTxt:'链',urgent:false,hot:false,cert:false,tags:[{t:'高薪',c:'tag-money'},{t:'提成',c:'tag-time'}],award:'开单提成上不封顶',duties:['房源客源开发与维护','带看与签约协助','客户跟进'],workTime:[{d:'期望兼职时长',t:'3个月以上'},{d:'每周出勤天数',t:'每周5天以上'},{d:'具体出勤时段',t:'早班 (06:00-12:00)、中班 (12:00-18:00)'}],benefits:['高提成','培训齐全']},
+    {demandId:'DE-20260901-005',empType:'灵工',title:'美团团购地推',payNum:'220',payUnit:'元/日',salary:'180-260 元/日',ent:'美团',store:'美团天河岗顶推广点',loc:'广州市天河区',addr:'广州市天河区岗顶',head:25,edu:'不限',exp:'经验不限',age:'18-40岁',cat:'销售',dist:6,applied:18,pub:'3天前',logo:'#ffc300',logoTxt:'美',urgent:true,hot:false,cert:false,tags:[{t:'周结',c:'tag-money'},{t:'奖金奖励',c:'tag-time'}],award:'冲单奖 ¥300/周',duties:['团购套餐推广','商户拓展','地推拉新'],workTime:[{d:'期望兼职时长',t:'1个月以上'},{d:'每周出勤天数',t:'每周5天以上'},{d:'具体出勤时段',t:'早班 (06:00-12:00)、中班 (12:00-18:00)'}],benefits:['冲单奖','意外保险']}
   ];
   // 已发布到灵工小程序的需求集合：由 recJobs（小程序展示源）派生，保证「灵工小程序数据 == 已发布岗位数据」完全匹配
   recJobs.forEach(j=>publishedDemandIds.add(j.demandId));
@@ -15712,6 +15734,16 @@
   function jobApplied(j){ return (j._baseApplied||0)+myApplies.filter(function(a){return a.demandId===j.demandId;}).length; }
   // 热门 = 规则B：报名≥10 且 报名/招聘≥50%
   function jobHot(j){ const ap=jobApplied(j); const h=j.head||1; return ap>=10 && ap/h>=0.5; }
+  // 出勤时段枚举解析：对象/键名/全称 → 运营后台枚举全称（早班 (06:00-12:00) 等）
+  const _ATT_PERIOD_ENUM=[
+    {key:'morning',label:'早班 (06:00-12:00)'},{key:'noon',label:'中班 (12:00-18:00)'},{key:'evening',label:'晚班 (18:00-24:00)'},{key:'night',label:'夜班 (00:00-06:00)'},{key:'allday',label:'全天可接受'},
+    {key:'早班',label:'早班 (06:00-12:00)'},{key:'中班',label:'中班 (12:00-18:00)'},{key:'晚班',label:'晚班 (18:00-24:00)'},{key:'夜班',label:'夜班 (00:00-06:00)'},{key:'全天',label:'全天可接受'}
+  ];
+  function attPeriodLabel(p){
+    if(p&&typeof p==='object'){ return p.name?(p.name+(p.start?(' '+p.start+'-'+p.end):'')):''; }
+    const s=String(p||'').trim(); if(!s) return '';
+    const m=_ATT_PERIOD_ENUM.find(x=>x.key===s||x.label===s); return m?m.label:s;
+  }
   // 六类自动标签（薪资类型/灵活排班/急招/期望兼职时长/福利/发布时间），去重取前5
   function jobTags(d){
     const tags=[]; const push=function(t,c){ if(t&&!tags.some(function(x){return x.t===t;})) tags.push({t:t,c:c||'tag-blue'}); };
@@ -15755,8 +15787,8 @@
       if((!j.entImages||!j.entImages.length)&&d&&d.entImages&&d.entImages.length){ j.entImages=d.entImages.slice(); }
       if(!j.pubAt&&d&&d.publishAt) j.pubAt=d.publishAt;
       if(!j.duties&&d&&d.desc) j.duties=[d.desc];
-      if(!j.reqs&&d){ const rr=[]; if(d.exp) rr.push('经验要求：'+d.exp); if(d.ageMin||d.ageMax) rr.push('年龄要求：'+(d.ageMin||18)+'-'+(d.ageMax||70)+'岁'); if(d.gender) rr.push('性别要求：'+d.gender); j.reqs=rr.length?rr:['不限']; }
-      if(!j.workTime&&d&&d.attendanceObj){ const ao=d.attendanceObj,wt=[]; if(ao.expectDuration) wt.push({d:'期望兼职时长',t:ao.expectDuration}); if(ao.weeklyDays) wt.push({d:'每周出勤',t:ao.weeklyDays}); if(ao.periods&&ao.periods.length) wt.push({d:'具体时段',t:ao.periods.map(function(p){return p.name+(p.start?(' '+p.start+'-'+p.end):'');}).join('、')}); j.workTime=wt.length?wt:[{d:'排班',t:'可协商'}]; }
+      if(!j.reqs){ const src=d; const rr=[]; if(src&&src.exp) rr.push({k:'经验', v:src.exp}); if(src&&(src.ageMin||src.ageMax)) rr.push({k:'年龄', v:(src.ageMin||18)+'-'+(src.ageMax||45)+'岁'}); if(src&&src.gender) rr.push({k:'性别', v:src.gender}); if(src&&src.skills&&src.skills.length) rr.push({k:'技能', v:src.skills}); j.reqs=rr.length?rr:[{k:'', v:'不限'}]; }
+      if(!j.workTime&&d&&d.attendanceObj){ const ao=d.attendanceObj,wt=[]; if(ao.expectDuration) wt.push({d:'期望兼职时长',t:ao.expectDuration}); if(ao.weeklyDays) wt.push({d:'每周出勤天数',t:ao.weeklyDays}); if(ao.periods&&ao.periods.length) wt.push({d:'具体出勤时段',t:ao.periods.map(attPeriodLabel).filter(Boolean).join('、')}); j.workTime=wt.length?wt:[{d:'具体出勤时段',t:'全天可接受'}]; }
       if(!j.benefits&&d) j.benefits=(typeof d.benefits==='string'&&d.benefits)?d.benefits.split(/[、,，]/):(Array.isArray(d.benefits)?d.benefits:[]);
       if(!j.tags) j.tags=jobTags(d);
       if(!j.urgent&&d) j.urgent=(d.urgency==='紧急'||d.urgency==='特急');
@@ -15771,8 +15803,8 @@
     if(!d) return null;
     const ao=d.attendanceObj||{};
     const salaryText=jobSalaryText((d.salaryObj&&d.salaryObj.type),d.salaryMin,d.salaryMax);
-    const reqs=[]; if(d.exp) reqs.push('经验要求：'+d.exp); if(d.ageMin||d.ageMax) reqs.push('年龄要求：'+(d.ageMin||18)+'-'+(d.ageMax||70)+'岁'); if(d.gender) reqs.push('性别要求：'+d.gender); if(!reqs.length) reqs.push('不限');
-    const workTime=[]; if(ao.expectDuration) workTime.push({d:'期望兼职时长',t:ao.expectDuration}); if(ao.weeklyDays) workTime.push({d:'每周出勤',t:ao.weeklyDays}); if(ao.periods&&ao.periods.length) workTime.push({d:'具体时段',t:ao.periods.map(function(p){return p.name+(p.start?(' '+p.start+'-'+p.end):'');}).join('、')}); if(!workTime.length) workTime.push({d:'排班',t:'可协商'});
+    const reqs=[]; if(d.exp) reqs.push({k:'经验', v:d.exp}); if(d.ageMin||d.ageMax) reqs.push({k:'年龄', v:(d.ageMin||18)+'-'+(d.ageMax||45)+'岁'}); if(d.gender) reqs.push({k:'性别', v:d.gender}); if(d.skills&&d.skills.length) reqs.push({k:'技能', v:d.skills}); if(!reqs.length) reqs.push({k:'', v:'不限'});
+    const workTime=[]; if(ao.expectDuration) workTime.push({d:'期望兼职时长',t:ao.expectDuration}); if(ao.weeklyDays) workTime.push({d:'每周出勤天数',t:ao.weeklyDays}); if(ao.periods&&ao.periods.length) workTime.push({d:'具体出勤时段',t:ao.periods.map(attPeriodLabel).filter(Boolean).join('、')}); if(!workTime.length) workTime.push({d:'具体出勤时段',t:'全天可接受'});
     const benefits=(typeof d.benefits==='string'&&d.benefits)?d.benefits.split(/[、,，]/).filter(Boolean):(Array.isArray(d.benefits)?d.benefits:[]);
     const entObj=enterprises.find(function(e){return e.name===d.ent;});
     const entLogo=(entObj&&entObj.logo)||'';
@@ -18019,7 +18051,7 @@
     const expHtml = exps.length ? exps.map(function(e,i){return posterExpRow(i,e);}).join('') : posterExpRow(0,{});
     const box=document.getElementById('m-poster-apply'); if(!box) return;
     box.innerHTML=
-      '<div class="pa-head"><span class="back" onclick="nav(\'mini\',\'m-rec\')">‹</span><span class="title">岗位报名</span></div>'+
+      '<div class="pa-head"><span class="back" onclick="nav(\'mini\',\'m-rec\')">‹</span><span class="title">岗位报名</span><span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span></div>'+
       '<div class="pa-body">'+
         '<div class="pa-card">'+
           '<div class="pa-ent"><div class="logo">'+(d.ent||'企').slice(0,1)+'</div><div><div class="ent">'+escHtml(d.ent)+'</div><div class="post">'+escHtml(d.name)+'</div></div></div>'+
@@ -18169,7 +18201,7 @@
   function openApplySuccess(src, demandId){
     const box=document.getElementById('m-apply-success'); if(!box) return;
     box.innerHTML=
-      '<div class="as-head"><span class="back" onclick="nav(\'mini\',\'m-rec\')">‹</span><span class="head-title">报名成功</span></div>'+
+      '<div class="as-head"><span class="back" onclick="nav(\'mini\',\'m-rec\')">‹</span><span class="head-title">报名成功</span><span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span></div>'+
       '<div class="as-body">'+
         '<div class="as-icon">✓</div>'+
         '<div class="as-desc">报名提交成功，去【我的报名】看看进度吧</div>'+
@@ -21215,7 +21247,7 @@
   let mwBannerIdx=0;
   function renderWork(){
     const box=document.getElementById('m-work'); if(!box) return;
-    box.innerHTML=`<div class="mhead">工作台</div>
+    box.innerHTML=`<div class="mhead"><span>工作台</span><span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span></div>
       <div class="rec-empty" style="padding-top:120px">
         <div class="ic">🏠</div>
         <div class="t">工作台</div>
@@ -21325,9 +21357,9 @@
     sub.innerHTML=`<button class="${recTab==='recruit'?'on':''}" onclick="recTab='recruit';recFilter.types=['直面','抢班'];renderRec()">岗位招聘</button>
       <button class="${recTab==='grab'?'on':''}" onclick="recTab='grab';recFilter.types=['直面','抢班'];renderRec()">抢班</button>`;
     const sortBox=document.getElementById('m-rec-sort');
-    sortBox.innerHTML=`<div class="mr-chips">${recChipHtml()}</div>`;
     const body=document.getElementById('m-rec-body');
-    if(recTab!=='recruit'){ renderGrab(); return; }
+    if(recTab!=='recruit'){ sortBox.innerHTML=''; renderGrab(); return; }
+    sortBox.innerHTML=`<div class="mr-chips">${recChipHtml()}</div>`;
     const list=recFilteredJobs();
     const kw=(document.getElementById('mr-kw')||{}).value||'';
     body.innerHTML=`
@@ -21358,25 +21390,10 @@
         : `<div class="rec-empty"><div class="ic">🔍</div><div class="t">暂无匹配岗位</div><div class="d">试试更换筛选条件或关键词</div></div>`}
       </div>`;
   }
-  /* ---------- 抢班模式列表 ---------- */
+  /* ---------- 抢班模式列表（占位：功能待补充） ---------- */
   function renderGrab(){
     const body=document.getElementById('m-rec-body');
-    const list=grabFilteredJobs();
-    if(!list.length){ body.innerHTML=`<div class="rec-empty"><div class="ic">🕐</div><div class="t">暂无符合条件的班次</div><div class="d">试试调整筛选条件</div></div>`; return; }
-    body.innerHTML=`<div class="mr-list">`+list.map(function(g){
-      const ms=g.shifts.filter(grabShiftMatch);
-      const gd=jobDistance(g);
-      return `<div class="gb-card">
-        <div class="gb-head"><div class="logo-small" style="background:${g.logo}">${g.logoTxt}</div>
-          <div class="gb-title">${g.title}<span class="gb-tag">兼职岗位</span><span class="gb-income">收入秒结</span></div></div>
-        <div class="gb-meta">${g.price}元/时 · ${g.store}${gd!=null?` · 距您${fmtDist(gd)}`:''}</div>
-        <div class="gb-shift-h">可抢班次</div>
-        ${ms.map(function(s){ const left=s.total-s.taken; return `<div class="gb-shift">
-          <div class="gb-shift-l"><div class="gb-shift-d">${s.date} ${s.wd}</div><div class="gb-shift-t">${s.start}-${s.end} · ${s.price}</div></div>
-          <div class="gb-shift-r"><div class="gb-shift-seat">已抢${s.taken}/余${left}</div><button class="gb-grab" onclick="toast('抢班演示：已提交抢班申请')">立刻抢班</button></div>
-        </div>`; }).join('')}
-      </div>`;
-    }).join('')+`<div class="gb-more" onclick="toast('演示：已加载更多班次')">加载更多</div></div>`;
+    body.innerHTML=`<div class="rec-empty" style="padding-top:80px"><div class="ic">🕐</div><div class="t">抢班</div><div class="d">页面占位，内容待补充</div></div>`;
   }
   /* ---------- 顶部筛选 chips ---------- */
   function recChipHtml(){
@@ -21386,7 +21403,6 @@
     const payCnt=(F.paySel||['不限']).filter(function(x){return x!=='不限';}).length;
     const timeCnt=recTimeCount();
     c.push(`<span class="mr-chip has-opt ${brandCnt?'on':''}" onclick="openBrandPop(this)">品牌${brandCnt?` · ${brandCnt}`:''}</span>`);
-    if(recTab==='grab') c.push(`<span class="mr-chip has-opt ${recTimeActive()?'on':''}" onclick="openTimePop(this)">班次要求${timeCnt?` · ${timeCnt}`:''}</span>`);
     c.push(`<span class="mr-chip ${F.urgent?'on':''}" onclick="recFilter.urgent=!recFilter.urgent;renderRec()">急聘</span>`);
     c.push(`<span class="mr-chip ${F.hot?'on':''}" onclick="recFilter.hot=!recFilter.hot;renderRec()">热招</span>`);
     c.push(`<span class="mr-chip ${F.latest?'on':''}" onclick="recFilter.latest=!recFilter.latest;renderRec()">最新发布</span>`);
@@ -21524,7 +21540,7 @@
     return {lat:c.lat+off, lng:c.lng+off2};
   }
   // 距离计算：跨城或仅选城市 → 返回 null（不显示）
-  function jobDistance(j){ const base=recBaseCoord(); if(!base) return null; if((j.city||'')!==recPlaceCity()) return null; return haversine(base, jobCoord(j)); }
+  function jobDistance(j){ const base=recBaseCoord(); if(!base) return null; if((j.city||'')!==recPlaceCity()) return null; const L=(j.locations&&j.locations[0])||null; if(L) return locDist(L,j); return haversine(base, jobCoord(j)); }
   // 顶部显示名（决策1：优先定位/常用地址名称，选中跨城市显示城市名）
   function updateTopCity(){ const t=document.getElementById('mr-city-txt'); if(t){ const full=recPlaceName(); const disp=full.length>5?full.slice(0,5)+'…':full; t.textContent=disp; t.title=full; } }
   /* —— 想在哪里工作 整页 —— */
@@ -21584,12 +21600,18 @@
   function relocate(){ recLocIndex=(recLocIndex+1)%REC_LOC_DEMOS.length; const d=REC_LOC_DEMOS[recLocIndex]; recLoc={name:d.name,city:d.city,lat:d.lat,lng:d.lng}; if(recPlace.type==='loc') recPlace={type:'loc',ref:recLoc}; updateTopCity(); renderWherePage(); renderRec(); toast('已重新定位：'+d.name); }
   function useLoc(){ recPlace={type:'loc',ref:recLoc}; updateTopCity(); closeWhere(); renderRec(); }
   function useAddr(i){ recPlace={type:'addr',ref:recCommon[i]}; updateTopCity(); closeWhere(); renderRec(); }
-  function addAddr(){ openMapPick(function(poi){ if(recCommon.length>=5){ toast('常用地址最多 5 个'); return; } recCommon.push(poi); renderWherePage(); renderRec(); }); }
-  function editAddr(i){ openMapPick(function(poi){ recCommon[i]=poi; if(recPlace.type==='addr'&&recPlace.ref===recCommon[i-1]) recPlace={type:'addr',ref:recCommon[i]}; renderWherePage(); renderRec(); }); }
+  function refreshAddrViews(){
+    const w=document.getElementById('mrWhere'); if(w && w.classList.contains('on')) renderWherePage();
+    renderRec();
+    const p=document.getElementById('m-profile-view'); if(p) renderMyProfile();
+    const pf=document.getElementById('m-profile'); if(pf && pfStep===3) renderProfileSteps(3);
+  }
+  function addAddr(){ openMapPick(function(poi){ if(recCommon.length>=5){ toast('常用地址最多 5 个'); return; } recCommon.push(poi); refreshAddrViews(); }); }
+  function editAddr(i){ openMapPick(function(poi){ recCommon[i]=poi; if(recPlace.type==='addr'&&recPlace.ref===recCommon[i-1]) recPlace={type:'addr',ref:recCommon[i]}; refreshAddrViews(); }); }
   let mrDelIdx=-1;
   function askDelAddr(i){ mrDelIdx=i; document.getElementById('mrDelAddr').classList.add('on'); }
   function closeDelAddr(){ mrDelIdx=-1; document.getElementById('mrDelAddr').classList.remove('on'); }
-  function doDelAddr(){ if(mrDelIdx<0) return; const a=recCommon[mrDelIdx]; recCommon.splice(mrDelIdx,1); if(recPlace.type==='addr'&&recPlace.ref===a){ recPlace={type:'loc',ref:recLoc}; updateTopCity(); } closeDelAddr(); renderWherePage(); renderRec(); }
+  function doDelAddr(){ if(mrDelIdx<0) return; const a=recCommon[mrDelIdx]; recCommon.splice(mrDelIdx,1); if(recPlace.type==='addr'&&recPlace.ref===a){ recPlace={type:'loc',ref:recLoc}; updateTopCity(); } closeDelAddr(); refreshAddrViews(); }
   function selectCity(c){ if(c==='全国'){ recPlace={type:'loc',ref:recLoc}; } else { recPlace={type:'city',city:c}; } updateTopCity(); closeWhere(); closeCityMore(); renderRec(); }
   // 顶部组合栏：下拉选城市 → 仅作为右侧搜索的范围，不直接生效到左上角
   function pickScopeCity(c){
@@ -21683,11 +21705,16 @@
     const headerEl=document.getElementById('md-header');
     if(headerEl){
       headerEl.innerHTML = `
-        <div class="back" onclick="backFromDetail()">‹</div>
+        <div class="md-topbar">
+          <div class="back" onclick="backFromDetail()">‹</div>
+          <span class="topbar-caps mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
+        </div>
         ${imgs.length? `<div class="md-gal">`+imgs.map(it=>`<img class="md-gal-img" src="${it.src}"/>`).join('')+`</div>` : `<div class="md-gal"><div class="img-txt">岗位实拍图占位区<br/><span style="font-size:11px;opacity:.7">建议尺寸 960×540（16:9 横版），支持轮播</span></div></div>`}
         <div class="img-idx">${imgs.length?('1 / '+imgs.length):'0 / 0'}</div>`;
     }
     document.getElementById('md-body').innerHTML=`
+      <div class="md-top">
+      <div class="md-card">
       <div class="title-row">
         <div class="title">${j.title}${hot?'<span class="hot-tag">热招</span>':''}</div>
         <div class="pay">${st.num}<span>${st.unit}</span></div>
@@ -21698,22 +21725,25 @@
         <div class="ent-info"><span class="ent-name">${j.ent}</span><span class="ent-city">${j.city}</span>${(jobDistance(j)!=null)?`<span class="ent-dist">${fmtDist(jobDistance(j))}</span>`:''}</div>
       </div>
       <div class="sub">招 ${j.head} 人 · 已报名 ${ap} 人 · ${j.pub}发布</div>
+      </div>
+      ${detailLocCardHTML(j)}
       <div class="md-banner" style="background:#f6f8f7;color:#1f2937;gap:8px;justify-content:flex-start"><span style="background:var(--primary);color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:4px;white-space:nowrap">保险</span><span>享受出勤保险，保障服务期间人身安全</span></div>
+      </div>
       <div class="md-sec">
-        <div class="md-sec-h"><span>岗位职责</span></div>
+        <div class="md-sec-h"><span class="sec-ic">📋</span><span>岗位职责</span></div>
         <ul class="md-duty">${j.duties.map(x=>`<li>${x}</li>`).join('')}</ul>
       </div>
       <div class="md-sec">
-        <div class="md-sec-h"><span>出勤时间</span></div>
-        <div class="md-time">${j.workTime.map(w=>`<div class="tm"><div class="d">${w.d}</div><div class="t">${w.t}</div></div>`).join('')}</div>
+        <div class="md-sec-h"><span class="sec-ic">🕒</span><span>出勤要求</span></div>
+        <div class="md-reqs">${j.workTime.map(w=>{const _ic=attendIcon(w.d); const _wide=/时段/.test(w.d||''); const _t=(w.t||'—'); const _v=_wide?`<div class="req-v">${_t}</div>`:_t.split('、').map(l=>`<div class="at-line">${l}</div>`).join(''); return `<div class="req-card${_wide?' req-wide':''}"><span class="req-ic">${_ic}</span><span class="req-body"><div class="req-k">${w.d}</div>${_v}</span></div>`;}).join('')}</div>
       </div>
       <div class="md-sec">
-        <div class="md-sec-h"><span>福利待遇</span></div>
-        <div class="md-benefits">${j.benefits.map(b=>`<span>${b}</span>`).join('')}</div>
+        <div class="md-sec-h"><span class="sec-ic">🎁</span><span>福利待遇</span></div>
+        <div class="md-benefits">${j.benefits.map(b=>`<div class="ben-cell"><span class="ben-ic">${benefitIcon(b)}</span><span class="ben-name">${b}</span></div>`).join('')}</div>
       </div>
       <div class="md-sec">
-        <div class="md-sec-h"><span>岗位要求</span></div>
-        <ul class="md-req-list">${j.reqs.map(x=>`<li>${x}</li>`).join('')}</ul>
+        <div class="md-sec-h"><span class="sec-ic">📌</span><span>岗位要求</span></div>
+        <div class="md-reqs req-grid3">${j.reqs.map(x=>{const _o=(x&&typeof x==='object'&&'k'in x); const _k=_o?x.k:''; const _v=_o?x.v:x; const _ic=reqIcon(_k||_v); const _vv=Array.isArray(_v)?('<span class="req-chips">'+_v.map(s=>'<i>'+s+'</i>').join('')+'</span>'):_v; const _inner=_k?`<div class="req-k">${_k}</div><div class="req-v">${_vv}</div>`:`<div class="req-v">${_vv}</div>`; return `<div class="req-card${_k==='技能'?' req-wide':''}"><span class="req-ic">${_ic}</span><span class="req-body">${_inner}</span></div>`;}).join('')}</div>
       </div>
       `;
     // 底部按钮态
@@ -21721,14 +21751,106 @@
     ab.textContent = applied?'已报名':'立即报名';
     ab.disabled = applied;
   }
+  function locDist(L, j){
+    const base=recBaseCoord();
+    if(!base) return null;
+    if((j.city||'')!==recPlaceCity()) return null;
+    const city=L.city||j.city||'北京';
+    const c=CITY_COORD[city]||CITY_COORD['北京'];
+    const s=String(L.name||'');
+    let h=0; for(let i=0;i<s.length;i++){h=(h*131+s.charCodeAt(i))%99991;}
+    const off=(h/99991)*0.12-0.06; const off2=(((h*7)%99991)/99991)*0.12-0.06;
+    return haversine(base,{lat:c.lat+off,lng:c.lng+off2});
+  }
   /* 工作地点展开 / 收起 */
   function toggleMoreLocs(el){
-    const box=el.parentElement.nextElementSibling;
+    const card=el.closest('.md-addr');
+    const box=card?card.nextElementSibling:null;
     if(!box||box.className!=='md-more-locs') return;
     const show=box.style.display==='none';
     box.style.display=show?'block':'none';
     const n=el.getAttribute('data-n');
-    el.textContent=show?'收起工作地点':('+'+(n||'')+' 个工作地点');
+    el.textContent=show?'收起':'+'+n+' 个工作地点';
+  }
+
+  /* 福利名 → 图标映射（纯 emoji，无外部资源；匹配不到回退礼物） */
+  function reqIcon(name){
+    const n=String(name||'');
+    const S=(c,d)=>'<path d="'+d+'" stroke="'+c+'" stroke-width="1.7" fill="none"/>';
+    const C=(c,cx,cy,r)=>'<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" stroke="'+c+'" stroke-width="1.7" fill="none"/>';
+    const W=p=>'<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke-linecap="round" stroke-linejoin="round">'+p+'</svg>';
+    let p='';
+    if(/年龄/.test(n)) p=C('#6366F1',9,8.6,2.3)+C('#6366F1',15,8.6,2.3)+S('#6366F1','M5 20.5 C5 15.7 7 13.6 9 13.6 C11 13.6 12 15.2 12 15.2 C12 15.2 13 13.6 15 13.6 C17 13.6 19 15.7 19 20.5');
+    else if(/学历|毕业/.test(n)) p=S('#F59E0B','M12 4.5 L21 8.5 L12 12.5 L3 8.5 Z')+S('#F59E0B','M6.5 10.5 V14.8 C6.5 16.4 9 17.8 12 17.8 C15 17.8 17.5 16.4 17.5 14.8 V10.5')+S('#F59E0B','M21 8.5 V13.2');
+    else if(/身体|健康/.test(n)) p=C('#EF4444',12,12.8,7)+S('#EF4444','M12 7.4 C10.8 9 9.2 9.8 9.2 12.2 C9.2 14 10.4 15.4 12 16.6 C13.6 15.4 14.8 14 14.8 12.2 C14.8 9.8 13.2 9 12 7.4 Z');
+    else if(/经验/.test(n)) p=S('#F59E0B','M12 4.2 L14.4 9 L19.4 9.6 L15.7 13 L16.7 18 L12 15 L7.3 18 L8.3 13 L4.6 9.6 L9.6 9 Z');
+    else if(/优先/.test(n)) p=S('#10B981','M5 13 L10 18 L19.5 6.5')+S('#10B981','M3 13 V9.2 C3 8.3 3.8 7.6 4.7 7.7 L10 8.4');
+    else if(/性别/.test(n)) p=C('#EC4899',9,8,2.3)+C('#3B82F6',15,16,2.3)+S('#EC4899','M9 10 C9 13 7.5 14 6 14.5 C4.5 15 3.5 13.8 3.5 12.5 C3.5 11 5 10 6.5 10')+S('#3B82F6','M15 14 C15 11 16.5 10 18 9.5 C19.5 9 20.5 10.2 20.5 11.5 C20.5 13 19 14 17.5 14');
+    else if(/证书|资格|证/.test(n)) p=S('#A16207','M6 3.5 H15 L19 7.5 V20.5 H6 Z M15 3.5 V7.5 H19')+S('#A16207','M9 12 H15 M9 15 H15');
+    else if(/语言|普通话|沟通|表达|口齿|能力/.test(n)) p=C('#14B8A6',12,12,7)+S('#14B8A6','M9 10 C9 10 8 11 8 12 C8 13 9 14 9 14 M15 10 C15 10 16 11 16 12 C16 13 15 14 15 14 M10 9 C10 9 10.5 12 10.5 12 M14 9 C14 9 13.5 12 13.5 12');
+    else if(/技能|熟练|操作/.test(n)) p=C('#64748B',12,12,7.2)+S('#64748B','M12 8 V12 L15 14')+S('#64748B','M12 4.8 V3 M12 21 V19.2 M19.2 12 H21 M3 12 H4.8 M17.3 6.7 L18.5 5.5 M5.5 18.5 L6.7 17.3');
+    else if(/犯罪|记录/.test(n)) p=S('#3B82F6','M12 3.5 L19 6 V11 C19 15.5 16 18.8 12 20.5 C8 18.8 5 15.5 5 11 V6 Z')+S('#3B82F6','M9 11.8 L11.2 14 L15.3 9.8');
+    else if(/排班|夜班|调度|出勤/.test(n)) p=S('#3B82F6','M5 5.5 H19 V20 H5 Z M5 9.5 H19 M8.5 3.5 V7 M15.5 3.5 V7')+S('#10B981','M9 14.5 L11 16.5 L15 12.5');
+    else if(/不限|无/.test(n)) p=S('#10B981','M5 12.5 L10 17.5 L19.5 7');
+    else p=S('#8B7BFF','M8 4 H16 C17.1 4 18 4.9 18 6 V20 L12 17 L6 20 V6 C6 4.9 6.9 4 8 4 Z M9 8 H15 M9 11 H15');
+    return W(p);
+  }
+  function attendIcon(name){
+    const n=String(name||'');
+    const S=(c,d)=>'<path d="'+d+'" stroke="'+c+'" stroke-width="1.7" fill="none"/>';
+    const C=(c,cx,cy,r)=>'<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" stroke="'+c+'" stroke-width="1.7" fill="none"/>';
+    const W=p=>'<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke-linecap="round" stroke-linejoin="round">'+p+'</svg>';
+    let p='';
+    if(/期望|时长|周期/.test(n)) p=C('#F59E0B',12,12,7)+S('#F59E0B','M12 7 V12 L15 14');
+    else if(/时段|班次|班/.test(n)) p=C('#10B981',12,12,7)+S('#10B981','M12 12 V7 M12 12 L15 14');
+    else if(/每周|天数|出勤/.test(n)) p=S('#3B82F6','M5 5.5 H19 V20 H5 Z M5 9.5 H19 M8.5 3.5 V7 M15.5 3.5 V7');
+    else p=S('#8B7BFF','M12 7 V12 L15 14');
+    return W(p);
+  }
+  function benefitIcon(name){
+    const n=String(name||'');
+    const S=(c,d)=>'<path d="'+d+'" stroke="'+c+'" stroke-width="1.7" fill="none"/>';
+    const C=(c,cx,cy,r)=>'<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" stroke="'+c+'" stroke-width="1.7" fill="none"/>';
+    const W=p=>'<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke-linecap="round" stroke-linejoin="round">'+p+'</svg>';
+    let p='';
+    if(/日结|时结|周结|月结|结算|工资/.test(n)) p=C('#F59E0B',12,12,8.2)+S('#F59E0B','M8.8 8.2 L12 11.6 M15.2 8.2 L12 11.6 M12 11.6 V16.4 M9.8 13.4 H14.2 M9.8 15.6 H14.2');
+    else if(/工装|衣服|制服/.test(n)) p=S('#10B981','M8 4 L5 6.5 L6.6 9.2 L8.2 8.2 L8.2 20 L15.8 20 L15.8 8.2 L17.4 9.2 L19 6.5 L16 4 C15.1 5.2 13.6 5.9 12 5.9 C10.4 5.9 8.9 5.2 8 4 Z');
+    else if(/餐|吃|食|饭/.test(n)) p=S('#EF4444','M4 12.5 H20 C20 16.6 16.4 19.5 12 19.5 C7.6 19.5 4 16.6 4 12.5 Z')+S('#F59E0B','M9.3 9 C9.3 7.8 10.3 7.8 10.3 6.4 M13.7 9 C13.7 7.8 14.7 7.8 14.7 6.4');
+    else if(/保险|保障/.test(n)) p=S('#3B82F6','M12 3.5 L19 6 V11 C19 15.5 16 18.8 12 20.5 C8 18.8 5 15.5 5 11 V6 Z')+S('#10B981','M9 11.8 L11.2 14 L15.3 9.8');
+    else if(/就近|分配|地点|位置/.test(n)) p=S('#EF4444','M12 20.5 C12 20.5 6 14.8 6 10.2 C6 6.9 8.7 4.2 12 4.2 C15.3 4.2 18 6.9 18 10.2 C18 14.8 12 20.5 12 20.5 Z')+C('#EF4444',12,10.2,2.4);
+    else if(/培训|教/.test(n)) p=S('#6366F1','M12 4.5 L21 8.5 L12 12.5 L3 8.5 Z')+S('#6366F1','M6.5 10.5 V14.8 C6.5 16.4 9 17.8 12 17.8 C15 17.8 17.5 16.4 17.5 14.8 V10.5')+S('#6366F1','M21 8.5 V13.2');
+    else if(/提成|奖|加薪|绩效/.test(n)) p=S('#F59E0B','M7 4.5 H17 V10 C17 13 14.8 15 12 15 C9.2 15 7 13 7 10 Z')+S('#F59E0B','M7 6 H4.3 C4.3 9 5.4 10.6 7.2 10.8 M17 6 H19.7 C19.7 9 18.6 10.6 16.8 10.8')+S('#F59E0B','M12 15 V17.8 M8.5 20.3 H15.5');
+    else if(/补贴|红包/.test(n)) p=S('#EF4444','M5 5.5 H19 V19.5 H5 Z M5 6.8 L12 12.2 L19 6.8');
+    else if(/住宿|宿舍/.test(n)) p=S('#14B8A6','M4.5 11 L12 4.5 L19.5 11 M6.5 9.6 V19.5 H17.5 V9.6 M10.3 19.5 V14.6 H13.7 V19.5');
+    else if(/电动车|车补|骑车/.test(n)) p=C('#64748B',6.5,17.3,1.9)+C('#64748B',16.8,17.3,1.9)+S('#F59E0B','M8.4 17.3 H15.2 M16.8 17.3 L14.8 7.5 M12.6 7.5 H17');
+    else if(/饮|咖啡|水/.test(n)) p=S('#A16207','M5.5 9.5 H16.5 V14.8 C16.5 17.6 14.3 19.5 11 19.5 C7.7 19.5 5.5 17.6 5.5 14.8 Z')+S('#A16207','M16.5 11 H18.3 C19.4 11 19.9 12 19.5 13 C19.1 13.9 17.9 14.3 16.5 14.1')+S('#A16207','M9 6.8 C9 5.8 10 5.8 10 4.6 M13 6.8 C13 5.8 14 5.8 14 4.6');
+    else if(/排班/.test(n)) p=S('#3B82F6','M4.5 6.5 H19.5 V19.5 H4.5 Z M8.5 4.5 V7.5 M15.5 4.5 V7.5 M4.5 10.2 H19.5')+S('#10B981','M9.3 14.6 L11.3 16.6 L15 13');
+    else p=S('#EC4899','M5 11.5 H19 V19.5 H5 Z M4 8.5 H20 V11.5 H4 Z M12 8.5 V19.5 M12 8.5 C9 8.5 7.6 6.1 9.5 5 C11.1 4.1 12 6 12 8.5 C12 6 12.9 4.1 14.5 5 C16.4 6.1 15 8.5 12 8.5 Z');
+    return W(p);
+  }
+
+  /* 详情页工作地点卡片：默认展示第一个，多地点可展开（列表置于卡片下方） */
+  function detailLocCardHTML(j){
+    if(!j) return '';
+    let locs = (j.locations && j.locations.length) ? j.locations : null;
+    if(!locs){ locs = [ {name:(j.store||j.ent||''), addr:(j.addr||j.loc||''), city:(j.city||'')} ]; }
+    const refName = recPlaceName();
+    const fmt=function(d){ return (d!=null&&!isNaN(Number(d)))?('距'+refName+' '+Number(d).toFixed(1)+'km'):('距'+refName+' —'); };
+    const norm=locs.map(function(L){ return (typeof L==='string')?{name:(j.ent||j.store||''),addr:L, city:(j.city||'')}:L; });
+    if(!norm.length) return '';
+    const first=norm[0];
+    let moreBtn='', moreList='';
+    if(norm.length>1){
+      moreBtn='<span class="addr-more" data-n="'+(norm.length-1)+'" onclick="toggleMoreLocs(this)">+'+(norm.length-1)+' 个工作地点</span>';
+      moreList='<div class="md-more-locs" style="display:none">'+norm.slice(1).map(function(L){
+            return '<div class="addr-row">📍 '+L.name+'<div class="sub">'+L.addr+' · '+fmt(locDist(L,j))+'</div></div>';
+         }).join('')+'</div>';
+    }
+    return '<div class="md-addr">'
+      + '<div class="r1"><span class="name">'+first.name+'</span>'+moreBtn+'<span class="loc-pin" style="margin-left:auto;">📍</span></div>'
+      + '<div class="addr">'+first.addr+'</div>'
+      + '<div class="dist">'+fmt(locDist(first,j))+'</div>'
+      + '</div>' + moreList;
   }
   /* 立即报名 → 依据是否已有简历走不同分支 */
   function applyJob(){
@@ -22235,6 +22357,7 @@
     }).join('');
   }
   function renderMiniMsg(){
+    if(!document.getElementById('m-msg-list')) return;
     miniMsgPills();
     const list=MINI_MSGS.filter(function(m){return (miniMsgFilter==='全部'||m.type===miniMsgFilter) && (!miniMsgUnreadOnly||m.unread);});
     document.getElementById('m-msg-count').innerHTML='共 '+list.length+' 条消息'
@@ -22483,7 +22606,7 @@
     } else if(pfStep===2){
       if(!miniUser.faceVerified){ toast('请先完成人脸识别'); return; }
     } else if(pfStep===3){
-      if(!miniUser.addr){ toast('请选择常住地址'); return; }
+      if(recCommon.length===0){ toast('请至少添加一个常用地址'); return; }
       miniUser.gender=(document.getElementById('pf-gender').value||'').trim(); miniUser.birth=(document.getElementById('pf-birth').value||'').trim();
     } else if(pfStep===6){
       const l=document.getElementById('pf-like'); if(l) miniUser.like=l.value;
@@ -22518,13 +22641,8 @@
       '</div>';
   }
   function pfStep3(){
-    const v=miniUser.addr||'';
-    const init=miniUser.addr?('{name:\''+(miniUser.addr||'').replace(/'/g,'')+'\',city:\''+(miniUser.addrCity||'')+'\'}'.replace(/\\'/g,'\'')):'null';
     return '<div class="pf-card"><div class="pf-q">个人档案</div>'+
-      '<div class="pf-field"><label>常住地址<span class="req">*</span></label>'+
-      '<div class="mpv-addr-card" onclick="openMapPick(function(p){miniUser.addr=p.name;miniUser.addrCity=p.city;renderProfileSteps(3);},'+init+')">'+
-      '<div class="mac-map">📍</div><div class="mac-txt"><div class="mac-name">'+(v||'请选择常住地址')+'</div><div class="mac-sub">'+(v?'点击可重新选择':'在地图上选择你的常住地点')+'</div></div><div class="mac-arrow">›</div></div>'+
-      '</div>'+
+      '<div class="pf-field"><label>常用地址<span class="req">*</span></label>'+mpvCommonAddrList()+'</div>'+
       '<div class="pf-field"><label>性别</label><input class="pf-input" id="pf-gender" value="'+(miniUser.gender||'')+'" placeholder="男 / 女"/></div>'+
       '<div class="pf-field"><label>出生日期</label><input class="pf-input" id="pf-birth" value="'+(miniUser.birth||'')+'" placeholder="如：1995-08-12"/></div></div>';
   }
@@ -22577,7 +22695,7 @@
     const foot=(s===1?'<button class="rn-btn" onclick="rnNext()">'+(frontDone&&backDone?'下一步':'请先上传身份证')+'</button>':
       (miniUser.faceVerified?'<button class="rn-btn primary" onclick="rnFinish()">完成实名认证</button>':''));
     box.innerHTML='<div class="rn-wrap">'+
-      '<div class="mhead rn-head"><span class="rn-back" onclick="nav(\'mini\',\'m-me\')">‹</span>实名认证</div>'+
+      '<div class="mhead rn-head"><span class="rn-back" onclick="nav(\'mini\',\'m-me\')">‹</span><span class="title">实名认证</span><span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span></div>'+
       '<div class="rn-body">'+body+'</div>'+
       '<div class="rn-foot">'+foot+'</div></div>';
     box.scrollTop=0;
@@ -22609,7 +22727,8 @@
     miniUser.idcard=g('idno')||rnOcr.idno;
     miniUser.gender=g('gender')||rnOcr.gender;
     miniUser.birth=g('birth')||rnOcr.birth;
-    miniUser.addr=g('addr')||rnOcr.addr;
+    const rnAddr=g('addr')||rnOcr.addr;
+    if(rnAddr && !recCommon.some(function(a){ return a.name===rnAddr; })) recCommon.push({name:rnAddr, city:recPlaceCity()});
     miniUser.realname=true;
     if(rnMode==='reCert'){
       rnMode='first';
@@ -22647,15 +22766,14 @@
     const cells=grid.flat().map(function(t){ const act=actOf[t]||("toast('"+t+"（演示占位）')"); return '<div class="me-grid-item" onclick="'+act+'"><div class="me-grid-ico">'+meIco(t)+'</div><div class="me-grid-t">'+t+'</div></div>'; }).join('');
     box.innerHTML=
       '<div class="me-wrap">'+
+      '<div class="me-topbar"><span class="me-topbar-t">我的</span><span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span></div>'+
       '<div class="me-head">'+
         '<div class="me-avatar">'+(u.realname?((u.realnameName||u.name||'张伟').charAt(0)):'我')+'</div>'+
         '<div class="me-info"><div class="me-name">'+(u.realname?((u.realnameName||u.name||'张伟')+' <span class="me-tag ok">已实名</span>'):'未实名')+'</div>'+
-          '<div class="me-sub">'+(u.realname?'当前账号：'+(u.phone||'—'):'<span class="me-realname-link" onclick="nav(\'mini\',\'m-realname\');renderRealname(1)">去完成实名认证 ›</span>')+'</div></div>'+
-        '<div class="mr-capsules"><div class="mr-capsule"><span class="c-dots"><i></i><i></i><i></i></span></div><div class="mr-capsule"><span class="c-circle"></span></div></div>'+
+          '<div class="me-sub">'+(u.realname?'<span class="me-ins-tag '+(miniInsToday?'ok':'')+'" onclick="openInsDetail()">'+(miniInsToday?'当日已投保':'当日未投保')+'</span>':'<span class="me-realname-link" onclick="nav(\'mini\',\'m-realname\');renderRealname(1)">去完成实名认证 ›</span>')+'</div></div>'+
       '</div>'+
       '<div class="me-income"><div class="me-income-t">收入统计（元）</div><div class="me-income-row">'+cell('待结算','7,200')+cell('待领取','320')+cell('已领取','2,683.2')+'</div></div>'+
       '<div class="me-grid">'+cells+'</div>'+
-      '<div class="me-pay"><div class="me-pay-t">支付信息</div><div class="me-pay-row"><span>💰 支付宝</span><span>💳 银行卡</span></div></div>'+
       '<button class="me-logout" onclick="confirmMeLogout()">退出登录</button>'+
       '</div>';
   }
@@ -22663,6 +22781,15 @@
   function openApplyList(){ nav('mini','m-myapply'); }
   function confirmMeLogout(){ openMiniModal('退出登录','<div style="padding:8px 4px">确定要退出当前账号吗？</div>','<button class="btn ghost" onclick="closeMiniModal()">取消</button><button class="btn danger" onclick="doMeLogout()">确定退出</button>'); }
   function doMeLogout(){ closeMiniModal(); authState.mini=false; nav('mini','m-login'); toast('已退出登录'); }
+  /* ===== 当日投保状态（演示：默认未投保；后续接入打卡流程后，上岗打卡成功置为 true 即显示已投保态） ===== */
+  let miniInsToday=false;
+  function openInsDetail(){ nav('mini','m-insdetail'); }
+  function renderInsDetail(){
+    const body=document.getElementById('insd-body'); if(!body) return;
+    body.innerHTML=miniInsToday
+      ? '<div class="mad-card"><span class="insd-tag ok">当日已投保</span><div class="insd-msg ok">今日已自动完成投保，保障当日有效。</div></div>'
+      : '<div class="mad-card"><span class="insd-tag">当日未投保</span><div class="insd-msg">今日尚未完成上岗打卡或未触发自动投保，请先完成上班打卡。</div></div>';
+  }
   /* ===================== C 端「我的偏好」页 ===================== */
   /* 选项来源：代表运营后台维护的岗位库 / 企业库，但仅在灵工小程序内做 mock，不改动后台数据 */
   const PREF_JOB_CATS=['收银员','理货员','促销员','加油员','客服','导购','仓储分拣','配送员'];
@@ -22703,7 +22830,7 @@
     u.extraPrefs=u.extraPrefs||[];
     const extraHtml=u.extraPrefs.length?u.extraPrefs.map(function(p,i){return '<span class="mepref-tag">'+escHtml(p)+' <span class="x" onclick="delMePref('+i+')">✕</span></span>';}).join(''):'<div class="mpv-empty">暂无其他偏好</div>';
     box.innerHTML=
-      '<div class="mhead"><span class="rn-back" onclick="nav(\'mini\',\'m-profile-view\');renderMyProfile()">‹</span>我的偏好</div>'+
+      '<div class="mhead mprf-head"><span class="rn-back" onclick="nav(\'mini\',\'m-profile-view\');renderMyProfile()">‹</span><span class="title">我的偏好</span><span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span></div>'+
       '<div class="mepref-card"><div class="mepref-t">岗位类别（多选）</div><div class="mepref-tags">'+prefTagGroup(PREF_JOB_CATS,u.prefCats,'prefCats',true)+'</div></div>'+
       '<div class="mepref-card"><div class="mepref-t">偏好品牌 / 企业（多选）</div><div class="mepref-tags">'+prefTagGroup(PREF_BRANDS,u.prefBrands,'prefBrands',true)+'</div></div>'+
       '<div class="mepref-card"><div class="mepref-t">班次时间（多选）</div><div class="mepref-tags">'+prefTagGroup(PREF_SHIFTS,u.prefShift,'prefShift',true)+'</div></div>'+
@@ -22733,26 +22860,35 @@
   /* ===================== C 端「我的资料」页（员工档案 + 简历） ===================== */
   function openMyProfile(){ nav('mini','m-profile-view'); }
   function mpvRow(k,v){ return '<div class="mpv-row"><span class="mpv-k">'+k+'</span><span class="mpv-v">'+v+'</span></div>'; }
-  function mpvAddrCard(){
-    const u=miniUser; const v=u.addr||'';
-    return '<div class="mpv-addr-label">常住地址</div>'+
-      '<div class="mpv-addr-card" onclick="editProfileAddr()">'+
-      '<div class="mac-map">📍</div>'+
-      '<div class="mac-txt"><div class="mac-name">'+(v||'请选择常住地址')+'</div>'+
-      '<div class="mac-sub">'+(v?'点击可重新选择':'在地图上选择你的常住地点')+'</div></div>'+
-      '<div class="mac-arrow">›</div></div>';
-  }
-  function editProfileAddr(){
-    openMapPick(function(poi){ miniUser.addr=poi.name; miniUser.addrCity=poi.city; renderMyProfile(); }, miniUser.addr?{name:miniUser.addr,city:(miniUser.addrCity||'')}:null);
+  function mpvCommonAddrList(){
+    let h='';
+    recCommon.forEach(function(a,i){ h+='<div class="wa-item"><span class="wa-pin">📍</span>'+
+      '<div class="wa-txt" onclick="useAddr('+i+')"><div class="wa-name">'+a.name+'</div><div class="wa-sub">'+a.city+'</div></div>'+
+      '<span class="wa-ico" onclick="editAddr('+i+')">✎</span>'+
+      '<span class="wa-ico" onclick="askDelAddr('+i+')">🗑</span></div>'; });
+    if(recCommon.length<5){ h+='<div class="wa-add" onclick="addAddr()">+ 添加常用地址（'+recCommon.length+'/5）</div>'; }
+    else { h+='<div class="wa-add disabled">常用地址已达上限（5/5）</div>'; }
+    return h;
   }
   function isIdcardExpired(s){ if(!s) return false; const t=Date.parse(s+'T00:00:00'); if(isNaN(t)) return false; return t<Date.now(); }
+  function profileCompleteness(){
+    let p=0;
+    const realDone=!!(miniUser.realname && miniUser.faceVerified);
+    if(realDone) p+=50;
+    if(recCommon.length>0) p+=20;
+    const certs=miniUser.certFiles||[];
+    if(certs.some(function(c){ return c.fileName; })) p+=15;
+    if(miniUser.resume) p+=15;
+    return p;
+  }
   function renderMyProfile(){
     const box=document.getElementById('m-profile-view'); if(!box) return;
-    const u=miniUser; const r=u.resume; const hasResume=!!r;
+    const u=miniUser; const r=u.resume; const hasResume=!!r; const pc=profileCompleteness();
     box.innerHTML=
-      '<div class="mhead mpv-head"><span class="rn-back" onclick="nav(\'mini\',\'m-me\')">‹</span>我的资料</div>'+
-      '<div class="mpv-progress"><div class="mpv-prog-lab">完善档案进度</div><div class="mpv-prog-bar"><div class="mpv-prog-in" style="width:70%"></div></div><div class="mpv-prog-pct">70%</div></div>'+
-      '<div class="mpv-card"><div class="mpv-card-t">基本信息</div>'+mpvRow('姓名',u.realnameName||u.name||'—')+mpvRow('手机号（登录账号）',u.phone||'—')+mpvRow('证件号',u.idcard||'—')+mpvAddrCard()+'</div>'+
+      '<div class="mhead mpv-head"><span class="rn-back" onclick="nav(\'mini\',\'m-me\')">‹</span><span class="title">我的资料</span><span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span></div>'+
+      '<div class="mpv-progress"><div class="mpv-prog-lab">完善档案进度</div><div class="mpv-prog-bar"><div class="mpv-prog-in" style="width:'+pc+'%"></div></div><div class="mpv-prog-pct">'+pc+'%</div></div>'+
+      '<div class="mpv-card"><div class="mpv-card-t">基本信息</div>'+mpvRow('姓名',u.realnameName||u.name||'—')+mpvRow('手机号（登录账号）',u.phone||'—')+mpvRow('证件号',u.idcard||'—')+'</div>'+
+      '<div class="mpv-card"><div class="mpv-card-t">常用地址</div>'+mpvCommonAddrList()+'</div>'+
       '<div class="mpv-card"><div class="mpv-card-t">兼职偏好</div>'+((u.like||u.want||u.brand)?(mpvRow('喜欢的兼职',u.like||'—')+mpvRow('想做的兼职',u.want||'—')+mpvRow('偏好品牌/企业',u.brand||'—')):'<div class="mpv-empty">未设置</div>')+'<div class="mpv-res-acts"><span class="mpv-res-link" onclick="openMePrefs()">完善偏好</span></div>'+'</div>'+
       (function(){ const exp=u.idcardExp||''; const expired=exp&&isIdcardExpired(exp); const idStatus=expired?'<span style="color:#ff4d4f">已认证（已过期）</span>':'已认证'; const expRow=exp?mpvRow('有效期至','<span style="color:'+(expired?'#ff4d4f':'#8c8c8c')+'">'+exp+'</span>'):''; const recBtn='<div class="mpv-res-acts"><span class="mpv-res-link" onclick="startRecertify()">'+(expired?'立即更新':'重新认证')+'</span></div>'; return u.realname?('<div class="mpv-card"><div class="mpv-card-t">我的证件</div>'+mpvRow('身份证',idStatus)+expRow+recBtn+'</div>'):('<div class="mpv-card"><div class="mpv-card-t">我的证件</div>'+mpvRow('身份证','未认证')+'<button class="mpv-real-btn" onclick="nav(\'mini\',\'m-realname\');renderRealname(1)">去完成实名认证</button></div>'); })()+
       mpvCertSection()+
@@ -22792,7 +22928,6 @@
           const st=certStatusOf(c);
           return '<div class="mpv-cert">'+
             '<div class="mpv-cert-row"><div class="mpv-cert-name">'+(hasFile?'📄 ':'📋 ')+escHtml(c.name||'未命名证书')+'</div><span class="cert-badge '+st+'">'+CERT_STATUS_TEXT[st]+'</span></div>'+
-            (hasFile?'<div class="mpv-cert-file">'+escHtml(c.fileName)+'</div>':'<div class="mpv-cert-file none">未上传附件</div>')+
             '<div class="mpv-cert-meta">'+
               '<span><span class="k">证书编号</span>'+(c.certNo?escHtml(c.certNo):'—')+'</span>'+
               '<span><span class="k">发证日期</span>'+(c.issueDate?escHtml(c.issueDate):'—')+'</span>'+
@@ -22957,6 +23092,7 @@
       <div class="mad-card">
         <div class="r1"><div class="t">${a.title}</div><span class="tag" style="background:#eee;color:#909090">岗位已关闭</span></div>
         <div class="ent">${a.ent}</div>
+        <div class="mad-view-job" onclick="openDetailByDemandId('${a.demandId}')">查看岗位详情 ›</div>
       </div>
       <div class="mad-card">
         <div class="sec-title">报名信息</div>
@@ -22995,6 +23131,7 @@
       `<div class="mad-card">
         <div class="r1"><div class="t">${a.title}</div><div class="pay">${a.salary}</div></div>
         <div class="ent">${a.ent} · ${a.loc||'—'}</div>
+        <div class="mad-view-job" onclick="openDetailByDemandId('${a.demandId}')">查看岗位详情 ›</div>
       </div>
       <div class="mad-card">
         <div class="mad-sec-head"><span class="sec-title">审核进度</span><span class="tag ${info.cls} st-tag">${info.text}</span></div>
@@ -25367,7 +25504,7 @@
     if(d.source==='批量导入' && d.attendanceObj){
       var ao=d.attendanceObj;
       if(!ao.weeklyDays && !(ao.periods&&ao.periods.length) && !(ao.customPeriods&&ao.customPeriods.length)){
-        d.attendanceObj={miniShow:true,expectDuration:'',weeklyDays:'周一至周日',periods:[{name:'排班制',start:'09:00',end:'18:00'}],customPeriods:[],dailyWorkTimes:[]};
+        d.attendanceObj={miniShow:true,expectDuration:'1个月以上',weeklyDays:'每周5天以上',periods:[{name:'全天可接受'}],customPeriods:[],dailyWorkTimes:[]};
       }
     }
     var ok=true, miss='';
