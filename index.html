@@ -4281,6 +4281,61 @@
     appearance:none; -webkit-appearance:none;
     background-image:url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 9l6 6 6-6' stroke='%236B6B82' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
     background-repeat:no-repeat; background-position:right 12px center; }
+.em2-root .stats-filter-row { display:flex; align-items:center; gap:10px; padding:12px 16px 6px; }
+.em2-root .stats-filter-row .sf-job { flex:0 1 auto; min-width:100px; max-width:48%; font-size:10px; }
+.em2-root .stats-filter-row .date-range { flex:1 1 auto; min-width:0; position:static; }
+.em2-root .stats-filter-row .dr-label { font-size:10px; }
+.em2-root .stats-filter-row .dr-trigger { flex:1 1 auto; min-width:0; }
+.em2-root .stats-filter-row .dr-text { font-size:10px; overflow:hidden; text-overflow:ellipsis; }
+/* em2 招聘统计：日期选择弹层 = 全画布遮罩 + 底部上滑面板（标题栏 / 起止回显 / 快捷区间 / 清空·确定） */
+.em2-root #em2-dr-cal { position:absolute; top:0; left:0; right:0; bottom:0; width:100%; height:auto;
+    padding:0; border:0; border-radius:0; background:transparent; box-shadow:none; z-index:9999; }
+.em2-root #em2-dr-cal .dr-scrim { position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(20,30,50,.45); touch-action:none; }
+.em2-root #em2-dr-cal .dr-sheet { position:absolute; left:0; right:0; bottom:0; max-height:100%; overflow-y:auto; overscroll-behavior:contain;
+    background:#fff; border-radius:20px 20px 0 0; padding:16px 16px 20px;
+    box-shadow:0 -8px 30px rgba(20,40,80,.18); }
+/* 打开弹窗时锁住底层滚动容器，实现真正模态（仅可操作当前弹窗，底层不可下拉） */
+.em2-root .screen.dr-locked { overflow:hidden; }
+.em2-root #em2-dr-cal.dr-opening .dr-scrim { animation:em2DrFade .2s ease both; }
+.em2-root #em2-dr-cal.dr-opening .dr-sheet { animation:em2DrSheetUp .28s cubic-bezier(.22,.61,.36,1) both; }
+@keyframes em2DrFade { from { opacity:0; } to { opacity:1; } }
+@keyframes em2DrSheetUp { from { transform:translateY(100%); } to { transform:translateY(0); } }
+/* 标题栏 */
+.em2-root #em2-dr-cal .dr-sh { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
+.em2-root #em2-dr-cal .dr-sh-t { font-size:16px; font-weight:700; color:#1B1B2F; }
+.em2-root #em2-dr-cal .dr-sh-x { width:22px; height:22px; display:flex; align-items:center; justify-content:center; cursor:pointer; }
+/* 开始 / 结束 回显（可点击切换当前编辑端） */
+.em2-root #em2-dr-cal .dr-sum { display:flex; align-items:center; gap:8px; margin-bottom:14px; }
+.em2-root #em2-dr-cal .dr-sum-b { flex:1; min-width:0; background:#EEF3FB; border:1px solid transparent;
+    border-radius:10px; padding:7px 8px; text-align:center; cursor:pointer; }
+.em2-root #em2-dr-cal .dr-sum-b.on { background:#E8F3FF; border-color:#1A5BB8; }
+.em2-root #em2-dr-cal .dr-sum-l { display:block; font-size:11px; color:#9090A8; }
+.em2-root #em2-dr-cal .dr-sum-v { display:block; font-size:15px; font-weight:700; color:#1A5BB8; margin-top:2px; }
+.em2-root #em2-dr-cal .dr-sum-v.ph { color:#C0BFD2; font-weight:500; font-size:14px; }
+.em2-root #em2-dr-cal .dr-sum-ar { flex:none; color:#C0BFD2; font-size:13px; }
+/* 月份导航 + 日历（月标只保留一处；补前后月日期） */
+.em2-root #em2-dr-cal .dr-cal-h { margin-bottom:2px; }
+.em2-root #em2-dr-cal .dr-cal-title { font-size:15px; font-weight:600; color:#1B1B2F; }
+.em2-root #em2-dr-cal .dr-cal-prev, .em2-root #em2-dr-cal .dr-cal-next { color:#1B1B2F; font-size:20px; padding:0 12px; }
+.em2-root #em2-dr-cal .dr-mh { display:none; }
+.em2-root #em2-dr-cal .dr-cal-grid>span { padding:8px 0; font-size:13px; }
+.em2-root #em2-dr-cal .dr-cal-grid .dr-wk { font-size:12px; color:#9090A8; padding:4px 0; }
+.em2-root #em2-dr-cal .dr-cal-grid .dr-d { color:#1B1B2F; }
+.em2-root #em2-dr-cal .dr-cal-grid .dr-d.in { background:#D5E9FF; border-radius:0; }
+.em2-root #em2-dr-cal .dr-cal-grid .dr-d.on { background:#1A5BB8; color:#fff; border-radius:50%; }
+.em2-root #em2-dr-cal .dr-cal-grid .dr-d.dr-out { color:#C8C8D6; cursor:default; }
+/* 快捷区间 */
+.em2-root #em2-dr-cal .dr-quick { display:flex; gap:8px; margin-top:16px; }
+.em2-root #em2-dr-cal .dr-quick .dr-q { flex:1; min-width:0; text-align:center; font-size:12px; color:#4A4A63;
+    background:#EEF3FB; border-radius:8px; padding:7px 0; cursor:pointer; white-space:nowrap; }
+.em2-root #em2-dr-cal .dr-quick .dr-q.on { background:#1A5BB8; color:#fff; font-weight:600; }
+/* 底部：清空 + 确定 */
+.em2-root #em2-dr-cal .dr-sf { display:flex; gap:12px; margin-top:16px; }
+.em2-root #em2-dr-cal .dr-sf .dr-clr { flex:1; text-align:center; font-size:14px; color:#4A4A63;
+    background:#EEF3FB; border-radius:10px; padding:11px 0; cursor:pointer; }
+.em2-root #em2-dr-cal .dr-sf .dr-ok { flex:2; text-align:center; font-size:14px; font-weight:600; color:#fff;
+    background:#1A5BB8; border-radius:10px; padding:11px 0; cursor:pointer; }
+.em2-root #em2-dr-cal .dr-sf .dr-ok.dr-dis { background:#a9c4e6; cursor:default; }
 .em2-root .card { background:#fff; border-radius:14px; padding:14px; margin:0 16px 0;
     box-shadow:0 2px 10px rgba(120,170,225,0.06); }
 .em2-root .card-h { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
@@ -6547,30 +6602,31 @@
       </div>
       <!-- 招聘统计内容 -->
       <div id="em2-statsRecruit" data-page-node-id="PJEGJuWLBGlLFdKm3VDo2B">
+        <!-- 顶部筛选条：岗位筛选 + 日期筛选 同一行（位于招聘概览正上方） -->
+        <div class="stats-filter-row" data-page-node-id="yWfl75NWecXK9KNyby6RIA">
+          <select class="sf-job" id="em2-statsJob" onchange="onStatsJob(this)" data-page-node-id="KoH1IoEFSBStlUW8aYumvr">
+            <option value="全部" data-page-node-id="P0NEbeYxKCBNCV6WlhNIpr">全部岗位</option>
+            <option value="移动渠道销售员" data-page-node-id="dPjb4ZANkhc9a40Dv60AGO">移动渠道销售员</option>
+            <option value="移动营业厅店员" data-page-node-id="2SqKHRkUARoVunk8ishf0n">移动营业厅店员</option>
+            <option value="移动营业厅" data-page-node-id="Em2YytgyRuriqcL8OpDial">移动营业厅</option>
+            <option value="营业厅收银员" data-page-node-id="ZH875HtcbS5iSxniYCwR7C">营业厅收银员</option>
+            <option value="装维工程师" data-page-node-id="VcFKFRCgfvme5v2SCm9LgS">装维工程师</option>
+          </select>
+          <div class="date-range" id="em2-dr" data-page-node-id="Em2DDt8OqKuriqcL8192" data-cb="em2OnRange">
+            <span class="dr-label">日期</span>
+            <div class="dr-trigger" onclick="drCalToggle('em2-dr', event)">
+              <span class="dr-text ph" id="em2-dr-text">开始日期 → 结束日期</span>
+              <svg class="dr-ic" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#9aa0ad" stroke-width="1.8" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"></rect><path d="M3.5 9.5h17"></path><path d="M8 2.5v4M16 2.5v4"></path></svg>
+            </div>
+            <input type="hidden" id="em2-dr-start">
+            <input type="hidden" id="em2-dr-end">
+            <div class="dr-cal" id="em2-dr-cal" style="display:none"></div>
+          </div>
+        </div>
         <!-- 招聘概览（受日期+岗位联动） -->
         <div class="card" data-page-node-id="nEhj5Wt4XpZ52nUOCoRlKY">
           <div class="card-h" data-page-node-id="FCTT8c6DaMWSVLd8ZabwKm">
             <span class="card-t" data-page-node-id="Ap8BoHWjtx011wT7IKcJ0X">招聘概览</span>
-            <select class="sf-job" id="em2-statsJob" onchange="onStatsJob(this)" style="flex:0 0 auto;min-width:112px;max-width:46%;" data-page-node-id="KoH1IoEFSBStlUW8aYumvr">
-              <option value="全部" data-page-node-id="P0NEbeYxKCBNCV6WlhNIpr">全部岗位</option>
-              <option value="移动渠道销售员" data-page-node-id="dPjb4ZANkhc9a40Dv60AGO">移动渠道销售员</option>
-              <option value="移动营业厅店员" data-page-node-id="2SqKHRkUARoVunk8ishf0n">移动营业厅店员</option>
-              <option value="移动营业厅" data-page-node-id="Em2YytgyRuriqcL8OpDial">移动营业厅</option>
-              <option value="营业厅收银员" data-page-node-id="ZH875HtcbS5iSxniYCwR7C">营业厅收银员</option>
-              <option value="装维工程师" data-page-node-id="VcFKFRCgfvme5v2SCm9LgS">装维工程师</option>
-            </select>
-          </div>
-          <div class="stats-filter stats-filter-in" data-page-node-id="yWfl75NWecXK9KNyby6RIA">
-            <div class="date-range" id="em2-dr" data-page-node-id="Em2DDt8OqKuriqcL8192" data-cb="em2OnRange">
-              <span class="dr-label">日期</span>
-              <div class="dr-trigger" onclick="drCalToggle('em2-dr', event)">
-                <span class="dr-text ph" id="em2-dr-text">开始日期 → 结束日期</span>
-                <svg class="dr-ic" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#9aa0ad" stroke-width="1.8" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"></rect><path d="M3.5 9.5h17"></path><path d="M8 2.5v4M16 2.5v4"></path></svg>
-              </div>
-              <input type="hidden" id="em2-dr-start">
-              <input type="hidden" id="em2-dr-end">
-              <div class="dr-cal" id="em2-dr-cal" style="display:none"></div>
-            </div>
           </div>
           <div class="ov4-grid" data-page-node-id="UJv1dtKkUheJbURmgi1WDW">
             <div class="ov4-item" data-page-node-id="AYCbFFcXGTUEEAPvV5Klnp">
@@ -8986,10 +9042,18 @@
   }
   function em2OnRange(){ em2RenderFunnel(); em2RenderConv(); renderHireTrend(); }
   function renderStaticStats(){
-    var s=document.getElementById('em2-dr-start'), e=document.getElementById('em2-dr-end'), t=document.getElementById('em2-dr-text');
-    if(s) s.value=''; if(e) e.value=''; if(t){ t.textContent='开始日期 → 结束日期'; t.classList.add('ph'); }
+    em2ApplyDefaultRange();
     em2RefreshAll();
     renderJobCycle('全部');
+  }
+  /* em2 招聘统计：日期默认取「当月」（当月 1 日 ~ 今天），漏斗/转化/趋势按此窗口计算。
+     注：只用本块内已定义的 todayStr()，不依赖后续 <script> 块的日期工具，避免延迟调用取不到。 */
+  function em2ApplyDefaultRange(){
+    var ev=todayStr();
+    var sv=ev.slice(0,7)+'-01';
+    var s=document.getElementById('em2-dr-start'), e=document.getElementById('em2-dr-end'), tx=document.getElementById('em2-dr-text');
+    if(s) s.value=sv; if(e) e.value=ev;
+    if(tx){ tx.textContent=sv+' → '+ev; tx.classList.remove('ph'); }
   }
   // 转化率三宫格：随 岗位 + 日期窗口 联动（口径与漏斗一致）
   function em2RenderConv(){
@@ -24015,32 +24079,62 @@
   }
   /* ===== 通用日期范围筛选控件：单框 + 月历选起止（PC端双月并排 / em2手机端单月），底部取消/确定 ===== */
   var DR_VIEW={};
+  /* em2 弹层：日期格式化与快捷区间口径（今天 / 近7天 / 近30天 / 本月 / 本季度，均截至今天） */
+  var DR_QUICK=[{k:'today',n:'今天'},{k:'d7',n:'近7天'},{k:'d30',n:'近30天'},{k:'month',n:'本月'},{k:'quarter',n:'本季度'}];
+  function drFmtYmd(d){ return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2); }
+  function drToday0(){ var t=new Date(); return new Date(t.getFullYear(), t.getMonth(), t.getDate()); }
+  function drCnDate(s){ return s ? (s.slice(5,7)+'月'+s.slice(8,10)+'日') : ''; }
+  function drQuickRange(k){
+    var t=drToday0(), s=t;
+    if(k==='d7'){ s=new Date(t.getFullYear(),t.getMonth(),t.getDate()-6); }
+    else if(k==='d30'){ s=new Date(t.getFullYear(),t.getMonth(),t.getDate()-29); }
+    else if(k==='month'){ s=new Date(t.getFullYear(),t.getMonth(),1); }
+    else if(k==='quarter'){ s=new Date(t.getFullYear(), Math.floor(t.getMonth()/3)*3, 1); }
+    return [drFmtYmd(s), drFmtYmd(t)];
+  }
+  function drEm2Lock(pk){ var b=document.getElementById(pk); var scr=b?b.closest('.em2-root'):null; if(scr){ var sc=scr.querySelector('.screen'); if(sc) sc.classList.add('dr-locked'); } }
+  function drEm2Unlock(pk){ var b=document.getElementById(pk); var scr=b?b.closest('.em2-root'):null; if(scr){ var sc=scr.querySelector('.screen'); if(sc) sc.classList.remove('dr-locked'); } }
   function drCalToggle(pk,ev){
     if(ev&&ev.stopPropagation) ev.stopPropagation();
     var cal=document.getElementById(pk+'-cal'); if(!cal) return;
-    var all=document.querySelectorAll('.dr-cal'); for(var i=0;i<all.length;i++) all[i].style.display='none';
+    var all=document.querySelectorAll('.dr-cal');
+    for(var i=0;i<all.length;i++){ all[i].style.display='none'; all[i].classList.remove('dr-opening'); }
     var s=document.getElementById(pk+'-start'), e=document.getElementById(pk+'-end');
-    var sv=s?s.value:'', ev=e?e.value:'';
+    var sv=s?s.value:'', evv=e?e.value:'';
     var base=(sv)?new Date(sv+'T00:00:00'):new Date();
-    DR_VIEW[pk]={y:base.getFullYear(), m:base.getMonth(), sv:sv, ev:ev};
+    var root=document.getElementById(pk);
+    var isEm2=!!(root&&root.closest&&root.closest('.em2-root'));
+    DR_VIEW[pk]={y:base.getFullYear(), m:base.getMonth(), sv:sv, ev:evv, em2:isEm2, editing:(sv&&!evv)?'e':'s'};
+    if(isEm2){ cal.classList.add('dr-opening'); setTimeout(function(){ cal.classList.remove('dr-opening'); }, 420); drEm2Lock(pk); }
     drCalRender(pk);
     cal.style.display='block';
-    var r=cal.getBoundingClientRect();
-    if(r.right>window.innerWidth-8){ cal.style.left='auto'; cal.style.right='0'; }
-    else { cal.style.left=''; cal.style.right=''; }
+    if(!isEm2){
+      var r=cal.getBoundingClientRect();
+      if(r.right>window.innerWidth-8){ cal.style.left='auto'; cal.style.right='0'; }
+      else { cal.style.left=''; cal.style.right=''; }
+    }
   }
-  function drCalMonth(pk, y, m, sv, ev){
+  function drCalMonth(pk, y, m, sv, ev, pad){
     var first=new Date(y,m,1), startW=first.getDay(), days=new Date(y,m+1,0).getDate();
     var wk=['日','一','二','三','四','五','六'];
+    var prevDays=new Date(y,m,0).getDate();
     var html='<div class="dr-mw"><div class="dr-mh">'+y+'年'+(m+1)+'月</div><div class="dr-cal-grid">';
     for(var w=0;w<7;w++) html+='<span class="dr-wk">'+wk[w]+'</span>';
-    for(var i=0;i<startW;i++) html+='<span></span>';
+    if(pad){
+      for(var p=0;p<startW;p++) html+='<span class="dr-d dr-out">'+(prevDays-startW+1+p)+'</span>';
+    } else {
+      for(var i=0;i<startW;i++) html+='<span></span>';
+    }
     for(var d=1;d<=days;d++){
       var val=y+'-'+('0'+(m+1)).slice(-2)+'-'+('0'+d).slice(-2);
       var cls='dr-d';
       if((sv&&val===sv)||(ev&&val===ev)) cls+=' on';
       if(sv&&ev&&val>sv&&val<ev) cls+=' in';
       html+='<span class="'+cls+'" onclick="drCalPick(\''+pk+'\',\''+val+'\',event)">'+d+'</span>';
+    }
+    if(pad){
+      var tail=(7-(startW+days)%7)%7;
+      for(var t=1;t<=tail;t++) html+='<span class="dr-d dr-out">'+t+'</span>';
     }
     html+='</div></div>';
     return html;
@@ -24052,49 +24146,119 @@
     var root=document.getElementById(pk);
     var isEm2=!!(root&&root.closest&&root.closest('.em2-root'));
     var y2=(m===11)?(y+1):y, m2=(m+1)%12;
-    var months = isEm2 ? drCalMonth(pk,y,m,sv,ev) : (drCalMonth(pk,y,m,sv,ev)+drCalMonth(pk,y2,m2,sv,ev));
+    var months = isEm2 ? drCalMonth(pk,y,m,sv,ev,true) : (drCalMonth(pk,y,m,sv,ev)+drCalMonth(pk,y2,m2,sv,ev));
     var title = isEm2 ? (y+'年'+(m+1)+'月') : ('📅 '+y+'年'+(m+1)+'月 — '+y2+'年'+(m2+1)+'月');
+    var head='<div class="dr-cal-h"><span class="dr-cal-prev" onclick="drCalStep(\''+pk+'\',-1,event)">‹</span><span class="dr-cal-title">'+title+'</span><span class="dr-cal-next" onclick="drCalStep(\''+pk+'\',1,event)">›</span></div>';
+    if(isEm2){
+      /* em2 手机端：标题栏 + 起止回显 + 单月历 + 快捷区间 + 清空/确定 */
+      var ed=(v.editing==='e')?'e':'s';
+      var partial=(sv&&!ev)||(!sv&&ev);
+      var h='<div class="dr-scrim" onclick="drCalCancel(\''+pk+'\',event)"></div><div class="dr-sheet">';
+      h+='<div class="dr-sh"><span class="dr-sh-t">选择日期范围</span><span class="dr-sh-x" onclick="drCalCancel(\''+pk+'\',event)">'
+        + '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#4A4A63" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></span></div>';
+      h+='<div class="dr-sum">'
+        + '<div class="dr-sum-b'+(ed==='s'?' on':'')+'" onclick="drCalFocus(\''+pk+'\',\'s\',event)"><span class="dr-sum-l">开始</span><span class="dr-sum-v'+(sv?'':' ph')+'">'+(sv?drCnDate(sv):'请选择')+'</span></div>'
+        + '<span class="dr-sum-ar">›</span>'
+        + '<div class="dr-sum-b'+(ed==='e'?' on':'')+'" onclick="drCalFocus(\''+pk+'\',\'e\',event)"><span class="dr-sum-l">结束</span><span class="dr-sum-v'+(ev?'':' ph')+'">'+(ev?drCnDate(ev):'请选择')+'</span></div>'
+        + '</div>';
+      h+=head;
+      h+='<div class="dr-mws">'+months+'</div>';
+      h+='<div class="dr-quick">';
+      for(var qi=0;qi<DR_QUICK.length;qi++){
+        var qr=drQuickRange(DR_QUICK[qi].k);
+        var qon=(sv&&ev&&sv===qr[0]&&ev===qr[1])?' on':'';
+        h+='<span class="dr-q'+qon+'" onclick="drCalQuick(\''+pk+'\',\''+DR_QUICK[qi].k+'\',event)">'+DR_QUICK[qi].n+'</span>';
+      }
+      h+='</div>';
+      h+='<div class="dr-sf"><span class="dr-clr" onclick="drCalClearSel(\''+pk+'\',event)">清空</span><span class="dr-ok'+(partial?' dr-dis':'')+'" onclick="drCalOk(\''+pk+'\',event)">确定</span></div>';
+      h+='</div>';
+      cal.innerHTML=h;
+      return;
+    }
     var hint;
     if(sv&&ev){ var n=Math.round((new Date(ev+'T00:00:00')-new Date(sv+'T00:00:00'))/86400000)+1; hint='已选 '+n+' 天'; }
     else if(sv){ hint='请选择结束日期'; }
     else { hint='请选择起止日期'; }
     var okCls = (sv&&ev)?'dr-ok':'dr-ok dr-dis';
-    var wipe = isEm2
-      ? '<span class="dr-cancel" onclick="drCalCancel(\''+pk+'\',event)">取消</span>'
-      : '<span class="dr-cancel" onclick="drCalWipe(\''+pk+'\',event)">清除</span>';
-    var html='<div class="dr-cal-h"><span class="dr-cal-prev" onclick="drCalStep(\''+pk+'\',-1,event)">‹</span><span class="dr-cal-title">'+title+'</span><span class="dr-cal-next" onclick="drCalStep(\''+pk+'\',1,event)">›</span></div>';
-    html+='<div class="dr-mws">'+months+'</div>';
-    html+='<div class="dr-cal-f"><span class="dr-hint">'+hint+'</span><span class="dr-btns">'+wipe+'<span class="'+okCls+'" onclick="drCalOk(\''+pk+'\',event)">确定</span></span></div>';
-    cal.innerHTML=html;
+    var wipe = '<span class="dr-cancel" onclick="drCalWipe(\''+pk+'\',event)">清除</span>';
+    var html2=head;
+    html2+='<div class="dr-mws">'+months+'</div>';
+    html2+='<div class="dr-cal-f"><span class="dr-hint">'+hint+'</span><span class="dr-btns">'+wipe+'<span class="'+okCls+'" onclick="drCalOk(\''+pk+'\',event)">确定</span></span></div>';
+    cal.innerHTML=html2;
   }
   function drCalStep(pk,n,ev){
     if(ev&&ev.stopPropagation) ev.stopPropagation();
     var v=DR_VIEW[pk]; if(!v) return;
     var m2=v.m+n, y2=v.y;
     if(m2<0){m2=11;y2--;} if(m2>11){m2=0;y2++;}
-    DR_VIEW[pk]={y:y2,m:m2,sv:v.sv,ev:v.ev};
+    DR_VIEW[pk]={y:y2,m:m2,sv:v.sv,ev:v.ev,em2:v.em2,editing:v.editing};
     drCalRender(pk);
   }
   function drCalPick(pk,val,ev){
     if(ev&&ev.stopPropagation) ev.stopPropagation();
     var v=DR_VIEW[pk]; if(!v) return;
+    if(v.em2){
+      /* em2：按当前编辑端写入；选完开始自动跳到结束，选完结束回到开始（下一次点击即重开区间） */
+      if(v.editing==='e' && v.sv){
+        v.ev=val;
+        if(v.ev<v.sv){ var tp=v.sv; v.sv=v.ev; v.ev=tp; }
+        v.editing='s';
+      } else {
+        v.sv=val; v.ev=''; v.editing='e';
+      }
+      drCalRender(pk);
+      return;
+    }
     if(!v.sv||(v.sv&&v.ev)){ v.sv=val; v.ev=''; }
     else if(val<v.sv){ v.ev=v.sv; v.sv=val; }
     else { v.ev=val; }
     drCalRender(pk);
   }
+  /* em2 弹层：切换当前编辑端（开始 / 结束） */
+  function drCalFocus(pk,side,ev){
+    if(ev&&ev.stopPropagation) ev.stopPropagation();
+    var v=DR_VIEW[pk]; if(!v) return;
+    v.editing=(side==='e')?'e':'s';
+    drCalRender(pk);
+  }
+  /* em2 弹层：快捷区间（选中后不立即生效，仍需点「确定」） */
+  function drCalQuick(pk,k,ev){
+    if(ev&&ev.stopPropagation) ev.stopPropagation();
+    var v=DR_VIEW[pk]; if(!v) return;
+    var r=drQuickRange(k);
+    v.sv=r[0]; v.ev=r[1]; v.editing='s';
+    var d=new Date(r[0]+'T00:00:00'); v.y=d.getFullYear(); v.m=d.getMonth();
+    drCalRender(pk);
+  }
+  /* em2 弹层：清空弹层内已选（不关闭、不生效，需点「确定」） */
+  function drCalClearSel(pk,ev){
+    if(ev&&ev.stopPropagation) ev.stopPropagation();
+    var v=DR_VIEW[pk]; if(!v) return;
+    v.sv=''; v.ev=''; v.editing='s';
+    drCalRender(pk);
+  }
   function drCalOk(pk,ev){
     if(ev&&ev.stopPropagation) ev.stopPropagation();
-    var v=DR_VIEW[pk]; if(!v||!(v.sv&&v.ev)) return;
+    var v=DR_VIEW[pk]; if(!v) return;
+    var partial=(v.sv&&!v.ev)||(!v.sv&&v.ev);
+    if(partial) return;
+    if(!v.em2 && !(v.sv&&v.ev)) return;
     var s=document.getElementById(pk+'-start'), e=document.getElementById(pk+'-end'), t=document.getElementById(pk+'-text');
-    if(s) s.value=v.sv; if(e) e.value=v.ev;
-    if(t){ t.textContent=v.sv+' → '+v.ev; t.classList.remove('ph'); }
+    if(v.sv&&v.ev){
+      if(s) s.value=v.sv; if(e) e.value=v.ev;
+      if(t){ t.textContent=v.sv+' → '+v.ev; t.classList.remove('ph'); }
+    } else {
+      if(s) s.value=''; if(e) e.value='';
+      if(t){ t.textContent='开始日期 → 结束日期'; t.classList.add('ph'); }
+    }
     var cal=document.getElementById(pk+'-cal'); if(cal) cal.style.display='none';
+    drEm2Unlock(pk);
     var box=document.getElementById(pk), cb=box?box.dataset.cb:''; if(cb&&window[cb]) window[cb]();
   }
   function drCalCancel(pk,ev){
     if(ev&&ev.stopPropagation) ev.stopPropagation();
     var cal=document.getElementById(pk+'-cal'); if(cal) cal.style.display='none';
+    drEm2Unlock(pk);
   }
   function drCalClear(pk,ev){
     if(ev&&ev.stopPropagation) ev.stopPropagation();
@@ -24102,6 +24266,7 @@
     if(s) s.value=''; if(e) e.value='';
     if(t){ t.textContent='开始日期 → 结束日期'; t.classList.add('ph'); }
     var cal=document.getElementById(pk+'-cal'); if(cal) cal.style.display='none';
+    drEm2Unlock(pk);
     var box=document.getElementById(pk), cb=box?box.dataset.cb:''; if(cb&&window[cb]) window[cb]('','');
   }
   function drCalWipe(pk,ev){
@@ -24117,7 +24282,7 @@
   document.addEventListener('click', function(ge){
     var tg=ge.target;
     if(tg&&tg.closest&&tg.closest('.date-range')) return;
-    var ps=document.querySelectorAll('.dr-cal'); for(var i=0;i<ps.length;i++) ps[i].style.display='none';
+    var ps=document.querySelectorAll('.dr-cal'); for(var i=0;i<ps.length;i++){ ps[i].style.display='none'; var id=ps[i].id; if(id&&id.length>4&&id.slice(-4)==='-cal'){ drEm2Unlock(id.slice(0,-4)); } }
   });
 
   /* ===== 运营后台 招聘统计（a-recruit-stat）：多租户聚合 + 跟进人维度 ===== */
