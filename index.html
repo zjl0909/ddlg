@@ -18959,14 +18959,15 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
   let rptFilter = 'all', rptKw = '';
   function renderRptChips(){
     const box=document.getElementById('rptChips'); if(!box) return;
-    const chips=[['all','全部'],['weekly','周报'],['settle','结算明细'],['policy','政策申请']];
+    const chips=[['all','全部'],['settle','结算明细'],['policy','政策申请']];
     box.innerHTML=chips.map(function(c){ return '<span class="rpt-chip'+(rptFilter===c[0]?' on':'')+'" onclick="setRptFilter(\''+c[0]+'\')">'+c[1]+'</span>'; }).join('');
   }
   function setRptFilter(k){ rptFilter=k; renderRptChips(); renderRptList(); }
   function renderRptList(){
     const box=document.getElementById('rptList'); if(!box) return;
     const kw=(rptKw||'').trim();
-    const keys=['policy','settle','settleAnalysis','weekly','weekly2','weekly3'].filter(function(k){
+    /* 2026-10-30 按用户要求暂不展示 3 张招聘周报占位（weekly/weekly2/weekly3）；如需恢复，把下方数组改回 ['policy','settle','settleAnalysis','weekly','weekly2','weekly3'] 即可 */
+    const keys=['policy','settle','settleAnalysis'].filter(function(k){
       if(rptFilter!=='all' && RPT_CAT[k]!==rptFilter) return false;
       if(kw && (REPORT_NAMES[k]||'').indexOf(kw)<0) return false;
       if(!rpoViewOn(k)) return false;
