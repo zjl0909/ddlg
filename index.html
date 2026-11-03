@@ -2270,6 +2270,10 @@
   .combo-opt{padding:7px 10px; font-size:12px; border-radius:6px; cursor:pointer; color:var(--text-primary);}
   .combo-opt:hover{background:var(--primary-light);}
   .proj-field{display:flex; align-items:flex-start; gap:10px;}
+  /* 项目类型：单框 + 两栏级联（与岗位类型同款交互） */
+  .pt-combo{display:flex; align-items:center; gap:6px; flex:1; min-width:0; position:relative;}
+  .pt-combo .inp{flex:1; min-width:0; cursor:pointer;}
+  .pt-menu{z-index:300; min-width:300px;}
   /* ===== 留存跟进 / 状态推进弹窗 设计规范：正文12 字段名12 值11 说明10；1px实线+4px圆角+少阴影；深左浅右对比 ===== */
   .rt2-plan .rt2-row, .rt2-resigned{ border:1px solid var(--border-light); border-radius:4px; padding:10px 12px; margin-bottom:10px; background:#fff; box-shadow:none; }
   .rt2-row .fld > label, .rt2-resigned .fld > label{ font-size:12px; color:var(--text-secondary); }
@@ -2369,8 +2373,39 @@
   .pe-resume-row{ display:flex; justify-content:space-between; align-items:center; padding:8px 0; font-size:12px; }
   .pe-radio-row label, .pe-fields .field label, .field label{ font-size:12px; }
   .proj-field .proj-sel{flex:1; min-width:0;}
+  /* 项目类型两级：大类行加粗浅底，二级缩进归属 */
+  .proj-cfg-row.proj-cfg-cat .pc-col{background:#F4F6FA; font-weight:700;}
+  .proj-cfg-row.proj-cfg-cat .pc-col .txt.proj-cat-name{padding-left:0;}
+  /* 大类展开/收起三角 */
+  .proj-caret{display:inline-flex; align-items:center; justify-content:center; width:16px; height:16px; margin-right:6px; font-size:11px; color:#7A8296; cursor:pointer; border-radius:3px; transition:transform .15s, background .15s; flex:none; user-select:none;}
+  .proj-caret:hover{background:#E4E9F2; color:#2F5FC4;}
+  .proj-caret.collapsed{transform:rotate(-90deg);}
+  /* 二级数量小标 */
+  .proj-cat-count{display:inline-block; margin-left:6px; min-width:16px; padding:0 5px; border-radius:8px; background:#E8ECF3; color:#5D6577; font-size:10px; line-height:16px; font-weight:600; text-align:center; vertical-align:middle;}
+  .proj-cat-tag{display:inline-block; margin-left:8px; padding:0 6px; border-radius:3px; background:#DCE6FB; color:#2F5FC4; font-size:10px; line-height:16px; font-weight:600; vertical-align:middle;}
+  .proj-cat-tag.warn{background:#FFF0E0; color:#C4711A;}
+  .proj-cfg-row.proj-cfg-leaf .pc-col:first-child{padding-left:28px;}
+  .proj-cfg-row.proj-cfg-leaf .pc-col:first-child .txt::before{content:'└'; color:#B9C0CC; margin-right:6px;}
+  .proj-cfg-row.proj-cfg-leaf.empty .pc-col{background:#FBFCFE; font-size:11.5px;}
+  .proj-new-cat{margin-top:4px; display:flex; gap:6px; align-items:center;}
+  .proj-new-cat select.inp{flex:1; min-width:0;}
+  .proj-new-cat input.inp{flex:1; min-width:0;}
+  /* 大类内联「+ 新增二级」行 */
+  .proj-cfg-row.proj-cfg-addrow .pc-col{background:#FAFBFD; padding:2px 10px 6px 28px;}
+  .proj-add-leaf{display:inline-flex; align-items:center; gap:4px; font-size:12px; color:#2F5FC4; cursor:pointer; padding:2px 8px; border:1px dashed #C3D3F0; border-radius:4px; background:#fff; transition:.15s;}
+  .proj-add-leaf:hover{background:#EEF3FE; border-color:#7C9CE8;}
+  .proj-add-leaf::before{content:'＋'; font-weight:700;}
+  .proj-cfg-row.proj-cfg-catnew .pc-col{background:#FFFDF6;}
+  .proj-cfg-row.proj-cfg-catnew .pc-col:first-child{flex-direction:column; align-items:stretch; gap:0;}
+  /* 新增大类输入行：沿用大类行的浅底加粗，只把名称换成输入框 */
+  .proj-cfg-row.proj-cfg-catinput .pc-col{background:#F4F6FA;}
+  .proj-cfg-row.proj-cfg-catinput .inp{font-weight:600; font-size:12px; min-height:28px; padding:4px 8px;}
+  .proj-cascade{display:flex; gap:8px;}
+  .proj-cascade select{flex:1; min-width:0;}
   .proj-cfg{display:grid; grid-template-columns:1fr 120px; gap:1px; background:var(--border-base); border:1px solid var(--border-base); border-radius:3px; overflow:hidden;}
-  .proj-cfg.has-op{grid-template-columns:1fr 120px 110px;}
+  .proj-cfg.has-op{grid-template-columns:1fr 110px 158px;}
+  /* 大类操作列需容纳「+ 新增二级 / 停用」两项，允许不换行 */
+  .proj-cfg-row.proj-cfg-cat .pc-col.op{gap:12px;}
   .proj-cfg-h, .proj-cfg-row{display:contents;}
   #proj-cfg-list{display:contents;}
   .proj-cfg .pc-col{background:#fff; padding:4px 10px; font-size:12px; min-width:0; display:flex; align-items:center;}
@@ -4967,7 +5002,6 @@
   #a-stat-task .task-rank-tbl tbody tr, #p-enterprise #e-task-stat .task-rank-tbl tbody tr{height:34px;}
   #a-stat-task .task-rank-tbl .ers-bar, #p-enterprise #e-task-stat .task-rank-tbl .ers-bar{height:7px;width:70px;}
   /* 趋势卡口径说明：浅灰小字，与图表底部留白呼应 */
-  .task-trend-note{font-size:11.5px;color:#9aa0ad;line-height:1.6;padding:6px 2px 0;margin-top:2px;border-top:1px dashed #F0F1F5;}
   /* 任务统计页：卡片标题统一加粗（趋势 / 任务状态分布 / 完成率排行） */
   #a-stat-task .card-h > .card-t,
   #p-enterprise #e-task-stat .card-h > .card-t{font-size:14.5px;font-weight:700;color:#1f2330;letter-spacing:.1px;}
@@ -4991,10 +5025,6 @@
   .task-bottom-row > .card > div:not(.card-h){flex:1 1 auto;min-width:0;}
   @media (max-width:1180px){ .task-bottom-row{grid-template-columns:1fr;} }
   /* 趋势折线：图例 + 自适应 SVG（横轴标签不裁剪、不重叠） */
-  .task-trend-wrap{width:100%;}
-  .task-trend-lg{display:flex;gap:16px;padding:0 2px 4px;}
-  .task-trend-lg .task-lg{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:#5b6170;}
-  .task-trend-lg .task-lg i{width:10px;height:3px;border-radius:2px;display:inline-block;}
   #a-stat-task .ers-bar{display:inline-block;width:78px;height:8px;background:#EFF1F6;border-radius:5px;overflow:hidden;vertical-align:middle;margin-right:6px;}
   #a-stat-task .ers-bar i{display:block;height:100%;border-radius:5px;}
   #a-stat-task .ers-bar-pct{font-size:12px;font-weight:600;color:#1f2330;font-variant-numeric:tabular-nums;margin-left:8px;}
@@ -5042,9 +5072,6 @@
   .em2-root #em2-statsTask .ov4-ring .od.up{color:#2ED47A;}
   .em2-root #em2-statsTask .ov4-ring .od.down{color:#E0552F;}
   .em2-root #em2-statsTask .ov4-ring .od.mut{color:#A0A0B8;}
-  .em2-root #em2-statsTask #em2-task-trend{padding:6px 2px 0;}
-  .em2-root #em2-statsTask .task-trend-lg{gap:12px;padding-bottom:2px;}
-  .em2-root #em2-statsTask .task-trend-lg .task-lg{font-size:10.5px;color:#6B6B82;}
   .em2-root #em2-statsTask .em2-task-rank-row{padding:7px 0;border-bottom:1px solid #F2F1F8;}
   .em2-root #em2-statsTask .em2-task-rank-row:last-child{border-bottom:none;}
   .em2-root #em2-statsTask .em2-task-rank-top{display:flex;align-items:center;justify-content:space-between;gap:8px;}
@@ -6773,7 +6800,6 @@
   <div class="ers-card-title">任务概览</div>
   <div class="ers-kpi-row" id="a-task-kpis"></div>
 </div>
-<div class="card"><div class="card-h"><span class="card-t">任务转化趋势</span></div><div class="ers-trend-box" id="a-task-trend"><div class="task-trend-note">口径：按「任务提交时间」分桶，一根柱 = 该批次发布总量，柱内三段为该批任务的认领与完成进度（非当日流水）</div></div></div>
 <div class="task-bottom-row">
   <div class="card"><div class="card-h"><span class="card-t">任务状态分布</span></div><div id="a-task-exec"></div></div>
   <div class="card"><div class="card-h"><span class="card-t">企业完成率排行</span><button type="button" class="task-export-btn" onclick="aTaskRankExport()">导出</button></div><div id="a-task-rank"></div><div class="pager" id="a-task-rank-pager"></div></div>
@@ -7765,7 +7791,6 @@
   <div class="ers-card-title">任务概览</div>
   <div class="ers-kpi-row" id="e-task-kpis"></div>
 </div>
-<div class="card"><div class="card-h"><span class="card-t">任务转化趋势</span></div><div class="ers-trend-box" id="e-task-trend"><div class="task-trend-note">口径：按「任务提交时间」分桶，一根柱 = 该批次发布总量，柱内三段为该批任务的认领与完成进度（非当日流水）</div></div></div>
 <div class="task-bottom-row">
   <div class="card"><div class="card-h"><span class="card-t">任务状态分布</span></div><div id="e-task-exec"></div></div>
   <div class="card"><div class="card-h"><span class="card-t">灵工完成率排行</span><button type="button" class="task-export-btn" onclick="eTaskRankExport()">导出</button></div><div id="e-task-rank"></div><div class="pager" id="e-task-rank-pager"></div></div>
@@ -8856,7 +8881,6 @@
   <div class="date-range" id="em2-task-dr" data-cb="em2TaskOnRange"><span class="dr-label">时间</span><div class="dr-trigger" onclick="drCalToggle('em2-task-dr',event)"><span class="dr-text ph" id="em2-task-dr-text">开始日期 至 结束日期</span><svg class="dr-ic" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#9aa0ad" stroke-width="1.8" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"></rect><path d="M3.5 9.5h17"></path><path d="M8 2.5v4M16 2.5v4"></path></svg></div><input type="hidden" id="em2-task-dr-start"><input type="hidden" id="em2-task-dr-end"><div class="dr-cal" id="em2-task-dr-cal" style="display:none"></div></div>
 </div>
 <div class="card"><div class="card-h"><span class="card-t">任务统计概览</span></div><div class="ov4-grid" id="em2-task-kpis"></div></div>
-<div class="card"><div class="card-h"><span class="card-t">任务转化趋势</span></div><div id="em2-task-trend"><div class="task-trend-note">口径：按「任务提交时间」分桶，一根柱 = 该批次发布总量，柱内三段为该批任务的认领与完成进度（非当日流水）</div></div></div>
 <div class="card"><div class="card-h"><span class="card-t">任务状态分布</span></div><div id="em2-task-exec"></div></div>
 <div class="card"><div class="card-h"><span class="card-t">灵工完成率排行</span></div><div id="em2-task-rank"></div></div>
       </div>
@@ -12362,39 +12386,6 @@ function _taskKpiRange(plat, entSel, taskSel, s, e){
 function _taskAllTasks(){ return _taskBuild().tasks; }
 /* 时间粒度：时间区间 ≤31 天 → 按日；>31 天 → 按月。返回连续的时间桶（无数据的日期补 0），
    保证横轴是等距时间序列，而不是"只有有单子的那天才出现"。 */
-function _taskTrend(tasks, s, e){
-  /* 与整页口径一致：按「任务提交时间」分桶。
-     序列含义改为 发布量（发布总量）/ 已认领量（其中已被认领的件数）。 */
-  if(!s||!e) return {labels:[], pub:[], claim:[], done:[], axis:'每日', title:'暂无数据'};
-  var days=Math.round((new Date(e)-new Date(s))/86400000)+1;   // 含首尾
-  var axis=(days<=31)?'每日':'按月';
-  var buckets={}, keys=[];
-  if(axis==='每日'){
-    for(var i=0;i<days;i++){ var d=_taskAddDays(s,i); keys.push(d); buckets[d]={pub:0,claim:0,done:0}; }
-  } else {
-    var sm=+s.slice(0,4), smo=+s.slice(5,7), em2=+e.slice(0,4), emo=+e.slice(5,7);
-    var y=sm, mo=smo;
-    while(y<em2 || (y===em2 && mo<=emo)){
-      var k2=y+'-'+(mo<10?'0':'')+mo; keys.push(k2); buckets[k2]={pub:0,claim:0,done:0};
-      mo++; if(mo>12){ mo=1; y++; }
-    }
-  }
-  tasks.forEach(function(t){
-    var k=(axis==='每日')?t.pub:t.pub.slice(0,7);
-    if(!buckets[k]) return;
-    buckets[k].pub+=(t.pubQty||0);
-    buckets[k].claim+=(t.claimedQty||0);
-    buckets[k].done+=(t.doneQty||0);
-  });
-  return {
-    labels:keys,
-    pub:keys.map(function(k){return buckets[k].pub;}),
-    claim:keys.map(function(k){return buckets[k].claim;}),
-    done:keys.map(function(k){return buckets[k].done;}),
-    axis:axis, days:days,
-    title:(axis==='每日')?('按日 · 共 '+days+' 天'):('按月 · 共 '+keys.length+' 个月')
-  };
-}
 function _taskDist(claims, keyFn){
   var m={};
   claims.forEach(function(x){ var k=keyFn(x); m[k]=(m[k]||0)+1; });
@@ -12552,100 +12543,6 @@ function _taskRankEm2HTML(rows){
      · 中间中色 = 执行中件数（已认领 - 已完成）
      · 顶部浅色 = 待认领件数（发布 - 已认领）
    鼠标悬浮整根柱子时，同时显示 发布量 / 已认领量 / 已完成量 三个数值。 */
-function _taskTrendSVG(labelsOrig, series, key, axis){
-  var n=labelsOrig.length;
-  var host=document.getElementById(key);
-  var W=Math.max(360, Math.round((host&&host.clientWidth)?host.clientWidth-4:880));
-  var H=230, padL=46, padR=16, padT=16, padB=32, plotW=W-padL-padR, plotH=H-padT-padB, yBot=padT+plotH;
-  if(n===0) return '<div class="ers-muted" style="padding:44px 0">当前筛选区间无发布记录</div>';
-
-  /* series 约定：[0]=待认领量, [1]=已认领量, [2]=已完成量
-     真实发布量 = 待认领 + 已认领（柱高按发布量绘制） */
-  var wait=series[0].d, claim=series[1].d, done=series[2].d;
-  var pub=wait.map(function(v,i){ return (v||0)+(claim[i]||0); });
-
-  /* ---- Y 轴 nice 刻度 ---- */
-  var gm=1; pub.forEach(function(v){ if(v>gm) gm=v; });
-  var step;
-  if(gm<=4){ step=1; }
-  else {
-    var raw=gm/4, mag=Math.pow(10,Math.floor(Math.log10(raw))), norm=raw/mag;
-    var nice=(norm<=1?1:norm<=2?2:norm<=2.5?2.5:norm<=5?5:10);
-    step=Math.max(1, Math.ceil(nice*mag));
-  }
-  var gMax=Math.max(step, Math.ceil(gm/step)*step);
-  function yH(v){ return Math.min(v,gMax)/gMax*plotH; }
-
-  var out='';
-  for(var gv=0; gv<=gMax+1e-6; gv+=step){
-    var gy=(yBot-yH(gv)).toFixed(2);
-    out+='<line x1="'+padL+'" y1="'+gy+'" x2="'+(W-padR)+'" y2="'+gy+'" stroke="#EDEAF8" stroke-width="1" stroke-dasharray="3 3"/>'
-       + '<text x="'+(padL-8)+'" y="'+(parseFloat(gy)+4).toFixed(2)+'" font-size="11" fill="#A0A0B8" text-anchor="end">'+gv+'</text>';
-  }
-
-  /* ---- 柱宽：留 40% 间隙 ---- */
-  var slot=plotW/n, barW=Math.max(6, Math.min(38, slot*0.6));
-
-  for(var i=0;i<n;i++){
-    var p=pub[i]||0, c=Math.min(claim[i]||0, p), dn=Math.min(done[i]||0, c);
-    var running=p;
-    var x=padL+slot*i+(slot-barW)/2;
-    var hPub=yH(p);
-    /* 三段从下往上：已完成 / 执行中 / 待认领 */
-    var hDone=yH(dn);
-    var hRun=yH(c-dn);
-    var hWait=yH(p-c);
-    var yDone=yBot-hDone;
-    var yRun=yDone-hRun;
-    var yWait=yRun-hWait;
-    if(hDone>0) out+='<rect x="'+x.toFixed(2)+'" y="'+yDone.toFixed(2)+'" width="'+barW.toFixed(2)+'" height="'+hDone.toFixed(2)+'" fill="'+series[2].c+'" rx="1.5"/>';
-    if(hRun>0)  out+='<rect x="'+x.toFixed(2)+'" y="'+yRun.toFixed(2)+'" width="'+barW.toFixed(2)+'" height="'+hRun.toFixed(2)+'" fill="'+series[1].c+'" rx="0"/>';
-    if(hWait>0) out+='<rect x="'+x.toFixed(2)+'" y="'+yWait.toFixed(2)+'" width="'+barW.toFixed(2)+'" height="'+hWait.toFixed(2)+'" fill="'+series[0].c+'" rx="1.5"/>';
-  }
-
-  /* ---- X 轴标签抽稀 ---- */
-  var shortLab=function(l){ return (axis==='按月')?(parseInt(l.slice(5),10)+'月'):l.slice(5); };
-  var maxFit=Math.max(2, Math.floor(plotW/58));
-  var stride=Math.max(1, Math.ceil(n/maxFit));
-  var shown={};
-  for(var j=0;j<n;j+=stride) shown[j]=1;
-  shown[0]=1; shown[n-1]=1;
-  if(n>1){
-    var lastBefore=-1; for(var kk in shown){ var v2=+kk; if(v2<n-1 && v2>lastBefore) lastBefore=v2; }
-    if(lastBefore>=0 && (n-1-lastBefore)<stride*0.6) delete shown[lastBefore];
-  }
-  for(var i2=0;i2<n;i2++){
-    if(!shown[i2]) continue;
-    var isLast=(i2===n-1), isFirst=(i2===0);
-    var anchor=isLast?'end':(isFirst?'start':'middle');
-    var cx=padL+slot*i2+slot/2;
-    out+='<text x="'+cx.toFixed(1)+'" y="'+(H-10)+'" font-size="11" fill="#A0A0B8" text-anchor="'+anchor+'">'+shortLab(labelsOrig[i2])+'</text>';
-  }
-
-  /* ---- tooltip：整柱热区，同时显示三个值 ---- */
-  var tips=labelsOrig.map(function(lb,idx){
-    var p=pub[idx]||0, c=claim[idx]||0, dn=done[idx]||0;
-    var rate=p>0?(dn/p*100).toFixed(2):'0.0';
-    var claimRate=p>0?(c/p*100).toFixed(2):'0.0';
-    return {title:lb, rows:[
-      {c:'#9aa0ad', n:'发布量', v:p+' 件'},
-      {c:series[1].c, n:'已认领量', v:c+' 件（认领率 '+claimRate+'%）'},
-      {c:series[2].c, n:'已完成量', v:dn+' 件（完成率 '+rate+'%）'}
-    ]};
-  });
-  chartTipReg(key, tips);
-  for(var hi=0;hi<n;hi++){
-    out+='<rect x="'+(padL+slot*hi).toFixed(2)+'" y="'+padT+'" width="'+slot.toFixed(2)+'" height="'+plotH+'" fill="transparent"'
-       + ' onmouseenter="chartTipShow(event,\''+key+'\','+hi+')" onmousemove="chartTipMove(event)" onmouseleave="chartTipHide()"/>';
-  }
-
-  var legend='<span class="task-lg"><i style="background:'+series[0].c+'"></i>'+series[0].name+'</span>'
-           + '<span class="task-lg"><i style="background:'+series[1].c+'"></i>'+series[1].name+'</span>'
-           + '<span class="task-lg"><i style="background:'+series[2].c+'"></i>'+series[2].name+'</span>';
-
-  return '<div class="task-trend-wrap"><div class="task-trend-lg">'+legend+'</div>'
-       + '<svg viewBox="0 0 '+W+' '+H+'" width="100%" height="'+H+'" preserveAspectRatio="xMidYMid meet" style="display:block">'+out+'</svg></div>';
-}
 
 /* 任务排行导出：生成 CSV（Excel 可直接打开），全量导出当前筛选结果 */
 function _taskRankExport(rows, headers, rowFn, fileName){
@@ -12706,8 +12603,6 @@ function renderTaskStat(){
     _taskKpiCard('k4', TASK_ICONS[4], k.cancelRate.toFixed(2)+'%', '取消率', '已取消 '+k.cancel+' 单', _taskDeltaHTML(k.cancelRate, prevK.cancelRate))
   ];
   document.getElementById('a-task-kpis').innerHTML=kpis.join('');
-  var tr=_taskTrend(tk, s, e);
-  document.getElementById('a-task-trend').innerHTML=_taskTrendSVG(tr.labels, [{c:'#C9D8F2',name:'待认领',d:tr.pub.map(function(v,i){return Math.max(0, v-(tr.claim[i]||0));})},{c:TASK_C[0],name:'已认领',d:tr.claim},{c:TASK_C[1],name:'已完成',d:tr.done}], 'a-task-trend', tr.axis);
   document.getElementById('a-task-exec').innerHTML=_taskDonutSVG(_taskStatusDist(tk, cur), 'a-task-exec-donut', '发布单量', { '待认领':'#D8DCE6', '已完成':'#5AD8A6', '执行中':'#5B8FF9', '已取消':'#C3C7D1', '领取任务':'#9D6EF0', '待审核':'#FFB23E', '已结算':'#5B8FF9' });
   A_TASK_RANK_DATA=_taskRank(cur, function(x){return x.ent;});
   aTaskRenderRankPage();
@@ -12754,8 +12649,6 @@ function renderEntTaskStat(){
     _taskKpiCard('k4', TASK_ICONS[4], k.cancelRate.toFixed(2)+'%', '取消率', '已取消 '+k.cancel+' 单', _taskDeltaHTML(k.cancelRate, prevK.cancelRate))
   ];
   document.getElementById('e-task-kpis').innerHTML=kpis.join('');
-  var tr=_taskTrend(tk, s, e);
-  document.getElementById('e-task-trend').innerHTML=_taskTrendSVG(tr.labels, [{c:'#C9D8F2',name:'待认领',d:tr.pub.map(function(v,i){return Math.max(0, v-(tr.claim[i]||0));})},{c:TASK_C[0],name:'已认领',d:tr.claim},{c:TASK_C[1],name:'已完成',d:tr.done}], 'e-task-trend', tr.axis);
   document.getElementById('e-task-exec').innerHTML=_taskDonutSVG(_taskStatusDist(tk, cur), 'e-task-exec-donut', '发布单量', { '待认领':'#D8DCE6', '已完成':'#5AD8A6', '执行中':'#5B8FF9', '已取消':'#C3C7D1', '领取任务':'#9D6EF0', '待审核':'#FFB23E', '已结算':'#5B8FF9' });
   E_TASK_RANK_DATA=_taskRank(cur, function(x){return x.worker;});
   eTaskRenderRankPage();
@@ -12802,8 +12695,6 @@ function renderEm2TaskStat(){
     _taskKpiCardEm2('', TASK_ICONS[4], k.cancelRate.toFixed(2), '%', '取消率', _taskDeltaHTML(k.cancelRate, prevK.cancelRate), '已取消 '+k.cancel+' 单')
   ];
   document.getElementById('em2-task-kpis').innerHTML=kpis.join('');
-  var tr=_taskTrend(tk, s, e);
-  document.getElementById('em2-task-trend').innerHTML=_taskTrendSVG(tr.labels, [{c:'#C9D8F2',name:'待认领',d:tr.pub.map(function(v,i){return Math.max(0, v-(tr.claim[i]||0));})},{c:TASK_C[0],name:'已认领',d:tr.claim},{c:TASK_C[1],name:'已完成',d:tr.done}], 'em2-task-trend', tr.axis);
   document.getElementById('em2-task-exec').innerHTML=_taskDonutSVG(_taskStatusDist(tk, cur), 'em2-task-exec-donut', '发布单量', { '待认领':'#D8DCE6', '已完成':'#5AD8A6', '执行中':'#5B8FF9', '已取消':'#C3C7D1', '领取任务':'#9D6EF0', '待审核':'#FFB23E', '已结算':'#5B8FF9' });
   EM2_TASK_RANK_DATA=_taskRank(cur, function(x){return x.worker;});
   EM2_TASK_RANK_ALL=false;
@@ -15168,46 +15059,46 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
   ENT_ORG[ENT]={ nodes: orgNodes, members: orgMembers };   // 企业端当前使用中国移动，直接用现有 rich 数据（其余企业由 loadOrg 懒加载）
   /* ===== 共享 demo：招聘需求（含上架状态/关联活动/灵工端标签） ===== */
   const demands=[
-    {id:'DE-20260801-001',skills:['收银员职业资格证','普通话等级证书','电子商务师','计算机操作员'],ent:'中国移动北京朝阳分公司',dept:'营业厅部',name:'移动营业厅店员',head:20,hired:8,salary:'5K-8K',loc:'北京市朝阳区',status:'招聘中',type:'零售/百货',city:'北京',up:true,activity:'夏日高温补贴',rounds:2,source:'manual',tags:[{t:'日结',c:'b'},{t:'可兼职',c:'o'},{t:'包吃住',c:''},{t:'高额补贴',c:'g'}],materials:[{name:'健康证',type:'material',certNo:'JK-2024-009812',issueDate:'2024-05-20',expireDate:'2027-05-19'},{name:'护士证',type:'material',certNo:'HS-2022-003345',issueDate:'2022-09-01',expireDate:'2025-08-31'}],created:'2026/08/01 09:00:00'},
-    {id:'DE-20260720-001',skills:['普通话等级证书','电子商务师'],ent:'中国移动北京朝阳分公司',dept:'渠道部',name:'移动渠道销售员',head:10,hired:3,salary:'5K-7K',loc:'北京市海淀区',status:'招聘中',type:'零售/百货',city:'北京',up:true,activity:'',viewers:['oa-2'],source:'pc',tags:[{t:'日结',c:'b'},{t:'就近上岗',c:''}],materials:[{name:'健康证',type:'material'}],created:'2026/07/20 10:30:00'},
-    {id:'DE-20260715-001',ent:'中国移动浙江分公司',dept:'市场部',name:'移动业务推广员',head:15,hired:6,salary:'6K-10K',loc:'上海市浦东新区',status:'招聘中',type:'市场/公关/广告/会展',city:'上海',up:true,activity:'老带新加薪券',source:'mini',tags:[{t:'日结',c:'b'},{t:'高薪',c:'o'}],created:'2026/07/15 14:00:00'},
-    {id:'DE-20260705-001',skills:['普通话等级证书','电子商务师'],ent:'中国移动浙江分公司',dept:'运营部',name:'移动增值业务推广员',head:9,hired:0,salary:'6K-10K',loc:'上海市浦东新区',status:'招聘中',type:'市场/公关/广告/会展',city:'上海',up:true,activity:'',viewers:['oa-3'],source:'manual',tags:[{t:'灵活排班',c:''}],created:'2026/07/05 09:15:00'},
-    {id:'DE-20260622-001',skills:['电工证'],ent:'中国移动广东公司',dept:'仓储部',name:'移动网络优化工程师',head:30,hired:18,salary:'4.5K-6K',loc:'北京市大兴区',status:'招聘中',type:'物流/运输',city:'北京',up:true,activity:'',source:'pc',tags:[{t:'日结',c:'b'},{t:'包吃住',c:''}],materials:[{name:'健康证',type:'material'},{name:'护士证',type:'material'}],created:'2026/06/22 11:00:00'},
-    {id:'DE-20260610-001',skills:['机动车驾驶证','高处作业证'],ent:'中国移动江苏公司',dept:'配送部',name:'移动装维外勤',head:25,hired:20,salary:'5K-7K',loc:'天津市东丽区',status:'招聘中',type:'物流/运输',city:'天津',up:true,activity:'高温补贴',source:'mini',tags:[{t:'日结',c:'b'},{t:'电动车补贴',c:'o'}],created:'2026/06/10 08:00:00'},
-    {id:'DE-20260508-001',skills:['机动车驾驶证'],ent:'中国移动北京公司',dept:'配送部',name:'移动外勤骑手',head:40,hired:35,salary:'6K-9K',loc:'北京市朝阳区',status:'已结束',type:'物流/运输',city:'北京',up:false,activity:'',source:'pc',tags:[{t:'日结',c:'b'},{t:'高薪',c:'o'}],created:'2026/05/08 16:45:00'},
-    {id:'DE-20260415-001',ent:'中国移动上海公司',dept:'门店部',name:'移动门店店员',head:12,hired:12,salary:'4.5K-6K',loc:'上海市长宁区',status:'已结束',type:'零售/百货',city:'上海',up:false,activity:'',source:'manual',tags:[{t:'就近上岗',c:''}],created:'2026/04/15 10:20:00'},
-    {id:'DE-20260310-001',ent:'中国移动北京朝阳分公司',dept:'会员部',name:'移动会员服务员',head:8,hired:0,salary:'4K-6K',loc:'北京市朝阳区',status:'草稿',type:'零售/百货',city:'北京',up:false,activity:'',source:'mini',tags:[],created:'2026/03/10 13:10:00'},
-    {id:'DE-20260810-001',ent:'中国移动北京朝阳分公司',dept:'会员部',name:'移动会员服务员（短期）',head:6,hired:0,salary:'4K-6K',loc:'北京市朝阳区',status:'招聘中',type:'零售/百货',city:'北京',up:true,activity:'',source:'manual',tags:[],created:'2026/08/10 17:00:00'},
-    {id:'DE-20260812-001',ent:'中国移动浙江分公司',dept:'运营部',name:'移动营业厅店员（夜班）',head:10,hired:0,salary:'5K-8K',loc:'上海市浦东新区',status:'草稿',type:'零售/百货',city:'上海',up:true,activity:'夜班补贴',source:'pc',tags:[{t:'日结',c:'b'},{t:'夜班补贴',c:'o'}],created:'2026/08/12 09:30:00'},
-    {id:'DE-20260815-001',ent:'中国移动北京公司',dept:'配送部',name:'移动众包外勤',head:50,hired:0,salary:'6K-9K',loc:'北京市朝阳区',status:'待审核',type:'物流/运输',city:'北京',up:false,activity:'',source:'mini',tags:[{t:'高薪',c:'o'}],created:'2026/08/15 11:20:00'},
-    {id:'DE-20260220-001',ent:'中国移动广东公司',dept:'仓储部',name:'移动网络优化工程师（夜班）',head:30,hired:30,salary:'4.5K-6K',loc:'北京市大兴区',status:'已结束',type:'物流/运输',city:'北京',up:false,activity:'',source:'pc',tags:[{t:'包吃住',c:''}],created:'2026/02/20 15:00:00'},
-    {id:'DE-20260818-001',ent:'中国移动江苏公司',dept:'配送部',name:'移动同城急送骑手',head:20,hired:0,salary:'5K-8K',loc:'天津市西青区',status:'待审核',type:'物流/运输',city:'天津',up:false,activity:'',source:'mini',tags:[{t:'日结',c:'b'}],created:'2026/08/18 09:00:00'},
-    {id:'DE-20260817-001',ent:'中国移动北京公司',dept:'运营部',name:'移动优选移动网络优化工程师',head:35,hired:0,salary:'5K-7K',loc:'北京市通州区',status:'待审核',type:'物流/运输',city:'北京',up:false,activity:'',source:'pc',tags:[{t:'就近上岗',c:''}],created:'2026/08/17 10:30:00'},
-    {id:'DE-20260816-001',ent:'中国移动上海公司',dept:'仓储部',name:'移动仓储分拣员',head:15,hired:0,salary:'4.5K-6K',loc:'上海市浦东新区',status:'招聘中',type:'零售/百货',city:'上海',up:true,activity:'',source:'manual',tags:[],created:'2026/08/16 14:00:00'},
-    {id:'DE-20260814-001',ent:'中国移动北京朝阳分公司',dept:'营业厅部',name:'移动营业厅储备店长',head:3,hired:0,salary:'8K-12K',loc:'北京市朝阳区',status:'草稿',type:'零售/百货',city:'北京',up:false,activity:'',source:'manual',tags:[],created:'2026/08/14 11:00:00'},
-    {id:'DE-20260813-001',ent:'中国移动广东公司',dept:'配送部',name:'移动快递员',head:25,hired:5,salary:'6K-9K',loc:'北京市海淀区',status:'招聘中',type:'物流/运输',city:'北京',up:true,activity:'',source:'pc',tags:[{t:'高薪',c:'o'},{t:'就近上岗',c:''}],created:'2026/08/13 08:30:00'},
-    {id:'DE-20260811-001',ent:'中国移动浙江分公司',dept:'市场部',name:'移动新能源推广专员',head:8,hired:0,salary:'7K-10K',loc:'上海市浦东新区',status:'待审核',type:'市场/公关/广告/会展',city:'上海',up:false,activity:'',source:'mini',tags:[],created:'2026/08/11 16:00:00'},
-    {id:'DE-20260809-001',ent:'中国移动江苏公司',dept:'客服部',name:'移动客服专员',head:10,hired:2,salary:'4K-5.5K',loc:'天津市滨海新区',status:'招聘中',type:'客服/运营',city:'天津',up:true,activity:'',source:'pc',tags:[{t:'包吃住',c:''}],created:'2026/08/09 09:00:00'},
-    {id:'DE-20260808-001',ent:'中国移动北京公司',dept:'运营部',name:'移动商家运营助理',head:5,hired:0,salary:'5.5K-8K',loc:'北京市朝阳区',status:'草稿',type:'市场/公关/广告/会展',city:'北京',up:false,activity:'',source:'manual',tags:[],created:'2026/08/08 13:30:00'},
-    {id:'DE-20260730-001',ent:'中国移动上海公司',dept:'门店部',name:'移动冷链理货员',head:6,hired:4,salary:'4.5K-6K',loc:'上海市长宁区',status:'招聘中',type:'零售/百货',city:'上海',up:true,activity:'',source:'mini',tags:[{t:'日结',c:'b'}],created:'2026/07/30 10:00:00'},
-    {id:'DE-20260820-001',ent:'中国移动广东公司',dept:'冷链部',name:'移动冷链网络优化工程师',head:12,hired:0,salary:'5.5K-7K',loc:'北京市通州区',status:'待审核',type:'物流/运输',city:'北京',up:false,activity:'',source:'pc',tags:[{t:'低温补贴',c:''}],created:'2026/08/20 09:00:00'},
-    {id:'DE-20260819-001',ent:'中国移动江苏公司',dept:'仓储部',name:'移动仓储管理员',head:8,hired:0,salary:'4.5K-6K',loc:'天津市武清区',status:'待审核',type:'物流/运输',city:'天津',up:false,activity:'',source:'mini',tags:[],created:'2026/08/19 14:00:00'},
-    {id:'DE-20260807-001',ent:'中国移动北京朝阳分公司',dept:'安全部',name:'移动安全巡检员',head:5,hired:0,salary:'5K-7K',loc:'北京市朝阳区',status:'招聘中',type:'零售/百货',city:'北京',up:true,activity:'',source:'manual',tags:[],created:'2026/08/07 11:30:00'},
-    {id:'DE-20260901-001',ent:'中国移动北京朝阳分公司',dept:'市场部',name:'移动暑期活动督导',head:15,hired:0,salary:'6K-9K',loc:'北京市朝阳区',status:'招聘中',type:'市场/公关/广告/会展',city:'北京',up:true,activity:'',source:'manual',empType:'短期工',projType:'移动其他',pm:'王运营',tags:[],created:'2026/09/01 09:00:00'},
-    {id:'DE-20260902-001',ent:'中国移动上海公司',dept:'客服部',name:'移动客服主管',head:3,hired:0,salary:'8K-12K',loc:'上海市长宁区',status:'待审核',type:'客服/运营',city:'上海',up:false,activity:'',source:'pc',empType:'全职',projType:'移动其他',pm:'李顾问',tags:[],created:'2026/09/02 10:00:00'},
-    {id:'DE-20260903-001',ent:'中国移动江苏公司',dept:'市场部',name:'移动临时地推',head:20,hired:0,salary:'5K-8K',loc:'天津市南开区',status:'草稿',type:'市场/公关/广告/会展',city:'天津',up:false,activity:'',source:'mini',empType:'灵工',projType:'移动其他',pm:'李顾问',tags:[],created:'2026/09/03 11:00:00'},
-    {id:'DE-20260904-001',ent:'中国移动广东公司',dept:'市场部',name:'移动展会协助',head:10,hired:10,salary:'4.5K-6K',loc:'广东省广州市',status:'已结束',type:'市场/公关/广告/会展',city:'广东',up:false,activity:'',source:'manual',empType:'短期工',projType:'移动其他',pm:'王运营',tags:[],created:'2026/09/04 14:00:00'},
-    {id:'DE-20260905-001',ent:'中国移动北京公司',dept:'市场部',name:'移动校园推广员',head:18,hired:0,salary:'5K-8K',loc:'北京市海淀区',status:'招聘中',type:'市场/公关/广告/会展',city:'北京',up:true,activity:'',source:'批量导入',empType:'灵工',projType:'移动其他',pm:'王运营',tags:[],created:'2026/09/05 09:30:00'},
-    {id:'DE-20260906-001',ent:'中国移动上海公司',dept:'仓储部',name:'移动仓储备货员',head:12,hired:0,salary:'4.5K-6K',loc:'上海市浦东新区',status:'招聘中',type:'物流/运输',city:'上海',up:true,activity:'',source:'批量导入',empType:'短期工',projType:'移动其他',pm:'李顾问',tags:[],created:'2026/09/06 10:00:00'},
-    {id:'DE-20260907-001',ent:'中国移动广东公司',dept:'市场部',name:'移动展会引导员',head:8,hired:0,salary:'5K-7K',loc:'广东省广州市',status:'招聘中',type:'市场/公关/广告/会展',city:'广东',up:true,activity:'',source:'批量导入',empType:'灵工',projType:'移动其他',pm:'王运营',tags:[],created:'2026/09/07 11:30:00'},
-    {id:'DE-20260910-001',skills:['食品安全管理员'],ent:'永辉超市',dept:'门店运营',name:'永辉超市理货员',head:20,hired:0,salary:'4K-6K',loc:'北京市丰台区',status:'招聘中',type:'零售/百货',city:'北京',up:true,activity:'新人补贴',rounds:2,source:'manual',tags:[{t:'日结',c:'b'},{t:'可兼职',c:'o'}],materials:[{name:'健康证',type:'material'}],created:'2026/09/01 09:00:00'},
-    {id:'DE-20260901-002',skills:['叉车驾驶证'],ent:'顺丰速运',dept:'分拣中心',name:'顺丰快递分拣员',head:30,hired:0,salary:'5K-7K',loc:'北京市通州区',status:'招聘中',type:'物流',city:'北京',up:true,activity:'',rounds:2,source:'manual',tags:[{t:'日结',c:'b'},{t:'包吃住',c:''}],materials:[],created:'2026/09/01 09:10:00'},
-    {id:'DE-20260901-003',skills:['食品安全管理员'],ent:'星巴克',dept:'门店',name:'星巴克咖啡师',head:10,hired:0,salary:'5K-8K',loc:'上海市徐汇区',status:'招聘中',type:'餐饮',city:'上海',up:false,activity:'',rounds:2,source:'manual',tags:[{t:'弹性排班',c:''}],materials:[],created:'2026/09/01 09:20:00'},
-    {id:'DE-20260901-004',skills:['普通话等级证书','企业人力资源管理师'],ent:'链家地产',dept:'销售部',name:'链家房产顾问',head:15,hired:0,salary:'6K-12K',loc:'北京市西城区',status:'招聘中',type:'销售',city:'北京',up:true,activity:'开单奖',rounds:2,source:'manual',tags:[{t:'高薪',c:'o'},{t:'提成',c:'b'}],materials:[],created:'2026/09/01 09:30:00'},
-    {id:'DE-20260901-005',skills:['普通话等级证书','电子商务师'],ent:'美团',dept:'地推部',name:'美团团购地推',head:25,hired:0,salary:'5K-9K',loc:'广州市天河区',status:'招聘中',type:'销售',city:'广州',up:true,activity:'冲单奖',rounds:2,source:'manual',tags:[{t:'日结',c:'b'},{t:'高薪',c:'o'}],materials:[],created:'2026/09/01 09:40:00'},
-    {id:'DE-20260908-001',skills:['普通话等级证书'],ent:'中国移动北京朝阳分公司',dept:'营业厅部',name:'移动促销导购员',head:15,hired:0,salary:'22-35',salaryType:'时薪',loc:'北京市朝阳区',status:'招聘中',type:'零售/百货',city:'北京',up:true,activity:'',source:'manual',empType:'灵工',projType:'移动其他',pm:'王运营',tags:[],created:'2026/09/08 09:30:00'},
-    {id:'DE-20260909-001',skills:['普通话等级证书'],ent:'中国移动浙江分公司',dept:'市场部',name:'移动活动协助员',head:12,hired:0,salary:'20-32',salaryType:'时薪',loc:'上海市浦东新区',status:'招聘中',type:'市场/公关/广告/会展',city:'上海',up:true,activity:'',source:'manual',empType:'灵工',projType:'移动其他',pm:'李顾问',tags:[],created:'2026/09/09 10:00:00'},
-    {id:'DE-20260911-001',skills:['收银员职业资格证'],ent:'中国移动上海公司',dept:'门店部',name:'移动门店兼职收银',head:10,hired:0,salary:'24-38',salaryType:'时薪',loc:'上海市长宁区',status:'招聘中',type:'零售/百货',city:'上海',up:true,activity:'',source:'manual',empType:'灵工',projType:'移动其他',pm:'李顾问',tags:[],created:'2026/09/11 11:00:00'}
+    {id:'DE-20260801-001',skills:['收银员职业资格证','普通话等级证书','电子商务师','计算机操作员'],ent:'中国移动北京朝阳分公司',dept:'营业厅部',name:'移动营业厅店员',head:20,hired:8,salary:'5K-8K',loc:'北京市朝阳区',status:'招聘中',projType:'移动',type:'零售/百货',city:'北京',up:true,activity:'夏日高温补贴',rounds:2,source:'manual',tags:[{t:'日结',c:'b'},{t:'可兼职',c:'o'},{t:'包吃住',c:''},{t:'高额补贴',c:'g'}],materials:[{name:'健康证',type:'material',certNo:'JK-2024-009812',issueDate:'2024-05-20',expireDate:'2027-05-19'},{name:'护士证',type:'material',certNo:'HS-2022-003345',issueDate:'2022-09-01',expireDate:'2025-08-31'}],created:'2026/08/01 09:00:00'},
+    {id:'DE-20260720-001',skills:['普通话等级证书','电子商务师'],ent:'中国移动北京朝阳分公司',dept:'渠道部',name:'移动渠道销售员',head:10,hired:3,salary:'5K-7K',loc:'北京市海淀区',status:'招聘中',projType:'移动渠道',type:'零售/百货',city:'北京',up:true,activity:'',viewers:['oa-2'],source:'pc',tags:[{t:'日结',c:'b'},{t:'就近上岗',c:''}],materials:[{name:'健康证',type:'material'}],created:'2026/07/20 10:30:00'},
+    {id:'DE-20260715-001',ent:'中国移动浙江分公司',dept:'市场部',name:'移动业务推广员',head:15,hired:6,salary:'6K-10K',loc:'上海市浦东新区',status:'招聘中',projType:'移动',type:'市场/公关/广告/会展',city:'上海',up:true,activity:'老带新加薪券',source:'mini',tags:[{t:'日结',c:'b'},{t:'高薪',c:'o'}],created:'2026/07/15 14:00:00'},
+    {id:'DE-20260705-001',skills:['普通话等级证书','电子商务师'],ent:'中国移动浙江分公司',dept:'运营部',name:'移动增值业务推广员',head:9,hired:0,salary:'6K-10K',loc:'上海市浦东新区',status:'招聘中',projType:'移动',type:'市场/公关/广告/会展',city:'上海',up:true,activity:'',viewers:['oa-3'],source:'manual',tags:[{t:'灵活排班',c:''}],created:'2026/07/05 09:15:00'},
+    {id:'DE-20260622-001',skills:['电工证'],ent:'中国移动广东公司',dept:'仓储部',name:'移动网络优化工程师',head:30,hired:18,salary:'4.5K-6K',loc:'北京市大兴区',status:'招聘中',projType:'移动',type:'物流/运输',city:'北京',up:true,activity:'',source:'pc',tags:[{t:'日结',c:'b'},{t:'包吃住',c:''}],materials:[{name:'健康证',type:'material'},{name:'护士证',type:'material'}],created:'2026/06/22 11:00:00'},
+    {id:'DE-20260610-001',skills:['机动车驾驶证','高处作业证'],ent:'中国移动江苏公司',dept:'配送部',name:'移动装维外勤',head:25,hired:20,salary:'5K-7K',loc:'天津市东丽区',status:'招聘中',projType:'移动外勤',type:'物流/运输',city:'天津',up:true,activity:'高温补贴',source:'mini',tags:[{t:'日结',c:'b'},{t:'电动车补贴',c:'o'}],created:'2026/06/10 08:00:00'},
+    {id:'DE-20260508-001',skills:['机动车驾驶证'],ent:'中国移动北京公司',dept:'配送部',name:'移动外勤骑手',head:40,hired:35,salary:'6K-9K',loc:'北京市朝阳区',status:'已结束',projType:'移动外勤',type:'物流/运输',city:'北京',up:false,activity:'',source:'pc',tags:[{t:'日结',c:'b'},{t:'高薪',c:'o'}],created:'2026/05/08 16:45:00'},
+    {id:'DE-20260415-001',ent:'中国移动上海公司',dept:'门店部',name:'移动门店店员',head:12,hired:12,salary:'4.5K-6K',loc:'上海市长宁区',status:'已结束',projType:'移动超市',type:'零售/百货',city:'上海',up:false,activity:'',source:'manual',tags:[{t:'就近上岗',c:''}],created:'2026/04/15 10:20:00'},
+    {id:'DE-20260310-001',ent:'中国移动北京朝阳分公司',dept:'会员部',name:'移动会员服务员',head:8,hired:0,salary:'4K-6K',loc:'北京市朝阳区',status:'草稿',projType:'移动超市',type:'零售/百货',city:'北京',up:false,activity:'',source:'mini',tags:[],created:'2026/03/10 13:10:00'},
+    {id:'DE-20260810-001',ent:'中国移动北京朝阳分公司',dept:'会员部',name:'移动会员服务员（短期）',head:6,hired:0,salary:'4K-6K',loc:'北京市朝阳区',status:'招聘中',projType:'移动超市',type:'零售/百货',city:'北京',up:true,activity:'',source:'manual',tags:[],created:'2026/08/10 17:00:00'},
+    {id:'DE-20260812-001',ent:'中国移动浙江分公司',dept:'运营部',name:'移动营业厅店员（夜班）',head:10,hired:0,salary:'5K-8K',loc:'上海市浦东新区',status:'草稿',projType:'移动',type:'零售/百货',city:'上海',up:true,activity:'夜班补贴',source:'pc',tags:[{t:'日结',c:'b'},{t:'夜班补贴',c:'o'}],created:'2026/08/12 09:30:00'},
+    {id:'DE-20260815-001',ent:'中国移动北京公司',dept:'配送部',name:'移动众包外勤',head:50,hired:0,salary:'6K-9K',loc:'北京市朝阳区',status:'待审核',projType:'移动外勤',type:'物流/运输',city:'北京',up:false,activity:'',source:'mini',tags:[{t:'高薪',c:'o'}],created:'2026/08/15 11:20:00'},
+    {id:'DE-20260220-001',ent:'中国移动广东公司',dept:'仓储部',name:'移动网络优化工程师（夜班）',head:30,hired:30,salary:'4.5K-6K',loc:'北京市大兴区',status:'已结束',projType:'移动',type:'物流/运输',city:'北京',up:false,activity:'',source:'pc',tags:[{t:'包吃住',c:''}],created:'2026/02/20 15:00:00'},
+    {id:'DE-20260818-001',ent:'中国移动江苏公司',dept:'配送部',name:'移动同城急送骑手',head:20,hired:0,salary:'5K-8K',loc:'天津市西青区',status:'待审核',projType:'移动骑手',type:'物流/运输',city:'天津',up:false,activity:'',source:'mini',tags:[{t:'日结',c:'b'}],created:'2026/08/18 09:00:00'},
+    {id:'DE-20260817-001',ent:'中国移动北京公司',dept:'运营部',name:'移动优选移动网络优化工程师',head:35,hired:0,salary:'5K-7K',loc:'北京市通州区',status:'待审核',projType:'移动',type:'物流/运输',city:'北京',up:false,activity:'',source:'pc',tags:[{t:'就近上岗',c:''}],created:'2026/08/17 10:30:00'},
+    {id:'DE-20260816-001',ent:'中国移动上海公司',dept:'仓储部',name:'移动仓储分拣员',head:15,hired:0,salary:'4.5K-6K',loc:'上海市浦东新区',status:'招聘中',projType:'配送其他',type:'零售/百货',city:'上海',up:true,activity:'',source:'manual',tags:[],created:'2026/08/16 14:00:00'},
+    {id:'DE-20260814-001',ent:'中国移动北京朝阳分公司',dept:'营业厅部',name:'移动营业厅储备店长',head:3,hired:0,salary:'8K-12K',loc:'北京市朝阳区',status:'草稿',projType:'移动',type:'零售/百货',city:'北京',up:false,activity:'',source:'manual',tags:[],created:'2026/08/14 11:00:00'},
+    {id:'DE-20260813-001',ent:'中国移动广东公司',dept:'配送部',name:'移动快递员',head:25,hired:5,salary:'6K-9K',loc:'北京市海淀区',status:'招聘中',projType:'移动骑手',type:'物流/运输',city:'北京',up:true,activity:'',source:'pc',tags:[{t:'高薪',c:'o'},{t:'就近上岗',c:''}],created:'2026/08/13 08:30:00'},
+    {id:'DE-20260811-001',ent:'中国移动浙江分公司',dept:'市场部',name:'移动新能源推广专员',head:8,hired:0,salary:'7K-10K',loc:'上海市浦东新区',status:'待审核',projType:'新业务开发',type:'市场/公关/广告/会展',city:'上海',up:false,activity:'',source:'mini',tags:[],created:'2026/08/11 16:00:00'},
+    {id:'DE-20260809-001',ent:'中国移动江苏公司',dept:'客服部',name:'移动客服专员',head:10,hired:2,salary:'4K-5.5K',loc:'天津市滨海新区',status:'招聘中',projType:'移动',type:'客服/运营',city:'天津',up:true,activity:'',source:'pc',tags:[{t:'包吃住',c:''}],created:'2026/08/09 09:00:00'},
+    {id:'DE-20260808-001',ent:'中国移动北京公司',dept:'运营部',name:'移动商家运营助理',head:5,hired:0,salary:'5.5K-8K',loc:'北京市朝阳区',status:'草稿',projType:'新业务开发',type:'市场/公关/广告/会展',city:'北京',up:false,activity:'',source:'manual',tags:[],created:'2026/08/08 13:30:00'},
+    {id:'DE-20260730-001',ent:'中国移动上海公司',dept:'门店部',name:'移动冷链理货员',head:6,hired:4,salary:'4.5K-6K',loc:'上海市长宁区',status:'招聘中',projType:'配送其他',type:'零售/百货',city:'上海',up:true,activity:'',source:'mini',tags:[{t:'日结',c:'b'}],created:'2026/07/30 10:00:00'},
+    {id:'DE-20260820-001',ent:'中国移动广东公司',dept:'冷链部',name:'移动冷链网络优化工程师',head:12,hired:0,salary:'5.5K-7K',loc:'北京市通州区',status:'待审核',projType:'配送其他',type:'物流/运输',city:'北京',up:false,activity:'',source:'pc',tags:[{t:'低温补贴',c:''}],created:'2026/08/20 09:00:00'},
+    {id:'DE-20260819-001',ent:'中国移动江苏公司',dept:'仓储部',name:'移动仓储管理员',head:8,hired:0,salary:'4.5K-6K',loc:'天津市武清区',status:'待审核',projType:'配送其他',type:'物流/运输',city:'天津',up:false,activity:'',source:'mini',tags:[],created:'2026/08/19 14:00:00'},
+    {id:'DE-20260807-001',ent:'中国移动北京朝阳分公司',dept:'安全部',name:'移动安全巡检员',head:5,hired:0,salary:'5K-7K',loc:'北京市朝阳区',status:'招聘中',projType:'蓝领其他',type:'零售/百货',city:'北京',up:true,activity:'',source:'manual',tags:[],created:'2026/08/07 11:30:00'},
+    {id:'DE-20260901-001',ent:'中国移动北京朝阳分公司',dept:'市场部',name:'移动暑期活动督导',head:15,hired:0,salary:'6K-9K',loc:'北京市朝阳区',status:'招聘中',type:'市场/公关/广告/会展',city:'北京',up:true,activity:'',source:'manual',empType:'短期工',projType:'移动渠道',pm:'王运营',tags:[],created:'2026/09/01 09:00:00'},
+    {id:'DE-20260902-001',ent:'中国移动上海公司',dept:'客服部',name:'移动客服主管',head:3,hired:0,salary:'8K-12K',loc:'上海市长宁区',status:'待审核',type:'客服/运营',city:'上海',up:false,activity:'',source:'pc',empType:'全职',projType:'移动',pm:'李顾问',tags:[],created:'2026/09/02 10:00:00'},
+    {id:'DE-20260903-001',ent:'中国移动江苏公司',dept:'市场部',name:'移动临时地推',head:20,hired:0,salary:'5K-8K',loc:'天津市南开区',status:'草稿',type:'市场/公关/广告/会展',city:'天津',up:false,activity:'',source:'mini',empType:'灵工',projType:'移动渠道',pm:'李顾问',tags:[],created:'2026/09/03 11:00:00'},
+    {id:'DE-20260904-001',ent:'中国移动广东公司',dept:'市场部',name:'移动展会协助',head:10,hired:10,salary:'4.5K-6K',loc:'广东省广州市',status:'已结束',type:'市场/公关/广告/会展',city:'广东',up:false,activity:'',source:'manual',empType:'短期工',projType:'移动渠道',pm:'王运营',tags:[],created:'2026/09/04 14:00:00'},
+    {id:'DE-20260905-001',ent:'中国移动北京公司',dept:'市场部',name:'移动校园推广员',head:18,hired:0,salary:'5K-8K',loc:'北京市海淀区',status:'招聘中',type:'市场/公关/广告/会展',city:'北京',up:true,activity:'',source:'批量导入',empType:'灵工',projType:'移动渠道',pm:'王运营',tags:[],created:'2026/09/05 09:30:00'},
+    {id:'DE-20260906-001',ent:'中国移动上海公司',dept:'仓储部',name:'移动仓储备货员',head:12,hired:0,salary:'4.5K-6K',loc:'上海市浦东新区',status:'招聘中',type:'物流/运输',city:'上海',up:true,activity:'',source:'批量导入',empType:'短期工',projType:'配送其他',pm:'李顾问',tags:[],created:'2026/09/06 10:00:00'},
+    {id:'DE-20260907-001',ent:'中国移动广东公司',dept:'市场部',name:'移动展会引导员',head:8,hired:0,salary:'5K-7K',loc:'广东省广州市',status:'招聘中',type:'市场/公关/广告/会展',city:'广东',up:true,activity:'',source:'批量导入',empType:'灵工',projType:'移动渠道',pm:'王运营',tags:[],created:'2026/09/07 11:30:00'},
+    {id:'DE-20260910-001',skills:['食品安全管理员'],ent:'永辉超市',dept:'门店运营',name:'永辉超市理货员',head:20,hired:0,salary:'4K-6K',loc:'北京市丰台区',status:'招聘中',projType:'移动超市',type:'零售/百货',city:'北京',up:true,activity:'新人补贴',rounds:2,source:'manual',tags:[{t:'日结',c:'b'},{t:'可兼职',c:'o'}],materials:[{name:'健康证',type:'material'}],created:'2026/09/01 09:00:00'},
+    {id:'DE-20260901-002',skills:['叉车驾驶证'],ent:'顺丰速运',dept:'分拣中心',name:'顺丰快递分拣员',head:30,hired:0,salary:'5K-7K',loc:'北京市通州区',status:'招聘中',projType:'中通文博蓝领招聘',type:'物流',city:'北京',up:true,activity:'',rounds:2,source:'manual',tags:[{t:'日结',c:'b'},{t:'包吃住',c:''}],materials:[],created:'2026/09/01 09:10:00'},
+    {id:'DE-20260901-003',skills:['食品安全管理员'],ent:'星巴克',dept:'门店',name:'星巴克咖啡师',head:10,hired:0,salary:'5K-8K',loc:'上海市徐汇区',status:'招聘中',projType:'蓝领其他',type:'餐饮',city:'上海',up:false,activity:'',rounds:2,source:'manual',tags:[{t:'弹性排班',c:''}],materials:[],created:'2026/09/01 09:20:00'},
+    {id:'DE-20260901-004',skills:['普通话等级证书','企业人力资源管理师'],ent:'链家地产',dept:'销售部',name:'链家房产顾问',head:15,hired:0,salary:'6K-12K',loc:'北京市西城区',status:'招聘中',projType:'新业务开发',type:'销售',city:'北京',up:true,activity:'开单奖',rounds:2,source:'manual',tags:[{t:'高薪',c:'o'},{t:'提成',c:'b'}],materials:[],created:'2026/09/01 09:30:00'},
+    {id:'DE-20260901-005',skills:['普通话等级证书','电子商务师'],ent:'美团',dept:'地推部',name:'美团团购地推',head:25,hired:0,salary:'5K-9K',loc:'广州市天河区',status:'招聘中',projType:'移动渠道',type:'销售',city:'广州',up:true,activity:'冲单奖',rounds:2,source:'manual',tags:[{t:'日结',c:'b'},{t:'高薪',c:'o'}],materials:[],created:'2026/09/01 09:40:00'},
+    {id:'DE-20260908-001',skills:['普通话等级证书'],ent:'中国移动北京朝阳分公司',dept:'营业厅部',name:'移动促销导购员',head:15,hired:0,salary:'22-35',salaryType:'时薪',loc:'北京市朝阳区',status:'招聘中',type:'零售/百货',city:'北京',up:true,activity:'',source:'manual',empType:'灵工',projType:'移动超市',pm:'王运营',tags:[],created:'2026/09/08 09:30:00'},
+    {id:'DE-20260909-001',skills:['普通话等级证书'],ent:'中国移动浙江分公司',dept:'市场部',name:'移动活动协助员',head:12,hired:0,salary:'20-32',salaryType:'时薪',loc:'上海市浦东新区',status:'招聘中',type:'市场/公关/广告/会展',city:'上海',up:true,activity:'',source:'manual',empType:'灵工',projType:'移动渠道',pm:'李顾问',tags:[],created:'2026/09/09 10:00:00'},
+    {id:'DE-20260911-001',skills:['收银员职业资格证'],ent:'中国移动上海公司',dept:'门店部',name:'移动门店兼职收银',head:10,hired:0,salary:'24-38',salaryType:'时薪',loc:'上海市长宁区',status:'招聘中',type:'零售/百货',city:'上海',up:true,activity:'',source:'manual',empType:'灵工',projType:'移动超市',pm:'李顾问',tags:[],created:'2026/09/11 11:00:00'}
   ];
   /* 灵工/短期工演示薪资：按原型「薪资类型联动」规则，灵工/短期工默认日薪（合理日薪区间），全职保持月薪。
      以需求 ID 为键（避免按岗位名硬编码），并显式写入 salaryType，使单位严格跟随薪资类型；
@@ -19322,7 +19213,7 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     {key:'name',     label:'岗位名称', def:true,  render:d=>`${d.name}`},
     {key:'ent',      label:'所属企业', def:true,  render:d=>`${d.ent}`},
     {key:'dept',     label:'所属部门', def:true,  render:d=>`${deptName(d.dept)}`},
-    {key:'projType', label:'项目类型', def:false, render:d=>`${d.projType||'—'}`},
+    {key:'projType', label:'项目类型', def:false, render:d=>`${escHtml(projLabel(d.projType)||'—')}`},
     {key:'empType',  label:'用工类型', def:true,  render:d=>`${d.empType||'—'}`},
     {key:'type',     label:'岗位类型', def:true,  render:d=>`${d.type||'—'}`},
     {key:'pm',       label:'项目经理', def:true,  render:d=>{const canA=(isSuperAdmin(curOpUser)||d.original_manager_id===curOpUser||d.project_manager_id===curOpUser)&&d.status!=='已结束'&&d.status!=='草稿'; const nm=d.project_manager_name||'—'; return canA?`<span class="pm-cell" title="指派需求" onclick="openAssignModal('${d.id}')"><span class="pm-nm">${nm}</span><svg class="pm-ico" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25ZM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83Z"/></svg></span>`:`<span class="pm-nm">${nm}</span>`;}},
@@ -19353,7 +19244,8 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     const pSel=document.getElementById('ad-projtype');
     if(pSel && !pSel.dataset.filled){
       const ps=[...new Set(demands.map(d=>d.projType).filter(Boolean))];
-      pSel.innerHTML='<option value="">全部</option>'+ps.map(t=>`<option value="${t}">${t}</option>`).join('');
+      /* value 保持二级原名（筛选精确匹配），文字显示「大类-二级」 */
+      pSel.innerHTML='<option value="">全部</option>'+ps.map(t=>`<option value="${escAttr(t)}">${escHtml(projLabel(t))}</option>`).join('');
       pSel.dataset.filled='1';
     }
     const eSel=document.getElementById('ad-emptype');
@@ -19764,7 +19656,7 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
   function demandImportLegend(){
     const lines=[
       ['用工类型', DI_EMP.join(' / ')],
-      ['项目类型', projectOpts().join(' / ')],
+      ['项目类型', projectOpts().map(function(n){ return projLabel(n); }).join(' / ')],
       ['岗位类型', jobTypeOpts().join(' / ')],
       ['所属城市', DI_CITY.join(' / ')],
       ['薪资类型', '日薪 / 时薪 / 月薪 / 薪资面议'],
@@ -19849,7 +19741,10 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
   function validateDemandRow(r){
     const name=diGet(r,'岗位名称'); if(!name) return {ok:false,reason:'岗位名称为空'};
     const ent=diGet(r,'所属企业'); if(!ENT_LIST.includes(ent)) return {ok:false,reason:'所属企业不在企业列表（'+ent+'）'};
-    const proj=diGet(r,'项目类型'); if(!projectOpts().includes(proj)) return {ok:false,reason:'项目类型非法（'+proj+'）'};
+    /* 项目类型：兼容「大类-二级」与仅填「二级」两种写法，入库统一存二级名称 */
+    let proj=diGet(r,'项目类型');
+    if(proj && proj.indexOf('-')>0){ const seg=proj.split('-'); const leaf=seg[seg.length-1].trim(); if(projectOpts().includes(leaf)) proj=leaf; }
+    if(!projectOpts().includes(proj)) return {ok:false,reason:'项目类型非法（'+proj+'）'};
     const type=diGet(r,'岗位类型'); if(!isValidJobType(type)) return {ok:false,reason:'岗位类型非法（'+type+'）'};
     const city=diGet(r,'所属城市'); if(!DI_CITY.includes(city)) return {ok:false,reason:'所属城市非法（'+city+'）'};
     const loc=diGet(r,'工作地点'); if(!loc) return {ok:false,reason:'工作地点为空'};
@@ -20136,18 +20031,23 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     {id:'mk7',cat:'marketing',name:'电动车补贴',enabled:true,sort:7,parentId:'',level:1},
     {id:'mk8',cat:'marketing',name:'高薪',enabled:true,sort:8,parentId:'',level:1},
     {id:'mk9',cat:'marketing',name:'老带新加薪券',enabled:true,sort:9,parentId:'',level:1},
-    {id:'pj1',cat:'project',name:'移动骑手',enabled:true,sort:1,parentId:'',level:1,followDays:[1,3,7,10]},
-    {id:'pj2',cat:'project',name:'工经联',enabled:true,sort:2,parentId:'',level:1,followDays:[1,3,7,10]},
-    {id:'pj3',cat:'project',name:'移动',enabled:true,sort:3,parentId:'',level:1,followDays:[1,3,7,10]},
-    {id:'pj4',cat:'project',name:'蓝领其他',enabled:true,sort:4,parentId:'',level:1,followDays:[1,3,7,10]},
-    {id:'pj5',cat:'project',name:'移动外勤',enabled:true,sort:5,parentId:'',level:1,followDays:[1,3,7,10]},
-    {id:'pj6',cat:'project',name:'配送其他',enabled:true,sort:6,parentId:'',level:1,followDays:[1,3,7,10]},
-    {id:'pj7',cat:'project',name:'移动渠道',enabled:true,sort:7,parentId:'',level:1,followDays:[1,3,7,10]},
-    {id:'pj8',cat:'project',name:'移动超市',enabled:true,sort:8,parentId:'',level:1,followDays:[1,3,7,10]},
-    {id:'pj9',cat:'project',name:'新业务开发',enabled:true,sort:9,parentId:'',level:1,followDays:[1,3,7,10]},
-    {id:'pj10',cat:'project',name:'新业务蓝领',enabled:true,sort:10,parentId:'',level:1,followDays:[1,3,7,10]},
-    {id:'pj11',cat:'project',name:'邮通',enabled:true,sort:11,parentId:'',level:1,followDays:[1,3,7,10]},
-    {id:'pj12',cat:'project',name:'中通文博蓝领招聘',enabled:true,sort:12,parentId:'',level:1,followDays:[1,3,7,10]}
+    /* 项目大类（一级，可配置，仅作分类壳、不配跟进天数） */
+    {id:'pc1',cat:'project',name:'蓝领',enabled:true,sort:1,parentId:'',level:1,followDays:[]},
+    {id:'pc2',cat:'project',name:'配送',enabled:true,sort:2,parentId:'',level:1,followDays:[]},
+    {id:'pc3',cat:'project',name:'新业务',enabled:true,sort:3,parentId:'',level:1,followDays:[]},
+    /* 项目类型（二级，挂在大类下，跟进天数配置在这一级） */
+    {id:'pj1',cat:'project',name:'移动骑手',enabled:true,sort:11,parentId:'pc1',level:2,followDays:[1,3,7,10]},
+    {id:'pj2',cat:'project',name:'工经联',enabled:true,sort:12,parentId:'pc1',level:2,followDays:[1,3,7,10]},
+    {id:'pj3',cat:'project',name:'移动',enabled:true,sort:13,parentId:'pc1',level:2,followDays:[1,3,7,10]},
+    {id:'pj4',cat:'project',name:'蓝领其他',enabled:true,sort:14,parentId:'pc1',level:2,followDays:[1,3,7,10]},
+    {id:'pj5',cat:'project',name:'移动外勤',enabled:true,sort:15,parentId:'pc1',level:2,followDays:[1,3,7,10]},
+    {id:'pj6',cat:'project',name:'配送其他',enabled:true,sort:21,parentId:'pc2',level:2,followDays:[1,3,7,10]},
+    {id:'pj7',cat:'project',name:'移动渠道',enabled:true,sort:22,parentId:'pc2',level:2,followDays:[1,3,7,10]},
+    {id:'pj8',cat:'project',name:'移动超市',enabled:true,sort:31,parentId:'pc3',level:2,followDays:[1,3,7,10]},
+    {id:'pj9',cat:'project',name:'新业务开发',enabled:true,sort:32,parentId:'pc3',level:2,followDays:[1,3,7,10]},
+    {id:'pj10',cat:'project',name:'新业务蓝领',enabled:true,sort:33,parentId:'pc3',level:2,followDays:[1,3,7,10]},
+    {id:'pj11',cat:'project',name:'邮通',enabled:true,sort:34,parentId:'pc3',level:2,followDays:[1,3,7,10]},
+    {id:'pj12',cat:'project',name:'中通文博蓝领招聘',enabled:true,sort:16,parentId:'pc1',level:2,followDays:[1,3,7,10]}
   ];
   function tagsByCat(cat){
     if(cat==='benefit') return tagConfig.filter(t=>(t.cat==='welfare'||t.cat==='marketing')&&t.enabled).sort((a,b)=>a.sort-b.sort).map(t=>t.name);
@@ -20166,7 +20066,32 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
   function pdSkillOpts(){ return tagsByCat('material'); }
   function jobTypeOpts(){ return tagConfig.filter(t=>t.cat==='jobType'&&t.enabled&&t.level===1).sort((a,b)=>a.sort-b.sort).map(t=>t.name); }
   function jobTypeLeafOpts(){ return tagConfig.filter(t=>t.cat==='jobType'&&t.enabled&&t.level>1).sort((a,b)=>a.sort-b.sort).map(t=>t.name); }
-  function projectOpts(){ return tagsByCat('project'); }
+  /* ===== 项目类型（两级：大类 projectCat → 项目类型 project）=====
+     存储口径：需求里 projType 仍存「二级名称」，projCat 存「大类名称」；
+     展示口径：统一走 projLabel() 输出「大类-二级」，与用户认知一致。 */
+  function projCatOpts(){ return tagConfig.filter(t=>t.cat==='project'&&t.enabled&&t.level===1).sort((a,b)=>a.sort-b.sort).map(t=>t.name); }
+  /* 二级项目类型：不传 cat 返回全部启用二级；传 cat 只返回该大类下的 */
+  function projectOpts(cat){
+    return tagConfig.filter(function(t){
+      if(t.cat!=='project'||!t.enabled||t.level!==2) return false;
+      if(!cat) return true;
+      const p=tagConfig.find(function(x){return x.id===t.parentId;});
+      return !!(p&&p.name===cat);
+    }).sort((a,b)=>a.sort-b.sort).map(t=>t.name);
+  }
+  /* 取某二级项目所属大类名称（兼容旧数据：找不到返回空） */
+  function projCatOf(name){
+    if(!name) return '';
+    const t=tagConfig.find(function(x){return x.cat==='project'&&x.level===2&&x.name===name;});
+    if(!t) return '';
+    const p=tagConfig.find(function(x){return x.id===t.parentId;});
+    return p?p.name:'';
+  }
+  /* 展示用：大类-二级（无大类时退回二级名称，保证旧数据不致空白） */
+  function projLabel(name){
+    const cat=projCatOf(name);
+    return cat?(cat+'-'+name):(name||'');
+  }
   function fld(p,label,reqMark,ctlHtml){ return `<div class="fld"><label>${reqMark?'<span class="req">*</span>':''}${label}</label><div class="ctl">${ctlHtml}</div></div>`; }
   function fldFull(p,label,ctlHtml,reqMark,labelId){ return `<div class="fld full"><label${labelId?' id="'+labelId+'"':''}>${reqMark?'<span class="req">*</span>':''}${label}</label><div class="ctl">${ctlHtml}</div></div>`; }
   function fldLabeled(p,label,reqMark,ctlHtml,labelId){ return `<div class="fld"><label id="${labelId}">${reqMark?'<span class="req">*</span>':''}${label}</label><div class="ctl">${ctlHtml}</div></div>`; }
@@ -20278,16 +20203,121 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
   }
   function comboCloseOne(id){ const dd=document.getElementById(id+'-dd'); if(dd){ dd.style.display='none'; popupUnbind(dd); } }
   function comboPlace(id){ const dd=document.getElementById(id+'-dd'); const anchor=document.getElementById(id); if(!dd||!anchor) return; popupPlaceFixed(dd, anchor, 260); popupBindClose(dd, function(){ comboCloseOne(id); }); }
-  document.addEventListener('click', function(e){ if(!(e.target.closest && e.target.closest('.combo'))){ document.querySelectorAll('.combo-dd').forEach(function(dd){ dd.style.display='none'; popupUnbind(dd); }); } });
+  /* 点空白处关闭：兼容 combo-dd / 级联菜单（jt-menu、pt-menu 等 cp-dd）
+     关键：输入框 click 紧跟在其 focus 之后触发（focus 已打开面板），
+     必须跳过「刚打开」的面板，否则会闪一下就合上、且第二次再也点不开。 */
+  document.addEventListener('click', function(e){
+    var t=e.target;
+    var inCombo   = !!(t.closest && t.closest('.combo'));
+    var inPt      = !!(t.closest && t.closest('.pt-combo'));
+    var inPtMenu  = !!(t.closest && t.closest('.pt-menu'));
+    var inJt      = !!(t.closest && (t.closest('.jt-combo')||t.closest('.jt-menu')));
+    var inCp      = !!(t.closest && (t.closest('.city-field')||t.closest('.cp-dd')));
+    var now=Date.now();
+    var FRESH=300;
+    if(!inCombo){
+      document.querySelectorAll('.combo-dd').forEach(function(dd){
+        if(dd.__justOpened && (now-dd.__justOpened)<FRESH) return;
+        dd.style.display='none'; popupUnbind(dd);
+      });
+    }
+    if(!inPt && !inPtMenu && !inJt){
+      document.querySelectorAll('.pt-menu, .jt-menu').forEach(function(dd){
+        if(dd.__justOpened && (now-dd.__justOpened)<FRESH) return;
+        dd.style.display='none'; popupUnbind(dd);
+      });
+    }
+    if(!inCp && !inPtMenu){
+      document.querySelectorAll('.cp-dd').forEach(function(dd){
+        if(dd.__justOpened && (now-dd.__justOpened)<FRESH) return;
+        dd.style.display='none'; popupUnbind(dd);
+      });
+    }
+  });
   /* 项目类型：下拉选择 + 自定义可配置（持久化到 tagConfig.project，运营后台可配置） */
-  function projPersist(){ try{ const raw=localStorage.getItem('lingong_project_types'); if(raw){ const arr=JSON.parse(raw); arr.forEach(function(t){ const name=typeof t==='string'?t:(t&&t.name); const fd=(t&&typeof t==='object'&&t.followDays)?t.followDays:[]; const en=(typeof t==='object'&&t.enabled!==false); if(name && !tagConfig.some(function(x){return x.cat==='project'&&x.name===name;})) tagConfig.push({cat:'project',name:name,enabled:en,followDays:fd}); }); } }catch(e){} }
+  function projPersist(){ try{ const raw=localStorage.getItem('lingong_project_types'); if(raw){ const arr=JSON.parse(raw); arr.forEach(function(t){ const name=typeof t==='string'?t:(t&&t.name); if(!name) return; const fd=(t&&typeof t==='object'&&t.followDays)?t.followDays:[]; const en=(typeof t==='object'&&t.enabled!==false); const lv=(t&&typeof t==='object'&&t.level)?t.level:1; const pid=(t&&typeof t==='object'&&t.parentId)?t.parentId:''; const sid=(t&&typeof t==='object'&&t.id)?t.id:''; const st=(t&&typeof t==='object'&&t.sort!=null)?t.sort:0;
+      /* 新旧数据兼容：旧格式无 level → 视为二级（历史项目都是具体项目类型）；若本地已存在同名记录则同步层级字段 */
+      const exist=tagConfig.find(function(x){return x.cat==='project'&&x.name===name&&x.level===lv;});
+      if(exist){ if(st) exist.sort=st; if(lv===2&&pid) exist.parentId=pid; return; }
+      if(tagConfig.some(function(x){return x.cat==='project'&&x.name===name;})) return;
+      tagConfig.push({id:sid||('pj-'+name), cat:'project', name:name, enabled:en, sort:st, parentId:pid, level:lv, followDays:fd});
+    }); } }catch(e){} }
+  /* 项目类型：两级下拉（大类 → 二级），存 projType=二级名称、projCat=大类名称
+     展示统一走 projLabel()（大类-二级）；下游逻辑仍用 projType 精确匹配，不受影响 */
   function projTypeField(p, d){
     projPersist();
     const canConfig = curPlat==='admin';
-    const opts=projectOpts();
     const conf = canConfig ? `<a class="intro-link" onclick="openProjConfig()">配置规则</a>` : '';
-    const sel=`<select class="select" id="${p}-proj">${(opts.length?'<option value="">请选择项目类型</option>':'<option value="">（暂无可选，点右侧配置）</option>')+opts.map(t=>`<option ${d&&d.projType===t?'selected':''}>${t}</option>`).join('')}</select>`;
-    return `<div class="proj-field"><div class="proj-sel">${sel}</div>${conf}</div>`;
+    const catCur = (d&&d.projCat)?d.projCat:(d&&d.projType?projCatOf(d.projType):'');
+    const leafCur = (d&&d.projType)?d.projType:'';
+    /* 显示值：已选则「大类-二级」，未选则占位提示 */
+    const disp = leafCur ? projLabel(leafCur) : '';
+    /* 单框 + 左右两栏级联面板（交互与岗位类型/所属城市一致）；projType/projCat 用隐藏域承载，保存逻辑不变 */
+    return `<div class="proj-field"><div class="combo pt-combo" id="${p}-proj-combo">
+      <input class="inp" id="${p}-proj-disp" value="${escAttr(disp)}" placeholder="请选择项目类型" readonly onfocus="ptShow('${p}','${escAttr(catCur)}')" onclick="ptInputClick('${p}')"/>
+      <button type="button" class="btn sm" onclick="ptToggle('${p}','${escAttr(catCur)}')" onmousedown="event.preventDefault()">▾</button>
+      <input type="hidden" id="${p}-projcat" value="${escAttr(catCur)}"/>
+      <input type="hidden" id="${p}-proj" value="${escAttr(leafCur)}"/>
+      <div class="cp-dd pt-menu" id="${p}-pt-menu" style="display:none"><div class="jt-cols"><div class="jt-col" id="${p}-pt-left"></div><div class="jt-col" id="${p}-pt-right"></div></div></div>
+    </div>${conf}</div>`;
+  }
+  /* 项目类型级联：左栏大类、右栏该大类下的二级项目 */
+  function ptRender(p, activeCat){
+    const left=document.getElementById(p+'-pt-left'); if(!left) return;
+    const cats=projCatOpts();
+    if(!cats.length){ left.innerHTML='<div class="cascade-empty">暂无大类</div>'; }
+    else{
+      left.innerHTML=cats.map(function(t){
+        return `<div class="cascade-item${activeCat===t?' on':''}" onmouseenter="ptRenderRight('${p}','${escAttr(t)}')" onclick="ptRenderRight('${p}','${escAttr(t)}')">${escHtml(t)}<span class="arr">›</span></div>`;
+      }).join('');
+    }
+    const right=document.getElementById(p+'-pt-right');
+    if(activeCat) ptRenderRight(p, activeCat);
+    else if(right) right.innerHTML='<div class="cascade-empty">请选择左侧大类</div>';
+  }
+  function ptRenderRight(p, cat){
+    const right=document.getElementById(p+'-pt-right'); if(!right) return;
+    /* 高亮左栏当前大类 */
+    const left=document.getElementById(p+'-pt-left');
+    if(left) left.querySelectorAll('.cascade-item').forEach(function(el){ el.classList.toggle('on', el.textContent.replace('›','').trim()===cat); });
+    const leaves=projectOpts(cat);
+    const cur=document.getElementById(p+'-proj'); const curVal=cur?cur.value:'';
+    right.innerHTML=leaves.length?leaves.map(function(t){
+      return `<div class="cascade-item${curVal===t?' on':''}" onclick="ptPick('${p}','${escAttr(cat)}','${escAttr(t)}')">${escHtml(t)}</div>`;
+    }).join('') : '<div class="cascade-empty">该大类下暂无项目类型</div>';
+  }
+  function ptPick(p, cat, leaf){
+    const disp=document.getElementById(p+'-proj-disp'); if(disp) disp.value=cat+'-'+leaf;
+    const hc=document.getElementById(p+'-projcat'); if(hc) hc.value=cat;
+    const hl=document.getElementById(p+'-proj'); if(hl) hl.value=leaf;
+    const menu=document.getElementById(p+'-pt-menu'); if(menu){ menu.style.display='none'; popupUnbind(menu); }
+  }
+  function ptShow(p, activeCat){
+    const menu=document.getElementById(p+'-pt-menu'); if(!menu) return;
+    const hl=document.getElementById(p+'-proj');
+    /* 优先展开已选（或已存）的大类；否则默认展开第一个大类 */
+    let cat=activeCat||'';
+    if(!cat && hl && hl.value) cat=projCatOf(hl.value);
+    if(!cat){ const cats=projCatOpts(); cat=cats.length?cats[0]:''; }
+    ptRender(p, cat);
+    menu.style.display='block';
+    menu.__justOpened=Date.now();   /* 标记打开时刻，供全局 click 关闭逻辑跳过同源点击 */
+    const anchor=document.getElementById(p+'-proj-disp');
+    if(anchor) popupPlaceFixed(menu, anchor, 300);
+    popupBindClose(menu, function(){ menu.style.display='none'; popupUnbind(menu); });
+  }
+  /* 点输入框：若已打开则关闭（点第二次收起），否则打开。
+     focus 与 click 会连续触发，用短时去重避免「开了又立刻关」。 */
+  function ptInputClick(p){
+    const menu=document.getElementById(p+'-pt-menu'); if(!menu) return;
+    const now=Date.now();
+    if(menu.__justOpened && (now-menu.__justOpened)<250) return;  /* 刚由 focus 打开，忽略同次点击 */
+    ptToggle(p,'');
+  }
+  function ptToggle(p, activeCat){
+    const menu=document.getElementById(p+'-pt-menu'); if(!menu) return;
+    if(menu.style.display==='block'){ menu.style.display='none'; popupUnbind(menu); }
+    else ptShow(p, activeCat);
   }
   /* 项目经理字段：文本输入框 + 下拉框选中（combobox），数据源 = 状态正常且角色含 op1/op2/op3 的运营人员 */
   function pmField(p, d, readOnly){
@@ -20312,75 +20342,176 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
   }
   let projEditName=null;
   let projNewRows=[];
+  let projAddCatMode=false;   /* 是否正在输入新大类名称 */
+  let projCollapsed={};       /* 大类收起状态：{大类id:true}；默认展开 */
+  /* 展开/收起某大类下的二级 */
+  function projToggleCat(catId){
+    if(projCollapsed[catId]) delete projCollapsed[catId]; else projCollapsed[catId]=true;
+    refreshProjList();
+  }
   function parseDays(str){
     if(!str) return [];
     return String(str).split(/[,，]/).map(function(s){ return parseInt(s.trim(),10); }).filter(function(n){ return !isNaN(n)&&n>0; });
   }
   function persistProj(){
-    const arr=tagConfig.filter(function(t){return t.cat==='project';}).map(function(t){ return {name:t.name, followDays:t.followDays||[], enabled:t.enabled!==false}; });
+    /* 持久化两级结构：level / parentId 必须一并保存，否则重载后二级会脱离大类 */
+    const arr=tagConfig.filter(function(t){return t.cat==='project';}).map(function(t){
+      return {id:t.id, name:t.name, level:t.level||1, parentId:t.parentId||'', sort:t.sort||0, followDays:t.followDays||[], enabled:t.enabled!==false};
+    });
     try{ localStorage.setItem('lingong_project_types', JSON.stringify(arr)); }catch(e){}
   }
   function renderProjRows(){
     const canCreate=curPlat==='admin';
-    const list=tagConfig.filter(function(t){return t.cat==='project';}).sort(function(a,b){ return (a.sort||0)-(b.sort||0); });
+    /* 两级渲染：先按大类分组，二级缩进挂在其下；跟进天数只在二级配置 */
+    const cats=tagConfig.filter(function(t){return t.cat==='project'&&t.level===1;}).sort(function(a,b){ return (a.sort||0)-(b.sort||0); });
+    const leaves=tagConfig.filter(function(t){return t.cat==='project'&&t.level===2;}).sort(function(a,b){ return (a.sort||0)-(b.sort||0); });
     let html='';
-    if(list.length){
-      html=list.map(function(t){
+    /* 二级行操作：修改（改跟进天数）+ 停用 */
+    function leafOpHtml(t,dis){
+      if(!canCreate) return '';
+      return dis ? `<a class="lnk" onclick="projEnable('${escAttr(t.name)}','2')">启用</a>`
+                 : `<a class="lnk" onclick="projModStart('${escAttr(t.name)}','2')">修改</a><a class="lnk-danger" onclick="projDisable('${escAttr(t.name)}','2')">停用</a>`;
+    }
+    /* 大类行操作：新增二级 + 停用（大类不支持改名，故无「修改」） */
+    function catOpHtml(c,disC){
+      if(!canCreate) return '';
+      const add=`<a class="lnk" onclick="event.stopPropagation();projAddLeaf('${escAttr(c.name)}')">+ 新增二级</a>`;
+      const stop= disC ? `<a class="lnk" onclick="event.stopPropagation();projEnable('${escAttr(c.name)}','1')">启用</a>`
+                       : `<a class="lnk-danger" onclick="event.stopPropagation();projDisable('${escAttr(c.name)}','1')">停用</a>`;
+      return add+stop;
+    }
+    cats.forEach(function(c){
+      const disC=c.enabled===false;
+      const collapsed=!!projCollapsed[c.id];
+      const kids=leaves.filter(function(t){ return t.parentId===c.id; });
+      /* 大类行：三角展开/收起 + 名称 + 操作列（新增二级 / 停用）；跟进天数列留空 */
+      html+=`<div class="proj-cfg-row proj-cfg-cat${disC?' disabled':''}" data-name="${escAttr(c.name)}">
+        <span class="pc-col"><span class="proj-caret${collapsed?' collapsed':''}" onclick="projToggleCat('${escAttr(c.id)}')" title="${collapsed?'展开':'收起'}">▾</span><span class="txt proj-cat-name">${escHtml(c.name)}</span><span class="proj-cat-tag">大类</span><span class="proj-cat-count">${kids.length}</span>${disC?'<span class="badge-stop">已停用</span>':''}</span>
+        <span class="pc-col"><span class="txt muted">—</span></span>
+        ${canCreate?`<span class="pc-col op">${catOpHtml(c,disC)}</span>`:''}
+      </div>`;
+      /* 收起时，其下二级与新增行全部隐藏 */
+      if(collapsed) return;
+      /* 该大类下的二级 */
+      if(!kids.length){
+        html+=`<div class="proj-cfg-row proj-cfg-leaf empty"><span class="pc-col"><span class="txt muted">（该大类下暂无项目类型）</span></span><span class="pc-col"></span>${canCreate?'<span class="pc-col op"></span>':''}</div>`;
+      }
+      kids.forEach(function(t){
         const isEdit = projEditName===t.name;
         if(isEdit){
-          return `<div class="proj-cfg-row" data-name="${escAttr(t.name)}">
+          html+=`<div class="proj-cfg-row proj-cfg-leaf" data-name="${escAttr(t.name)}">
             <span class="pc-col"><span class="txt">${escHtml(t.name)}</span></span>
             <span class="pc-col"><input class="inp" id="proj-edit-days" value="${escAttr((t.followDays||[]).join(','))}" placeholder="如 1,3,7,10,15"/></span>
             <span class="pc-col op"><a class="lnk" onclick="projModSave('${escAttr(t.name)}')">保存</a><a class="lnk-danger" onclick="projModCancel()">取消</a></span>
           </div>`;
+          return;
         }
         const dis = t.enabled===false;
-        const op = canCreate ? (dis
-            ? `<a class="lnk" onclick="projEnable('${escAttr(t.name)}')">启用</a>`
-            : `<a class="lnk" onclick="projModStart('${escAttr(t.name)}')">修改</a><a class="lnk-danger" onclick="projDisable('${escAttr(t.name)}')">停用</a>`)
-          : '';
-        return `<div class="proj-cfg-row${dis?' disabled':''}" data-name="${escAttr(t.name)}">
+        html+=`<div class="proj-cfg-row proj-cfg-leaf${dis?' disabled':''}" data-name="${escAttr(t.name)}">
           <span class="pc-col"><span class="txt">${escHtml(t.name)}</span>${dis?'<span class="badge-stop">已停用</span>':''}</span>
           <span class="pc-col"><span class="txt">${escAttr((t.followDays||[]).join(','))||'—'}</span></span>
-          ${canCreate?`<span class="pc-col op">${op}</span>`:''}
+          ${canCreate?`<span class="pc-col op">${leafOpHtml(t,dis)}</span>`:''}
         </div>`;
-      }).join('');
-    } else { html='<div class="proj-cfg-empty muted">暂无项目类型，请新增。</div>'; }
-    html += projNewRows.map(function(r,i){
-      return `<div class="proj-cfg-row proj-new" data-new="${i}">
-        <span class="pc-col"><input class="inp" data-nf="name" value="${escAttr(r.name)}" placeholder="项目类型"/></span>
-        <span class="pc-col"><input class="inp" data-nf="days" value="${escAttr(r.days)}" placeholder="如 1,3,7,10,15"/></span>
-        <span class="pc-col op"><a class="lnk-danger" onclick="projDelNew(${i})">删除</a></span>
+      });
+      /* 该大类内联的「新增二级」输入行（由大类操作列的「+ 新增二级」触发） */
+      projNewRows.forEach(function(r,i){
+        if(r.cat!==c.name) return;
+        html+=`<div class="proj-cfg-row proj-new proj-cfg-leaf" data-new="${i}">
+          <span class="pc-col"><input class="inp" data-nf="name" value="${escAttr(r.name)}" placeholder="项目类型（二级）"/></span>
+          <span class="pc-col"><input class="inp" data-nf="days" value="${escAttr(r.days)}" placeholder="如 1,3,7,10,15"/></span>
+          <span class="pc-col op"><a class="lnk-danger" onclick="projDelNew(${i})">删除</a></span>
+          <input type="hidden" data-nf="cat" value="${escAttr(c.name)}"/>
+        </div>`;
+      });
+    });
+    /* 未归属大类的历史二级（兼容旧 localStorage 数据）：兜底展示，避免丢失 */
+    const orphans=leaves.filter(function(t){ return !cats.some(function(c){return c.id===t.parentId;}); });
+    orphans.forEach(function(t){
+      html+=`<div class="proj-cfg-row proj-cfg-leaf${t.enabled===false?' disabled':''}" data-name="${escAttr(t.name)}">
+        <span class="pc-col"><span class="txt">${escHtml(t.name)}</span><span class="proj-cat-tag warn">未归类</span></span>
+        <span class="pc-col"><span class="txt">${escAttr((t.followDays||[]).join(','))||'—'}</span></span>
+        ${canCreate?`<span class="pc-col op">${opHtml(t,t.enabled===false)}</span>`:''}
       </div>`;
-    }).join('');
+    });
+    if(!cats.length && !leaves.length && !projAddCatMode) html='<div class="proj-cfg-empty muted">暂无项目类型，请点右下角「新增大类」开始配置。</div>';
+    /* 新增大类行：与常规大类行同格式（只差在名称是可输入的），不填二级、不填天数 */
+    if(projAddCatMode){
+      html+=`<div class="proj-cfg-row proj-cfg-cat proj-cfg-catinput" id="proj-addcat-row">
+        <span class="pc-col"><input class="inp" id="proj-addcat-input" placeholder="填写大类名称，如 仓储" onkeydown="projAddCatKey(event)" onblur="projAddCatCommit()"/></span>
+        <span class="pc-col"><span class="txt muted">—</span></span>
+        ${canCreate?'<span class="pc-col op"></span>':''}
+      </div>`;
+    }
+    /* 二级新增行（按大类内联渲染，见上方 cats.forEach） */
     return html;
   }
   function refreshProjList(){ const l=document.getElementById('proj-cfg-list'); if(l) l.innerHTML=renderProjRows(); }
-  function syncNewRows(){ document.querySelectorAll('#proj-cfg-list .proj-new').forEach(function(row){ const i=parseInt(row.getAttribute('data-new'),10); const n=row.querySelector('input[data-nf="name"]'); const d=row.querySelector('input[data-nf="days"]'); if(projNewRows[i]){ projNewRows[i].name=n?n.value:''; projNewRows[i].days=d?d.value:''; } }); }
+  function syncNewRows(){ document.querySelectorAll('#proj-cfg-list .proj-new').forEach(function(row){ const i=parseInt(row.getAttribute('data-new'),10); const n=row.querySelector('input[data-nf="name"]'); const d=row.querySelector('input[data-nf="days"]'); const c=row.querySelector('[data-nf="cat"]'); const nc=row.querySelector('input[data-nf="newcat"]'); if(projNewRows[i]){ projNewRows[i].name=n?n.value:''; projNewRows[i].days=d?d.value:''; if(c) projNewRows[i].cat=c.value; if(nc) projNewRows[i].newcat=nc.value; } }); }
   function openProjConfig(){
     projPersist();
     projEditName=null;
     projNewRows=[];
+    projAddCatMode=false;
+    projCollapsed={};
     const canCreate=curPlat==='admin';
-    const body=`<div class="proj-cfg-note">维护「项目类型 + 跟进天数」，跟进天数以逗号分隔（支持中英文逗号），例如 1,3,7,10,15。保存后持久化并作为「项目类型」下拉数据源。</div>
+    const body=`<div class="proj-cfg-note">跟进天数只配在项目类型（二级），多个值用逗号分隔。</div>
     <div class="proj-cfg${canCreate?' has-op':''}">
-      <div class="proj-cfg-h"><span class="pc-col">项目类型</span><span class="pc-col">跟进天数</span>${canCreate?'<span class="pc-col op">操作</span>':''}</div>
+      <div class="proj-cfg-h"><span class="pc-col">大类 / 项目类型</span><span class="pc-col">跟进天数</span>${canCreate?'<span class="pc-col op">操作</span>':''}</div>
       <div id="proj-cfg-list">${renderProjRows()}</div>
     </div>`;
-    const foot=`<span style="margin-left:auto;display:flex;gap:10px;"><button class="btn ghost" onclick="closeProjDrawer()">关闭</button><button class="btn sm" onclick="projAdd()">新增</button><button class="btn" onclick="projConfigSave()">保存</button></span>`;
+    const foot=`<span style="margin-left:auto;display:flex;gap:10px;"><button class="btn ghost" onclick="closeProjDrawer()">关闭</button><button class="btn sm" onclick="projAdd()">新增大类</button><button class="btn" onclick="projConfigSave()">保存</button></span>`;
     openProjDrawer('项目类型配置', body, canCreate?foot:`<button class="btn ghost" onclick="closeProjDrawer()">关闭</button><button class="btn" onclick="projConfigSave()">保存</button>`, 'proj-cfg-drawer');
   }
+  /* 右下角「新增大类」：插入一行大类输入框，回车或失焦即写入；成功后才出现该大类的「+ 新增二级」 */
   function projAdd(){
     syncNewRows();
-    projNewRows.push({name:'', days:''});
+    projAddCatMode=true;
     refreshProjList();
-    const row=document.querySelector('#proj-cfg-list .proj-new:last-child');
-    const inp=row?row.querySelector('input[data-nf="name"]'):null;
-    if(inp) inp.focus();
+    const inp=document.getElementById('proj-addcat-input');
+    if(inp){ inp.focus(); }
+    /* 滚动到新行 */
+    const row=document.getElementById('proj-addcat-row');
+    if(row && row.scrollIntoView) row.scrollIntoView({block:'nearest'});
+  }
+  function projAddCatKey(e){
+    if(e.key==='Enter'){ e.preventDefault(); projAddCatCommit(); }
+    else if(e.key==='Escape'){ e.preventDefault(); projAddCatCancel(); }
+  }
+  function projAddCatCommit(){
+    if(!projAddCatMode) return;
+    const inp=document.getElementById('proj-addcat-input');
+    const name=inp?String(inp.value||'').trim():'';
+    if(!name){ projAddCatMode=false; refreshProjList(); return; }   /* 空值：静默退出 */
+    if(tagConfig.some(function(t){ return t.cat==='project'&&t.level===1&&t.name===name; })){
+      toast('大类「'+name+'」已存在');
+      if(inp) inp.value='';
+      return;
+    }
+    const maxSort=tagConfig.filter(function(t){return t.cat==='project'&&t.level===1;}).reduce(function(a,t){ return Math.max(a,t.sort||0); },0);
+    tagConfig.push({id:'pc-'+name, cat:'project', name:name, enabled:true, sort:maxSort+1, parentId:'', level:1, followDays:[]});
+    projAddCatMode=false;
+    persistProj();
+    refreshProjList();
+    toast('已新增大类「'+name+'」');
+  }
+  function projAddCatCancel(){ projAddCatMode=false; refreshProjList(); }
+  /* 某个大类内的「+ 新增二级」：预先锁定大类，只填名称与天数；若该大类处于收起态则自动展开 */
+  function projAddLeaf(catName){
+    syncNewRows();
+    const catObj=tagConfig.find(function(t){return t.cat==='project'&&t.level===1&&t.name===catName;});
+    if(catObj && projCollapsed[catObj.id]) delete projCollapsed[catObj.id];
+    projNewRows.push({name:'', days:'', cat:catName, newcat:''});
+    refreshProjList();
+    const rows=document.querySelectorAll('#proj-cfg-list .proj-new');
+    for(let i=rows.length-1;i>=0;i--){
+      const h=rows[i].querySelector('input[data-nf="cat"]');
+      if(h && h.value===catName){ const inp=rows[i].querySelector('input[data-nf="name"]'); if(inp) inp.focus(); break; }
+    }
   }
   function projDelNew(i){ syncNewRows(); projNewRows.splice(i,1); refreshProjList(); }
-  function projModStart(name){ projEditName=name; syncNewRows(); refreshProjList(); const inp=document.getElementById('proj-edit-days'); if(inp) inp.focus(); }
-  function projModCancel(){ projEditName=null; refreshProjList(); }
+  /* 修改：二级改跟进天数；大类改名称（同步其下二级的归属） */
+  function projModStart(name, level){ projEditName=name; projEditLevel=+level||2; syncNewRows(); refreshProjList(); const inp=document.getElementById('proj-edit-days'); if(inp) inp.focus(); }
+  function projModCancel(){ projEditName=null; projEditLevel=2; refreshProjList(); }
   function projModSave(name){
     const inp=document.getElementById('proj-edit-days');
     const t=tagConfig.find(function(x){ return x.cat==='project'&&x.name===name; });
@@ -20389,22 +20520,28 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     persistProj();
     refreshProjList();
   }
-  function projDisable(name){ const t=tagConfig.find(function(x){ return x.cat==='project'&&x.name===name; }); if(t){ t.enabled=false; } refreshProjList(); }
-  function projEnable(name){ const t=tagConfig.find(function(x){ return x.cat==='project'&&x.name===name; }); if(t){ t.enabled=true; } refreshProjList(); }
+  /* 启停：按 level 精确定位。注意模板拼出的 level 是字符串，须转数字后再与 x.level 严格比较 */
+  function projDisable(name, level){ const lv=+level; const t=tagConfig.find(function(x){ return x.cat==='project'&&x.name===name&&(level?x.level===lv:true); }); if(t){ t.enabled=false; } refreshProjList(); }
+  function projEnable(name, level){ const lv=+level; const t=tagConfig.find(function(x){ return x.cat==='project'&&x.name===name&&(level?x.level===lv:true); }); if(t){ t.enabled=true; } refreshProjList(); }
   function projConfigSave(){
     syncNewRows();
-    // 必填校验：新增行必须填写「项目类型」与「跟进天数」
+    /* 大类已在输入时即时入库；此处只校验二级新增行：必须有归属大类 + 名称 + 跟进天数 */
     for(let i=0;i<projNewRows.length;i++){
-      const nm=(projNewRows[i].name||'').trim();
-      const dy=(projNewRows[i].days||'').trim();
-      if(!nm || !dy){ toast('请完整填写新增行的「项目类型」和「跟进天数」'); return; }
+      const r=projNewRows[i];
+      const nm=(r.name||'').trim();
+      const dy=(r.days||'').trim();
+      const ct=(r.cat||'').trim();
+      if(!ct){ toast('请选择归属大类'); return; }
+      if(!nm || !dy){ toast('请完整填写「项目类型」和「跟进天数」'); return; }
     }
-    const base=tagConfig.filter(function(t){return t.cat==='project';}).length;
+    let base=tagConfig.filter(function(t){return t.cat==='project';}).length;
     projNewRows.forEach(function(r,i){
       const name=(r.name||'').trim();
-      if(!name) return;
-      if(tagConfig.some(function(t){return t.cat==='project'&&t.name===name;})) return;
-      tagConfig.push({id:'pj-'+name, cat:'project', name:name, enabled:true, sort:base+i+1, followDays:parseDays(r.days)});
+      const catName=(r.cat||'').trim();
+      if(!name || !catName) return;
+      if(tagConfig.some(function(t){return t.cat==='project'&&t.level===2&&t.name===name;})) return;
+      const catObj=tagConfig.find(function(t){return t.cat==='project'&&t.level===1&&t.name===catName;});
+      tagConfig.push({id:'pj-'+name, cat:'project', name:name, enabled:true, sort:base+i+1, parentId:catObj?catObj.id:'', level:2, followDays:parseDays(r.days)});
     });
     projNewRows=[];
     persistProj();
@@ -20414,7 +20551,8 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
   function todayYMD(){ const d=new Date(); const p=function(n){return String(n).padStart(2,'0');}; return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate()); }
   function followDaysOf(projectName){
     if(!projectName) return [];
-    const t=tagConfig.find(function(x){return x.cat==='project'&&x.name===projectName;});
+    /* 项目类型查的是二级记录（跟进天数只配在二级）；大类不参与匹配 */
+    const t=tagConfig.find(function(x){return x.cat==='project'&&x.level===2&&x.name===projectName;});
     let fd=(t&&t.followDays)?t.followDays:[];
     if(typeof fd==='string'){ fd=fd.split(/[,，]/).map(function(s){return parseInt(s.trim(),10);}).filter(function(n){return !isNaN(n);}); }
     return fd.slice().sort(function(a,b){return a-b;});
@@ -21214,7 +21352,21 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     popupBindClose(dd, function(){ cpClose(p); });
   }
   function cpClose(p){ const dd=document.getElementById(p+'-cp-dd'); if(dd){ dd.style.display='none'; popupUnbind(dd); } window._cp=null; }
-  document.addEventListener('click', function(e){ if(!(e.target.closest && (e.target.closest('.city-field')||e.target.closest('.cp-dd')||e.target.closest('.jt-combo')))){ var dds=document.querySelectorAll('.cp-dd'); for(var i=0;i<dds.length;i++){ dds[i].style.display='none'; popupUnbind(dds[i]); } } });
+  /* 点空白处关闭省市选择面板。注意：pt-menu（项目类型级联）也带 cp-dd 类，
+     这里必须排除它并跳过「刚打开」的面板，否则会把项目类型面板一闪就关掉。 */
+  document.addEventListener('click', function(e){
+    var t=e.target;
+    var inCp = !!(t.closest && (t.closest('.city-field')||t.closest('.cp-dd')||t.closest('.jt-combo')||t.closest('.pt-combo')||t.closest('.pt-menu')));
+    if(inCp) return;
+    var now=Date.now();
+    var dds=document.querySelectorAll('.cp-dd');
+    for(var i=0;i<dds.length;i++){
+      var dd=dds[i];
+      if(dd.classList.contains('pt-menu')) continue;   /* 项目类型面板由 ptShow/全局逻辑自行管理 */
+      if(dd.__justOpened && (now-dd.__justOpened)<300) continue;
+      dd.style.display='none'; popupUnbind(dd);
+    }
+  });
   function escHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
   function escAttr(s){ return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/'/g,"\\'"); }
   // 套用模板：单一数据源（结构化），目前仅一套通用模板；覆盖式套用
@@ -21576,6 +21728,7 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
       entImages:getEntImages('pd'),
       type:document.getElementById('pd-type').value,
       projType:document.getElementById('pd-proj')?document.getElementById('pd-proj').value:'',
+      projCat:document.getElementById('pd-projcat')?document.getElementById('pd-projcat').value:'',
       empType:empType,
       head:parseInt(document.getElementById('pd-head').value||0),
       cityObj:JSON.parse(JSON.stringify(cityObj)),
@@ -21674,6 +21827,7 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     }
     if(!draftMode){
       if(!v.name||!v.ent||!v.loc||!v.city||!v.type){ toast('请填写必填项（企业 / 岗位 / 城市 / 岗位类型 / 地点）'); return; }
+      if(!v.projCat){ toast('请选择项目大类'); return; }
       if(!v.projType){ toast('请选择项目类型'); return; }
       if(!v.desc){ toast('请填写岗位描述'); return; }
       if(!validateAttendance(v.attendanceObj)){ return; }
@@ -22507,7 +22661,7 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     {key:'phone',    label:'手机号',   def:true,  render:p=>`${p.phone||'—'}`},
     {key:'edu',      label:'学历',     def:false, render:p=>`${p.edu||'—'}`},
     {key:'ent',      label:'企业',     def:true,  render:p=>`${p.ent}`},
-    {key:'proj',     label:'项目',     def:true,  render:p=>{ const d=demands.find(x=>x.id===p.demandId); return d&&d.projType?d.projType:'—'; }},
+    {key:'proj',     label:'项目',     def:true,  render:p=>{ const d=demands.find(x=>x.id===p.demandId); return d&&d.projType?escHtml(projLabel(d.projType)):'—'; }},
     {key:'post',     label:'岗位',     def:true,  render:p=>`${p.post}`},
     {key:'dept',     label:'所属部门', def:true,  render:p=>{ const d=demands.find(x=>x.id===p.demandId); return (p.dept||(d&&d.dept)||'—'); }},
     {key:'type',     label:'岗位类型', def:true,  render:p=>{ const d=demands.find(x=>x.id===p.demandId); return d?d.type:'—'; }},
@@ -29967,7 +30121,7 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
       var site=RPK_SITE[city]||(city==='—'?'—':city+'灵工站');
       out.push({
         id:'rpk'+i, recRider:p.name, city:city, site:postName,
-        rec:p.follower||'—', proj:d.projType||'—', ent:(p.ent||d.ent||'—'),
+        rec:p.follower||'—', proj:projLabel(d.projType)||'—', ent:(p.ent||d.ent||'—'),
         empType:p.empType||d.empType||'灵工', note1:notes[0]||'—', note2:notes[1]||'—',
         group:(followerDeptMap[p.follower]||'—'), phone:p.phone||'—', ivAddr:d.loc||'—',
         pushDate:day||'—', inout:(p.src==='内部推荐'?'内部':'外部'),
@@ -34208,7 +34362,7 @@ function renderEntSettle(){
   if(elK) elK.innerHTML=
     taskKpiCard('k1',ENT_IC.bill,'¥'+fmtY(k.bill),'账单总计金额（含税）','')
     +taskKpiCard('k2',ENT_IC.wait,'¥'+fmtY(k.unpaid),'未付账单金额','待确认 ¥'+fmtY(k.waitConfirm)+' · 待付款 ¥'+fmtY(k.waitPay))
-    +taskKpiCard('k3',ENT_IC.back,'¥'+fmtY(k.paid),'已回款金额','回款率 '+(k.bill?Math.round(k.paid/k.bill*10000)/100:0)+'%')
+    +taskKpiCard('k3',ENT_IC.back,'¥'+fmtY(k.paid),'已付款金额','付款率 '+(k.bill?Math.round(k.paid/k.bill*10000)/100:0)+'%')
     +taskKpiCard('k4',ENT_IC.service,'¥'+fmtY(k.service),'服务费','其中减免 ¥'+fmtY(k.relief));
   var elY=document.getElementById('ent-year-chart'), hd;
   if(d.ms.length===1){
@@ -35030,8 +35184,8 @@ var FUND_TS=(function(){
 function padDayNum(s2){ if(!s2) return 0; var a=s2.split('-'); return Math.round(new Date(+a[0],+a[1]-1,+a[2]).getTime()/86400000); }
 /* 垫资金额（时点，截至范围结束日 em）：按 企业 × 服务商 × 部门 × 结算周期 逐组匹配发薪与账单
    账单外垫资（已发薪未出账）= 该组已发薪金额 − 该组账单结算金额含税（为负取 0）
-   账单内垫资（已发薪未收回）= min(该组已发薪金额, 该组账单结算金额含税) − 该组已回款（已付款账单结算金额含税，为负取 0）
-   平均垫资周期 = 加权平均（发薪→出账天数 + 出账→回款天数） */
+   账单内垫资（已发薪未收回）= min(该组已发薪金额, 该组账单结算金额含税) − 该组已付款（已付款账单结算金额含税，为负取 0）
+   最长垫资周期 = 该企业×服务商下，所有未结清账单（非已付款）从推送日至统计截止日的最长停留天数 */
 function padExposure(em,dept,ent){
   var g={}, gk=function(e,sp,d,p){ return e+'|'+sp+'|'+d+'|'+p; };
   var newG=function(e,sp,d,p){ return {ent:e,sp:sp,dept:d,period:p,sent:0,bill:0,paid:0,conf:0,genN:0,genS:0,payN:0,payS:0,d1w:0,d1n:0}; };
@@ -35095,7 +35249,7 @@ function padExposure(em,dept,ent){
   return {padIn:Math.round(padIn/10000*100)/100,padOut:Math.round(padOut/10000*100)/100,per:out,flow:flowArr};
 }
 /* 垫资未收回（供运营后台灵工结算分析页使用，按已发薪未收回口径）：返回 {企业: 金额(元)}
-   按 企业×服务商×部门×结算周期 逐组匹配发薪与账单：min(已发薪, 账单结算金额含税) − 已回款（已付款账单结算金额含税）
+   按 企业×服务商×部门×结算周期 逐组匹配发薪与账单：min(已发薪, 账单结算金额含税) − 已付款（已付款账单结算金额含税）
    灵工是否提现不影响（已发薪即计入垫资）；ent/dept 为空表示不限 */
 function padSentMap(em,dept,ent){
   var sent={}, g={};
@@ -35844,8 +35998,8 @@ function entBillSummaryRows(summary){
     +'<th class="ors-t-num">减免金额(不含税,元)</th>'
     +'<th class="ors-t-num">结算金额含税总计(元)</th><th class="ors-t-num">服务费含税总计(元)</th>'
     +'<th class="ors-t-num">减免金额含税(元)</th><th class="ors-t-num">总计金额(含税,元)</th>'
-    +'<th class="ors-t-num">未付账单金额(元)</th><th class="ors-t-num">已回款金额(元)</th>'
-    +'<th class="ors-t-num">回款率</th>'
+    +'<th class="ors-t-num">未付账单金额(元)</th><th class="ors-t-num">已付款金额(元)</th>'
+    +'<th class="ors-t-num">付款率</th>'
     +'</tr></thead><tbody>'+html+'</tbody></table>';
 }
 /* 服务商垫资（服务商级：企业 × 服务商 × 账单内/外垫资） */
@@ -35860,7 +36014,7 @@ function entPadRows(rows){
       +'<td class="ors-t-num">'+R(r.padIn)+'</td>'
       +'<td class="ors-t-num">'+R(r.padOut)+'</td>'
       +'<td class="ors-t-num">'+R(all)+'</td>'
-      +'<td class="ors-t-num">'+(r.days||0)+'</td></tr>';
+      +'<td class="ors-t-num">'+(r.maxDays||0)+'</td></tr>';
   });
   html+='<tr style="font-weight:600;background:#fafbfc;"><td>合计</td><td>—</td>'
     +'<td class="ors-t-num">'+R(tIn)+'</td><td class="ors-t-num">'+R(tOut)+'</td>'
@@ -35868,7 +36022,7 @@ function entPadRows(rows){
     +'<td class="ors-t-num">—</td></tr>';
   return '<table class="mem-table"><thead><tr><th>企业</th><th>服务商</th>'
     +'<th class="ors-t-num">账单内垫资(元)</th><th class="ors-t-num">账单外垫资(元)</th>'
-    +'<th class="ors-t-num">垫资金额合计(元)</th><th class="ors-t-num">平均垫资周期(天)</th></tr></thead><tbody>'+html+'</tbody></table>';
+    +'<th class="ors-t-num">垫资金额合计(元)</th><th class="ors-t-num">最长垫资周期(天)</th></tr></thead><tbody>'+html+'</tbody></table>';
 }
 /* 运营后台 · 资金池分布（时点值，按所选范围结束日） */
 function fundPoolBox(pool, share, entName, dept){
