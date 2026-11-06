@@ -319,6 +319,12 @@
   /* 用工类型=灵工 且职业类别为 5 时的警示提示 */
   .jt-wrap{width:100%;}
   .jt-tip{margin-top:4px;font-size:12px;line-height:1.6;color:#E24B4A;}
+  /* em2 消息页占位 */
+  .em2-msg-ph{display:flex; flex-direction:column; align-items:center; justify-content:center;
+              padding:120px 24px 0; text-align:center;}
+  .em2-msg-ph-ico{margin-bottom:14px; opacity:.9;}
+  .em2-msg-ph-t{font-size:14px; color:#6b7a90; line-height:1.6;}
+  .em2-msg-ph-d{font-size:12px; color:#a8b4c6; margin-top:6px;}
   .jt-cols{display:flex;}
   .jt-col{flex:1; min-width:140px; max-height:240px; overflow:auto; border-left:1px solid var(--border-base);}
   .jt-col:first-child{border-left:none;}
@@ -2239,9 +2245,22 @@
   /* 需求表单新增组件样式 */
   .ro-text{display:inline-block; padding:6px 10px; background:#f4f6f8; border:1px solid var(--border-base); border-radius:6px; color:var(--text-main); font-size:11px;}
   .salary-block{display:flex; flex-direction:row; align-items:center; flex-wrap:wrap; gap:12px;}
-  .salary-types{display:flex; gap:10px; flex-wrap:wrap;}
-  .salary-types .sal-type{display:inline-flex; align-items:center; gap:4px; font-size:13px; cursor:pointer; padding:5px 14px; border:1px solid var(--border-base); border-radius:6px; user-select:none; background:#fff;}
-  .salary-types .sal-type.on{border-color:var(--primary); color:var(--primary); background:color-mix(in srgb, var(--primary) 10%, #fff);}
+  /* 薪资类型：纯勾选框（自绘方块，不依赖原生 checkbox 外观，避免被全局样式影响） */
+  .salary-types{display:flex; gap:20px; flex-wrap:wrap; align-items:center; padding:2px 0;}
+  .salary-types .sal-type{display:inline-flex; align-items:center; gap:6px; font-size:13px;
+                          color:var(--text-regular); cursor:pointer; user-select:none; background:none; border:0; padding:0;}
+  /* 原生复选框移出视觉层但保留可点击与可聚焦 */
+  .salary-types .sal-type input[type=checkbox]{position:absolute; opacity:0; width:0; height:0; margin:0; pointer-events:none;}
+  /* 自绘勾选框：14×14 圆角方块 */
+  .salary-types .sal-box{display:inline-block; width:14px; height:14px; flex:0 0 14px; box-sizing:border-box;
+                         border:1px solid #c0c6d0; border-radius:3px; background:#fff; position:relative; transition:.15s;}
+  .salary-types .sal-type:hover .sal-box{border-color:var(--primary);}
+  /* 选中：主色填充 + 白色对勾 */
+  .salary-types .sal-type.on .sal-box{background:var(--primary,#3771eb); border-color:var(--primary,#3771eb);}
+  .salary-types .sal-type.on .sal-box::after{content:''; position:absolute; left:4px; top:1.5px; width:3.5px; height:7px;
+                                              border:solid #fff; border-width:0 1.5px 1.5px 0; transform:rotate(45deg);
+                                              box-sizing:content-box;}
+  .salary-types .sal-type.on{color:var(--primary);}
   .salary-pair{display:flex; gap:8px; align-items:center;}
   .salary-unit{font-size:12px; color:var(--text-secondary); margin-left:6px;}
   .desc-template-bar{display:flex; justify-content:space-between; align-items:center; margin-top:4px;}
@@ -8509,6 +8528,7 @@
           <div class="salary-seg" id="em2-salarySeg" data-page-node-id="HVKLnlDnYYOZi6Z9FNvj1m">
             <button type="button" class="seg-btn on" onclick="setSalaryUnit(this,'日')" data-page-node-id="ziV4Lc1BurEoOHNGA1SlV9">日薪</button>
             <button type="button" class="seg-btn" onclick="setSalaryUnit(this,'时')" data-page-node-id="ETajtLXKHUg23nFKVt6cJB">时薪</button>
+            <button type="button" class="seg-btn" onclick="setSalaryUnit(this,'单')" data-page-node-id="Em2SalSegPerOrder">按单</button>
           </div>
           <div class="salary-row" data-page-node-id="QjyiG4kYJqGDsAhxI6Szxe">
             <input class="ri" id="em2-salaryMin" type="number" placeholder="最低" oninput="updateSalaryPreview()" data-page-node-id="dojBdNwTo3GcJSSwkzUkco">
@@ -10551,8 +10571,14 @@
     let salMax = rec.salaryObj?rec.salaryObj.max:rec.salaryMax;
     setVal('em2-salaryMin', salMin||''); setVal('em2-salaryMax', salMax||'');
     const salType = rec.salaryObj?rec.salaryObj.type:'';
-    const unit = (salType==='hourly')?'时':'日';
-    const segBtns=document.querySelectorAll('#em2-salarySeg .seg-btn'); segBtns.forEach(b=>b.classList.toggle('on', b.textContent===unit));
+    /* 按薪资类型显式映射到分段按钮与单位芯片（原逻辑只认日/时，按单会被错误还原成日薪） */
+    const SAL_SEG = { daily:{label:'日薪', unit:'元/日'},
+                      hourly:{label:'时薪', unit:'元/时'},
+                      perOrder:{label:'按单', unit:'元/单'} };
+    const seg = SAL_SEG[salType] || SAL_SEG.daily;
+    const segBtns=document.querySelectorAll('#em2-salarySeg .seg-btn'); segBtns.forEach(b=>b.classList.toggle('on', b.textContent===seg.label));
+    const _chip=document.getElementById('em2-salaryUnitChip');
+    if(_chip) _chip.textContent=seg.unit;
     setVal('em2-needNum', rec.head||1);
     const locs = rec.locations ? rec.locations.slice() : (rec.loc?String(rec.loc).split('、'):[]);
     _selectedLocations = locs; renderLocList();
@@ -19553,6 +19579,7 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     if(type==='day'||type==='daily') push('日结','tag-money');
     else if(type==='hour'||type==='hourly') push('时薪','tag-money');
     else if(type==='month'||type==='monthly') push('月薪','tag-blue');
+    else if(type==='perOrder') push('按单','tag-money');
     const ao=(d&&d.attendanceObj)?d.attendanceObj:{};
     if((ao.periods&&ao.periods.length>1)||(ao.customPeriods&&ao.customPeriods.length)) push('灵活排班','tag-purple');
     const urg=d?d.urgency:'普通';
@@ -21668,9 +21695,9 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     if(!hasPeriods){ toast('请至少选择一个具体出勤时段或添加自定义时段'); return false; }
     return true;
   }
-  function salaryUnit(mode){ return mode==='daily'?'元/日':(mode==='hourly'?'元/时':(mode==='monthly'?'元/月':'')); }
+  function salaryUnit(mode){ return mode==='daily'?'元/日':(mode==='hourly'?'元/时':(mode==='monthly'?'元/月':(mode==='perOrder'?'元/单':''))); }
   function salaryTextOf(s){ if(s.mode==='negotiable') return '薪资面议'; const v=(s.min||'')+((s.min&&s.max)?'~':'')+(s.max||''); return v? v+' '+salaryUnit(s.mode) : '—'; }
-  function salUnitByType(t){ return t==='daily'?'元/日':(t==='hourly'?'元/时':(t==='monthly'?'元/月':'')); }
+  function salUnitByType(t){ return t==='daily'?'元/日':(t==='hourly'?'元/时':(t==='monthly'?'元/月':(t==='perOrder'?'元/单':''))); }
   function curSalType(p){ const c=document.querySelector('#'+p+'-sal-types input[type=checkbox]:checked'); return c?c.value:(p==='pd'?(pdSalary.type||pdSalary.mode):(edSalary.type||edSalary.mode)); }
   function salTypeToggle(p,type,el){
     const wrap=document.getElementById(p+'-sal-types'); if(!wrap) return;
@@ -21701,14 +21728,16 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
   function updateSalaryUI(p){
     const emp=document.getElementById(p+'-emp'); if(!emp) return;
     const isLg = emp.value==='灵工' || emp.value==='短期工';
-    const isFull = emp.value==='全职';
     const wrap=document.getElementById(p+'-sal-types'); if(!wrap) return;
     const so = p==='pd'?pdSalary:edSalary;
     let checkedType='';
     wrap.querySelectorAll('label').forEach(l=>{
       const cb=l.querySelector('input[type=checkbox]'); if(!cb) return;
       const t=cb.value;
-      const visible = isLg ? (t==='daily'||t==='hourly') : (isFull ? (t==='monthly'||t==='negotiable') : true);
+      /* 用工类型只有三种：灵工 / 短期工 → 日薪、时薪、按单；全职 → 月薪、面议。
+         按单计酬多见于计件类岗位（配送、推广、仓储），全职为固定月薪制，不开放按单。 */
+      const visible = isLg ? (t==='daily'||t==='hourly'||t==='perOrder')
+                           : (t==='monthly'||t==='negotiable');
       l.style.display = visible ? '' : 'none';
       if(!visible && cb.checked){ cb.checked=false; l.classList.remove('on'); }
       else if(visible && cb.checked){ checkedType=t; l.classList.add('on'); }
@@ -22021,17 +22050,19 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     const headField=fld(p,'需求人数',true,`<div class="stepper"><button onclick="step('${p}-head',-1,1,99999)">−</button><input id="${p}-head" value="${d?d.head:1}"/><button onclick="step('${p}-head',1,1,99999)">+</button></div>`);
     const salaryField=fldFull(p,'薪资范围',`<div class="salary-block">
         <div class="salary-types" id="${p}-sal-types">
-          ${['daily','hourly','monthly','negotiable'].map(t=>{
-            const lbl={daily:'日薪',hourly:'时薪',monthly:'月薪',negotiable:'薪资面议'}[t];
+          ${['daily','hourly','perOrder','monthly','negotiable'].map(t=>{
+            const lbl={daily:'日薪',hourly:'时薪',perOrder:'按单',monthly:'月薪',negotiable:'薪资面议'}[t];
             const isLg = initEmp==='灵工' || initEmp==='短期工';
-            const visible = isLg ? (t==='daily'||t==='hourly') : (initEmp==='全职' ? (t==='monthly'||t==='negotiable') : true);
+            /* 灵工/短期工 → 日薪、时薪、按单；全职 → 月薪、面议 */
+            const visible = isLg ? (t==='daily'||t==='hourly'||t==='perOrder')
+                                 : (t==='monthly'||t==='negotiable');
             const hide = visible ? '' : 'style="display:none"';
             const checked=(initSalType===t)?'checked':'';
             const on=(initSalType===t)?'on':'';
-            return `<label class="sal-type ${on}" ${hide}><input type="checkbox" value="${t}" ${checked} ${hide} onchange="salTypeToggle('${p}','${t}',this)"/>${lbl}</label>`;
+            return `<label class="sal-type ${on}" ${hide}><input type="checkbox" value="${t}" ${checked} ${hide} onchange="salTypeToggle('${p}','${t}',this)"/><i class="sal-box"></i>${lbl}</label>`;
           }).join('')}
         </div>
-        <div class="salary-pair" id="${p}-sal-pair" style="${['daily','hourly','monthly'].includes(initSalType)?'':'display:none'}">
+        <div class="salary-pair" id="${p}-sal-pair" style="${['daily','hourly','perOrder','monthly'].includes(initSalType)?'':'display:none'}">
           <input class="inp" id="${p}-sal-min" value="${(p==='pd'?pdSalary:edSalary).min}" placeholder="最低"/><span>~</span><input class="inp" id="${p}-sal-max" value="${(p==='pd'?pdSalary:edSalary).max}" placeholder="最高"/>
           <span class="salary-unit" id="${p}-sal-unit">${salUnitByType(initSalType)}</span>
         </div>
@@ -22363,7 +22394,7 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
       if(!v.projType){ toast('请选择项目类型'); return; }
       if(!v.desc){ toast('请填写岗位描述'); return; }
       if(!validateAttendance(v.attendanceObj)){ return; }
-      if(!v.salaryObj.type){ toast('请选择薪资类型（日薪 / 时薪 / 月薪 / 薪资面议）'); return; }
+      if(!v.salaryObj.type){ toast('请选择薪资类型（日薪 / 时薪 / 按单 / 月薪 / 薪资面议）'); return; }
       if(v.salaryObj.type!=='negotiable' && (!v.salaryMin&&!v.salaryMax)){ toast('请填写薪资区间，或勾选「薪资面议」'); return; }
       if(!(v.head>=1)){ toast('需求人数至少为 1'); return; }
       if(v.head>99999){ toast('需求人数不能超过 99999'); return; }
@@ -26909,22 +26940,28 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     {t:'合同待审批提醒',p:'「湖北恒信企业公司」已提交服务合同 CT-2026-00201，当前处于待审批状态，请尽快完成审批。',time:'2026-09-18 18:10',unread:false},
     {t:'系统通知',p:'您的企业小程序已更新至最新版本，体验更流畅。',time:'2026-09-18 09:30',unread:false}
   ];
+  /* 消息页当前为占位页：不展示具体消息内容，仅保留页面框架。
+     实现方式为渲染统一的空状态占位块；消息数据（entMiniMessages）保留，
+     待消息模块需求确定后再接回列表渲染。 */
   function renderEntMiniMsg(){
     const body=document.getElementById('em-msg-body'); if(!body) return;
-    body.innerHTML=entMiniMessages.map(function(m){
-      return '<div style="padding:14px 16px;border-bottom:1px solid #f0f2f5;background:#fff">'
-        +'<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">'
-        +'<div style="font-size:14px;font-weight:600;color:#1f2a44;line-height:1.4">'+m.t+'</div>'
-        +'<div style="font-size:11px;color:#aaa;flex:0 0 auto;margin-top:2px">'+m.time+'</div></div>'
-        +'<div style="font-size:12px;color:#8c8c8c;line-height:1.6;margin-top:6px">'+m.p+'</div>'
-        +'</div>';
-    }).join('');
+    body.innerHTML=''
+      +'<div class="em2-msg-ph">'
+      +  '<div class="em2-msg-ph-ico">'
+      +    '<svg width="56" height="56" viewBox="0 0 24 24" fill="none">'
+      +      '<rect x="3" y="5" width="18" height="14" rx="2.5" stroke="#C3D0E4" stroke-width="1.6"/>'
+      +      '<path d="M4 7.5l8 5 8-5" stroke="#C3D0E4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>'
+      +    '</svg>'
+      +  '</div>'
+      +  '<div class="em2-msg-ph-t">消息模块建设中</div>'
+      +  '<div class="em2-msg-ph-d">敬请期待</div>'
+      +'</div>';
     renderEm2BellBadge();
   }
   function renderEm2BellBadge(){
-    const n=entMiniMessages.filter(function(m){return m.unread;}).length;
+    /* 消息页当前为占位态，未读数尚无实际意义，角标一律隐藏；接入真实消息后再恢复按未读数显示 */
     const b=document.getElementById('em2-bellBadge'); if(!b) return;
-    b.style.display=n>0?'block':'none'; b.textContent=n>99?'99+':n;
+    b.style.display='none';
   }
   let em2MsgFromTab=null;
   function openEntMsg(){
