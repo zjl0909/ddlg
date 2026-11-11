@@ -851,9 +851,135 @@
   .empty-link{background:transparent; border:none; color:var(--primary); cursor:pointer; font-size:12px; padding:2px 4px;}
   /* account & permission modules */
   .layout-split{display:flex; gap:16px; align-items:stretch;}
+  /* ===== 数据授权配置：左树 + 右全量勾选（运营后台 / 企业端共用） ===== */
+  .do-left{display:flex; flex-direction:column; background:#fff; border:1px solid var(--border-light,#e4e7ed); border-radius:4px; padding:12px 10px; overflow:hidden; min-width:0;}
+  .do-left-hd{display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;}
+  .do-left-t{font-size:13px; font-weight:600; color:var(--text-primary);}
+  .do-left-tools{display:flex; gap:10px; font-size:12px;}
+  .do-left-tools .lnk{cursor:pointer; color:var(--primary);}
+  .do-tree{flex:1 1 auto; min-height:0; overflow-y:auto; overflow-x:hidden;}
+  .do-tree ul{list-style:none; margin:0; padding:0;}
+  .do-tree li{list-style:none;}
+  .do-tree .node-row{min-width:0!important; overflow:hidden;}
+  .do-tree .node-row .nm{flex:1 1 auto; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .do-tree .node-row .cnt{flex:0 0 auto;}
+  .do-tree .tw{flex:0 0 14px;}
+  .do-tree ul,.do-tree li{min-width:0;}
+  .do-left-ft{display:flex; align-items:center; justify-content:space-between; margin-top:8px; padding-top:8px; border-top:1px solid var(--border-extra-light,#f0f2f5); font-size:12px; color:var(--text-secondary);}
+  .do-left-ft .lnk{cursor:pointer; color:var(--primary);}
+  /* Tab：与平台 .perm-tabs / .ptab 保持一致（下划线式，无底色块） */
+  .do-tabs{display:flex; gap:0; border-bottom:1px solid var(--border-extra-light,#f0f2f5); margin-bottom:14px;}
+  .do-tab{flex:0 0 auto; padding:10px 18px; font-size:14px; color:var(--text-secondary);
+    cursor:pointer; border:none; background:transparent; border-bottom:2px solid transparent;
+    margin-bottom:-1px; position:relative; transition:color .15s;}
+  .do-tab:hover{color:var(--primary);}
+  .do-tab.on{color:var(--primary); font-weight:600; border-bottom-color:var(--primary); background:transparent;}
+  .do-tab.on::after{content:""; position:absolute; left:18px; right:18px; bottom:-1px; height:2px; background:var(--primary); border-radius:2px;}
+  /* ---- 工具条（两行）：第一行标题+操作按钮，第二行搜索+全选 ---- */
+  /* 第一行：标题 + 右侧操作按钮 */
+  .do-list-hd{display:flex; align-items:center; gap:14px; margin-bottom:10px;}
+  .do-list-act{display:flex; align-items:center; gap:8px; margin-left:auto;}
+  .do-list-act .btn{white-space:nowrap; min-width:78px;}
+  /* 第二行：搜索框 + 全选 */
+  .do-bar{display:flex; align-items:center; gap:12px; flex-wrap:nowrap; margin-bottom:12px;}
+  /* 搜索框容器：内置清除按钮 */
+  .do-search-wrap{position:relative; flex:0 0 auto; width:260px; display:flex; align-items:center;}
+  .do-search{width:100%; padding-right:26px;}
+  .do-search-clear{position:absolute; right:8px; top:50%; transform:translateY(-50%);
+    width:16px; height:16px; line-height:15px; text-align:center; border-radius:50%;
+    font-size:13px; color:#c0c4cc; cursor:pointer; user-select:none; display:none;
+    background:#f0f2f5; transition:.15s;}
+  .do-search-clear.show{display:block;}
+  .do-search-clear:hover{color:#fff; background:#c0c4cc;}
+  /* 全选：紧挨搜索框右侧；操作按钮推到最右 */
+  .do-bar .do-all-cb{margin-left:0; flex:0 0 auto;}
+  .do-bar{gap:14px;}
+  .do-bar .do-list-act{margin-left:auto; display:flex; align-items:center; gap:8px;}
+  .do-bar .do-list-act .btn{white-space:nowrap; min-width:78px;}
+  /* 兼容旧类名（其它页面仍在用） */
+  .do-bar-l{display:flex; align-items:center; gap:8px; flex:0 0 auto;}
+  .do-bar-r{display:flex; align-items:center; gap:8px; flex:0 0 auto; margin-left:auto;}
+  .do-list-hd{display:flex; align-items:center; gap:14px; margin-bottom:8px; padding-top:2px;}
+  .do-list-t{font-size:13px; font-weight:600; color:var(--text-primary);}
+  .do-list-c{font-size:12px; color:var(--text-secondary);}
+  .do-list-c b{color:var(--primary);}
+  .do-list-all{font-size:12px; color:var(--text-regular); display:flex; align-items:center; gap:5px; cursor:pointer;}
+  /* 统一的「全选」复选框 */
+  .do-all-cb{font-size:13px; color:var(--text-primary); display:inline-flex; align-items:center; gap:6px; cursor:pointer; white-space:nowrap; margin-left:auto;}
+  .do-all-cb input{width:14px; height:14px; cursor:pointer; accent-color:var(--primary,#3771eb);}
+  .do-sel-bar{display:flex; align-items:center; justify-content:space-between; gap:12px;}
+  .do-table{table-layout:fixed; width:100%;}
+  .do-table th.do-cb, .do-table td.do-cb{width:48px; text-align:center; padding-left:14px;}
+  .do-table td{white-space:normal;}
+  .do-none{text-align:center; color:var(--text-secondary); padding:24px; font-size:13px;}
+  .do-inh{display:inline-block; margin-left:8px; padding:0 5px; font-size:10px; line-height:16px; color:#8a90a0; background:#f2f4f7; border-radius:3px; vertical-align:middle;}
+  /* 企业端右侧树：继承项行样式（与运营后台一致，置灰不可取消） */
+  .do-row.inh{opacity:.85;}
+  .do-row.inh .do-nm{color:var(--text-secondary,#8a90a0);}
+  .do-row.inh input{opacity:.6;}
+  .do-row.inh{background:#fbfcfd;}
+  .do-pos.inh{opacity:.85;}
+  .do-pos.inh .do-nm, .do-pos.inh .do-pos-n{color:var(--text-secondary);}
+  /* 数据授权列表的分页条：与需求管理页完全一致的平台标准样式 */
+  .do-pager{display:flex; align-items:center; justify-content:flex-end; gap:8px; flex-wrap:nowrap;
+    margin:12px 0 0; padding:12px 0 4px; font-size:13px; color:var(--text-regular);
+    background:transparent; border-top:1px solid var(--border-extra-light); border-radius:0;
+    min-width:0; overflow:hidden;}
+  .do-pager .pg-info{color:var(--text-secondary); margin-right:auto;}
+  .do-pager .pg-btn{min-width:30px; height:30px; padding:0 8px; border:1px solid var(--border-base); background:#fff; border-radius:4px; cursor:pointer; font-size:13px; color:var(--text-regular); transition:.15s;}
+  .do-pager .pg-btn:hover:not(:disabled){border-color:var(--primary); color:var(--primary);}
+  .do-pager .pg-btn.active{background:var(--primary); border-color:var(--primary); color:#fff; font-weight:600;}
+  .do-pager .pg-btn:disabled{color:#c3c7d1; border-color:var(--border-extra-light); cursor:not-allowed;}
+  .do-pager .pg-size-sel{height:30px; padding:0 6px; border:1px solid var(--border-base); border-radius:4px; background:#fff; color:var(--text-regular); font-size:12px; cursor:pointer; outline:none; margin:0 2px; flex:0 0 auto;}
+  .do-pager .pg-jump{display:inline-flex; align-items:center; gap:6px; color:var(--text-regular);}
+  .do-pager .pg-jump input{width:48px; height:30px; padding:0 6px; border:1px solid var(--border-base); border-radius:4px; text-align:center; font-size:13px; outline:none;}
+  .do-pager .pg-ellipsis{display:inline-flex; align-items:center; justify-content:center; min-width:30px; height:30px; color:var(--text-placeholder); font-size:13px; user-select:none;}
+  .do-list-wrap{min-height:0;}
+  .do-pos-d{font-size:11px; color:var(--text-secondary); white-space:nowrap; margin-left:auto; padding-left:12px;}
+  .do-sel-bar{background:var(--primary-lighter,#f4f8fe); border:1px solid #dbe6fb; border-radius:4px; padding:8px 12px; font-size:12px; color:var(--text-regular); margin-bottom:10px;}
+  .do-sel-bar b{color:var(--primary);}
+  .do-ep-block{border:1px solid var(--border-extra-light,#f0f2f5); border-radius:4px; margin-bottom:8px; overflow:hidden;}
+  .do-ep-head{display:flex; align-items:center; gap:10px; padding:9px 12px; background:var(--bg-page,#fafbfc);}
+  .do-ep-name{font-size:13px; font-weight:600; color:var(--text-primary); flex:1; min-width:0;}
+  .do-ep-cnt{font-size:12px; color:var(--text-secondary); white-space:nowrap;}
+  .do-ep-exp{font-size:12px; color:var(--primary); cursor:pointer; white-space:nowrap;}
+  .do-ep-body{padding:4px 0 6px;}
+  .do-pos{display:flex; align-items:center; gap:8px; padding:7px 12px 7px 36px; cursor:pointer;}
+  .do-pos:hover{background:var(--bg-page,#fafbfc);}
+  .do-pos-n{font-size:13px; color:var(--text-primary);}
+  .do-pos-d{font-size:11px; color:var(--text-secondary);}
+  .do-tree-box{overflow:auto; max-height:calc(100vh - 420px); margin-top:2px;}
+  .do-row{display:flex; align-items:center; gap:6px; padding:5px 8px; border-bottom:1px solid var(--border-extra-light,#f5f7fa); font-size:13px;}
+  .do-row:hover{background:var(--bg-page,#fafbfc);}
+  .do-tw{width:14px; text-align:center; font-size:9px; color:var(--text-secondary); cursor:pointer; user-select:none; transition:transform .15s;}
+  .do-tw.collapsed{transform:rotate(-90deg);}
+  .do-tw.ph{visibility:hidden; cursor:default;}
+  .do-cbl{display:flex; align-items:center; gap:7px; cursor:pointer; flex:1; min-width:0;}
+  .do-nm{color:var(--text-primary);}
+  /* 树节点状态标签（替代原来的小圆点）：统一靠右对齐，避免紧跟部门名把名称挤压 */
+  .do-tree .node-row .nm{flex:0 1 auto;}
+  .do-tag{flex:0 0 auto; margin-left:auto; padding:0 5px; height:16px; line-height:16px; font-size:10px; border-radius:3px; white-space:nowrap; font-weight:400; letter-spacing:.2px;}
+  .do-tag.own{color:var(--primary,#3771eb); background:var(--primary-lighter,#eef4ff);}
+  .do-tag.inh{color:#8a90a0; background:#f3f4f7;}
+  /* 没有标签的节点也保留右侧留白，保证名称区宽度一致 */
+  .do-tree .node-row .cnt{margin-left:auto;}
+  .do-empty{padding:60px 20px; text-align:center;}
+  .do-empty-ico{font-size:32px; opacity:.35; margin-bottom:10px;}
+  .do-empty-t{font-size:13px; font-weight:600; color:var(--text-primary); margin-bottom:6px;}
+  .do-empty-d{font-size:12px; color:var(--text-secondary); line-height:1.7;}
   /* 角色权限 / 数据授权配置页：左右卡片各自独立滚动（12.2 / 12.3） */
   #a-permission .layout-split, #e-permission .layout-split{height:calc(100vh - 220px);}
   #a-permission .layout-split > div, #e-permission .layout-split > div{overflow:auto; min-height:0;}
+  /* 数据授权：左侧树独立滚动，右侧面板内部滚动，外层不再各自滚动避免双滚动条 */
+  /* 两栏宽度按 2:3 分配，并设合理上下限，避免左侧过窄/右侧过宽 */
+  #opDataOwnerPanel .layout-split, #entDataOwnerPanel .layout-split{gap:16px;}
+  #opDataOwnerPanel .layout-split > .do-left,
+  #entDataOwnerPanel .layout-split > .do-left{flex:2 1 0; min-width:280px; max-width:460px;}
+  #opDataOwnerPanel .layout-split > div:not(.do-left),
+  #entDataOwnerPanel .layout-split > div:not(.do-left){flex:3 1 0; min-width:0;}
+  #opDataOwnerPanel .layout-split > div, #entDataOwnerPanel .layout-split > div{overflow:hidden; display:flex; flex-direction:column;}
+  #opDataOwnerPanel .layout-split > div > .card, #entDataOwnerPanel .layout-split > div > .card{flex:1 1 auto; min-height:0; overflow:auto; margin:0;}
+  #opDataOwnerPanel .do-left, #entDataOwnerPanel .do-left{height:100%;}
   .tree{flex:0 0 290px; width:290px; min-width:0; display:flex; flex-direction:column; background:var(--bg-card); border:1px solid var(--border-extra-light); border-radius:6px; padding:12px;}
   .tree h4{margin:0 0 8px; font-size:13px; color:var(--text-secondary);}
   .tree ul{list-style:none; margin:0; padding:0;}
@@ -6393,8 +6519,25 @@
             </div>
           </div>
         </div>
-        <div id="opDataOwnerPanel" style="display:none" data-page-node-id="DHRIM4KaNCw8chCvosad0R">
+        <div id="opDataOwnerPanel" style="display:none" data-page-node-id="DHRIMBKaNCw8chCvosad0R">
           <div class="layout-split" data-page-node-id="DPZhGBBz01h2VIFeJpwXUt">
+            <!-- 左：授权部门组织架构树 -->
+            <div class="do-left">
+              <div class="do-left-hd">
+                <span class="do-left-t">授权部门</span>
+                <span class="do-left-tools">
+                  <a class="lnk" onclick="expandDataOwnerAll()">展开</a>
+                  <a class="lnk" onclick="collapseDataOwnerAll()">收起</a>
+                </span>
+              </div>
+              <input class="inp" id="do-tree-search" placeholder="搜索部门名称" style="margin-bottom:8px" oninput="onDataOwnerSearch(this.value)" autocomplete="off"/>
+              <div class="org-tree do-tree" id="dataOwnerTree"></div>
+              <div class="do-left-ft">
+                <span class="do-sel-tip" id="do-sel-tip">未选择部门</span>
+                <a class="lnk" onclick="clearDataOwnerSel()">清空</a>
+              </div>
+            </div>
+            <!-- 右：授权配置（Tab 切换 / 全量勾选 / 分页） -->
             <div style="flex:1; min-width:0" data-page-node-id="WUbyPgm8i10LiJKiFknlOx">
               <div class="card" id="dataOwnerPanel" data-page-node-id="Kqhtv4bXYpkAoMq6uOz7kM"></div>
             </div>
@@ -7535,7 +7678,26 @@
         </div>
         <div id="entDataOwnerPanel" style="display:none" data-page-node-id="X7Ww90QUt4mRe1HRUi2Tkx">
           <div class="layout-split" data-page-node-id="y1LkfGC42vApTBeHkdF0aL">
-            <div style="flex:1; min-width:0" id="entDataOwnerCfg" data-page-node-id="WUtbkM0Ha21DxWAfGzrAbH"></div>
+            <!-- 左：授权部门（操作员组织） -->
+            <div class="do-left">
+              <div class="do-left-hd">
+                <span class="do-left-t">授权部门</span>
+                <span class="do-left-tools">
+                  <a class="lnk" onclick="expandEntDataOwnerAll()">展开</a>
+                  <a class="lnk" onclick="collapseEntDataOwnerAll()">收起</a>
+                </span>
+              </div>
+              <input class="inp" id="ent-do-search" placeholder="搜索部门名称" style="margin-bottom:8px" oninput="onEntDataOwnerSearch(this.value)" autocomplete="off"/>
+              <div class="org-tree do-tree" id="entDataOwnerTree"></div>
+              <div class="do-left-ft">
+                <span class="do-sel-tip" id="ent-do-sel-tip">未选择部门</span>
+                <a class="lnk" onclick="clearEntDataOwnerSel()">清空</a>
+              </div>
+            </div>
+            <!-- 右：可见灵工部门勾选树 -->
+            <div style="flex:1; min-width:0" data-page-node-id="WUtbkM0Ha21DxWAfGzrAbH">
+              <div class="card" id="entDataOwnerCfg"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -13261,7 +13423,42 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     flyoutEl.style.display='block';
   }
   function hideFlyout(){ flyoutHideTimer=setTimeout(()=>{ if(flyoutEl) flyoutEl.style.display='none'; },160); }
+  /* 离开数据授权页前检查未保存修改（运营后台 + 企业端共用） */
+  let doLeaveGuard=false;   // 防止确认后再次触发
+  function doCheckUnsavedBeforeLeave(plat, screenId){
+    if(doLeaveGuard) return true;
+    if(plat!=='admin' && plat!=='enterprise') return true;
+    /* 只在本页停留在数据授权 Tab 时才拦截 */
+    const arg=arguments;
+    const curIsDataOwner = (plat==='admin' && curScreen==='a-permission')
+                        || (plat==='enterprise' && curScreen==='e-permission');
+    if(!curIsDataOwner) return true;
+    if(screenId===curScreen) return true;   // 同页切换 Tab 不拦
+    let changed=false;
+    try{
+      if(plat==='admin'){
+        changed = (typeof doHasChange==='function') && (doHasChange('ent_all')||doHasChange('ent_position'));
+      } else {
+        changed = (typeof entDoHasChange==='function') && entDoHasChange();
+      }
+    }catch(e){ changed=false; }
+    if(!changed) return true;
+    const ok = confirm('当前有未保存的授权配置修改，离开后这些修改将丢失。确定要离开吗？');
+    if(ok){
+      /* 放弃修改，清空待保存态，避免下次进来残留 */
+      try{
+        if(plat==='admin'){ clearPendingAll(); }
+        else { entDoBase=null; entDoAdd=null; entDoDel=null; entDoSnapshotDepts=[]; if(typeof entDoClearPending==='function') entDoClearPending(); }
+      }catch(e){}
+      doLeaveGuard=true;
+      setTimeout(function(){ doLeaveGuard=false; },0);
+      return true;
+    }
+    return false;
+  }
+
   function nav(plat, screenId){
+    if(!doCheckUnsavedBeforeLeave(plat, screenId)) return;
     const platEl = document.getElementById('p-'+plat);
     if(plat==='mini'){
       // 小程序：单个 .screen 框内嵌多个 .mscreen 页面，只切换 .mscreen，切勿隐藏 .screen 框
@@ -15049,57 +15246,48 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
 
   /* ===== 模块1：成员组织架构（最多8级，可增删改） ===== */
   function svgImg(text,color){ const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="320" height="180"><rect width="320" height="180" fill="${color}"/><text x="50%" y="50%" fill="#fff" font-size="20" text-anchor="middle" dominant-baseline="middle">${text}</text></svg>`; return 'data:image/svg+xml;utf8,'+encodeURIComponent(svg); }
+  /* 组织架构演示数据：中国移动北京朝阳分公司，五级组织
+     第1级 公司 → 第2级 事业部/中心 → 第3级 区域分公司/室 → 第4级 营业厅/班组 → 第5级 小组/岗位组 */
   let orgNodes = [
-    {id:'n1', pid:null, name:'金桥灵活用工（北京）有限公司', code:'HQ', level:1, desc:'集团总部 / 主账号所在', owner:'陈先生'},
-    {id:'n2', pid:'n1', name:'营业厅事业部', code:'LS', level:2, desc:'营业厅零售业务线', owner:'王总监'},
-    {id:'n4', pid:'n2', name:'海淀大区', code:'HD', level:3, desc:'海淀区域门店', owner:'李经理'},
-    {id:'n6', pid:'n4', name:'中关村门店', code:'ZGC', level:4, desc:'海淀中关村门店', owner:'孙班长'},
-    {id:'n7', pid:'n6', name:'早班班组', code:'ZB', level:5, desc:'中关村店早班组', owner:'钱组长'},
-    {id:'n3', pid:'n1', name:'渠道事业部', code:'BL', level:2, desc:'渠道业务线', owner:'周总监'},
-    {id:'n5', pid:'n3', name:'朝阳大区', code:'CY', level:3, desc:'朝阳区域门店', owner:'吴经理'},
-    {id:'n8', pid:'n5', name:'国贸门店', code:'GM', level:4, desc:'朝阳国贸门店', owner:'郑店长'},
-    // —— 以下为扩充的多业态部门（层级最深至 8 级）——
-    {id:'n10', pid:'n1', name:'加油站事业部', code:'GS', level:2, desc:'加油站业务线', owner:'赵总监'},
-    {id:'n11', pid:'n1', name:'电商事业部', code:'EC', level:2, desc:'线上业务线', owner:'钱总监'},
-    {id:'n12', pid:'n1', name:'物流配送事业部', code:'LG', level:2, desc:'配送业务线', owner:'孙总监'},
-    {id:'n13', pid:'n1', name:'人事行政事业部', code:'HR', level:2, desc:'人力行政线', owner:'李总监'},
-    {id:'n14', pid:'n1', name:'财务结算事业部', code:'FN', level:2, desc:'财务结算线', owner:'周总监'},
-    {id:'n15', pid:'n2', name:'西城大区', code:'XC', level:3, desc:'西城区域门店', owner:'吴经理'},
-    {id:'n16', pid:'n2', name:'丰台大区', code:'FT', level:3, desc:'丰台区域门店', owner:'郑经理'},
-    {id:'n17', pid:'n3', name:'海淀渠道组', code:'HDQ', level:3, desc:'海淀渠道', owner:'冯专员'},
-    {id:'n18', pid:'n3', name:'通州渠道组', code:'TZQ', level:3, desc:'通州渠道', owner:'陈专员'},
-    {id:'n30', pid:'n10', name:'华北大区', code:'HB', level:3, desc:'华北区域', owner:'赵经理'},
-    {id:'n31', pid:'n10', name:'华东大区', code:'HD2', level:3, desc:'华东区域', owner:'钱经理'},
-    {id:'n32', pid:'n11', name:'平台运营组', code:'PT', level:3, desc:'平台运营', owner:'孙专员'},
-    {id:'n33', pid:'n11', name:'客服组', code:'KF', level:3, desc:'客服', owner:'李专员'},
-    {id:'n34', pid:'n12', name:'城配组', code:'CP', level:3, desc:'城市配送', owner:'周专员'},
-    {id:'n35', pid:'n12', name:'仓配组', code:'WZ', level:3, desc:'仓储配送', owner:'吴专员'},
-    {id:'n36', pid:'n13', name:'招聘组', code:'ZP', level:3, desc:'招聘', owner:'郑专员'},
-    {id:'n37', pid:'n13', name:'薪酬组', code:'XC2', level:3, desc:'薪酬', owner:'冯专员'},
-    {id:'n38', pid:'n14', name:'对账组', code:'DZ', level:3, desc:'对账', owner:'陈专员'},
-    {id:'n39', pid:'n14', name:'开票组', code:'KP', level:3, desc:'开票', owner:'李专员'},
-    {id:'n20', pid:'n15', name:'西单门店', code:'XD', level:4, desc:'西单门店', owner:'孙班长'},
-    {id:'n21', pid:'n15', name:'金融街门店', code:'JR', level:4, desc:'金融街门店', owner:'周班长'},
-    {id:'n22', pid:'n16', name:'方庄门店', code:'FZ', level:4, desc:'方庄门店', owner:'吴班长'},
-    {id:'n23', pid:'n30', name:'北京朝阳加油站', code:'CYJY', level:4, desc:'朝阳加油站', owner:'赵站长'},
-    {id:'n24', pid:'n30', name:'天津滨海加油站', code:'TBJY', level:4, desc:'滨海加油站', owner:'钱站长'},
-    {id:'n25', pid:'n31', name:'上海浦东加油站', code:'PDJY', level:4, desc:'浦东加油站', owner:'孙站长'},
-    {id:'n26', pid:'n32', name:'活动运营小组', code:'HD2-2', level:4, desc:'活动运营', owner:'李专员'},
-    {id:'n27', pid:'n33', name:'售后客服小组', code:'KF-2', level:4, desc:'售后客服', owner:'周专员'},
-    {id:'n28', pid:'n34', name:'朝阳配送站', code:'CYPS', level:4, desc:'朝阳配送', owner:'吴专员'},
-    {id:'n29', pid:'n35', name:'丰台仓', code:'FTW', level:4, desc:'丰台仓储', owner:'郑专员'},
-    {id:'n41', pid:'n20', name:'白班班组', code:'BB', level:5, desc:'西单店白班组', owner:'钱组长'},
-    {id:'n42', pid:'n20', name:'晚班班组', code:'WB', level:5, desc:'西单店晚班组', owner:'孙组长'},
-    {id:'n43', pid:'n23', name:'加油一班', code:'JY1', level:5, desc:'朝阳站加油一班', owner:'赵班长'},
-    {id:'n44', pid:'n23', name:'加油二班', code:'JY2', level:5, desc:'朝阳站加油二班', owner:'钱班长'},
-    {id:'n45', pid:'n24', name:'加油甲班', code:'JYA', level:5, desc:'滨海站加油甲班', owner:'孙班长'},
-    {id:'n46', pid:'n42', name:'晚班一组', code:'WB1', level:6, desc:'晚班一组', owner:'李组长'},
-    {id:'n47', pid:'n43', name:'加油一班甲组', code:'JY1A', level:6, desc:'加油一班甲组', owner:'赵组长'},
-    {id:'n48', pid:'n44', name:'加油二班甲组', code:'JY2A', level:6, desc:'加油二班甲组', owner:'钱组长'},
-    {id:'n49', pid:'n46', name:'甲组白班', code:'WB1A', level:7, desc:'晚班一组白班', owner:'孙岗长'},
-    {id:'n50', pid:'n47', name:'甲组白班', code:'JY1AB', level:7, desc:'加油一班甲组白班', owner:'赵岗长'},
-    {id:'n51', pid:'n49', name:'白班领班岗', code:'WB1AL', level:8, desc:'领班岗', owner:'李领班'},
-    {id:'n52', pid:'n50', name:'白班安全员', code:'JY1ABS', level:8, desc:'安全员', owner:'赵安全员'}
+    /* ---- 第1级 ---- */
+    {id:'n1', pid:null, name:'中国移动北京朝阳分公司', code:'CY', level:1, desc:'朝阳分公司总部', owner:'陈总经理'},
+
+    /* ---- 第2级：三条主业务线 ---- */
+    {id:'n2', pid:'n1', name:'市场经营部', code:'SC', level:2, desc:'营业厅与渠道经营', owner:'王副总经理'},
+    {id:'n3', pid:'n1', name:'集团客户部', code:'JT', level:2, desc:'政企客户业务', owner:'周副总经理'},
+    {id:'n13', pid:'n1', name:'综合管理部', code:'ZH', level:2, desc:'人力、行政、财务', owner:'李副总经理'},
+
+    /* ---- 第3级 ---- */
+    {id:'n4', pid:'n2', name:'朝阳门营业中心', code:'CYM', level:3, desc:'朝阳门片区营业厅', owner:'李经理'},
+    {id:'n5', pid:'n2', name:'国贸营业中心', code:'GM', level:3, desc:'国贸片区营业厅', owner:'吴经理'},
+    {id:'n15', pid:'n2', name:'渠道运营室', code:'QD', level:3, desc:'社会渠道与合作厅', owner:'郑经理'},
+    {id:'n3a', pid:'n3', name:'政企客户一室', code:'ZQ1', level:3, desc:'重点政企客户', owner:'冯经理'},
+    {id:'n16', pid:'n13', name:'人力资源室', code:'HR', level:3, desc:'招聘、培训、薪酬', owner:'赵经理'},
+    {id:'n17', pid:'n13', name:'财务结算室', code:'CW', level:3, desc:'账务与结算', owner:'钱经理'},
+
+    /* ---- 第4级 ---- */
+    {id:'n6', pid:'n4', name:'朝阳门营业厅', code:'CYM1', level:4, desc:'朝阳门主营业厅', owner:'孙店长'},
+    {id:'n9', pid:'n4', name:'呼家楼营业厅', code:'HJL', level:4, desc:'呼家楼营业厅', owner:'周店长'},
+    {id:'n8', pid:'n5', name:'国贸营业厅', code:'GM1', level:4, desc:'国贸主营业厅', owner:'郑店长'},
+    {id:'n10', pid:'n5', name:'建外营业厅', code:'JW', level:4, desc:'建外SOHO营业厅', owner:'陈店长'},
+    {id:'n18', pid:'n15', name:'社会渠道组', code:'QD1', level:4, desc:'代理点与加盟厅', owner:'吴专员'},
+    {id:'n3b', pid:'n3a', name:'政企客户一组', code:'ZQ1A', level:4, desc:'集团客户一组', owner:'陈经理'},
+    {id:'n19', pid:'n16', name:'招聘组', code:'ZP', level:4, desc:'招聘与用工', owner:'孙专员'},
+    {id:'n20', pid:'n16', name:'培训组', code:'PX', level:4, desc:'员工培训', owner:'李专员'},
+    {id:'n21', pid:'n17', name:'营收结算组', code:'YS', level:4, desc:'营收稽核', owner:'周专员'},
+
+    /* ---- 第5级（末级）---- */
+    {id:'n7', pid:'n6', name:'营业前台组', code:'CYM1A', level:5, desc:'前台受理与销售', owner:'钱组长'},
+    {id:'n11', pid:'n6', name:'后台支撑组', code:'CYM1B', level:5, desc:'业务支撑与投诉处理', owner:'赵组长'},
+    {id:'n12', pid:'n9', name:'营业前台组', code:'HJLA', level:5, desc:'呼家楼前台', owner:'孙组长'},
+    {id:'n22', pid:'n8', name:'营业前台组', code:'GM1A', level:5, desc:'国贸前台', owner:'吴组长'},
+    {id:'n23', pid:'n8', name:'大客户接待组', code:'GM1B', level:5, desc:'VIP与集团客户接待', owner:'郑组长'},
+    {id:'n24', pid:'n10', name:'营业前台组', code:'JWA', level:5, desc:'建外前台', owner:'冯组长'},
+    {id:'n25', pid:'n18', name:'代理点巡检组', code:'QDA', level:5, desc:'代理点巡查', owner:'陈专员'},
+    {id:'n26', pid:'n3b', name:'行业客户组', code:'ZQ1A1', level:5, desc:'政企行业客户', owner:'周专员'},
+    {id:'n27', pid:'n19', name:'灵工招聘组', code:'ZPA', level:5, desc:'灵活用工招聘', owner:'孙专员'},
+    {id:'n28', pid:'n20', name:'岗位培训组', code:'PXA', level:5, desc:'一线岗位培训', owner:'李专员'},
+    {id:'n29', pid:'n21', name:'对账组', code:'YSA', level:5, desc:'营收对账', owner:'吴专员'}
   ];
   /* 灵工组织树（Y 源）：与操作员组织 orgNodes 完全独立，专供企业端数据授权弹窗的「被授权灵工部门」勾选，以及人员管理（灵工）模块使用。
      采用独立 id 前缀 lg，避免与操作员组织节点混淆；最深至 8 级，用于演示约定 A 的递归级联。 */
@@ -15126,8 +15314,8 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     return res;
   }
   // 企业图片级联演示数据：一级组织与某二级部门预置图片（其余部门逐级向上读取）
-  { const _hq=orgNodes.find(n=>n.id==='n1'); if(_hq) _hq.image=svgImg('金桥灵活用工（北京）','#409EFF'); }
-  { const _ls=orgNodes.find(n=>n.id==='n2'); if(_ls) _ls.image=svgImg('营业厅事业部','#67C23A'); }
+  { const _hq=orgNodes.find(n=>n.id==='n1'); if(_hq) _hq.image=svgImg('中国移动北京朝阳分公司','#409EFF'); }
+  { const _ls=orgNodes.find(n=>n.id==='n2'); if(_ls) _ls.image=svgImg('市场经营部','#67C23A'); }
   let orgMembers = [
     {name:'陈先生', type:'主账号', role:'超级管理员', nodeIds:['n1'], status:'正常', loginId:'13800000001', phone:'13800000001', createdAt:'2026-01-05 09:30:21'},
     {name:'王总监', type:'子账号', role:'招聘主管', nodeIds:['n2'], status:'正常', loginId:'13800000002', phone:'13800000002', createdAt:'2026-01-12 14:22:08'},
@@ -16691,20 +16879,15 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
   function setEntDataOwnerSize(v){ entDataOwnerSize=parseInt(v,10)||10; entDataOwnerPage=1; renderEntDataOwnerCfg(); }
   function entDataOwnerGoPrev(){ setEntDataOwnerPage(entDataOwnerPage-1); }
   function entDataOwnerGoNext(){ setEntDataOwnerPage(entDataOwnerPage+1); }
+  /* 分页器：统一使用平台标准分页条（与需求管理一致） */
   function entDataOwnerPagerHtml(total,totalPages,curPage,size){
-    const sizes=[10,20,50,100];
-    const opts=sizes.map(s=>`<option value="${s}" ${s===size?'selected':''}>${s} 条/页</option>`).join('');
-    return `<div class="dop-pager" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:12px;padding-top:10px;border-top:1px solid var(--border-extra-light)">
-      <div style="font-size:13px;color:var(--text-secondary)">共 <b style="color:var(--text-primary)">${total}</b> 条 · 第 ${curPage}/${totalPages} 页</div>
-      <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-secondary)">
-        <label style="display:flex;align-items:center;gap:6px">每页
-          <select class="inp" style="width:auto;padding:4px 8px;height:30px" onchange="setEntDataOwnerSize(this.value)">${opts}</select>
-        </label>
-        <button class="btn sm ghost" onclick="setEntDataOwnerPage(${curPage-1})" ${curPage<=1?'disabled':''}>上一页</button>
-        <button class="btn sm ghost" onclick="setEntDataOwnerPage(${curPage+1})" ${curPage>=totalPages?'disabled':''}>下一页</button>
-      </div>
-    </div>`;
+    return `<div class="pager do-pager-inline">`+
+      renderPagerHtml(total, curPage, size,
+        'entDataOwnerGoPrev','entDataOwnerGoNext','setEntDataOwnerPage','setEntDataOwnerPage','setEntDataOwnerSize')+
+      `</div>`;
   }
+  function entDataOwnerGoPrev(){ entDataOwnerPage=Math.max(1,entDataOwnerPage-1); renderEntDataOwnerCfg(); }
+  function entDataOwnerGoNext(){ entDataOwnerPage=entDataOwnerPage+1; renderEntDataOwnerCfg(); }
   function switchEntPermTab(which){
     document.querySelectorAll('#e-permission .perm-tabs .ptab').forEach(t=>t.classList.toggle('active', t.dataset.tab===which));
     document.getElementById('entRolePanel').style.display = which==='role'?'':'none';
@@ -16717,6 +16900,13 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     const vis=entDataOwnerSearch?entDataOwnerVisibleSet():null;
     el.innerHTML='<ul>'+renderEntDataOwnerNodes(roots,vis,0)+'</ul>';
     el.querySelectorAll('input[type="checkbox"][data-indet]').forEach(cb=>{ cb.indeterminate=true; });
+    const tip=document.getElementById('ent-do-sel-tip');
+    if(tip){
+      const n=entDataOwnerChecked.size;
+      const nm=Array.from(entDataOwnerChecked).map(id=>{ const x=orgNodes.find(y=>y.id===id); return x?x.name:id; });
+      tip.textContent = n? ('已选 '+n+' 个部门'+(n===1?('：'+nm[0]):'')) : '未选择部门';
+      tip.title = n? nm.join('、') : '';
+    }
   }
   function renderEntDataOwnerNodes(list,vis,depth){
     return list.map(n=>{
@@ -16733,10 +16923,15 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
       const checked=has?(all?'checked':''):(entDataOwnerChecked.has(n.id)?'checked':'');
       const indet=has&&some&&!all?' data-indet="1"':'';
       const escName=String(n.name).replace(/"/g,'&quot;');
-      let html=`<li><div class="node-row" style="padding-left:${pad}px;display:flex;align-items:center;gap:6px">
+      const isActive=(entDoMainDept===n.id) || (!entDoMainDept && entDataOwnerChecked.has(n.id));
+      /* 节点状态标签：只标「本部门自己单独配置过授权」的部门；
+         仅靠继承上级得来的权限不标注，便于识别权限的实际配置点 */
+      const hasOwnCfg=entDoOwnSetOfDept(n.id).size>0;
+      const cfgTag=hasOwnCfg?'<span class="do-tag own" title="本部门已单独配置授权">已配置</span>':'';
+      let html=`<li><div class="node-row${isActive?' active':''}" data-dept="${n.id}" style="padding-left:${pad}px;display:flex;align-items:center;gap:6px" onclick="onEntDataOwnerRowClickLeft('${n.id}',event)">
         ${arrow}
-        <input type="checkbox" ${checked} ${indet} onchange="toggleEntDataOwnerNodeCheck('${n.id}',this.checked)"/>
-        <span class="nm" title="${escName}">${n.name}</span>
+        <input type="checkbox" ${checked} ${indet} onclick="event.stopPropagation()" onchange="toggleEntDataOwnerNodeCheck('${n.id}',this.checked)"/>
+        <span class="nm" title="${escName}">${n.name}</span>${cfgTag}
       </div></li>`;
       if(has && !collapsed) html+=renderEntDataOwnerNodes(children,vis,depth+1);
       return html;
@@ -16748,19 +16943,57 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     return set;
   }
   function toggleEntDataOwnerNode(id,e){ if(e)e.stopPropagation(); entDataOwnerCollapsed[id]=!entDataOwnerCollapsed[id]; renderEntDataOwnerTree(); }
+  /* 勾选：选中自身+下级，同级兄弟分支自动取消 */
   function toggleEntDataOwnerNodeCheck(id, checked){
-    // 1. 向下：级联勾选/取消自身及所有子孙
-    orgDescendantIds(id).forEach(x=>{ if(checked) entDataOwnerChecked.add(x); else entDataOwnerChecked.delete(x); });
-    // 2. 向上：父节点在集合中 ⇔ 其所有直属子节点都在集合中（否则移出，避免残留幽灵父部门）
-    let cur=orgNodes.find(n=>n.id===id);
-    while(cur && cur.pid){
-      const parent=orgNodes.find(n=>n.id===cur.pid);
-      if(!parent) break;
-      const siblings=orgNodes.filter(n=>n.pid===parent.id);
-      const allSiblingsChecked=siblings.every(s=>entDataOwnerChecked.has(s.id));
-      if(allSiblingsChecked) entDataOwnerChecked.add(parent.id); else entDataOwnerChecked.delete(parent.id);
-      cur=parent;
+    const node=orgNodes.find(n=>n.id===id);
+    if(checked){
+      /* 全局互斥：只保留「该节点 + 全部子孙 + 全部祖先」，其余勾选清空（避免同级多选） */
+      const keep=new Set();
+      keep.add(id);
+      orgDescendantIds(id).forEach(x=>keep.add(x));
+      let anc=node;
+      while(anc && anc.pid){ keep.add(anc.pid); anc=orgNodes.find(n=>n.id===anc.pid); }
+      Array.from(entDataOwnerChecked).forEach(x=>{ if(!keep.has(x)) entDataOwnerChecked.delete(x); });
+      entDataOwnerChecked.add(id);
+      orgDescendantIds(id).forEach(x=>entDataOwnerChecked.add(x));
+      let up=node;
+      while(up && up.pid){
+        const parent=orgNodes.find(n=>n.id===up.pid);
+        if(!parent) break;
+        const kids=orgNodes.filter(n=>n.pid===parent.id);
+        if(kids.length && kids.every(k=>entDataOwnerChecked.has(k.id))) entDataOwnerChecked.add(parent.id);
+        else entDataOwnerChecked.delete(parent.id);
+        up=parent;
+      }
+      entDoMainDept=id;
+    } else {
+      /* 取消时同样做全局互斥：若还有其他分支被勾选（如先勾了根节点），
+         此时取消这一支应理解为「改为只选这一支」 */
+      const branch=new Set([id]);
+      orgDescendantIds(id).forEach(x=>branch.add(x));
+      const others=Array.from(entDataOwnerChecked).filter(x=>!branch.has(x));
+      if(others.length){
+        entDataOwnerChecked.clear();
+        entDataOwnerChecked.add(id);
+        orgDescendantIds(id).forEach(x=>entDataOwnerChecked.add(x));
+        entDoMainDept=id;
+      } else {
+        entDataOwnerChecked.delete(id);
+        orgDescendantIds(id).forEach(x=>entDataOwnerChecked.delete(x));
+        let cur2=node;
+        while(cur2 && cur2.pid){
+          const parent=orgNodes.find(n=>n.id===cur2.pid);
+          if(!parent) break;
+          const kids=orgNodes.filter(n=>n.pid===parent.id);
+          if(kids.length && kids.every(k=>entDataOwnerChecked.has(k.id))) entDataOwnerChecked.add(parent.id);
+          else entDataOwnerChecked.delete(parent.id);
+          cur2=parent;
+        }
+        if(entDoMainDept===id) entDoMainDept='';
+      }
     }
+    entDoBase=null; entDoAdd=null; entDoDel=null;
+    entDoSnapshotDepts=[]; entDoDirty=false;
     renderEntDataOwnerTree(); renderEntDataOwnerCfg();
   }
   /* 弹窗内授权部门选择树（操作员组织 orgNodes，约定 A 级联，初始为空） */
@@ -16810,38 +17043,333 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
   }
   function onEntDataOwnerModalSearch(v){ entDataOwnerModalSearch=v.trim(); renderEntDataOwnerModalTree(); }
   function updateEntDataOwnerModalSelCount(){ const el=document.getElementById('edom-sel'); if(el) el.textContent='已选 '+entDataOwnerModalChecked.size+' 个部门'; }
+  /* 企业端左侧树：点整行切换勾选 */
+  function onEntDataOwnerRowClickLeft(id, e){
+    if(e){
+      const tag=(e.target.tagName||'').toLowerCase();
+      if(tag==='input' || (e.target.className||'').indexOf('tw')>=0) return;
+      e.stopPropagation();
+    }
+    const allIn=entDataOwnerChecked.has(id) && orgDescendantIds(id).every(x=>entDataOwnerChecked.has(x));
+    toggleEntDataOwnerNodeCheck(id, !allIn);
+  }
   function onEntDataOwnerSearch(v){ entDataOwnerSearch=v.trim(); renderEntDataOwnerTree(); }
   function expandEntDataOwnerAll(){ orgNodes.forEach(n=>entDataOwnerCollapsed[n.id]=false); renderEntDataOwnerTree(); }
   function collapseEntDataOwnerAll(){ orgNodes.forEach(n=>entDataOwnerCollapsed[n.id]=true); renderEntDataOwnerTree(); }
+  /* ===== 企业端右侧：可见灵工部门勾选树 =====
+     与运营端保持同一套模型：
+       显示 = (交集基线 ∪ 新增) − 删除
+       保存 = 只应用本次增量，不动各部门原有其他授权
+       子部门无自有配置时继承父级 */
+
+  /* 某授权部门的「本级」可见灵工部门集合 */
+  function entDoOwnSetOfDept(deptId){ return new Set(entDataOwnerMap[deptId]||[]); }
+  /* 有效配置 = 从根到本级的每一级本级配置的并集（动态继承） */
+  function entDoSetOfDept(deptId){
+    const set=new Set();
+    const chain=[];
+    let cur=orgNodes.find(n=>n.id===deptId);
+    while(cur){ chain.unshift(cur); cur=cur.pid?orgNodes.find(n=>n.id===cur.pid):null; }
+    chain.forEach(n=>{ entDoOwnSetOfDept(n.id).forEach(x=>set.add(x)); });
+    return set;
+  }
+  /* 某项是否为继承而来（父级已有） */
+  function entDoIsInherited(deptId, key){
+    const node=orgNodes.find(n=>n.id===deptId);
+    if(!node || !node.pid) return false;
+    const parent=orgNodes.find(n=>n.id===node.pid);
+    if(!parent) return false;
+    return entDoSetOfDept(parent.id).has(key);
+  }
+
+  let entDoBase=null, entDoAdd=null, entDoDel=null;
+  let entDoSnapshotDepts=[];
+  let entDoDirty=false;
+  let entDoRenderMainDept='';   // 当前渲染的主授权部门（用于判断继承项）
+  let entImeComposing=false;    // 中文输入法组字中
+  let entSearchTimer=null;      // 搜索防抖
+  /* 企业端是否有未保存修改：比对增量净值，避免相互抵消的误判 */
+  function entDoHasChange(){
+    if(!entDoBase) return false;
+    const add=entDoAdd||new Set(), del=entDoDel||new Set();
+    if(!add.size && !del.size) return false;
+    const net=new Set(entDoBase);
+    add.forEach(x=>net.add(x));
+    del.forEach(x=>net.delete(x));
+    if(net.size!==entDoBase.size) return true;
+    for(const x of net) if(!entDoBase.has(x)) return true;
+    return false;
+  }
+  let entDoMainDept='';
+  let entDoExpanded=new Set();
+  let entDoSearch='';
+
+  function entDoClearPending(){
+    entDoBase=null; entDoAdd=null; entDoDel=null;
+    entDoSnapshotDepts=[]; entDoDirty=false;
+  }
+  function entDoIntersect(depts){
+    if(!depts.length) return new Set();
+    let acc=null;
+    depts.forEach(d=>{
+      const s=entDoSetOfDept(d);
+      if(acc===null) acc=new Set(s);
+      else Array.from(acc).forEach(x=>{ if(!s.has(x)) acc.delete(x); });
+    });
+    return acc||new Set();
+  }
+
+  function entDoMarkAdd(key){
+    if(entDoDel) entDoDel.delete(key);
+    if(entDoAdd) entDoAdd.add(key);
+    entDoDirty=true;
+  }
+  function entDoMarkDel(key){
+    if(entDoAdd) entDoAdd.delete(key);
+    if(entDoDel) entDoDel.add(key);
+    entDoDirty=true;
+  }
+
+  function entDoToggleNode(id, checked){
+    if(checked){
+      entDoMarkAdd(id);
+      lgDescendantIds(id).forEach(x=>{ if(x!==id) entDoMarkAdd(x); });
+      /* 父级向上补全：所有兄弟都在集合里则父级也算选中 */
+      let cur=entLgOrg.find(n=>n.id===id);
+      while(cur && cur.pid){
+        const parent=entLgOrg.find(n=>n.id===cur.pid);
+        if(!parent) break;
+        const sibs=entLgOrg.filter(n=>n.pid===parent.id);
+        const view=entDoViewSet();
+        if(sibs.every(s=>view.has(s.id))) entDoMarkAdd(parent.id);
+        cur=parent;
+      }
+    } else {
+      entDoMarkDel(id);
+      lgDescendantIds(id).forEach(x=>{ if(x!==id) entDoMarkDel(x); });
+      let cur=entLgOrg.find(n=>n.id===id);
+      while(cur && cur.pid){ entDoMarkDel(cur.pid); cur=entLgOrg.find(n=>n.id===cur.pid); }
+    }
+    renderEntDataOwnerCfg();
+  }
+  function entDoToggleAll(checked){
+    /* 继承项来自上级授权部门，不参与全选/取消，避免把继承内容写成本级配置 */
+    entLgOrg.forEach(n=>{
+      if(entDoIsInherited(n.id)) return;
+      if(checked) entDoMarkAdd(n.id); else entDoMarkDel(n.id);
+    });
+    renderEntDataOwnerCfg();
+  }
+  function entDoToggleExpand(id){
+    if(entDoExpanded.has(id)) entDoExpanded.delete(id); else entDoExpanded.add(id);
+    renderEntDataOwnerCfg();
+  }
+  function entDoFilter(v){
+    entDoSearch=(v||'').trim();
+    /* 组字中不渲染，等 compositionend 后统一处理 */
+    if(entImeComposing) return;
+    if(entSearchTimer) clearTimeout(entSearchTimer);
+    entSearchTimer=setTimeout(function(){ entSearchTimer=null; doEntApplyFilter(); }, 180);
+  }
+  function doEntApplyFilter(){
+    doPendingFocus = { sel:'#entDataOwnerCfg .do-search', pos:null };
+    renderEntDataOwnerCfg();
+  }
+  function entDoClearFilter(){
+    entDoSearch='';
+    if(entSearchTimer){ clearTimeout(entSearchTimer); entSearchTimer=null; }
+    renderEntDataOwnerCfg();
+  }
+
+  /* 当前显示集合（供渲染与勾选判定共用） */
+  function entDoViewSet(){
+    if(!entDoBase) return new Set();
+    const s=new Set(entDoBase);
+    if(entDoAdd) entDoAdd.forEach(x=>s.add(x));
+    if(entDoDel) entDoDel.forEach(x=>s.delete(x));
+    return s;
+  }
+
+  function entDoSave(){
+    const sel=Array.from(entDataOwnerChecked);
+    if(!sel.length){ toast('请先在左侧选择授权部门'); return; }
+    const adds=entDoAdd?Array.from(entDoAdd):[];
+    const dels=entDoDel?Array.from(entDoDel):[];
+    if(!adds.length && !dels.length){ toast('没有需要保存的修改'); return; }
+
+    /* 检查删除项是否会清掉某部门独有授权 */
+    let affected=0;
+    if(dels.length){
+      sel.forEach(did=>{
+        const own=entDoSetOfDept(did);
+        dels.forEach(k=>{ if(own.has(k)) affected++; });
+      });
+    }
+
+    const write=()=>{
+      sel.forEach(did=>{
+        if(!entDataOwnerMap[did]) entDataOwnerMap[did]=[];
+        const arr=new Set(entDataOwnerMap[did]);
+        /* 只写「本级增量」：继承来的项不写进本级，也不删本级没有的项 */
+        dels.forEach(k=>{ if(arr.has(k)) arr.delete(k); });
+        adds.forEach(k=>{ if(!entDoIsInherited(k)) arr.add(k); });
+        entDataOwnerMap[did]=Array.from(arr);
+        entDataOwnerUpdatedAt[did]=nowTs();
+      });
+      entDoClearPending();
+      renderEntDataOwnerTree(); renderEntDataOwnerCfg();
+      toast('已保存 '+sel.length+' 个部门的可见范围');
+    };
+
+    if(affected>0){
+      if(!confirm('本次取消的授权中，有部分是该部门独有的配置（共 '+affected+' 项）。保存后这些部门将失去对应权限，确认保存？')) return;
+    }
+    write();
+  }
+  function entDoReset(){
+    entDoClearPending();
+    renderEntDataOwnerCfg(); toast('已取消本次修改');
+  }
+  function clearEntDataOwnerSel(){
+    entDataOwnerChecked.clear(); entDoMainDept=''; entDoClearPending();
+    renderEntDataOwnerTree(); renderEntDataOwnerCfg();
+  }
+  /* 点整行即切换勾选 */
+  function onEntDataOwnerRowClick(id, e){
+    if(e){
+      const tag=(e.target.tagName||'').toLowerCase();
+      if(tag==='input' || (e.target.className||'').indexOf('tw')>=0) return;
+      e.stopPropagation();
+    }
+    entDoToggleNode(id, !entDoViewSet().has(id));
+  }
+
+  /* 企业端：判断某个灵工部门是否为「继承项」（本级未配置、由上级授权部门继承而来）
+     —— 继承项不可取消，与运营后台保持一致 */
+  function entDoIsInherited(lgId){
+    return !!entDoInheritFrom(lgId);
+  }
+  /* 返回该项「继承自哪个授权部门」；本级已配置或无来源时返回空 */
+  function entDoInheritFrom(lgId){
+    const mainDept=entDoRenderMainDept||'';
+    if(!mainDept) return null;
+    if(entDoOwnSetOfDept(mainDept).has(lgId)) return null;   // 本级已有
+    let cur=orgNodes.find(n=>n.id===mainDept);
+    while(cur && cur.pid){
+      const pid=cur.pid;
+      if(entDoOwnSetOfDept(pid).has(lgId)){
+        const p=orgNodes.find(n=>n.id===pid);
+        return p? p.name : null;
+      }
+      cur=orgNodes.find(n=>n.id===pid);
+    }
+    return null;
+  }
+  function entDoTreeHtml(nodes, depth, set){
+    return nodes.map(n=>{
+      const kids=entLgOrg.filter(c=>c.pid===n.id);
+      const has=kids.length>0;
+      const collapsed=!(entDoExpanded.has(n.id) || entDoExpanded.size===0);
+      const selfOn=set.has(n.id);
+      const kidsAll=has && kids.every(k=>set.has(k.id));
+      const kidsSome=has && kids.some(k=>set.has(k.id));
+      const checked=has ? (kidsAll||selfOn) : selfOn;
+      const pad=8+depth*18;
+      /* 继承项（来自上级授权部门）置灰不可取消，与运营后台一致 */
+      const inhSelf=entDoInheritFrom(n.id);
+      const inhKids=(has && kids.length>0 && kids.every(k=>entDoIsInherited(k.id))) ? (kids.map(k=>entDoInheritFrom(k.id)).filter(Boolean)[0]||'上级部门') : '';
+      const inhFrom=inhSelf || inhKids;
+      const inh=!!inhFrom;
+      const onFinal=checked || inh;
+      let h=`<div class="do-row${inh?' inh':''}" data-vdept="${n.id}" style="padding-left:${pad}px" onclick="onEntDataOwnerRowClick('${n.id}',event)">
+        ${has?`<span class="do-tw${collapsed?' collapsed':''}" onclick="event.stopPropagation();entDoToggleExpand('${n.id}')">▼</span>`:'<span class="do-tw ph"></span>'}
+        <input type="checkbox" ${onFinal?'checked':''} data-half="${has&&kidsSome&&!kidsAll?'1':''}" ${inh?'disabled':''} onclick="event.stopPropagation()" onchange="entDoToggleNode('${n.id}',this.checked)"/>
+        <span class="do-nm">${escHtml(n.name)}</span>${inhFrom?'<span class="do-inh" title="继承自：'+doAttr(inhFrom)+'">继承自 '+escHtml(inhFrom)+'</span>':''}</div>`;
+      if(has && !collapsed) h+=entDoTreeHtml(kids, depth+1, set);
+      return h;
+    }).join('');
+  }
+
   function renderEntDataOwnerCfg(){
     const el=document.getElementById('entDataOwnerCfg'); if(!el) return;
-    const deptIds=Object.keys(entDataOwnerMap).filter(did=>(entDataOwnerMap[did]||[]).length);
-    let rows=[];
-    deptIds.forEach(did=>{
-      const dn=orgNodes.find(n=>n.id===did);
-      const manual=(entDataOwnerMap[did]||[]);
-      const manList=manual.length?manual.map(m=>{ const t=entLgOrg.find(n=>n.id===m); return t?t.name:m; }).join('、'):'（未配置）';
-      const updatedAt=entDataOwnerUpdatedAt[did] || nowTs();
-      rows.push({did, dnName:dn?dn.name:did, manList, updatedAt});
-    });
-    // 默认按更新时间降序
-    rows.sort((a,b)=>{ if(a.updatedAt===b.updatedAt) return 0; const r=a.updatedAt<b.updatedAt?-1:1; return -r; });
-    const total=rows.length, size=entDataOwnerSize;
-    const totalPages=Math.max(1,Math.ceil(total/size));
-    const curPage=Math.min(entDataOwnerPage,totalPages); entDataOwnerPage=curPage;
-    const pageRows=rows.slice((curPage-1)*size,(curPage-1)*size+size);
-    let body=pageRows.map(r=>`<tr><td>${r.dnName}</td><td>${r.manList}</td><td style="width:80px" class="ops"><a class="lnk danger" onclick="removeEntDataOwner('${r.did}')">移除授权</a></td></tr>`).join('')
-      || '<tr><td colspan="3" style="color:var(--text-secondary);text-align:center;padding:18px">暂无配置，点击右上角「+ 添加授权」</td></tr>';
-    el.innerHTML=`<div class="role-cfg">
-      <div class="note" style="background:#e6f4ff;border-color:#91caff;color:#0958d9">💡 本页展示所有已配置的部门级数据授权（操作员组织 → 可见灵工部门）。点击右上角按钮新增，弹窗内选择授权部门。</div>
-      <div class="quick-ops" style="display:flex;justify-content:flex-end;margin-bottom:8px"><button class="btn" onclick="openAddEntDataOwner()">+ 添加授权</button></div>
-      <div class="perm-section-card">
-        <h4>各授权部门已配置的可见灵工部门</h4>
-        <table class="mem-table"><thead><tr><th>授权部门（操作员组织）</th><th>可见灵工部门</th><th style="width:80px" class="op-col">操作</th></tr></thead><tbody>${body}</tbody></table>
-        ${renderPagerHtml(total, entDataOwnerPage, entDataOwnerSize, 'entDataOwnerGoPrev','entDataOwnerGoNext','setEntDataOwnerPage','setEntDataOwnerPage','setEntDataOwnerSize')}
+    const selDepts=Array.from(entDataOwnerChecked);
+
+    if(!selDepts.length){
+      el.innerHTML=`<div class="do-empty">
+        <div class="do-empty-ico">🗂</div>
+        <div class="do-empty-t">请先在左侧选择授权部门</div>
+        <div class="do-empty-d">选中部门后，在右侧勾选该部门可见的灵工部门，保存后生效。</div>
+      </div>`;
+      return;
+    }
+
+    /* 右侧只展示「主部门」本级配置；勾父级连带选中的下级不参与合并 */
+    const mainDept = entDoMainDept && entDataOwnerChecked.has(entDoMainDept)
+      ? entDoMainDept
+      : selDepts.slice().sort(function(a,b){
+          const da=(orgNodes.find(n=>n.id===a)||{}).level||9;
+          const db=(orgNodes.find(n=>n.id===b)||{}).level||9;
+          return da-db;
+        })[0];
+    const selKey=selDepts.slice().sort().join(',')+'#'+mainDept;
+    if(entDoSnapshotDepts.join(',')!==selKey){
+      /* 本级有配置用本级，否则继承父级 */
+      entDoBase=entDoSetOfDept(mainDept);
+      entDoAdd=new Set(); entDoDel=new Set();
+      entDoSnapshotDepts=[selKey];
+      entDoDirty=false;
+    }
+    if(!entDoBase) entDoBase=entDoSetOfDept(mainDept);
+    if(!entDoAdd) entDoAdd=new Set();
+    if(!entDoDel) entDoDel=new Set();
+
+    entDoRenderMainDept=mainDept;   /* 供继承项判定使用 */
+
+    const set=entDoViewSet();
+
+    /* 搜索过滤：保留命中节点及祖先路径 */
+    let roots=entLgOrg.filter(n=>n.pid===null);
+    if(entDoSearch){
+      const keep=new Set();
+      entLgOrg.forEach(n=>{
+        if(n.name.includes(entDoSearch)){
+          let c=n; while(c){ keep.add(c.id); c=c.pid?entLgOrg.find(x=>x.id===c.pid):null; }
+        }
+      });
+      entLgOrg.forEach(n=>{ if(keep.has(n.id)) entDoExpanded.add(n.id); });
+      roots=roots.filter(n=>keep.has(n.id));
+    }
+
+    const total=entLgOrg.length;
+    const selCnt=Array.from(set).filter(id=>entLgOrg.some(n=>n.id===id)).length;
+    const allOn=total>0 && entLgOrg.every(n=>set.has(n.id));
+
+    const changed=entDoHasChange();
+    const noDept=selDepts.length===0;
+    const canSave=changed && !noDept;
+    /* 两行结构（与运营后台一致）：
+       第一行：标题 + 操作按钮；第二行：搜索框（内置 ×）+ 全选
+       授权部门数量不再重复展示 —— 左侧组织树底部已有「已选 N 个部门」 */
+    el.innerHTML=`<div class="do-list-hd">
+        <span class="do-list-t">灵工组织架构</span>
       </div>
-    </div>`;
+      <div class="do-bar">
+        <div class="do-search-wrap">
+          <input class="inp do-search" placeholder="搜索灵工部门名称" value="${doAttr(entDoSearch)}" oninput="entDoFilter(this.value)" autocomplete="off" oncompositionstart="entImeComposing=true" oncompositionend="entImeComposing=false;entDoSearch=this.value.trim();doEntApplyFilter();"/>
+          <span class="do-search-clear${entDoSearch?' show':''}" onclick="entDoClearFilter()" title="清空">×</span>
+        </div>
+        <label class="do-all-cb"><input type="checkbox" ${allOn?'checked':''} onchange="entDoToggleAll(this.checked)"/> 全选</label>
+        <span class="do-list-act">
+          <button class="btn sm ghost" onclick="entDoReset()" ${changed?'':'disabled'}>取消修改</button>
+          <button class="btn sm" onclick="entDoSave()" ${canSave?'':'disabled'}>保存配置</button>
+        </span>
+      </div>
+      <div class="do-tree-box">${entDoTreeHtml(roots,0,set) || '<div class="do-none">无匹配部门</div>'}</div>`;
+
+    el.querySelectorAll('input[data-half="1"]').forEach(cb=>{ cb.indeterminate=true; });
+    doRestoreFocus();
   }
+
   function removeEntDataOwner(nodeId){
     delete entDataOwnerMap[nodeId];
     delete entDataOwnerUpdatedAt[nodeId];
@@ -18430,15 +18958,29 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
   // positionIds 为空数组表示该企业下全部岗位；非空表示已勾选的岗位ID集合
   function genRowId(){ return 'r'+Math.random().toString(36).slice(2,9); }
   function nowTs(){ const d=new Date(); const p=n=>String(n).padStart(2,'0'); return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+' '+p(d.getHours())+':'+p(d.getMinutes())+':'+p(d.getSeconds()); }
+  /* 初始授权数据（演示「父配置 → 子继承」）：
+     - 人力资源部：按企业全盘授权 2 家
+     - 招聘一组（人资部下）：仅额外加了 1 家 → 其余靠继承
+     - 招聘二组（人资部下）：无本级配置 → 全部继承自人资部
+     - 运营服务部：按企业全盘授权 1 家
+     - 东区运营组（运营服务部下）：岗位级授权，用于「岗位权限配置」Tab 演示 */
   let dataOwnerMap={
     'op-hr':[
-      {id:genRowId(),ent:'中国移动北京朝阳分公司',positionIds:['P-2026001','P-2026002'],updatedAt:'2026-08-20 10:00:00'},
-      {id:genRowId(),ent:'中国移动广东公司',positionIds:['P-2026003'],updatedAt:'2026-09-01 14:30:00'}
+      {type:'ent_all', id:genRowId(), ent:'中国移动北京朝阳分公司', source:'manual', updatedAt:'2026-08-20 10:00:00'},
+      {type:'ent_all', id:genRowId(), ent:'中国移动浙江分公司', source:'manual', updatedAt:'2026-08-20 10:00:00'},
+      /* 岗位级授权：供「岗位数据权限配置」Tab 演示继承 */
+      {id:genRowId(), ent:'中国移动北京朝阳分公司', positionIds:['DE-20260801-001','DE-20260720-001'], updatedAt:'2026-08-21 10:00:00'},
+      {id:genRowId(), ent:'中国移动浙江分公司', positionIds:['DE-20260310-001'], updatedAt:'2026-08-21 10:00:00'}
+    ],
+    'op-hr-zp1':[
+      {type:'ent_all', id:genRowId(), ent:'中国移动广东公司', source:'manual', updatedAt:'2026-09-01 14:30:00'}
+    ],
+    'op-ops':[
+      {type:'ent_all', id:genRowId(), ent:'中国移动北京朝阳分公司', source:'manual', updatedAt:'2026-09-05 09:00:00'}
     ],
     'op-ops-east':[
-      {id:genRowId(),ent:'中国移动北京朝阳分公司',positionIds:['P-2026001'],updatedAt:'2026-07-15 09:00:00'},
-      {type:'ent_all', id:genRowId(), ent:'中国移动广东公司', source:'manual', updatedAt:'2026-09-10 16:00:00'}   // 按企业(全盘)示例
-      // 未来扩展：{type:'lg_dept', lgDeptId:'lg4'} 按灵工组织部门授权
+      {id:genRowId(), ent:'中国移动北京朝阳分公司', positionIds:['DE-20260801-001','DE-20260720-001'], updatedAt:'2026-07-15 09:00:00'},
+      {id:genRowId(), ent:'中国移动广东公司', positionIds:['DE-20260622-001'], updatedAt:'2026-09-10 16:00:00'}
     ]
   };
   function switchOpPermTab(which){
@@ -18453,6 +18995,13 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     const vis=dataOwnerSearch?dataOwnerVisibleSet():null;
     el.innerHTML='<ul>'+renderDataOwnerNodes(roots,vis,0)+'</ul>';
     el.querySelectorAll('input[type="checkbox"][data-indet]').forEach(cb=>{ cb.indeterminate=true; });
+    const tip=document.getElementById('do-sel-tip');
+    if(tip){
+      const n=dataOwnerChecked.size;
+      const nm=Array.from(dataOwnerChecked).map(id=>{ const x=opOrgNodes.find(y=>y.id===id); return x?x.name:id; });
+      tip.textContent = n? ('已选 '+n+' 个部门'+(n===1?('：'+nm[0]):'')) : '未选择部门';
+      tip.title = n? nm.join('、') : '';
+    }
   }
   function renderDataOwnerNodes(list,vis,depth){
     return list.map(n=>{
@@ -18470,9 +19019,15 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
       const indet=has&&some&&!all?' data-indet="1"':'';
       const pad=10+depth*16;
       const escName=String(n.name).replace(/"/g,'&quot;');
-      let html=`<li><div class="node-row" style="padding-left:${pad}px;display:flex;align-items:center;gap:6px">${arrow}
-        <input type="checkbox" ${checked} ${indet} onchange="toggleDataOwnerNodeCheck('${n.id}',this.checked)"/>
-        <span class="nm" title="${escName}">${n.name}</span><span class="cnt">${cnt}账号</span></div></li>`;
+      const isActive=(doMainDept===n.id) || (!doMainDept && dataOwnerChecked.has(n.id));
+      /* 节点状态标签：只标「本部门自己单独配置过授权」的部门；
+         仅靠继承上级得来的权限不标注，便于识别权限的实际配置点 */
+      const hasOwnCfg=doOwnSetOfDept(dataOwnerActiveTab, n.id).size>0;
+      const cfgTag=hasOwnCfg?'<span class="do-tag own" title="本部门已单独配置授权">已配置</span>':'';
+      let html=`<li><div class="node-row${isActive?' active':''}" data-dept="${n.id}" style="padding-left:${pad}px;display:flex;align-items:center;gap:6px" onclick="onDataOwnerRowClick('${n.id}',event)">
+        ${arrow}
+        <input type="checkbox" ${checked} ${indet} onclick="event.stopPropagation()" onchange="toggleDataOwnerNodeCheck('${n.id}',this.checked)"/>
+        <span class="nm" title="${escName}">${n.name}</span>${cfgTag}</div></li>`;
       if(has && !collapsed) html+=renderDataOwnerNodes(children,vis,depth+1);
       return html;
     }).join('');
@@ -18483,27 +19038,95 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     return set;
   }
   function toggleDataOwnerNode(id,e){ if(e)e.stopPropagation(); dataOwnerCollapsed[id]=!dataOwnerCollapsed[id]; renderDataOwnerTree(); }
+  /* 勾选规则：
+     · 勾选中某节点 → 选中它 + 其全部下级，并自动取消「同级兄弟分支」
+     · 取消 → 自身与全部下级一并取消，并向上修正祖先的全选/半选状态 */
   function toggleDataOwnerNodeCheck(id, checked){
-    // 1. 向下：级联勾选/取消自身及所有子孙
-    opOrgDescendantIds(id).forEach(x=>{ if(checked) dataOwnerChecked.add(x); else dataOwnerChecked.delete(x); });
-    // 2. 向上：父节点在集合中 ⇔ 其所有直属子节点都在集合中（否则移出，避免残留幽灵父部门）
-    let cur=opOrgNodes.find(n=>n.id===id);
-    while(cur && cur.pid){
-      const parent=opOrgNodes.find(n=>n.id===cur.pid);
-      if(!parent) break;
-      const siblings=opOrgNodes.filter(n=>n.pid===parent.id);
-      const allSiblingsChecked=siblings.every(s=>dataOwnerChecked.has(s.id));
-      if(allSiblingsChecked) dataOwnerChecked.add(parent.id); else dataOwnerChecked.delete(parent.id);
-      cur=parent;
+    const node=opOrgNodes.find(n=>n.id===id);
+    if(checked){
+      /* 全局互斥：只保留「该节点 + 其全部子孙 + 其全部祖先」这一条路径上的节点，
+         其余已勾选节点一律清空。避免先勾根节点（整棵树被选中）后，
+         再点某个子部门时残留其他分支的勾选，出现同级多选。 */
+      const keep=new Set();
+      keep.add(id);
+      opOrgDescendantIds(id).forEach(x=>keep.add(x));
+      let anc=node;
+      while(anc && anc.pid){ keep.add(anc.pid); anc=opOrgNodes.find(n=>n.id===anc.pid); }
+      Array.from(dataOwnerChecked).forEach(x=>{ if(!keep.has(x)) dataOwnerChecked.delete(x); });
+      /* 加自身及全部子孙 */
+      dataOwnerChecked.add(id);
+      opOrgDescendantIds(id).forEach(x=>dataOwnerChecked.add(x));
+      /* 祖先补全：若祖先下所有兄弟都已选中，则祖先也选中（否则仅半选） */
+      let up=node;
+      while(up && up.pid){
+        const parent=opOrgNodes.find(n=>n.id===up.pid);
+        if(!parent) break;
+        const kids=opOrgNodes.filter(n=>n.pid===parent.id);
+        if(kids.length && kids.every(k=>dataOwnerChecked.has(k.id))) dataOwnerChecked.add(parent.id);
+        else dataOwnerChecked.delete(parent.id);
+        up=parent;
+      }
+      doMainDept=id;
+    } else {
+      /* 取消时同样要做全局互斥：
+         如果当前是「整棵树全选」的状态（例如先勾了根节点），此时取消某一支，
+         应理解为「改为只选这一支」，而不是把这一支删掉、残留其他分支。
+         判断依据：除该节点及其子孙外，树中还有别的节点被勾选。 */
+      const branch=new Set([id]);
+      opOrgDescendantIds(id).forEach(x=>branch.add(x));
+      const others=Array.from(dataOwnerChecked).filter(x=>!branch.has(x));
+      if(others.length){
+        /* 有其他分支被勾选 → 收敛为「只选这一支」 */
+        dataOwnerChecked.clear();
+        dataOwnerChecked.add(id);
+        opOrgDescendantIds(id).forEach(x=>dataOwnerChecked.add(x));
+        doMainDept=id;
+      } else {
+        /* 只有这一支被勾选 → 正常取消，并修正祖先状态 */
+        dataOwnerChecked.delete(id);
+        opOrgDescendantIds(id).forEach(x=>dataOwnerChecked.delete(x));
+        let cur2=node;
+        while(cur2 && cur2.pid){
+          const parent=opOrgNodes.find(n=>n.id===cur2.pid);
+          if(!parent) break;
+          const kids=opOrgNodes.filter(n=>n.pid===parent.id);
+          if(kids.length && kids.every(k=>dataOwnerChecked.has(k.id))) dataOwnerChecked.add(parent.id);
+          else dataOwnerChecked.delete(parent.id);
+          cur2=parent;
+        }
+        if(doMainDept===id) doMainDept='';
+      }
     }
+    clearPendingAll();
     renderDataOwnerTree(); renderDataOwnerPanel();
+  }
+  /* 点整行：选中「当前节点 + 所有下级」；再点一次取消该分支 */
+  function onDataOwnerRowClick(id, e){
+    if(e){
+      const tag=(e.target.tagName||'').toLowerCase();
+      if(tag==='input' || (e.target.className||'').indexOf('tw')>=0) return;
+      e.stopPropagation();
+    }
+    const allIn=dataOwnerChecked.has(id) && opOrgDescendantIds(id).every(x=>dataOwnerChecked.has(x));
+    toggleDataOwnerNodeCheck(id, !allIn);
+  }
+  function clearPendingAll(){
+    doBase.ent_all=null; doBase.ent_position=null;
+    doAdd.ent_all=null; doAdd.ent_position=null;
+    doDel.ent_all=null; doDel.ent_position=null;
+    doSnapshotDepts.ent_all=[]; doSnapshotDepts.ent_position=[];
+    doDirty.ent_all=false; doDirty.ent_position=false;
   }
   function onDataOwnerSearch(v){ dataOwnerSearch=v.trim(); renderDataOwnerTree(); }
   function expandDataOwnerAll(){ opOrgNodes.forEach(n=>dataOwnerCollapsed[n.id]=false); renderDataOwnerTree(); }
   function collapseDataOwnerAll(){ opOrgNodes.forEach(n=>dataOwnerCollapsed[n.id]=true); renderDataOwnerTree(); }
   function switchDataOwnerTab(tab){
     if(dataOwnerActiveTab===tab) return;
+    /* 切 Tab 前若有未保存修改，提示（不阻断，待保存态按 Tab 独立保存） */
+    const prev=dataOwnerActiveTab;
+    if(doDirty[prev]){ toast('切换前有未保存修改，已保留，可切回后保存'); }
     dataOwnerActiveTab=tab;
+    dataOwnerPage[tab]=dataOwnerPage[tab]||1;
     renderDataOwnerPanel();
   }
   /* 弹窗内授权部门选择树（运营组织 opOrgNodes，约定 A 级联，初始为空） */
@@ -18562,81 +19185,540 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
   function dataOwnerGoNext(){ const t=dataOwnerActiveTab; setDataOwnerPage(t, dataOwnerPage[t]+1); }
   function dataOwnerGoPage(p){ setDataOwnerPage(dataOwnerActiveTab, p); }
   function dataOwnerGoSize(v){ setDataOwnerSize(dataOwnerActiveTab, v); }
+  /* 分页器：统一使用平台标准分页条（与需求管理一致） */
   function dataOwnerPagerHtml(tab,total,totalPages,curPage,size){
-    const sizes=[10,20,50,100];
-    const opts=sizes.map(s=>`<option value="${s}" ${s===size?'selected':''}>${s} 条/页</option>`).join('');
-    return `<div class="dop-pager" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:12px;padding-top:10px;border-top:1px solid var(--border-extra-light)">
-      <div style="font-size:13px;color:var(--text-secondary)">共 <b style="color:var(--text-primary)">${total}</b> 条 · 第 ${curPage}/${totalPages} 页</div>
-      <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-secondary)">
-        <label style="display:flex;align-items:center;gap:6px">每页
-          <select class="inp" style="width:auto;padding:4px 8px;height:30px" onchange="setDataOwnerSize('${tab}',this.value)">${opts}</select>
-        </label>
-        <button class="btn sm ghost" onclick="setDataOwnerPage('${tab}',${curPage-1})" ${curPage<=1?'disabled':''}>上一页</button>
-        <button class="btn sm ghost" onclick="setDataOwnerPage('${tab}',${curPage+1})" ${curPage>=totalPages?'disabled':''}>下一页</button>
-      </div>
-    </div>`;
+    return `<div class="pager do-pager-inline">`+
+      renderPagerHtml(total, curPage, size,
+        'dataOwnerGoPrev','dataOwnerGoNext','dataOwnerGoPage','dataOwnerGoPage','dataOwnerGoSize')+
+      `</div>`;
   }
-  function renderDataOwnerPanel(){
-    const el=document.getElementById('dataOwnerPanel'); if(!el) return;
-    const tab=dataOwnerActiveTab;
-    // 全局平铺：遍历所有已配置部门，不再依赖左侧勾选
-    const deptIds=Object.keys(dataOwnerMap).filter(did=>(dataOwnerMap[did]||[]).length);
-    let all=[], pos=[];
-    deptIds.forEach(did=>{
-      const dn=opOrgNodes.find(n=>n.id===did);
-      const dnName=dn?dn.name:did;
+  /* ===== 右侧面板：全量勾选列表（手动保存） =====
+     语义：勾选状态 = 授权状态。未勾选=无授权，勾选=已授权。
+     数据仍写回 dataOwnerMap，保证下游（跟进人池 / 岗位授权回写）不变。 */
+  /* 待保存状态改为「基线 + 增量」：
+     doBase = 进入编辑时各选中部门已有授权的交集（显示基线）
+     doAdd  = 本次新勾选的项
+     doDel  = 本次取消勾选的项
+     显示 = (基线 ∪ 新增) − 删除；保存时只对 doAdd / doDel 做增量写回，
+     不动各部门原有但未触碰的授权。 */
+  let doBase={ent_all:null, ent_position:null};
+  let doAdd ={ent_all:null, ent_position:null};
+  let doDel ={ent_all:null, ent_position:null};
+  let doSnapshotDepts={ent_all:[], ent_position:[]};   // 基线对应的部门集合
+  let doRenderMainDept='';                             // 当前渲染的主部门（判断继承项）
+  let doDirty={ent_all:false, ent_position:false};
+
+  function doClearPending(tab){
+    doBase[tab]=null; doAdd[tab]=null; doDel[tab]=null;
+    doSnapshotDepts[tab]=[]; doDirty[tab]=false;
+  }
+  /* 交集：所有选中部门都拥有的项 */
+  function doIntersectOf(tab, depts){
+    if(!depts.length) return new Set();
+    let acc=null;
+    depts.forEach(d=>{
+      const s=doSetOfDept(tab,d);
+      if(acc===null){ acc=new Set(s); }
+      else { Array.from(acc).forEach(x=>{ if(!s.has(x)) acc.delete(x); }); }
+    });
+    return acc||new Set();
+  }
+
+  /* 当前 Tab 的「已授权」集合：优先取待保存态，否则从 dataOwnerMap 派生 */
+  function doCurrentSet(tab){
+    if(doPending[tab]) return doPending[tab];
+    const set=new Set();
+    Object.keys(dataOwnerMap).forEach(did=>{
       (dataOwnerMap[did]||[]).forEach(m=>{
-        if(!m.id) m.id=genRowId();
-        if(!m.updatedAt) m.updatedAt=nowTs();
-        if(!m.type || m.type==='ent_position'){
-          const posList=m.positionIds && m.positionIds.length
-            ? m.positionIds.map(pid=>{ const p=positions.find(x=>x.id===pid); return p?`<div style="line-height:1.8">${p.name}</div>`:`<div style="line-height:1.8">${pid}</div>`; }).join('')
-            : '<span class="muted">全部岗位</span>';
-          pos.push({did,dnName,ent:m.ent,posList,entryId:m.id,updatedAt:m.updatedAt});
-        } else if(m.type==='ent_all'){
-          all.push({did,dnName,ent:m.ent,entryId:m.id,updatedAt:m.updatedAt});
+        if(tab==='ent_all' && m.type==='ent_all') set.add(m.ent+'||ALL');
+        else if(tab==='ent_position' && (!m.type||m.type==='ent_position')){
+          const pids=m.positionIds||[];
+          if(!pids.length) set.add(m.ent+'||ALL');            // 空数组=该企业全部岗位
+          else pids.forEach(pid=>set.add(m.ent+'||'+pid));
         }
       });
     });
-    const byUpdated=(rows)=>rows.sort((a,b)=>{ if(a.updatedAt===b.updatedAt) return 0; const r=a.updatedAt<b.updatedAt?-1:1; return -r; }); // 默认按更新时间降序
-    byUpdated(all); byUpdated(pos);
-    const rows=tab==='ent_all'?all:pos;
-    const size=dataOwnerSize[tab], total=rows.length;
-    const totalPages=Math.max(1,Math.ceil(total/size));
-    const curPage=Math.min(dataOwnerPage[tab],totalPages); dataOwnerPage[tab]=curPage;
-    const pageRows=rows.slice((curPage-1)*size,(curPage-1)*size+size);
-    let body='';
-    if(tab==='ent_all'){
-      body=pageRows.map(r=>`<tr><td style="white-space:nowrap">${r.dnName}</td><td>${r.ent}</td><td style="width:80px" class="ops"><a class="lnk danger" onclick="removeDataOwnerEnt('${r.did}','${r.entryId}')">移除</a></td></tr>`).join('')
-        || '<tr><td colspan="3" style="color:var(--text-secondary);text-align:center;padding:18px">暂无配置，点击右上角「+ 添加企业」</td></tr>';
-      body=`<table class="mem-table"><thead><tr><th>授权部门（运营组织）</th><th>企业名称</th><th style="width:80px" class="op-col">操作</th></tr></thead><tbody>${body}</tbody></table>`;
-    } else {
-      body=pageRows.map(r=>`<tr><td style="white-space:nowrap">${r.dnName}</td><td>${r.ent}</td><td style="min-width:160px">${r.posList}</td><td style="width:80px" class="ops"><a class="lnk danger" onclick="removeDataOwnerEnt('${r.did}','${r.entryId}')">移除</a></td></tr>`).join('')
-        || '<tr><td colspan="4" style="color:var(--text-secondary);text-align:center;padding:18px">暂无配置，点击右上角「+ 添加岗位」</td></tr>';
-      body=`<table class="mem-table"><thead><tr><th>授权部门（运营组织）</th><th>企业名称</th><th>岗位名称</th><th style="width:80px" class="op-col">操作</th></tr></thead><tbody>${body}</tbody></table>`;
-    }
-    const card=`<div class="perm-section-card">
-      <h4>${tab==='ent_all'?'按企业授权（全盘 · 可见该企业全部数据）':'按企业岗位授权（需求管理数据授权）'}</h4>
-      ${body}
-      ${renderPagerHtml(total, dataOwnerPage[tab], dataOwnerSize[tab], 'dataOwnerGoPrev','dataOwnerGoNext','dataOwnerGoPage','dataOwnerGoPage','dataOwnerGoSize')}
-    </div>`;
-    const allOn=dataOwnerActiveTab==='ent_all', posOn=dataOwnerActiveTab==='ent_position';
-    const addBtn=dataOwnerActiveTab==='ent_all'
-      ? '<button class="btn" onclick="openAddEntAllDataOwner()">+ 添加企业</button>'
-      : '<button class="btn" onclick="openAddDataOwnerEnt()">+ 添加岗位</button>';
-    el.innerHTML=`<div class="role-cfg">
-      <div class="note" style="background:#e6f4ff;border-color:#91caff;color:#0958d9">💡 本页展示所有已配置的部门级数据授权。点击右侧按钮新增：<b>添加企业</b>=按企业(全盘)（可见该企业全部数据），<b>添加岗位</b>=按企业+岗位（需求管理数据授权）。</div>
-      <div class="tabs" style="display:flex;gap:10px;margin:14px 0 10px">
-        <button class="tab" onclick="switchDataOwnerTab('ent_all')" style="flex:1;padding:11px 0;border:2px solid ${allOn?'#3771eb':'var(--border)'};border-radius:10px;background:${allOn?'#3771eb':'#fff'};color:${allOn?'#fff':'var(--text-secondary)'};font-weight:${allOn?700:500};font-size:14px;cursor:pointer;box-shadow:${allOn?'0 4px 12px rgba(55,113,235,.35)':'none'}">按企业授权</button>
-        <button class="tab" onclick="switchDataOwnerTab('ent_position')" style="flex:1;padding:11px 0;border:2px solid ${posOn?'#3771eb':'var(--border)'};border-radius:10px;background:${posOn?'#3771eb':'#fff'};color:${posOn?'#fff':'var(--text-secondary)'};font-weight:${posOn?700:500};font-size:14px;cursor:pointer;box-shadow:${posOn?'0 4px 12px rgba(55,113,235,.35)':'none'}">按企业岗位授权</button>
-      </div>
-      <div class="rh" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
-        <h3 style="font-size:14px;color:var(--text-primary);margin:0">已配置 ${deptIds.length} 个部门的授权</h3>
-        ${addBtn}
-      </div>
-      ${card}
-    </div>`;
+    return set;
   }
+  /* 该 Tab 在某部门下的授权集合（用于回显左侧选中的部门） */
+  /* 岗位授权列表的数据源：招聘管理-需求管理中的需求记录
+     （每条需求视为一个「岗位」，用需求编号做授权标识） */
+  function doPosOfEnt(ent){
+    if(typeof demands==='undefined' || !Array.isArray(demands)) return [];
+    return demands.filter(d=>d.ent===ent && d.name);
+  }
+  /* 全部可授权岗位（按企业分组用） */
+  function doAllPosOfEnts(){
+    if(typeof demands==='undefined' || !Array.isArray(demands)) return [];
+    return demands.filter(d=>d.ent && d.name);
+  }
+
+  /* 某部门本级配置（不含继承） */
+  function doOwnSetOfDept(tab, deptId){
+    const set=new Set();
+    (dataOwnerMap[deptId]||[]).forEach(m=>{
+      if(tab==='ent_all' && m.type==='ent_all'){ set.add(m.ent+'||ALL'); }
+      else if(tab==='ent_position' && (!m.type||m.type==='ent_position')){
+        /* 岗位级：positionIds 一律显式枚举，空数组=无授权（不再代表全部岗位） */
+        (m.positionIds||[]).forEach(pid=>set.add(m.ent+'||'+pid));
+      }
+    });
+    return set;
+  }
+  /* 部门有效授权：本级有配置则用本级；本级为空则向上继承最近的有配置的祖先部门 */
+  /* 部门「有效配置」= 从根到本级的每一级本级配置的并集。
+     子部门天然包含父部门的配置，且父级后续变更会实时反映到子级（动态继承）。
+     子级只能在本级「加配」，不能减少继承来的部分。 */
+  function doSetOfDept(tab, deptId){
+    const set=new Set();
+    /* 收集从根到当前节点的路径 */
+    const chain=[];
+    let cur=opOrgNodes.find(n=>n.id===deptId);
+    while(cur){ chain.unshift(cur); cur=cur.pid?opOrgNodes.find(n=>n.id===cur.pid):null; }
+    chain.forEach(n=>{ doOwnSetOfDept(tab, n.id).forEach(x=>set.add(x)); });
+    return set;
+  }
+  /* 本级相对于父级的「增量」（仅本级自己的，用于判断是否可取消继承项） */
+  function doOwnOnlyOfDept(tab, deptId){ return doOwnSetOfDept(tab, deptId); }
+  /* 某配置项是否为「继承而来」（父级已有，本级无法取消） */
+  function doIsInherited(tab, deptId, key){
+    return !!doInheritFrom(tab, deptId, key);
+  }
+  /* 返回该项「继承自哪个祖先部门」（自身已配置或无处可继承时返回空） */
+  function doInheritFrom(tab, deptId, key){
+    if(doOwnSetOfDept(tab, deptId).has(key)) return null;   // 本级已有 → 非继承
+    let cur=opOrgNodes.find(n=>n.id===deptId);
+    while(cur && cur.pid){
+      const pid=cur.pid;
+      if(doOwnSetOfDept(tab, pid).has(key)){
+        const p=opOrgNodes.find(n=>n.id===pid);
+        return p? p.name : null;
+      }
+      cur=opOrgNodes.find(n=>n.id===pid);
+    }
+    return null;
+  }
+  /* 内联 onclick 属性转义：先编码引号，避免企业名含引号时破坏 HTML */
+  function doAttr(s){
+    return String(s==null?'':s)
+      .replace(/&/g,'&amp;').replace(/"/g,'&quot;')
+      .replace(/'/g,'&#39;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+  let doMainDept='';          // 用户最近一次点击的部门（用于高亮定位，区别于级联勾选的子孙）
+  let doEntFilter='';
+  let doExpanded=new Set();          // 「按岗位」Tab 中展开的企业
+  function setDoEntFilter(v){
+    doEntFilter=(v||'').trim();
+    dataOwnerPage[dataOwnerActiveTab]=1;
+    /* 组字中：只更新过滤词，等 compositionend 再统一渲染，避免打断输入法 */
+    if(doImeComposing) return;
+    /* 防抖：避免连续输入时频繁重建 DOM */
+    if(doSearchTimer) clearTimeout(doSearchTimer);
+    doSearchTimer=setTimeout(function(){ doSearchTimer=null; doApplyDoFilter(); }, 180);
+  }
+  function doClearDoFilter(){
+    doEntFilter='';
+    if(doSearchTimer){ clearTimeout(doSearchTimer); doSearchTimer=null; }
+    dataOwnerPage[dataOwnerActiveTab]=1;
+    renderDataOwnerPanel();
+  }
+  function doApplyDoFilter(){
+    const v=doEntFilter;
+    doPendingFocus = { sel:'#dataOwnerPanel .do-search', pos:null };
+    /* 有搜索词时自动展开命中的企业，便于直接看到匹配的岗位 */
+    if(doEntFilter && dataOwnerActiveTab==='ent_position'){
+      const f=doEntFilter.toLowerCase();
+      enterprises.filter(e=>e.status==='正常').forEach(e=>{
+        if(e.name.toLowerCase().includes(f)) { doExpanded.add(e.name); return; }
+        if(doPosOfEnt(e.name).some(p=>(p.name||'').toLowerCase().includes(f) || (p.id||'').toLowerCase().includes(f))){
+          doExpanded.add(e.name);
+        }
+      });
+    }
+    renderDataOwnerPanel();
+  }
+
+  /* 取消某部门在某 Tab 下的全部授权 */
+  function clearDataOwnerSel(){
+    dataOwnerChecked.clear(); doMainDept=''; doPending={ent_all:null,ent_position:null}; doDirty={ent_all:false,ent_position:false};
+    renderDataOwnerTree(); renderDataOwnerPanel();
+  }
+
+  function renderDataOwnerPanel(){
+    const el=document.getElementById('dataOwnerPanel'); if(!el) return;
+    const tab=dataOwnerActiveTab;
+    const selDepts=Array.from(dataOwnerChecked);
+
+    /* ---- Tab 头 ---- */
+    const cntAll=doCountOfTab('ent_all'), cntPos=doCountOfTab('ent_position');
+    const tabBar=`<div class="do-tabs">
+      <button class="do-tab${tab==='ent_all'?' on':''}" onclick="switchDataOwnerTab('ent_all')">企业权限配置</button>
+      <button class="do-tab${tab==='ent_position'?' on':''}" onclick="switchDataOwnerTab('ent_position')">岗位数据权限配置</button>
+    </div>`;
+
+    /* ---- 未选部门：空态引导 ---- */
+    if(!selDepts.length){
+      el.innerHTML=tabBar+`<div class="do-empty">
+        <div class="do-empty-ico">🗂</div>
+        <div class="do-empty-t">请先在左侧选择授权部门</div>
+        <div class="do-empty-d">选中部门后，在右侧勾选该部门可访问的${tab==='ent_all'?'企业':'企业岗位'}，保存后生效。</div>
+      </div>`;
+      return;
+    }
+
+    /* 显示集合 = (主部门本级配置 ∪ 新增) − 删除
+       勾父级时会连带选中其下属部门，但右侧只展示「主部门」自己的配置，
+       不合并子级配置、也不取交集。子级想用不同配置需单独点进子级编辑。 */
+    const mainDept = doMainDept && dataOwnerChecked.has(doMainDept)
+      ? doMainDept
+      : selDepts.slice().sort(function(a,b){
+          /* 没有主部门时，取层级最浅的那个作为主部门 */
+          const da=(opOrgNodes.find(n=>n.id===a)||{}).level||9;
+          const db=(opOrgNodes.find(n=>n.id===b)||{}).level||9;
+          return da-db;
+        })[0];
+
+    const selKey=selDepts.slice().sort().join(',')+'#'+mainDept;
+    if(doSnapshotDepts[tab].join(',')!==selKey){
+      /* 基线 = 主部门的有效配置（父级配置 ∪ 本级配置） */
+      doBase[tab]=doSetOfDept(tab, mainDept);
+      doAdd[tab]=new Set(); doDel[tab]=new Set();
+      doSnapshotDepts[tab]=[selKey];
+      if(doDirty[tab]){ doDirty[tab]=false; }
+    }
+    if(!doBase[tab]) doBase[tab]=doSetOfDept(tab, mainDept);
+    /* 当前主部门（供渲染判断“继承项不可取消”） */
+    doRenderMainDept = mainDept;
+    if(!doAdd[tab]) doAdd[tab]=new Set();
+    if(!doDel[tab]) doDel[tab]=new Set();
+    const curSet=new Set(doBase[tab]);
+    doAdd[tab].forEach(x=>curSet.add(x));
+    doDel[tab].forEach(x=>curSet.delete(x));
+
+    /* ---- 列表数据 ---- */
+    let body='', total=0;
+    if(tab==='ent_all'){
+      const f=doEntFilter.toLowerCase();
+      const ents=enterprises.filter(e=>e.status==='正常' && (!f || e.name.toLowerCase().includes(f)));
+      total=ents.length;
+      const size=dataOwnerSize[tab];
+      const totalPages=Math.max(1,Math.ceil(total/size));
+      const curPage=Math.min(dataOwnerPage[tab],totalPages); dataOwnerPage[tab]=curPage;
+      const pageRows=ents.slice((curPage-1)*size,(curPage-1)*size+size);
+      body=pageRows.map(e=>{
+        const key=e.name+'||ALL';
+        const on=curSet.has(key) || curSet.has(e.name+'||ALL');
+        const inhFrom=doInheritFrom(tab, doRenderMainDept, key);
+        const ek=doAttr(e.name);
+        return `<tr><td class="do-cb"><input type="checkbox" ${on?'checked':''} ${inhFrom?'disabled':''} onchange="doToggleEnt('${ek}',this.checked)"/></td>
+          <td>${escHtml(e.name)}${inhFrom?'<span class="do-inh" title="继承自：'+doAttr(inhFrom)+'">继承自 '+escHtml(inhFrom)+'</span>':''}</td></tr>`;
+      }).join('') || '<tr><td colspan="2" class="do-none">无匹配企业</td></tr>';
+      const pageAllOn = pageRows.length>0 && pageRows.every(e=>curSet.has(e.name+'||ALL'));
+      body=`<table class="mem-table do-table"><thead><tr>
+        <th class="do-cb"></th>
+        <th>企业名称</th></tr></thead><tbody>${body}</tbody></table>`;
+      body=`<div class="do-list-wrap">`+body+`</div>
+        <div class="do-pager">${renderPagerHtml(total,curPage,size,'dataOwnerGoPrev','dataOwnerGoNext','dataOwnerGoPage','dataOwnerGoPage','dataOwnerGoSize')}</div>`;
+    } else {
+      const f=doEntFilter.toLowerCase();
+      /* 搜索时不要先按企业名剔除，企业名不匹配的还要看其岗位/需求编号是否命中 */
+      const ents=enterprises.filter(e=>e.status==='正常');
+      const rows=[];
+      ents.forEach(e=>{
+        let posList=doPosOfEnt(e.name);
+        if(f && !e.name.toLowerCase().includes(f)){
+          posList=posList.filter(p=>
+            (p.name||'').toLowerCase().includes(f) || (p.id||'').toLowerCase().includes(f)
+          );
+          if(!posList.length) return;
+        }
+        const allOn=curSet.has(e.name+'||ALL');
+        const selCnt=posList.filter(p=>curSet.has(e.name+'||'+p.id)).length;
+        const entChecked = allOn || (posList.length>0 && selCnt===posList.length);
+        const entSome = !entChecked && (allOn || selCnt>0);
+        if(!posList.length && !allOn) return;
+        rows.push({e,posList,allOn,selCnt,entChecked,entSome});
+      });
+      total=rows.length;
+      const size=dataOwnerSize[tab];
+      const totalPages=Math.max(1,Math.ceil(total/size));
+      const curPage=Math.min(dataOwnerPage[tab],totalPages); dataOwnerPage[tab]=curPage;
+      const pageRows=rows.slice((curPage-1)*size,(curPage-1)*size+size);
+      let html=pageRows.map(r=>{
+        const ek=doAttr(r.e.name);
+        const open=doExpanded.has(r.e.name);
+        const head=`<div class="do-ep-head">
+          <input type="checkbox" data-half="${r.entSome?'1':''}" ${r.entChecked?'checked':''} onchange="doToggleEnt('${ek}',this.checked)"/>
+          <span class="do-ep-name">${escHtml(r.e.name)}</span>
+          <span class="do-ep-cnt">已选 ${r.selCnt}/${r.posList.length}</span>
+          <a class="do-ep-exp" onclick="doToggleExpand('${ek}')">${open?'收起':'展开'}</a>
+        </div>`;
+        let posHtml='';
+        if(open){
+          posHtml=`<div class="do-ep-body">`+r.posList.map(p=>{
+            const on=curSet.has(r.e.name+'||'+p.id) || r.allOn;
+            const pk=doAttr(p.id);
+            const meta=[p.id, p.status].filter(Boolean).join(' · ');
+            const pkey=r.e.name+'||'+p.id;
+            const inhFrom=doInheritFrom(tab, doRenderMainDept, pkey);
+            const inh=!!inhFrom;
+            const onFinal=on || inh;
+            return `<label class="do-pos${inh?' inh':''}"><input type="checkbox" ${onFinal?'checked':''} ${inh?'disabled':''} onchange="doTogglePos('${ek}','${pk}',this.checked)"/>
+              <span class="do-pos-n">${escHtml(p.name)}</span>
+              <span class="do-pos-d">${escHtml(meta)}${inhFrom?'<span class="do-inh" title="继承自：'+doAttr(inhFrom)+'">继承自 '+escHtml(inhFrom)+'</span>':''}</span></label>`;
+          }).join('')+`</div>`;
+        }
+        return `<div class="do-ep-block">${head}${posHtml}</div>`;
+      }).join('') || '<div class="do-none">无匹配企业或岗位</div>';
+      const selTotal=countPosOf(curSet);
+      const posAllOn = rows.length>0 && rows.every(r=>r.allOn || (r.posList.length>0 && r.selCnt===r.posList.length));
+      body=`<div class="do-list-wrap">`+html+`</div>
+        <div class="do-pager">${renderPagerHtml(total,curPage,size,'dataOwnerGoPrev','dataOwnerGoNext','dataOwnerGoPage','dataOwnerGoPage','dataOwnerGoSize')}</div>`;
+    }
+
+    /* ---- 工具条（两行）：
+       第一行：列表标题 + 操作按钮（取消修改 / 保存配置）
+       第二行：搜索框（内置 × 清空）+ 全选
+       授权部门数量不再重复展示 —— 左侧组织树底部已有「已选 N 个部门」 ---- */
+    const changed=doHasChange(tab);
+    const noDept=selDepts.length===0;
+    const canSave=changed && !noDept;
+    /* 全选状态（按当前 Tab 全量口径判断，与分页无关） */
+    const allCheckedAll = (function(){
+      if(tab==='ent_all'){
+        const list=enterprises.filter(e=>e.status==='正常');
+        return list.length>0 && list.every(e=>curSet.has(e.name+'||ALL'));
+      }
+      return enterprises.filter(e=>e.status==='正常').every(function(e){
+        const ps=doPosOfEnt(e.name);
+        return ps.length>0 && ps.every(p=>curSet.has(e.name+'||'+p.id) || curSet.has(e.name+'||ALL'));
+      }) && enterprises.filter(e=>e.status==='正常').some(e=>doPosOfEnt(e.name).length>0);
+    })();
+    const searchPh = tab==='ent_all' ? '输入企业名称搜索' : '输入企业名称 / 岗位 / 需求编号搜索';
+    /* 单行工具条：搜索框 + 全选（紧跟其后） + 右侧操作按钮 */
+    const toolbar=`<div class="do-bar">
+        <div class="do-search-wrap">
+          <input class="inp do-search" placeholder="${searchPh}" oninput="setDoEntFilter(this.value)" value="${doAttr(doEntFilter)}" autocomplete="off" oncompositionstart="doImeComposing=true" oncompositionend="doImeComposing=false;doEntFilter=this.value.trim();doApplyDoFilter();"/>
+          <span class="do-search-clear${doEntFilter?' show':''}" onclick="doClearDoFilter()" title="清空">×</span>
+        </div>
+        <label class="do-all-cb"><input type="checkbox" ${allCheckedAll?'checked':''} onchange="doToggleAllEnt(this.checked)"/> 全选</label>
+        <span class="do-list-act">
+          <button class="btn sm ghost" onclick="doResetPending()" ${changed?'':'disabled'}>取消修改</button>
+          <button class="btn sm" onclick="doSavePending()" ${canSave?'':'disabled'}>保存配置</button>
+        </span>
+      </div>`;
+
+    el.innerHTML=tabBar+toolbar+body;
+
+    /* 半选态 + 保存提示 */
+    el.querySelectorAll('input[data-half="1"]').forEach(cb=>{ cb.indeterminate=true; });
+    doRestoreFocus();
+  }
+
+  function doCountOfTab(tab){
+    let n=0;
+    Object.keys(dataOwnerMap).forEach(did=>{ (dataOwnerMap[did]||[]).forEach(m=>{
+      if(tab==='ent_all' && m.type==='ent_all') n++;
+      else if(tab==='ent_position' && (!m.type||m.type==='ent_position')) n++;
+    }); });
+    return n;
+  }
+  function countEntOf(set){ const s=new Set(); set.forEach(x=>s.add(x.split('||')[0])); return s.size; }
+  function countPosOf(set){ let n=0; set.forEach(x=>{ const p=x.split('||'); if(p[1]!=='ALL') n++; }); return n; }
+
+  /* 搜索框焦点还原：面板每次重建会销毁输入框，需要在渲染后把焦点和光标放回去，
+     否则每输入一个字符就失焦，只能输入一个字。 */
+  let doPendingFocus=null;
+  /* 中文输入法保护：组字期间（compositionstart~compositionend）不重建面板，
+     否则重组 DOM 会打断输入法，表现为只能输入拼音字母、汉字输不进去。 */
+  let doImeComposing=false;
+  let doSearchTimer=null;
+  function doRestoreFocus(){
+    if(!doPendingFocus) return;
+    const f=doPendingFocus; doPendingFocus=null;
+    const el=document.querySelector(f.sel);
+    if(!el) return;
+    el.focus();
+    const pos=(f.pos==null)?el.value.length:f.pos;
+    try{ el.setSelectionRange(pos,pos); }catch(e){}
+  }
+
+  /* 当前是否有未保存修改：直接比对「显示集合」与「基线集合」，比增量标记更可靠 */
+  function doHasChange(tab){
+    tab=tab||dataOwnerActiveTab;
+    const base=doBase[tab];
+    if(!base) return false;
+    const add=doAdd[tab]||new Set();
+    const del=doDel[tab]||new Set();
+    if(add.size>0 || del.size>0){
+      /* 增量里可能相互抵消，需要按净值判断 */
+      const net=new Set(base);
+      add.forEach(x=>net.add(x));
+      del.forEach(x=>net.delete(x));
+      if(net.size!==base.size) return true;
+      for(const x of net) if(!base.has(x)) return true;
+      return false;
+    }
+    return false;
+  }
+  /* 勾选变化只记录增量：新增进 doAdd，取消进 doDel（并从 doAdd 移除） */
+  function doMarkAdd(key){
+    const tab=dataOwnerActiveTab;
+    if(doDel[tab]) doDel[tab].delete(key);
+    if(doAdd[tab]) doAdd[tab].add(key);
+    doDirty[tab]=true;
+  }
+  function doMarkDel(key){
+    const tab=dataOwnerActiveTab;
+    if(doAdd[tab]) doAdd[tab].delete(key);
+    if(doDel[tab]) doDel[tab].add(key);
+    doDirty[tab]=true;
+  }
+  function doToggleEnt(ent, checked){
+    const tab=dataOwnerActiveTab;
+    if(checked){
+      doMarkAdd(ent+'||ALL');
+      /* 整企业勾选时，其下已被单独取消的岗位失效 */
+      if(doDel[tab]) Array.from(doDel[tab]).forEach(x=>{ if(x.indexOf(ent+'||')===0) doDel[tab].delete(x); });
+    } else {
+      /* 取消整企业：企业本身与其下所有岗位都进删除集 */
+      doMarkDel(ent+'||ALL');
+      doPosOfEnt(ent).forEach(p=>doMarkDel(ent+'||'+p.id));
+    }
+    renderDataOwnerPanel();
+  }
+  function doTogglePos(ent, pid, checked){
+    const key=ent+'||'+pid;
+    if(checked){ doMarkAdd(key); }
+    else {
+      /* 只删这一个岗位，不牵连该企业的其他岗位 */
+      doMarkDel(key);
+      /* 若原本是企业级「全选」状态（ALL），取消单个岗位时需把 ALL 转为显式列表 */
+      if(doBase[dataOwnerActiveTab] && doBase[dataOwnerActiveTab].has(ent+'||ALL')) doMarkDel(ent+'||ALL');
+    }
+    renderDataOwnerPanel();
+  }
+  function doToggleAllEnt(checked){
+    const tab=dataOwnerActiveTab;
+    const f=doEntFilter.toLowerCase();
+    const ents=enterprises.filter(e=>e.status==='正常' && (!f || e.name.toLowerCase().includes(f)));
+    ents.forEach(e=>{
+      if(checked){
+        doMarkAdd(e.name+'||ALL');
+        if(doDel[tab]) Array.from(doDel[tab]).forEach(x=>{ if(x.indexOf(e.name+'||')===0) doDel[tab].delete(x); });
+      } else {
+        doMarkDel(e.name+'||ALL');
+        if(tab==='ent_position') doPosOfEnt(e.name).forEach(p=>doMarkDel(e.name+'||'+p.id));
+      }
+    });
+    renderDataOwnerPanel();
+  }
+
+  function doToggleExpand(ent){ if(doExpanded.has(ent)) doExpanded.delete(ent); else doExpanded.add(ent); renderDataOwnerPanel(); }
+  function doResetPending(){
+    const tab=dataOwnerActiveTab;
+    doClearPending(tab);
+    renderDataOwnerPanel(); toast('已取消本次修改');
+  }
+
+  /* 把某个 key（ent||ALL 或 ent||pid）应用到单个部门的条目数组上 */
+  /* 把某个 key 应用到单个部门的条目数组上
+     key 形式：'企业名||ALL' = 该企业全部岗位；'企业名||岗位ID' = 单个岗位
+     语义：勾什么存什么。positionIds 一律为显式岗位ID列表，空数组 = 无岗位授权。 */
+  /* 写回单条授权
+     tab='ent_all'      → 写 {type:'ent_all', ent}（企业级：该企业全部数据可见）
+     tab='ent_position' → 写 {ent, positionIds:[岗位ID...]}（岗位级：显式枚举） */
+  function doApplyOne(tab, arr, key, on){
+    const parts=key.split('||'), ent=parts[0], pid=parts[1];
+
+    /* ---------- 企业级 ---------- */
+    if(tab==='ent_all'){
+      const exists=()=>arr.some(m=>m.ent===ent && m.type==='ent_all');
+      if(on){
+        if(!exists()) arr.push({id:genRowId(), type:'ent_all', ent, source:'manual', updatedAt:nowTs()});
+      } else {
+        for(let i=arr.length-1;i>=0;i--){
+          if(arr[i].ent===ent && arr[i].type==='ent_all') arr.splice(i,1);
+        }
+      }
+      return;
+    }
+
+    /* ---------- 岗位级 ---------- */
+    const isAll=(pid==='ALL');
+    const findPosEntry=()=>arr.find(m=>m.ent===ent && (!m.type||m.type==='ent_position'));
+
+    if(isAll){
+      if(on){
+        /* 该企业全部岗位：显式展开成当前全部需求编号 */
+        const allIds=doPosOfEnt(ent).map(p=>p.id);
+        let e2=findPosEntry();
+        if(!e2){ e2={id:genRowId(), ent, positionIds:[], updatedAt:nowTs()}; arr.push(e2); }
+        e2.positionIds=allIds;
+        e2.updatedAt=nowTs();
+      } else {
+        for(let i=arr.length-1;i>=0;i--){
+          const m=arr[i];
+          if(m.ent===ent && (!m.type||m.type==='ent_position')) arr.splice(i,1);
+        }
+      }
+      return;
+    }
+
+    if(on){
+      let e2=findPosEntry();
+      if(!e2){ e2={id:genRowId(), ent, positionIds:[], updatedAt:nowTs()}; arr.push(e2); }
+      if(!Array.isArray(e2.positionIds)) e2.positionIds=[];
+      if(e2.positionIds.indexOf(pid)<0) e2.positionIds.push(pid);
+      e2.updatedAt=nowTs();
+    } else {
+      const e2=findPosEntry();
+      if(!e2) return;
+      if(!Array.isArray(e2.positionIds)) e2.positionIds=[];
+      e2.positionIds=e2.positionIds.filter(x=>x!==pid);
+      e2.updatedAt=nowTs();
+      if(!e2.positionIds.length){ const i=arr.indexOf(e2); if(i>=0) arr.splice(i,1); }
+    }
+  }
+
+  /* 保存：只应用本次的增量（新增 / 取消），不动各部门其他原有授权 */
+  function doSavePending(){
+    const tab=dataOwnerActiveTab;
+    const sel=Array.from(dataOwnerChecked);
+    if(!sel.length){ toast('请先在左侧选择授权部门'); return; }
+    const adds=Array.from(doAdd[tab]||[]);
+    const dels=Array.from(doDel[tab]||[]);
+    if(!adds.length && !dels.length){ toast('没有需要保存的修改'); return; }
+
+    /* 检查：本次取消会不会清掉某些部门的独有授权 */
+    let affected=0;
+    if(dels.length){
+      sel.forEach(did=>{
+        const own=doSetOfDept(tab,did);
+        const lost=dels.filter(k=>own.has(k));
+        affected+=Math.max(0, lost.length - 0);   // 粗略统计受影响的项
+      });
+    }
+
+    const doWrite=()=>{
+      sel.forEach(did=>{
+        if(!dataOwnerMap[did]) dataOwnerMap[did]=[];
+        /* 只写「本级增量」：继承来的项不写进本级，也不删本级没有的项 */
+        const ownBefore=doOwnSetOfDept(tab, did);
+        dels.forEach(k=>{ if(ownBefore.has(k)) doApplyOne(tab, dataOwnerMap[did], k, false); });
+        adds.forEach(k=>doApplyOne(tab, dataOwnerMap[did], k, true));
+      });
+      doClearPending(tab);
+      renderDataOwnerTree(); renderDataOwnerPanel();
+      toast('已保存 '+sel.length+' 个部门的授权配置');
+    };
+
+    if(affected>0){
+      if(!confirm('本次取消的授权中，有部分是该部门独有的配置（共 '+affected+' 项）。保存后这些部门将失去对应权限，确认保存？')) return;
+    }
+    doWrite();
+  }
+
   function removeDataOwnerEnt(nodeId,entryId){
     const arr=dataOwnerMap[nodeId]; if(!arr) return;
     const idx=arr.findIndex(m=>m.id===entryId); if(idx<0) return;
