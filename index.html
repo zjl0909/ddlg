@@ -3490,6 +3490,16 @@
   .ml-input{width:100%;height:40px;border:none;border-bottom:1.5px solid #99f6e4;border-radius:0;padding:0 2px;font-size:14px;box-sizing:border-box;background:transparent;}
   .ml-input:focus{outline:none;border-color:#0d8f6e;}
   .ml-btn{width:100%;height:46px;border:none;border-radius:24px;background:#0d8f6e;color:#fff;font-size:15px;font-weight:600;cursor:pointer;margin-top:18px;}
+  /* 登录页演示账号快捷入口 */
+  .ml-demo{margin-top:18px;padding-top:14px;border-top:1px dashed #e3e8f0;}
+  .ml-demo-t{font-size:11px;color:#9aa3b2;margin-bottom:8px;}
+  .ml-demo-list{display:flex;flex-direction:column;gap:8px;}
+  .ml-demo-item{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;background:#f7f9fb;border:1px solid #e8edf4;border-radius:8px;cursor:pointer;transition:.15s;}
+  .ml-demo-item:hover{background:#eef6f3;border-color:#bfe0d4;}
+  .ml-demo-ph{font-size:13px;color:#1f2a44;font-weight:600;letter-spacing:.3px;}
+  .ml-demo-tag{font-size:10px;padding:1px 7px;border-radius:9px;background:#f0f0f5;color:#909399;font-weight:600;}
+  .ml-demo-tag.ok{background:#e6f7f1;color:#0d8f6e;}
+  .ml-demo-tip{font-size:11px;color:#b0b7c3;margin-top:8px;line-height:1.5;}
   .ml-foot{text-align:center;font-size:13px;color:#7a8a82;margin-top:14px;}
   .ml-link{color:#0d8f6e;cursor:pointer;font-weight:600;}
   .ml-field-code .ml-code-row{display:flex;align-items:center;gap:10px;}
@@ -3532,6 +3542,25 @@
   .rn-up-ico{font-size:26px;color:#0d8f6e;}
   .rn-up-t{font-size:12px;color:#5a6478;margin-top:6px;}
   .rn-ocr{margin-top:12px;border-top:1px dashed #eef0f4;padding-top:10px;}
+  /* 一号一证：冲突提示与转移绑定 */
+  .rn-cf{margin-top:12px;padding:12px;background:#FFF8F0;border:1px solid #FFE0BF;border-radius:10px;}
+  .rn-cf-t{font-size:13px;font-weight:600;color:#B25E09;margin-bottom:6px;line-height:1.4;}
+  .rn-cf-d{font-size:12px;color:#8a6d4b;line-height:1.6;margin-bottom:10px;}
+  .rn-cf-acts{display:flex;gap:8px;}
+  .rn-cf-btn{flex:1;height:38px;border-radius:19px;font-size:13px;font-weight:600;cursor:pointer;border:1px solid transparent;}
+  .rn-cf-btn.ghost{background:#fff;border-color:#e0c9ae;color:#8a6d4b;}
+  .rn-cf-btn.primary{background:linear-gradient(135deg,#0d8f6e,#0bb89a);color:#fff;}
+  .rn-cf-btn:disabled{opacity:.55;cursor:not-allowed;}
+  .rn-cf-row{display:flex;gap:8px;margin-bottom:8px;}
+  .rn-cf-input{flex:1;height:38px;border:1px solid #e3e8f0;border-radius:8px;padding:0 10px;font-size:13px;background:#fff;}
+  .rn-cf-input:focus{border-color:#0d8f6e;outline:none;}
+  .rn-cf-send{flex:0 0 auto;height:38px;padding:0 12px;border:1px solid #cfe3da;border-radius:8px;background:#E8F8F1;color:#0d8f6e;font-size:12px;font-weight:600;cursor:pointer;}
+  .rn-cf-send:disabled{opacity:.6;cursor:not-allowed;}
+  .rn-cf-err{font-size:11px;color:#E24B4A;margin-bottom:8px;}
+  .rn-cf-fallback{font-size:11px;color:#9aa3b2;text-align:center;margin-top:10px;}
+  .rn-cf-fallback a{color:#0d8f6e;font-weight:600;cursor:pointer;}
+  .rn-cf-face{font-size:44px;text-align:center;padding:16px 0;color:#0d8f6e;}
+  .rn-btn:disabled{opacity:.5;cursor:not-allowed;}
   .rn-ocr-t{font-size:12px;color:#0d8f6e;font-weight:600;margin-bottom:8px;}
   .rn-field{display:flex;align-items:center;gap:8px;margin-bottom:7px;}
   .rn-field label{width:84px;font-size:12px;color:#5a6478;flex:0 0 auto;}
@@ -8356,6 +8385,21 @@
               </div>
               <label class="mr-agree" data-page-node-id="k23c9aGRsOnkfNXHJFzGHF"><input type="checkbox" id="m-login-agree" checked data-page-node-id="yKVFeYGEl9MzAgBZN3zb0J"/> 我已阅读并同意<span onclick="openAgreement('service')" data-page-node-id="X0GC7ZvdN0smOMztAFb4ln">《服务协议》</span>和<span onclick="openAgreement('privacy')" data-page-node-id="CpcNpx0DiNEyEMdsFEs7pU">《隐私政策》</span></label>
               <button class="ml-btn" onclick="miniAuth()" data-page-node-id="Dizk1EBKMH8VCHUW2qi5NQ">登 录 / 注 册</button>
+              <!-- 演示账号快捷入口（一号一证场景演示） -->
+              <div class="ml-demo">
+                <div class="ml-demo-t">演示账号（点击填入）</div>
+                <div class="ml-demo-list">
+                  <div class="ml-demo-item" onclick="miniDemoPick('13800006688')">
+                    <span class="ml-demo-ph">13800006688</span>
+                    <span class="ml-demo-tag ok">已实名</span>
+                  </div>
+                  <div class="ml-demo-item" onclick="miniDemoPick('13900002288')">
+                    <span class="ml-demo-ph">13900002288</span>
+                    <span class="ml-demo-tag">未实名</span>
+                  </div>
+                </div>
+                <div class="ml-demo-tip">两个账号为同一人：切换后可用已实名的证件号演示「一号一证」拦截与转移。</div>
+              </div>
             </div>
           </div>
         </div>
@@ -15969,8 +16013,72 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     {name:'营业厅收银',done:25,total:30,unit:'单'}
   ];
   /* ===== 小程序 demo：灵工端用户 ===== */
-  let miniUser={name:'张师傅',phone:'13800006688',city:'北京',loc:'北京市朝阳区',realname:true,gender:'男',birth:'1995-08-12',resume:{ fileName:'张师傅-简历.pdf', extracted:{ name:'张师傅', gender:'男', birth:'1995-08-12', edu:'本科', exps:[{company:'中石化加油站',post:'加油员',start:'2018-03',end:'2020-06',content:'负责加油、收银与现场安全'},{company:'永辉超市',post:'理货员',start:'2020-07',end:'2022-12',content:'商品陈列、库存盘点'}] } },
-    certFiles:[{id:'c1',name:'普通话水平测试等级证书',fileName:'putonghua.pdf',dataUrl:''}]};
+  /* ===== 实名体系：账号表 + 身份绑定表 =====
+     实名状态为「推导值」：账号是否已实名 = identityBindings 中是否存在该账号的 active 记录。
+     这样转移实名时只改身份绑定表一处，不会出现账号表与绑定表不一致。 */
+  let miniAccounts={
+    '13800006688':{ userId:'u1', name:'张师傅', city:'北京', loc:'北京市朝阳区',
+      gender:'男', birth:'1995-08-12',
+      resume:{ fileName:'张师傅-简历.pdf', extracted:{ name:'张师傅', gender:'男', birth:'1995-08-12', edu:'本科', exps:[{company:'中石化加油站',post:'加油员',start:'2018-03',end:'2020-06',content:'负责加油、收银与现场安全'},{company:'永辉超市',post:'理货员',start:'2020-07',end:'2022-12',content:'商品陈列、库存盘点'}] } },
+      certFiles:[{id:'c1',name:'普通话水平测试等级证书',fileName:'putonghua.pdf',dataUrl:''}] },
+    '13900002288':{ userId:'u2', name:'张师傅', city:'北京', loc:'北京市朝阳区',
+      gender:'男', birth:'1995-08-12', resume:null, certFiles:[] }
+  };
+  /* 身份绑定表（一个身份证号同时只能有一条 active 记录） */
+  let identityBindings=[
+    { idcardNo:'11010119950307651X', userId:'u1', phone:'13800006688', status:'active',
+      name:'张师傅', gender:'男', birth:'1995-08-12', expire:'2038-05-20', boundAt:'2026-08-20 10:00:00' }
+  ];
+  /* 当前登录账号的手机号（miniUser 由它派生） */
+  let miniCurrentPhone='13800006688';
+
+  /* 取某账号当前生效的身份绑定 */
+  function idBindOf(userId){
+    for(let i=0;i<identityBindings.length;i++){
+      if(identityBindings[i].userId===userId && identityBindings[i].status==='active') return identityBindings[i];
+    }
+    return null;
+  }
+  /* 取某身份证当前生效的绑定（可能属于其他账号） */
+  function idBindByIdcard(idno){
+    if(!idno) return null;
+    const k=String(idno).trim().toUpperCase();
+    for(let i=0;i<identityBindings.length;i++){
+      const b=identityBindings[i];
+      if(b.status==='active' && String(b.idcardNo).toUpperCase()===k) return b;
+    }
+    return null;
+  }
+  /* 当前账号是否已实名（推导） */
+  function miniIsRealname(userId){
+    const uid=userId||miniUser.userId;
+    return !!idBindOf(uid);
+  }
+  /* 由账号表派生 miniUser */
+  function buildMiniUser(phone){
+    const a=miniAccounts[phone];
+    if(!a) return null;
+    const bind=idBindOf(a.userId);
+    return {
+      userId:a.userId, name:a.name, phone:phone, city:a.city, loc:a.loc,
+      gender:a.gender, birth:a.birth, resume:a.resume, certFiles:a.certFiles||[],
+      realname:!!bind,
+      realnameName:bind?bind.name:'',
+      idcard:bind?bind.idcardNo:'',
+      idcardExp:bind?bind.expire:'',
+      faceVerified:!!bind
+    };
+  }
+  /* 把 miniUser 的临时改动回写到账号表 */
+  function syncMiniAccount(){
+    const a=miniAccounts[miniUser.phone];
+    if(!a) return;
+    a.name=miniUser.name; a.city=miniUser.city; a.loc=miniUser.loc;
+    a.gender=miniUser.gender; a.birth=miniUser.birth;
+    a.resume=miniUser.resume; a.certFiles=miniUser.certFiles;
+  }
+
+  let miniUser=buildMiniUser(miniCurrentPhone);
   const publishedDemandIds=new Set();          // 已发布到灵工小程序的需求
   let pendingPosterApply=null;                  // 海报扫码待报名的 demandId
   let curApplySrc='灵工小程序';                   // 当前报名来源（海报扫码/灵工小程序）
@@ -24247,7 +24355,15 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
   function simulatePosterScan(id){
     const asNew=document.getElementById('po-scannew') ? document.getElementById('po-scannew').checked : false;
     authState.mini=true; switchPlatform('mini');
-    if(asNew){ miniUser.realname=false; miniUser.name=''; miniUser.phone=''; try{ if(typeof myApplies!=='undefined') myApplies.length=0; if(typeof mySubs!=='undefined') mySubs.length=0; }catch(e){} }
+    if(asNew){
+      /* 模拟新用户：用一个未注册的手机号登录，天然未实名 */
+      miniCurrentPhone='13900009999';
+      if(!miniAccounts[miniCurrentPhone]){
+        miniAccounts[miniCurrentPhone]={ userId:'u'+Date.now(), name:'', city:'北京', loc:'北京市朝阳区', gender:'', birth:'', resume:null, certFiles:[] };
+      }
+      miniUser=buildMiniUser(miniCurrentPhone);
+      try{ if(typeof myApplies!=='undefined') myApplies.length=0; if(typeof mySubs!=='undefined') mySubs.length=0; }catch(e){}
+    }
     pendingPosterApply=id;
     closeDrawer();
     if(publishedDemandIds.has(id)){
@@ -28792,6 +28908,14 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     toast('验证码已发送');
     const t=setInterval(function(){ n--; if(n<=0){ clearInterval(t); btn.disabled=false; btn.textContent='获取验证码'; } else { btn.textContent=n+'s'; } },1000);
   }
+  /* 演示用：点击账号填入登录框 */
+  function miniDemoPick(phone){
+    const el1=document.getElementById('m-login-phone');
+    const el2=document.getElementById('m-login-code');
+    if(el1) el1.value=phone;
+    if(el2) el2.value='123456';
+    toast('已填入 '+phone+'，点击登录');
+  }
   function miniAuth(){
     const phone=(document.getElementById('m-login-phone').value||'').trim();
     const code=(document.getElementById('m-login-code').value||'').trim();
@@ -28800,26 +28924,25 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     if(!code){ toast('请输入验证码'); return; }
     if(!agree){ toast('请先阅读并同意用户协议'); return; }
     authState.mini=true;
-    if(!miniUser.phone || miniUser.phone!==phone){
-      // 新用户：仅建基础账户，实名认证后置到「我的」页引导
-      miniUser={ name:'张伟', phone:phone, city:'北京', loc:'北京市朝阳区', realname:false, gender:'男', birth:'1995-08-12', resume:null,
-        certFiles:[
-          {id:'c1',name:'普通话水平测试等级证书',certNo:'PUTONGHUA-2023-0451',issueDate:'2023-06-12',expireDate:'2028-06-11',fileName:'putonghua.pdf',dataUrl:''},
-          {id:'c2',name:'电工特种作业操作证',certNo:'DG-2021-008833',issueDate:'2021-03-01',expireDate:'2024-03-01',fileName:'diangong.pdf',dataUrl:''},
-          {id:'c3',name:'食品安全管理员证',certNo:'',issueDate:'',expireDate:'',fileName:null,dataUrl:null}
-        ],
-        prefs:['都可以','都可以','都可以','都可以'],
-        certs:['普通话','收银'],
-        like:'营业厅店员', want:'短期工', brand:'移动营业厅' };
+    /* 把当前未保存的账号改动先回写 */
+    if(miniUser && miniUser.phone) syncMiniAccount();
+    /* 按手机号加载账号：已有则登录，没有则新建（新账号天然未实名） */
+    if(!miniAccounts[phone]){
+      miniAccounts[phone]={ userId:'u'+Date.now(), name:'张伟', city:'北京', loc:'北京市朝阳区',
+        gender:'男', birth:'1995-08-12', resume:null, certFiles:[], isNew:true };
       toast('注册成功，已登录');
-    } else {
-      if(!miniUser.name) miniUser.name='张伟'; if(!miniUser.phone) miniUser.phone=phone;
     }
-    nav('mini','m-work'); toast('登录成功');
+    miniCurrentPhone=phone;
+    miniUser=buildMiniUser(phone);
+    nav('mini','m-work');
+    if(!idBindOf(miniUser.userId)) toast('登录成功');
+    else toast('登录成功');
   }
 
   /* ===================== 6 步完善档案 ===================== */
   let pfStep=1;
+  let pfDraftReal=null;      // 完善档案第1步暂存的实名信息 {name, idcard}
+  let pfConflictBind=null;   // 一号一证冲突时的占用绑定
   const PF_STEPS=['实名认证','人脸识别','个人档案','兼职时间偏好','职业技能证书','岗位偏好'];
   function renderProfileSteps(step){
     pfStep=step||1;
@@ -28851,7 +28974,15 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
       const id=document.getElementById('pf-idcard').value.trim();
       if(!n){ toast('请填写真实姓名'); return; }
       if(!/^\d{17}[\dXx]$/.test(id)){ toast('身份证号格式不正确（18 位）'); return; }
-      miniUser.realnameName=n; miniUser.idcard=id;
+      /* 一号一证：该证件是否已被其他账号绑定 */
+      const pfBind=idBindByIdcard(id);
+      if(pfBind && pfBind.userId!==miniUser.userId){
+        pfConflictBind=pfBind; pfDraftReal={ name:n, idcard:id.toUpperCase() };
+        renderProfileSteps(1);
+        toast('该证件已被手机尾号 '+tail4(pfBind.phone)+' 的账号绑定');
+        return;
+      }
+      pfDraftReal={ name:n, idcard:id.toUpperCase() };
     } else if(pfStep===2){
       if(!miniUser.faceVerified){ toast('请先完成人脸识别'); return; }
     } else if(pfStep===3){
@@ -28866,8 +28997,16 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
   }
   function pfFinish(){
     if(pfStep===6){ const l=document.getElementById('pf-like'); if(l) miniUser.like=l.value; const w=document.getElementById('pf-want'); if(w) miniUser.want=w.value; const b=document.getElementById('pf-brand'); if(b) miniUser.brand=b.value; }
-    if(!miniUser.realnameName){ toast('请先完成前 3 步实名认证'); return; }
-    miniUser.realname=true;
+    /* 写入绑定表（若尚未写入） */
+    const pfId=pfDraftReal&&pfDraftReal.idcard;
+    if(pfId && !idBindByIdcard(pfId)){
+      identityBindings.push({ idcardNo:pfId, userId:miniUser.userId, phone:miniUser.phone, status:'active',
+        name:(pfDraftReal.name||miniUser.name), gender:miniUser.gender||'', birth:miniUser.birth||'',
+        expire:'', boundAt:nowTs() });
+    }
+    miniCurrentPhone=miniUser.phone;
+    miniUser=buildMiniUser(miniUser.phone);
+    if(!miniIsRealname()){ toast('请先完成前 3 步实名认证'); return; }
     nav('mini','m-work'); toast('档案完善完成，欢迎使用灵工平台');
   }
   function pfFaceScan(){
@@ -28931,17 +29070,23 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     const frontDone=!!miniUser.rnFront, backDone=!!miniUser.rnBack;
     const upBox=function(side,done,lab){ return '<div class="rn-up'+(done?' done':'')+'" onclick="rnUpload(\''+side+'\')"><div class="rn-up-ico">'+(done?'✓':'＋')+'</div><div class="rn-up-t">'+(done?'已上传':lab)+'</div></div>'; };
     let body='';
+    /* 两面都传完后，实时校验该证件是否已被其他账号绑定（提到外层，供底部按钮复用） */
+    const conflict = (frontDone&&backDone) ? idBindByIdcard(rnOcr.idno) : null;
+    const conflictOther = (conflict && conflict.userId !== miniUser.userId) ? conflict : null;
     if(s===1){
+      /* 冲突提示放在上传区之后：先看到「传了哪两张图」，再看到「这两张图撞车了」 */
       body='<div class="rn-card"><div class="rn-q">上传身份证</div><div class="rn-tip">请上传身份证正反面，系统将自动识别信息</div>'+
         '<div class="rn-ups">'+upBox('front',frontDone,'上传人像面')+upBox('back',backDone,'上传国徽面')+'</div>'+
-        (frontDone&&backDone?rnFieldsHtml():'')+'</div>';
+        (conflictOther?rnConflictHtml(conflictOther):'')+
+        (frontDone&&backDone&&!conflictOther?rnFieldsHtml():'')+'</div>';
     } else {
       const done=miniUser.faceVerified;
       body='<div class="rn-card"><div class="rn-q">人脸识别</div>'+
         (done?'<div class="rn-face ok">✓ 真人核验已通过</div>':
           '<div class="rn-face"><div class="rn-face-ico">🙂</div><div class="rn-tip">请正对摄像头完成活体检测</div><button class="rn-btn'+(miniUser.faceScanning?' loading':'')+'" onclick="rnFaceScan()">'+(miniUser.faceScanning?'识别中…':'开始识别')+'</button></div>')+'</div>';
     }
-    const foot=(s===1?'<button class="rn-btn" onclick="rnNext()">'+(frontDone&&backDone?'下一步':'请先上传身份证')+'</button>':
+    const foot=(s===1?'<button class="rn-btn" onclick="rnNext()"'+(conflictOther?' disabled':'')+'>'+
+        (conflictOther?'请先处理上方证件冲突':(frontDone&&backDone?'下一步':'请先上传身份证'))+'</button>':
       (miniUser.faceVerified?'<button class="rn-btn primary" onclick="rnFinish()">完成实名认证</button>':''));
     box.innerHTML='<div class="rn-wrap">'+
       '<div class="mhead rn-head"><span class="rn-back" onclick="nav(\'mini\',\'m-me\')">‹</span><span class="title">实名认证</span><span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span></div>'+
@@ -28949,13 +29094,126 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
       '<div class="rn-foot">'+foot+'</div></div>';
     box.scrollTop=0;
   }
+  /* ===== 一号一证：冲突提示 + 转移绑定 ===== */
+  let rnConflictState={ step:'tip', method:'', code:'', scanning:false, tries:0 };
+
+  /* 手机尾号脱敏：13800006688 → 6688 */
+  function tail4(p){ p=String(p||''); return p.slice(-4); }
+
+  /* 冲突提示卡片（嵌在上传证件卡片内） */
+  function rnConflictHtml(bind){
+    const st=rnConflictState;
+    if(st.step==='tip'){
+      return '<div class="rn-cf">'+
+        '<div class="rn-cf-t">⚠ 该证件已被手机尾号 '+tail4(bind.phone)+' 的账号绑定</div>'+
+        '<div class="rn-cf-d">一个身份证同时只能绑定一个账号。如需在本次使用，可将该实名转移到当前账号。</div>'+
+        '<div class="rn-cf-acts">'+
+          '<button class="rn-cf-btn primary" onclick="rnConflictStart()">转移到当前账号</button>'+
+        '</div>'+
+      '</div>';
+    }
+    if(st.step==='sms'){
+      return '<div class="rn-cf">'+
+        '<div class="rn-cf-t">转移实名到当前账号</div>'+
+        '<div class="rn-cf-d">请输入手机尾号 '+tail4(bind.phone)+' 收到的验证码，验证后将解除原账号的实名绑定。</div>'+
+        '<div class="rn-cf-row">'+
+          '<input class="rn-cf-input" id="rn-cf-code" maxlength="6" placeholder="请输入 6 位验证码" value="'+st.code+'"/>'+
+          '<button class="rn-cf-send" onclick="rnConflictSendCode(this)">获取验证码</button>'+
+        '</div>'+
+        (st.err?'<div class="rn-cf-err">'+st.err+'</div>':'')+
+        '<div class="rn-cf-acts">'+
+          '<button class="rn-cf-btn ghost" onclick="rnConflictBack()">返回</button>'+
+          '<button class="rn-cf-btn primary" onclick="rnConflictVerify()">确认转移</button>'+
+        '</div>'+
+        '<div class="rn-cf-fallback">收不到验证码？<a onclick="rnConflictFace()">改用刷脸验证</a></div>'+
+      '</div>';
+    }
+    /* 刷脸 */
+    return '<div class="rn-cf">'+
+      '<div class="rn-cf-t">刷脸验证</div>'+
+      '<div class="rn-cf-d">请正对摄像头完成活体检测。验证通过后将把该实名转移到当前账号。</div>'+
+      (st.scanning
+        ? '<div class="rn-cf-face">识别中…</div>'
+        : '<div class="rn-cf-face">🙂</div>')+
+      (st.err?'<div class="rn-cf-err">'+st.err+'</div>':'')+
+      '<div class="rn-cf-acts">'+
+        '<button class="rn-cf-btn ghost" onclick="rnConflictBack()">返回</button>'+
+        '<button class="rn-cf-btn primary" onclick="rnConflictFaceScan()"'+(st.scanning?' disabled':'')+'>'+(st.scanning?'识别中…':'开始验证')+'</button>'+
+      '</div>'+
+    '</div>';
+  }
+
+  function rnConflictReset(){ rnConflictState={ step:'tip', method:'', code:'', scanning:false, tries:0, err:'' }; }
+
+  function rnConflictStart(){
+    const bind=idBindByIdcard(rnOcr.idno);
+    if(!bind) return;
+    rnConflictState={ step:'sms', method:'SMS', code:'', scanning:false, tries:0, err:'' };
+    renderRealname(1);
+  }
+  function rnConflictBack(){ rnConflictReset(); renderRealname(1); }
+  function rnConflictSendCode(btn){
+    toast('验证码已发送至手机尾号 '+tail4(idBindByIdcard(rnOcr.idno).phone));
+    let n=60; btn.disabled=true; btn.textContent=n+'s';
+    const t2=setInterval(function(){ n--; if(n<=0){ clearInterval(t2); btn.disabled=false; btn.textContent='获取验证码'; } else { btn.textContent=n+'s'; } },1000);
+  }
+  function rnConflictVerify(){
+    const el=document.getElementById('rn-cf-code');
+    const code=(el?el.value:'').trim();
+    if(!/^\d{6}$/.test(code)){ rnConflictState.err='请输入 6 位验证码'; renderRealname(1); return; }
+    /* 演示：任意 6 位数字通过 */
+    doTransferBinding('SMS');
+  }
+  function rnConflictFace(){
+    rnConflictState={ step:'face', method:'FACE', code:'', scanning:false, tries:0, err:'' };
+    renderRealname(1);
+  }
+  function rnConflictFaceScan(){
+    if(rnConflictState.scanning) return;
+    rnConflictState.scanning=true; rnConflictState.err=''; renderRealname(1);
+    setTimeout(function(){
+      rnConflictState.scanning=false;
+      doTransferBinding('FACE');
+    }, 1300);
+  }
+
+  /* 执行实名转移：只改身份绑定表一处，账号数据原地不动 */
+  function doTransferBinding(method){
+    const bind=idBindByIdcard(rnOcr.idno);
+    if(!bind){ toast('证件绑定已变化，请重试'); return; }
+    const fromUid=bind.userId, fromPhone=bind.phone;
+    if(fromUid===miniUser.userId){ toast('该实名已在当前账号'); renderRealname(1); return; }
+    bind.userId=miniUser.userId;
+    bind.phone=miniUser.phone;
+    bind.boundAt=nowTs();
+    /* 当前账号补上实名信息 */
+    const acc=miniAccounts[miniUser.phone];
+    if(acc){ acc.gender=bind.gender; acc.birth=bind.birth; }
+    miniUser=buildMiniUser(miniUser.phone);
+    rnConflictReset();
+    if(pendingApplyAfterRealname){
+      const pa=pendingApplyAfterRealname; pendingApplyAfterRealname=null;
+      curApplySrc=pa.src;
+      if(pa.poster) pendingPosterApply=pa.demandId;
+      nav('mini','m-detail');
+      const j=recJobs.find(x=>x.demandId===pa.demandId);
+      if(j){ curDetailIdx=recJobs.indexOf(j); renderDetail(); }
+      openMiniModal('提示','<div class="rp-tip" style="text-align:center">实名已转移到当前账号，请继续提交报名。</div>',
+        '<button class="btn ghost" onclick="closeMiniModal()">稍后再说</button><button class="btn primary" onclick="closeMiniModal();continueApplyAfterRealname()">继续报名</button>');
+      return;
+    }
+    renderMe(); nav('mini','m-me');
+    toast('实名已转移到当前账号');
+  }
+
   function rnFieldsHtml(){
     const o=rnOcr;
     const f=function(id,lab,val){ return '<div class="rn-field"><label>'+lab+'</label><input class="rn-input" id="rn-'+id+'" value="'+val+'" placeholder="'+lab+'"/></div>'; };
     return '<div class="rn-ocr"><div class="rn-ocr-t">识别结果（可修改）</div>'+
       f('name','姓名',o.name)+
       f('gender','性别',o.gender)+f('nation','民族',o.nation)+
-      f('birth','出生日期',o.birth)+f('addr','住址',o.addr)+f('idno','公民身份号码',o.idno)+
+      f('birth','出生日期',o.birth)+f('addr','住址',o.addr)+
+      '<div class="rn-field"><label>公民身份号码</label><input class="rn-input" id="rn-idno" value="'+o.idno+'" placeholder="公民身份号码" onblur="rnOcr.idno=this.value.trim().toUpperCase();"/></div>'+
       f('authority','签发机关',o.authority)+f('valid','有效期限',o.valid)+'</div>';
   }
   function rnUpload(side){
@@ -28963,7 +29221,17 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     renderRealname(1);
     if(miniUser.rnFront && miniUser.rnBack) toast('身份证识别完成，请核对信息');
   }
-  function rnNext(){ if(!(miniUser.rnFront&&miniUser.rnBack)){ toast('请先上传身份证正反面'); return; } renderRealname(2); }
+  function rnNext(){
+    if(!(miniUser.rnFront&&miniUser.rnBack)){ toast('请先上传身份证正反面'); return; }
+    /* 一号一证：提交前再校验一次，防止前端被绕过 */
+    const bind=idBindByIdcard(rnOcr.idno);
+    if(bind && bind.userId!==miniUser.userId){
+      toast('该证件已被其他账号绑定，无法继续');
+      renderRealname(1);
+      return;
+    }
+    renderRealname(2);
+  }
   function rnFaceScan(){
     if(miniUser.faceScanning) return;
     miniUser.faceScanning=true; renderRealname(2);
@@ -28971,26 +29239,52 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
   }
   function rnFinish(){
     if(!miniUser.faceVerified){ toast('请先完成人脸识别'); return; }
+    /* 一号一证：最终校验（服务端同一逻辑的前端模拟） */
+    const finalIdno=rnOcr.idno;
+    const bindFinal=idBindByIdcard(finalIdno);
+    if(bindFinal && bindFinal.userId!==miniUser.userId){
+      toast('该证件已被其他账号绑定，无法完成认证');
+      return;
+    }
     const g=function(id){ const e=document.getElementById('rn-'+id); return e?e.value.trim():''; };
-    miniUser.realnameName=g('name')||rnOcr.name;
-    miniUser.idcard=g('idno')||rnOcr.idno;
-    miniUser.gender=g('gender')||rnOcr.gender;
-    miniUser.birth=g('birth')||rnOcr.birth;
+    const newIdno=(g('idno')||rnOcr.idno||'').trim().toUpperCase();
+    const newName=g('name')||rnOcr.name;
+    const newGender=g('gender')||rnOcr.gender;
+    const newBirth=g('birth')||rnOcr.birth;
+    const newExp=parseIdcardExp(g('valid')||rnOcr.valid);
     const rnAddr=g('addr')||rnOcr.addr;
+
+    /* 换证场景：原绑定仍在当前账号，需先释放旧证件再写入新证件 */
+    const oldBind=idBindOf(miniUser.userId);
+
+    if(rnMode==='reCert' && oldBind && newIdno!==oldBind.idcardNo){
+      /* 换证：证件号变了。检查新证件是否被他人占用（前面已拦），通过则替换 */
+      oldBind.status='released';
+      oldBind.releasedAt=nowTs();
+    }
+    /* 写入/更新绑定表 */
+    const exist=idBindByIdcard(newIdno);
+    if(exist){
+      /* 同一账号的同一证件：更新信息 */
+      exist.name=newName; exist.gender=newGender; exist.birth=newBirth;
+      exist.expire=newExp; exist.boundAt=nowTs();
+    } else {
+      identityBindings.push({
+        idcardNo:newIdno, userId:miniUser.userId, phone:miniUser.phone, status:'active',
+        name:newName, gender:newGender, birth:newBirth, expire:newExp, boundAt:nowTs()
+      });
+    }
     if(rnAddr && !recCommon.some(function(a){ return a.name===rnAddr; })) recCommon.push({name:rnAddr, city:recPlaceCity()});
-    miniUser.realname=true;
+    /* 用账号表重新派生 miniUser，实名状态来自绑定表 */
+    miniCurrentPhone=miniUser.phone;
+    const acc=miniAccounts[miniUser.phone];
+    if(acc){ acc.gender=newGender; acc.birth=newBirth; }
+    miniUser=buildMiniUser(miniUser.phone);
+
     if(rnMode==='reCert'){
       rnMode='first';
-      const newId=g('idno')||rnOcr.idno;
-      if(newId!==miniUser.idcard){
-        toast('证件号与当前实名信息不符，认证信息未变更');
-        renderMyProfile(); nav('mini','m-profile-view'); return;
-      }
-      miniUser.idcardExp=parseIdcardExp(g('valid')||rnOcr.valid);
-      miniUser.realnameName=g('name')||rnOcr.name;
       renderMyProfile(); nav('mini','m-profile-view'); toast('证件已更新'); return;
     }
-    miniUser.idcardExp=parseIdcardExp(g('valid')||rnOcr.valid);
     renderMe();
     if(pendingApplyAfterRealname){
       const pa=pendingApplyAfterRealname; pendingApplyAfterRealname=null;
