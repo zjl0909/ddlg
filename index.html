@@ -3500,6 +3500,26 @@
   .ml-demo-tag{font-size:10px;padding:1px 7px;border-radius:9px;background:#f0f0f5;color:#909399;font-weight:600;}
   .ml-demo-tag.ok{background:#e6f7f1;color:#0d8f6e;}
   .ml-demo-tip{font-size:11px;color:#b0b7c3;margin-top:8px;line-height:1.5;}
+  /* 人脸识别登录 */
+  .ml-face-btn{width:100%;height:44px;margin-top:10px;border:1px solid #0d8f6e;border-radius:22px;background:#fff;color:#0d8f6e;font-size:14px;font-weight:600;cursor:pointer;}
+  .ml-face-btn:hover{background:#f2fbf7;}
+  .ml-face-note{font-size:11px;color:#b0b7c3;text-align:center;margin-top:6px;}
+  .fl-wrap{padding:2px 2px 0;}
+  .fl-tip{font-size:12px;color:#7a8496;line-height:1.7;margin-bottom:12px;}
+  .fl-field{margin-bottom:10px;}
+  .fl-field label{display:block;font-size:12px;color:#5a6478;margin-bottom:6px;}
+  .fl-input{width:100%;height:42px;box-sizing:border-box;border:1px solid #e3e8f0;border-radius:10px;padding:0 12px;font-size:14px;background:#fafbfd;letter-spacing:.4px;}
+  .fl-input:focus{border-color:#0d8f6e;background:#fff;outline:none;}
+  .fl-err{font-size:11px;color:#E24B4A;margin-bottom:8px;line-height:1.5;}
+  .fl-acts{display:flex;gap:10px;margin-top:6px;}
+  .fl-btn{flex:1;height:42px;border-radius:21px;font-size:14px;font-weight:600;cursor:pointer;border:1px solid transparent;}
+  .fl-btn.ghost{background:#f5f6f9;color:#5a6478;border-color:#e6e9f0;}
+  .fl-btn.primary{background:linear-gradient(135deg,#0d8f6e,#0bb89a);color:#fff;}
+  .fl-btn:disabled{opacity:.55;cursor:not-allowed;}
+  .fl-face{width:112px;height:112px;margin:6px auto 14px;border-radius:50%;background:#eef8f4;border:2px dashed #9fd7c4;display:flex;align-items:center;justify-content:center;font-size:44px;color:#0d8f6e;}
+  .fl-face.scanning{border-color:#0d8f6e;background:#e3f6ee;font-size:13px;font-weight:600;}
+  .fl-hint{font-size:11px;color:#b0b7c3;text-align:center;margin-top:10px;}
+  .fl-hint a{color:#0d8f6e;font-weight:600;cursor:pointer;}
   .ml-foot{text-align:center;font-size:13px;color:#7a8a82;margin-top:14px;}
   .ml-link{color:#0d8f6e;cursor:pointer;font-weight:600;}
   .ml-field-code .ml-code-row{display:flex;align-items:center;gap:10px;}
@@ -3681,6 +3701,11 @@
   .mpv-k{color:#909399;}
   .mpv-v{color:#222;}
   .mpv-real-btn{width:100%;height:36px;margin-top:10px;border:none;border-radius:18px;background:linear-gradient(135deg,#0d8f6e,#0bb89a);color:#fff;font-size:13px;font-weight:600;cursor:pointer;}
+  .mpv-v-phone{display:flex;align-items:center;gap:8px;}
+  .mpv-edit{font-size:11px;color:#0d8f6e;font-weight:600;padding:1px 8px;border:1px solid #bfe0d4;border-radius:10px;background:#f2fbf7;cursor:pointer;}
+  .mpv-edit:hover{background:#e6f7f1;}
+  .pm-send{flex:0 0 auto;height:42px;padding:0 12px;border:1px solid #cfe3da;border-radius:10px;background:#E8F8F1;color:#0d8f6e;font-size:12px;font-weight:600;cursor:pointer;}
+  .pm-send:disabled{opacity:.6;cursor:not-allowed;}
   .mpv-head{position:relative;text-align:center;padding:16px;}
   .rn-head .title,.mpv-head .title{ flex:1; text-align:center; font-size:14px; font-weight:600; color:#0c3d2b; }
   .rn-head .mini-caps,.mpv-head .mini-caps{ flex:0 0 auto; }
@@ -8385,6 +8410,8 @@
               </div>
               <label class="mr-agree" data-page-node-id="k23c9aGRsOnkfNXHJFzGHF"><input type="checkbox" id="m-login-agree" checked data-page-node-id="yKVFeYGEl9MzAgBZN3zb0J"/> 我已阅读并同意<span onclick="openAgreement('service')" data-page-node-id="X0GC7ZvdN0smOMztAFb4ln">《服务协议》</span>和<span onclick="openAgreement('privacy')" data-page-node-id="CpcNpx0DiNEyEMdsFEs7pU">《隐私政策》</span></label>
               <button class="ml-btn" onclick="miniAuth()" data-page-node-id="Dizk1EBKMH8VCHUW2qi5NQ">登 录 / 注 册</button>
+              <button class="ml-face-btn" onclick="openFaceLogin()">人脸识别登录</button>
+              <div class="ml-face-note">仅已完成实名认证的账号可使用</div>
               <!-- 演示账号快捷入口（一号一证场景演示） -->
               <div class="ml-demo">
                 <div class="ml-demo-t">演示账号（点击填入）</div>
@@ -8398,7 +8425,7 @@
                     <span class="ml-demo-tag">未实名</span>
                   </div>
                 </div>
-                <div class="ml-demo-tip">两个账号为同一人：切换后可用已实名的证件号演示「一号一证」拦截与转移。</div>
+                <div class="ml-demo-tip">两个账号为同一人：用未实名账号去认证已绑定的证件，会提示该证件已被占用。</div>
               </div>
             </div>
           </div>
@@ -28977,9 +29004,8 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
       /* 一号一证：该证件是否已被其他账号绑定 */
       const pfBind=idBindByIdcard(id);
       if(pfBind && pfBind.userId!==miniUser.userId){
-        pfConflictBind=pfBind; pfDraftReal={ name:n, idcard:id.toUpperCase() };
-        renderProfileSteps(1);
-        toast('该证件已被手机尾号 '+tail4(pfBind.phone)+' 的账号绑定');
+        pfConflictBind=pfBind;
+        showIdOccupiedTip(pfBind);
         return;
       }
       pfDraftReal={ name:n, idcard:id.toUpperCase() };
@@ -29095,119 +29121,167 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     box.scrollTop=0;
   }
   /* ===== 一号一证：冲突提示 + 转移绑定 ===== */
-  /* 演示用验证码默认值：方便直接点「确认转移」走完流程 */
-  const RN_DEMO_CODE='123456';
-  let rnConflictState={ step:'tip', method:'', code:'', scanning:false, tries:0 };
-
   /* 手机尾号脱敏：13800006688 → 6688 */
   function tail4(p){ p=String(p||''); return p.slice(-4); }
 
-  /* 冲突提示卡片（嵌在上传证件卡片内） */
+  /* 一号一证冲突提示：该证件已被其他账号实名绑定，当前账号无法继续认证。 */
   function rnConflictHtml(bind){
-    const st=rnConflictState;
-    if(st.step==='tip'){
-      return '<div class="rn-cf">'+
-        '<div class="rn-cf-t">⚠ 该证件已被手机尾号 '+tail4(bind.phone)+' 的账号绑定</div>'+
-        '<div class="rn-cf-d">一个身份证同时只能绑定一个账号。如需在本次使用，可将该实名转移到当前账号。</div>'+
-        '<div class="rn-cf-acts">'+
-          '<button class="rn-cf-btn primary" onclick="rnConflictStart()">转移到当前账号</button>'+
-        '</div>'+
-      '</div>';
-    }
-    if(st.step==='sms'){
-      return '<div class="rn-cf">'+
-        '<div class="rn-cf-t">转移实名到当前账号</div>'+
-        '<div class="rn-cf-d">请输入手机尾号 '+tail4(bind.phone)+' 收到的验证码，验证后将解除原账号的实名绑定。</div>'+
-        '<div class="rn-cf-row">'+
-          '<input class="rn-cf-input" id="rn-cf-code" maxlength="6" placeholder="请输入 6 位验证码" value="'+(st.code||'123456')+'"/>'+
-          '<button class="rn-cf-send" onclick="rnConflictSendCode(this)">获取验证码</button>'+
-        '</div>'+
-        (st.err?'<div class="rn-cf-err">'+st.err+'</div>':'')+
-        '<div class="rn-cf-acts">'+
-          '<button class="rn-cf-btn ghost" onclick="rnConflictBack()">返回</button>'+
-          '<button class="rn-cf-btn primary" onclick="rnConflictVerify()">确认转移</button>'+
-        '</div>'+
-        '<div class="rn-cf-fallback">收不到验证码？<a onclick="rnConflictFace()">改用刷脸验证</a></div>'+
-      '</div>';
-    }
-    /* 刷脸 */
     return '<div class="rn-cf">'+
-      '<div class="rn-cf-t">刷脸验证</div>'+
-      '<div class="rn-cf-d">请正对摄像头完成活体检测。验证通过后将把该实名转移到当前账号。</div>'+
-      (st.scanning
-        ? '<div class="rn-cf-face">识别中…</div>'
-        : '<div class="rn-cf-face">🙂</div>')+
-      (st.err?'<div class="rn-cf-err">'+st.err+'</div>':'')+
-      '<div class="rn-cf-acts">'+
-        '<button class="rn-cf-btn ghost" onclick="rnConflictBack()">返回</button>'+
-        '<button class="rn-cf-btn primary" onclick="rnConflictFaceScan()"'+(st.scanning?' disabled':'')+'>'+(st.scanning?'识别中…':'开始验证')+'</button>'+
-      '</div>'+
+      '<div class="rn-cf-t">⚠ 该证件已被手机尾号 '+tail4(bind.phone)+' 的账号绑定</div>'+
+      '<div class="rn-cf-d">请使用原账号登录。如忘记原账号，可在登录页选择人脸识别登录。</div>'+
     '</div>';
   }
 
-  function rnConflictReset(){ rnConflictState={ step:'tip', method:'', code:'', scanning:false, tries:0, err:'' }; }
-
-  function rnConflictStart(){
-    const bind=idBindByIdcard(rnOcr.idno);
-    if(!bind) return;
-    rnConflictState={ step:'sms', method:'SMS', code:RN_DEMO_CODE, scanning:false, tries:0, err:'' };
-    renderRealname(1);
-  }
-  function rnConflictBack(){ rnConflictReset(); renderRealname(1); }
-  function rnConflictSendCode(btn){
-    toast('验证码已发送至手机尾号 '+tail4(idBindByIdcard(rnOcr.idno).phone));
-    let n=60; btn.disabled=true; btn.textContent=n+'s';
-    const t2=setInterval(function(){ n--; if(n<=0){ clearInterval(t2); btn.disabled=false; btn.textContent='获取验证码'; } else { btn.textContent=n+'s'; } },1000);
-  }
-  function rnConflictVerify(){
-    const el=document.getElementById('rn-cf-code');
-    const code=(el?el.value:'').trim();
-    /* 回写输入值，避免重渲染时被默认值覆盖 */
-    rnConflictState.code=code;
-    if(!/^\d{6}$/.test(code)){ rnConflictState.err='请输入 6 位验证码'; renderRealname(1); return; }
-    /* 演示：任意 6 位数字通过 */
-    doTransferBinding('SMS');
-  }
-  function rnConflictFace(){
-    rnConflictState={ step:'face', method:'FACE', code:'', scanning:false, tries:0, err:'' };
-    renderRealname(1);
-  }
-  function rnConflictFaceScan(){
-    if(rnConflictState.scanning) return;
-    rnConflictState.scanning=true; rnConflictState.err=''; renderRealname(1);
-    setTimeout(function(){
-      rnConflictState.scanning=false;
-      doTransferBinding('FACE');
-    }, 1300);
+  /* 统一的「证件已被占用」提示弹层（实名页与完善档案页共用） */
+  function showIdOccupiedTip(bind){
+    openMiniModal('无法继续认证',
+      '<div class="fl-wrap">'+
+      '<div class="fl-tip" style="margin-bottom:0">该证件已被手机尾号 <b>'+tail4(bind.phone)+'</b> 的账号绑定，请使用原账号登录。</div>'+
+      '<div class="fl-tip" style="margin:10px 0 0;font-size:11px;color:#b0b7c3">如忘记原账号，可在登录页选择人脸识别登录。</div>'+
+      '</div>',
+      '<button class="btn primary" onclick="closeMiniModal()">知道了</button>');
   }
 
-  /* 执行实名转移：只改身份绑定表一处，账号数据原地不动 */
-  function doTransferBinding(method){
-    const bind=idBindByIdcard(rnOcr.idno);
-    if(!bind){ toast('证件绑定已变化，请重试'); return; }
-    const fromUid=bind.userId, fromPhone=bind.phone;
-    if(fromUid===miniUser.userId){ toast('该实名已在当前账号'); renderRealname(1); return; }
-    bind.userId=miniUser.userId;
-    bind.phone=miniUser.phone;
-    bind.boundAt=nowTs();
-    /* 当前账号补上实名信息 */
-    const acc=miniAccounts[miniUser.phone];
-    if(acc){ acc.gender=bind.gender; acc.birth=bind.birth; }
-    miniUser=buildMiniUser(miniUser.phone);
-    rnConflictReset();
-    if(pendingApplyAfterRealname){
-      const pa=pendingApplyAfterRealname; pendingApplyAfterRealname=null;
-      curApplySrc=pa.src;
-      if(pa.poster) pendingPosterApply=pa.demandId;
-      nav('mini','m-detail');
-      const j=recJobs.find(x=>x.demandId===pa.demandId);
-      if(j){ curDetailIdx=recJobs.indexOf(j); renderDetail(); }
-      openMiniModal('提示','<div class="rp-tip" style="text-align:center">实名已转移到当前账号，请继续提交报名。</div>',
-        '<button class="btn ghost" onclick="closeMiniModal()">稍后再说</button><button class="btn primary" onclick="closeMiniModal();continueApplyAfterRealname()">继续报名</button>');
-      return;
+  /* ===== 人脸识别登录（仅已实名账号可用）=====
+     支持输入手机号或身份证号两种方式。 */
+  let faceLoginState={ step:'idno', input:'', err:'', scanning:false };
+  function faceLoginReset(){ faceLoginState={ step:'idno', input:'', err:'', scanning:false }; }
+
+  /* 登录页「人脸识别登录」按钮是否可见：存在任何已实名账号即可 */
+  function faceLoginEnabled(){
+    return identityBindings.some(function(b){ return b.status==='active'; });
+  }
+
+  function openFaceLogin(){
+    faceLoginReset();
+    /* 演示：默认填入已实名账号信息 */
+    const b=identityBindings.filter(function(x){return x.status==='active';})[0];
+    if(b && b.idcardNo) faceLoginState.input=b.idcardNo;
+    renderFaceLogin();
+  }
+  function closeFaceLogin(){ faceLoginReset(); closeMiniModal(); }
+
+  function renderFaceLogin(){
+    const st=faceLoginState;
+    let inner='';
+    if(st.step==='idno'){
+      inner='<div class="fl-wrap">'+
+        '<div class="fl-field">'+
+          '<input class="fl-input" id="fl-input" maxlength="18" placeholder="请输入手机号或身份证号" value="'+st.input+'" oninput="faceLoginState.input=this.value"/>'+
+        '</div>'+
+        (st.err?'<div class="fl-err">'+st.err+'</div>':'')+
+        '<div class="fl-acts">'+
+          '<button class="fl-btn ghost" onclick="closeFaceLogin()">取消</button>'+
+          '<button class="fl-btn primary" onclick="faceLoginNext()">下一步</button>'+
+        '</div>'+
+      '</div>';
+    } else {
+      inner='<div class="fl-wrap">'+
+        '<div class="fl-tip">请正对摄像头完成活体检测，系统将与证件照比对。</div>'+
+        '<div class="fl-face'+(st.scanning?' scanning':'')+'">'+(st.scanning?'识别中…':'🙂')+'</div>'+
+        (st.err?'<div class="fl-err">'+st.err+'</div>':'')+
+        '<div class="fl-acts">'+
+          '<button class="fl-btn ghost" onclick="faceLoginBack()">返回</button>'+
+          '<button class="fl-btn primary" onclick="faceLoginScan()"'+(st.scanning?' disabled':'')+'>'+(st.scanning?'识别中…':'开始验证')+'</button>'+
+        '</div>'+
+      '</div>';
     }
-    renderMe(); nav('mini','m-me');
-    toast('实名已转移到当前账号');
+    openMiniModal('人脸识别登录', inner, '');
+  }
+
+  /* 第一步校验：手机号 / 身份证号两种方式 */
+  function faceLoginNext(){
+    const el=document.getElementById('fl-input');
+    const v=String((el?el.value:faceLoginState.input)||'').trim().toUpperCase();
+    faceLoginState.input=v;
+    faceLoginState.err='';
+
+    /* 判断输入类型 */
+    const isPhone=/^1\d{10}$/.test(v);
+    const isIdno=/^\d{17}[\dX]$/.test(v);
+
+    if(!isPhone && !isIdno){
+      faceLoginState.err='请输入正确的手机号或身份证号';
+      renderFaceLogin(); return;
+    }
+
+    let bind=null;
+    if(isPhone){
+      /* 按手机号找账号，再看该账号是否有实名记录 */
+      let acc=miniAccounts[v];
+      let uid=acc?acc.userId:null;
+      if(!uid){
+        /* 兼容：绑定表里有该手机号但账号表缺记录 */
+        const bb=identityBindings.filter(function(b){ return b.status==='active' && b.phone===v; })[0];
+        if(bb){ uid=bb.userId; }
+      }
+      bind=uid?idBindOf(uid):null;
+      if(!bind){
+        faceLoginState.err='该账号尚未完成实名认证，无法使用人脸识别登录';
+        renderFaceLogin(); return;
+      }
+    } else {
+      bind=idBindByIdcard(v);
+      if(!bind){
+        faceLoginState.err='该账号尚未完成实名认证，无法使用人脸识别登录';
+        renderFaceLogin(); return;
+      }
+    }
+
+    faceLoginState.step='face';
+    faceLoginState.scanning=false;
+    faceLoginState.bindUserId=bind.userId;
+    faceLoginState.bindPhone=bind.phone;
+    renderFaceLogin();
+  }
+
+  function faceLoginBack(){
+    faceLoginState.step='idno';
+    faceLoginState.scanning=false;
+    faceLoginState.err='';
+    renderFaceLogin();
+  }
+
+  function faceLoginScan(){
+    if(faceLoginState.scanning) return;
+    faceLoginState.scanning=true;
+    faceLoginState.err='';
+    renderFaceLogin();
+    setTimeout(function(){
+      faceLoginState.scanning=false;
+      /* 用第一步解析出的账号登录；若失效则重新解析 */
+      let uid=faceLoginState.bindUserId, phone=faceLoginState.bindPhone;
+      if(!uid){
+        const b=idBindByIdcard(faceLoginState.input);
+        if(b){ uid=b.userId; phone=b.phone; }
+      }
+      if(!uid){
+        faceLoginState.step='idno';
+        faceLoginState.err='该账号尚未完成实名认证，无法使用人脸识别登录';
+        renderFaceLogin();
+        return;
+      }
+      const bind=idBindOf(uid);
+      if(!bind){
+        faceLoginState.step='idno';
+        faceLoginState.err='该账号尚未完成实名认证，无法使用人脸识别登录';
+        renderFaceLogin();
+        return;
+      }
+      phone=bind.phone;
+      if(!miniAccounts[phone]){
+        miniAccounts[phone]={ userId:bind.userId, name:bind.name||'', city:'北京', loc:'北京市朝阳区',
+          gender:bind.gender||'', birth:bind.birth||'', resume:null, certFiles:[] };
+      }
+      if(miniUser && miniUser.phone) syncMiniAccount();
+      authState.mini=true;
+      miniCurrentPhone=phone;
+      miniUser=buildMiniUser(phone);
+      closeMiniModal();
+      faceLoginReset();
+      nav('mini','m-work');
+      toast('已通过人脸识别登录 ' + phone.slice(0,3) + '****' + phone.slice(-4));
+    },1300);
   }
 
   function rnFieldsHtml(){
@@ -29230,8 +29304,7 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     /* 一号一证：提交前再校验一次，防止前端被绕过 */
     const bind=idBindByIdcard(rnOcr.idno);
     if(bind && bind.userId!==miniUser.userId){
-      toast('该证件已被其他账号绑定，无法继续');
-      renderRealname(1);
+      showIdOccupiedTip(bind);
       return;
     }
     renderRealname(2);
@@ -29407,6 +29480,91 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
   /* ===================== C 端「我的资料」页（员工档案 + 简历） ===================== */
   function openMyProfile(){ nav('mini','m-profile-view'); }
   function mpvRow(k,v){ return '<div class="mpv-row"><span class="mpv-k">'+k+'</span><span class="mpv-v">'+v+'</span></div>'; }
+
+  /* ===== 修改手机号（登录账号）=====
+     手机号即登录账号，换号必须先验证原手机号，否则等于把账号让给别人。 */
+  let phoneModState={ newPhone:'', code:'', codeSent:false, err:'' };
+  function openPhoneModify(){
+    phoneModState={ newPhone:'', code:'', codeSent:false, err:'' };
+    renderPhoneModify();
+  }
+  function renderPhoneModify(){
+    const st=phoneModState;
+    const inner='<div class="fl-wrap">'+
+      '<div class="fl-field">'+
+        '<input class="fl-input" id="pm-new" maxlength="11" placeholder="请输入新手机号" value="'+st.newPhone+'" oninput="phoneModState.newPhone=this.value;phoneModState.codeSent=false;"/>'+
+      '</div>'+
+      '<div class="fl-field">'+
+        '<div style="display:flex;gap:8px;">'+
+          '<input class="fl-input" id="pm-code" maxlength="6" placeholder="6 位验证码" value="'+st.code+'"'+(st.codeSent?'':' disabled')+'/>'+
+          '<button class="pm-send" onclick="pmSendCode(this)">获取验证码</button>'+
+        '</div>'+
+      '</div>'+
+      (st.err?'<div class="fl-err">'+st.err+'</div>':'')+
+      '<div class="fl-acts">'+
+        '<button class="fl-btn ghost" onclick="closeMiniModal()">取消</button>'+
+        '<button class="fl-btn primary" onclick="pmSubmitNew()">确认修改</button>'+
+      '</div>'+
+    '</div>';
+    openMiniModal('修改手机号', inner, '');
+  }
+  /* 获取验证码：先校验新号，被占用则不发码 */
+  function pmSendCode(btn){
+    const el=document.getElementById('pm-new');
+    const np=String((el?el.value:phoneModState.newPhone)||'').trim();
+    phoneModState.newPhone=np;
+    phoneModState.err='';
+    if(!/^1\d{10}$/.test(np)){
+      phoneModState.err='请输入正确的 11 位手机号';
+      renderPhoneModify(); return;
+    }
+    if(np===miniUser.phone){
+      phoneModState.err='新手机号与原手机号相同';
+      renderPhoneModify(); return;
+    }
+    if(miniAccounts[np]){
+      phoneModState.err='该手机号已被其他账号注册';
+      renderPhoneModify(); return;
+    }
+    /* 通过校验，发码 */
+    phoneModState.codeSent=true;
+    phoneModState.err='';
+    renderPhoneModify();
+    toast('验证码已发送至 '+np);
+    setTimeout(function(){
+      const b=document.querySelector('.pm-send');
+      if(!b) return;
+      let n=60; b.disabled=true; b.textContent=n+'s';
+      const t2=setInterval(function(){ n--; if(n<=0){ clearInterval(t2); b.disabled=false; b.textContent='重新获取'; } else { b.textContent=n+'s'; } },1000);
+    },30);
+  }
+  function pmSubmitNew(){
+    const elN=document.getElementById('pm-new');
+    const elC=document.getElementById('pm-code');
+    const np=String((elN?elN.value:phoneModState.newPhone)||'').trim();
+    const code=String((elC?elC.value:phoneModState.code)||'').trim();
+    phoneModState.newPhone=np; phoneModState.code=code;
+    phoneModState.err='';
+
+    if(!/^1\d{10}$/.test(np)){ phoneModState.err='请输入正确的 11 位手机号'; renderPhoneModify(); return; }
+    if(np===miniUser.phone){ phoneModState.err='新手机号与原手机号相同'; renderPhoneModify(); return; }
+    if(miniAccounts[np]){ phoneModState.err='该手机号已被其他账号注册'; renderPhoneModify(); return; }
+    if(!phoneModState.codeSent){ phoneModState.err='请先获取验证码'; renderPhoneModify(); return; }
+    if(!/^\d{6}$/.test(code)){ phoneModState.err='请输入 6 位验证码'; renderPhoneModify(); return; }
+
+    /* 执行换号：账号表迁移、绑定表同步、登录态切换 */
+    const op=miniUser.phone;
+    const acc=miniAccounts[op];
+    if(acc){ miniAccounts[np]=acc; delete miniAccounts[op]; }
+    identityBindings.forEach(function(b){
+      if(b.userId===miniUser.userId && b.status==='active') b.phone=np;
+    });
+    miniCurrentPhone=np;
+    miniUser=buildMiniUser(np);
+    closeMiniModal();
+    renderMyProfile();
+    toast('手机号已修改为 '+np);
+  }
   function mpvCommonAddrList(){
     let h='';
     recCommon.forEach(function(a,i){ h+='<div class="wa-item"><span class="wa-pin">📍</span>'+
@@ -29434,7 +29592,10 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     box.innerHTML=
       '<div class="mhead mpv-head"><span class="rn-back" onclick="nav(\'mini\',\'m-me\')">‹</span><span class="title">我的资料</span><span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span></div>'+
       '<div class="mpv-progress"><div class="mpv-prog-lab">完善档案进度</div><div class="mpv-prog-bar"><div class="mpv-prog-in" style="width:'+pc+'%"></div></div><div class="mpv-prog-pct">'+pc+'%</div></div>'+
-      '<div class="mpv-card"><div class="mpv-card-t">基本信息</div>'+mpvRow('姓名',u.realnameName||u.name||'—')+mpvRow('手机号（登录账号）',u.phone||'—')+mpvRow('证件号',u.idcard||'—')+'</div>'+
+      '<div class="mpv-card"><div class="mpv-card-t">基本信息</div>'+mpvRow('姓名',u.realnameName||u.name||'—')+
+        '<div class="mpv-row"><span class="mpv-k">手机号（登录账号）</span><span class="mpv-v mpv-v-phone">'+(u.phone||'—')+
+        '<span class="mpv-edit" onclick="openPhoneModify()">修改</span></span></div>'+
+        mpvRow('证件号',u.idcard||'—')+'</div>'+
       '<div class="mpv-card"><div class="mpv-card-t">常用地址</div>'+mpvCommonAddrList()+'</div>'+
       '<div class="mpv-card"><div class="mpv-card-t">兼职偏好</div>'+((u.like||u.want||u.brand)?(mpvRow('喜欢的兼职',u.like||'—')+mpvRow('想做的兼职',u.want||'—')+mpvRow('偏好品牌/企业',u.brand||'—')):'<div class="mpv-empty">未设置</div>')+'<div class="mpv-res-acts"><span class="mpv-res-link" onclick="openMePrefs()">完善偏好</span></div>'+'</div>'+
       (function(){ const exp=u.idcardExp||''; const expired=exp&&isIdcardExpired(exp); const idStatus=expired?'<span style="color:#ff4d4f">已认证（已过期）</span>':'已认证'; const expRow=exp?mpvRow('有效期至','<span style="color:'+(expired?'#ff4d4f':'#8c8c8c')+'">'+exp+'</span>'):''; const recBtn='<div class="mpv-res-acts"><span class="mpv-res-link" onclick="startRecertify()">'+(expired?'立即更新':'重新认证')+'</span></div>'; return u.realname?('<div class="mpv-card"><div class="mpv-card-t">我的证件</div>'+mpvRow('身份证',idStatus)+expRow+recBtn+'</div>'):('<div class="mpv-card"><div class="mpv-card-t">我的证件</div>'+mpvRow('身份证','未认证')+'<button class="mpv-real-btn" onclick="nav(\'mini\',\'m-realname\');renderRealname(1)">去完成实名认证</button></div>'); })()+
