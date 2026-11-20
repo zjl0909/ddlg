@@ -778,7 +778,15 @@
   .phone .cert-row .cert-row-r{flex:1; min-width:0; text-align:right;}
   .phone .cert-row .cert-row-r .inp{width:100%; box-sizing:border-box; text-align:left;}
   .phone .cert-row .cert-row-r .file{font-size:12px; color:#909399; margin-bottom:6px; text-align:left;}
+  .phone .cert-combo-list{position:absolute;left:0;right:0;top:100%;z-index:50;margin-top:2px;background:#fff;border:1px solid var(--border-base);border-radius:4px;max-height:210px;overflow:auto;box-shadow:0 4px 12px rgba(0,0,0,.08);}
+  .phone .cert-combo-item{padding:9px 12px;font-size:13px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .phone .cert-combo-item:active{background:#f0f7f4;}
   .phone .cert-combo-item:hover{background:#f5f7fa;}
+  .phone .cert-combo-empty{padding:10px 12px;font-size:12px;color:#909399;line-height:1.6;}
+  .phone .cert-combo-wrap.multi{display:flex;flex-wrap:wrap;gap:6px;align-items:center;min-height:22px;border:1px solid #dcdfe6;border-radius:6px;background:#fff;padding:6px 8px;cursor:pointer;}
+  .phone .cert-combo-wrap.multi .inp{flex:1;min-width:70px;width:auto;border:0;padding:2px 0;height:22px;box-shadow:none;background:transparent;font-size:13px;}
+  .phone .cc-chip{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:#0d8f6e;background:#e6f7f1;border-radius:4px;padding:2px 6px;line-height:1.5;white-space:nowrap;}
+  .phone .cc-chip i{font-style:normal;color:#6fbfa5;cursor:pointer;padding:0 1px;}
   .phone .mini-modal .mm-foot .btn.ghost{ background:#F4F4F8; color:#6B6B82; }
   .phone .mini-modal .mm-foot .btn.primary{ background:var(--primary); color:#fff; }
   /* 海报扫码报名表单单页 */
@@ -1184,6 +1192,28 @@
   .drawer .form-row-2{grid-template-columns:1fr;}
   /* 方案 A：4 列对齐高密度表单 */
   .drawer.wide{min-width:780px; max-width:72vw;}
+  /* 技能证书名称配置：字段行通用（标签右对齐 / 控件左对齐） */
+  .sc-row{display:flex;align-items:flex-start;gap:14px;padding:11px 0;border-bottom:1px solid #f0f2f5;}
+  .sc-row:last-child{border-bottom:none;}
+  .sc-row-l{flex:0 0 88px;text-align:right;font-size:13px;color:#606266;line-height:32px;}
+  .sc-row-r{flex:1;min-width:0;}
+  .sc-hint{font-size:12px;color:#909399;line-height:1.6;margin-top:6px;}
+  .sc-toolbar{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap;}
+  .sc-search{flex:1;min-width:150px;}
+  .sc-count{font-size:12px;color:#909399;}
+  .sc-list{border:1px solid #ebeef5;border-radius:8px;overflow:hidden;}
+  .sc-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-bottom:1px solid #f5f6f8;background:#fff;}
+  .sc-item:last-child{border-bottom:none;}
+  .sc-item.off{background:#fafbfd;}
+  .sc-item-name{flex:1;min-width:0;font-size:13px;color:#1f2a44;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .sc-item.off .sc-item-name{color:#a8b0be;}
+  .sc-badge{flex:0 0 auto;font-size:11px;font-weight:600;border-radius:9px;padding:1px 8px;}
+  .sc-badge.on{color:#0d8f6e;background:#e6f7f1;}
+  .sc-badge.off{color:#909399;background:#f0f0f5;}
+  .sc-act{flex:0 0 auto;font-size:12px;cursor:pointer;padding:0 2px;}
+  .sc-act.on{color:#3771eb;}
+  .sc-act.off{color:#e6a23c;}
+  .sc-empty{padding:20px;text-align:center;font-size:12px;color:#909399;line-height:1.7;}
   /* ===== 岗位类型配置抽屉 ===== */
   /* 顶部工具栏：强制单行不换行，横向可滚动，按钮文字不允许折行 */
   .jc-bar{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:nowrap;overflow-x:auto;white-space:nowrap;}
@@ -1330,6 +1360,7 @@
   .form-a.locked .stepper button,
   .form-a.locked .intro-link,
   .form-a.locked .ms-control,
+  .form-a.locked .sk-tag i,
   .form-a.locked .chip-x,
   .form-a.locked .btn,
   .form-a.locked .sal-type,
@@ -2530,6 +2561,35 @@
   .ms-opt-sep{width:100%; font-size:11px; color:var(--text-placeholder); padding:4px 2px 2px; border-top:1px dashed var(--border-extra-light); margin-top:4px;}
   .ms-opt-x{margin-left:2px; color:var(--text-placeholder); font-weight:bold; padding:0 2px;}
   .ms-opt-x:hover{color:var(--danger);}
+  /* 技能要求：标准下拉多选框（输入框 + 下拉清单 + 已选标签） */
+  .sk-row{display:flex; align-items:flex-start; gap:8px; width:100%;}
+  .sk-row .sk-select{flex:1; min-width:0;}
+  .sk-select{position:relative; width:100%;}
+  .sk-value{display:flex; align-items:center; gap:8px; min-height:38px; padding:4px 32px 4px 10px; border:1px solid var(--border-base); border-radius:6px; background:#fff; cursor:pointer;}
+  .sk-value:hover{border-color:#c0c4cc;}
+  .sk-value.open{border-color:var(--primary);}
+  .sk-tags{flex:1; display:flex; flex-wrap:wrap; gap:6px; min-height:20px; align-items:center;}
+  .sk-ph{color:var(--text-placeholder); font-size:13px;}
+  .sk-tag{display:inline-flex; align-items:center; gap:4px; font-size:12px; color:var(--primary); background:var(--primary-light); border-radius:4px; padding:1px 6px; line-height:1.7; white-space:nowrap;}
+  .sk-tag i{font-style:normal; color:#8fb8ad; cursor:pointer; padding:0 1px; font-size:13px;}
+  .sk-tag i:hover{color:var(--danger);}
+  .sk-caret{position:absolute; right:10px; top:50%; transform:translateY(-50%); color:var(--text-placeholder); font-size:12px; pointer-events:none;}
+  .sk-dd{position:absolute; top:calc(100% + 4px); left:0; right:0; z-index:60; background:#fff; border:1px solid var(--border-base); border-radius:8px; box-shadow:0 8px 24px rgba(0,0,0,.12); padding:8px; max-height:300px; overflow:auto;}
+  .sk-opt{display:flex; align-items:center; gap:8px; padding:7px 10px; font-size:13px; border-radius:6px; cursor:pointer; color:var(--text-primary);}
+  .sk-opt:hover{background:var(--primary-light);}
+  .sk-opt .ck{width:14px; height:14px; flex:0 0 auto; border:1px solid var(--border-base); border-radius:3px; background:#fff; position:relative;}
+  .sk-opt.on .ck{background:var(--primary); border-color:var(--primary);}
+  .sk-opt.on .ck::after{content:''; position:absolute; left:4px; top:0.5px; width:4px; height:8px; border:solid #fff; border-width:0 2px 2px 0; transform:rotate(45deg);}
+  .sk-opt-sep{font-size:11px; color:var(--text-placeholder); padding:6px 2px 2px; border-top:1px dashed var(--border-extra-light); margin-top:4px;}
+  .sk-empty{padding:14px 8px; text-align:center; font-size:12px; color:var(--text-placeholder); line-height:1.7;}
+  .sk-foot{display:flex; justify-content:space-between; align-items:center; padding-top:6px; border-top:1px solid var(--border-extra-light); font-size:12px; color:var(--text-secondary);}
+  /* 配置页排序 */
+  .sc-item .sc-idx{flex:0 0 24px; font-size:12px; color:#a8b0be; text-align:center;}
+  .sc-move{flex:0 0 auto; display:flex; gap:2px;}
+  .sc-move span{width:20px; height:20px; line-height:18px; text-align:center; font-size:12px; border:1px solid #e3e8f0; border-radius:4px; background:#fff; color:#606266; cursor:pointer;}
+  .sc-move span:hover{border-color:#3771eb; color:#3771eb;}
+  .sc-move span.dis{color:#dcdfe6; cursor:not-allowed; border-color:#f0f2f5;}
+  .sc-sorttip{font-size:12px; color:#909399; margin-bottom:8px;}
   /* 所属城市：可输入实时搜索 + 下拉选择（替代级联弹窗） */
   .cp-dd{position:absolute; top:calc(100% + 4px); left:0; z-index:80; background:#fff; border:1px solid var(--border-base); border-radius:8px; box-shadow:0 8px 24px rgba(0,0,0,.14); padding:6px; overflow:hidden; width:max-content;}
   .cp-cols{display:flex; min-width:672px; max-width:784px; max-height:340px;}
@@ -3500,6 +3560,23 @@
   .ml-demo-tag{font-size:10px;padding:1px 7px;border-radius:9px;background:#f0f0f5;color:#909399;font-weight:600;}
   .ml-demo-tag.ok{background:#e6f7f1;color:#0d8f6e;}
   .ml-demo-tip{font-size:11px;color:#b0b7c3;margin-top:8px;line-height:1.5;}
+  /* 其他登录方式分隔线 + 微信一键登录 */
+  .ml-alt-sep{display:flex;align-items:center;gap:10px;margin:16px 0 4px;color:#b0b7c3;font-size:11px;}
+  .ml-alt-sep:before,.ml-alt-sep:after{content:"";flex:1;height:1px;background:#e8edf4;}
+  .ml-wx-btn{width:100%;height:44px;margin-top:8px;border:1px solid #bfe0d4;border-radius:22px;background:#E8F8F1;color:#0d8f6e;font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;}
+  .ml-wx-btn:hover{background:#dcf3e9;}
+  .wx-ico{display:inline-flex;align-items:center;justify-content:center;width:19px;height:19px;border-radius:50%;background:#0d8f6e;color:#fff;font-size:11px;font-weight:700;line-height:1;}
+  /* 微信授权弹层 */
+  .wx-auth-t{font-size:12px;color:#7a8496;line-height:1.6;margin-bottom:12px;}
+  .wx-auth-list{display:flex;flex-direction:column;gap:8px;margin-bottom:6px;}
+  .wx-pick{display:flex;align-items:center;gap:9px;padding:10px 12px;border:1px solid #e3e8f0;border-radius:10px;background:#fafbfd;cursor:pointer;text-align:left;transition:.15s;}
+  .wx-pick:hover{background:#f2fbf7;}
+  .wx-pick.on{border-color:#0d8f6e;background:#eef8f4;}
+  .wx-pick-radio{width:15px;height:15px;flex:0 0 auto;border-radius:50%;border:1.5px solid #c8d0dc;box-sizing:border-box;}
+  .wx-pick.on .wx-pick-radio{border:4.5px solid #0d8f6e;background:#fff;}
+  .wx-pick-main{flex:1;min-width:0;}
+  .wx-pick-ph{font-size:14px;font-weight:600;color:#1f2a44;letter-spacing:.3px;}
+  .wx-pick-sub{font-size:10px;color:#9aa3b2;margin-top:2px;}
   /* 人脸识别登录 */
   .ml-face-btn{width:100%;height:44px;margin-top:10px;border:1px solid #0d8f6e;border-radius:22px;background:#fff;color:#0d8f6e;font-size:14px;font-weight:600;cursor:pointer;}
   .ml-face-btn:hover{background:#f2fbf7;}
@@ -8409,7 +8486,9 @@
                 </div>
               </div>
               <label class="mr-agree" data-page-node-id="k23c9aGRsOnkfNXHJFzGHF"><input type="checkbox" id="m-login-agree" checked data-page-node-id="yKVFeYGEl9MzAgBZN3zb0J"/> 我已阅读并同意<span onclick="openAgreement('service')" data-page-node-id="X0GC7ZvdN0smOMztAFb4ln">《服务协议》</span>和<span onclick="openAgreement('privacy')" data-page-node-id="CpcNpx0DiNEyEMdsFEs7pU">《隐私政策》</span></label>
-              <button class="ml-btn" onclick="miniAuth()" data-page-node-id="Dizk1EBKMH8VCHUW2qi5NQ">登 录 / 注 册</button>
+              <button class="ml-btn" onclick="miniAuth()" data-page-node-id="Dizk1EBKMH8VCHUW2qi5NQ">手机号快捷登录</button>
+              <div class="ml-alt-sep"><span>其他登录方式</span></div>
+              <button class="ml-wx-btn" onclick="openWxLogin()"><span class="wx-ico">微</span>微信一键登录</button>
               <button class="ml-face-btn" onclick="openFaceLogin()">人脸识别登录</button>
               <div class="ml-face-note">仅已完成实名认证的账号可使用</div>
               <!-- 演示账号快捷入口（一号一证场景演示） -->
@@ -10244,7 +10323,6 @@
     const body = document.getElementById('em2-skillBody');
     let html = '<div class="slot-sec-label">技能 / 证件</div>';
     pdSkillOpts().forEach(n => {
-      if (n === '其他') return;   // 技能要求移除「其他」选项
       const on = _selectedSkill.indexOf(n) >= 0;
       html += '<label class="pk-opt' + (on ? ' on' : '') + ' sq" data-key="' + n + '" onclick="toggleSkillOpt(this,\'' + n + '\')">';
       html += '<span class="check"></span>';
@@ -10295,7 +10373,7 @@
   function saveSkillCustom(){
     const name = document.getElementById('em2-skName').value.trim();
     if (!name){ em2_toast('请填写技能名称'); return; }
-    if (pdSkillOpts().includes(name)){ em2_toast('该项已在技能预设中'); return; }
+    if (skillCertCfg.some(c => c.name === name)){ em2_toast('该项已在技能预设中'); return; }
     if (_customSkills.some(c => c.name === name)){ em2_toast('该技能已存在'); return; }
     _customSkills.push({ name:name, checked:false });
     closeSkillCustomForm();
@@ -21454,7 +21532,7 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
       ['具体出勤时段', ATTENDANCE_PERIOD_PRESETS.map(p=>p.label).join(' / ')+'（多选用顿号分隔）'],
       ['跟进人配置', DI_RULE.join(' / ')],
       ['福利补贴', WELFARE_POOL().join('、')+'（多选用顿号分隔）'],
-      ['技能要求', pdSkillOpts().join('、')+'（多选用顿号分隔）']
+      ['技能要求', '取值：技能证书名称配置（运营后台「技能要求」右侧【配置】维护），当前启用 '+pdSkillOpts().join('、')+'（多选用顿号分隔）']
     ];
     return lines.map(l=>`<div class="imp-leg-row"><span class="imp-leg-k">${l[0]}</span><span class="imp-leg-v">${l[1]}</span></div>`).join('');
   }
@@ -22260,7 +22338,119 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
   }
   const WELFARE_POOL=()=>tagsByCat('welfare');
   const MARKETING_POOL=()=>tagsByCat('marketing');
-  function pdSkillOpts(){ return tagsByCat('material'); }
+  /* 「技能要求」取值统一入口：只取技能证书名称配置中的启用项 */
+  function pdSkillOpts(){ return skillCertEnabledNames(); }
+  /* ===== 技能证书名称配置（全局唯一一份，四端共用） =====
+     维护入口仅运营后台两处：「发布新需求」与「新增岗位」的「技能要求」右侧【配置】按钮。
+     两个入口读写同一份数据，不做两两同步；企业端与两个小程序只读。
+     被需求、岗位引用的名称统一通过 pdSkillOpts() 取启用项。
+     used>0 的条目不允许删除，只能停用，保证历史记录的名称可追溯。 */
+  const SKILL_CERT_SEED=[
+    '健康证','健康管理师','公共营养师','护士执业证','护工证','养老护理员','育婴员','保育师',
+    '食品安全管理员','厨师资格证','面点师证','收银员职业资格证','普通话等级证书','计算机等级证书',
+    '电工证','焊工证','高处作业证','叉车驾驶证','机动车驾驶证','消防设施操作员','保安员证',
+    '美容师','美发师','会计从业资格证','企业人力资源管理师','电子商务师'
+  ];
+  let skillCertCfg=(function(){
+    const out=[]; let sort=0;
+    SKILL_CERT_SEED.forEach(function(n){
+      sort++;
+      const used=({健康证:128,电工证:46,叉车驾驶证:33,食品安全管理员:21,护工证:17,机动车驾驶证:64})[n]||0;
+      out.push({ id:'skc'+(1000+sort), name:n, enabled:true, sort:sort, used:used });
+    });
+    /* 演示停用项：证明停用后不再可选，但历史引用仍能显示原名称 */
+    out.push({ id:'skc1200', name:'港澳台通行证（已停用示例）', enabled:false, sort:sort+1, used:3 });
+    return out;
+  })();
+  function skillCertAll(){ return skillCertCfg.slice().sort(function(a,b){ return a.sort-b.sort; }); }
+  function skillCertEnabledNames(){ return skillCertCfg.filter(function(c){ return c.enabled; }).sort(function(a,b){ return a.sort-b.sort; }).map(function(c){ return c.name; }); }
+  function skillCertUsedOf(name){ const c=skillCertCfg.find(function(x){ return x.name===name; }); return c?c.used:0; }
+  function skillCertAdd(name){
+    name=(name||'').trim();
+    if(!name){ toast('请输入技能证书名称'); return false; }
+    if(name.length>20){ toast('名称不超过 20 个字'); return false; }
+    if(skillCertCfg.some(function(c){ return c.name===name; })){ toast('该名称已存在'); return false; }
+    const maxSort=skillCertCfg.reduce(function(m,c){ return Math.max(m,c.sort||0); },0);
+    skillCertCfg.push({ id:'skc'+Date.now(), name:name, enabled:true, sort:maxSort+1, used:0 });
+    toast('已新增「'+name+'」');
+    return true;
+  }
+  function skillCertToggle(id){
+    const c=skillCertCfg.find(function(x){ return x.id===id; }); if(!c) return;
+    if(c.enabled){
+      /* 配置页位于桌面端抽屉，确认框须用整屏弹窗（openModal 层级 80 > 抽屉 60），不能用小程序画布内弹窗 */
+      openModal('停用「'+c.name+'」',
+        '<div style="padding:6px 4px;line-height:1.8;font-size:13px">停用后各端不可再选，已引用该名称的岗位需求与证书仍保留原名称。</div>',
+        '<button class="btn ghost" onclick="closeModal()">取消</button><button class="btn" onclick="skillCertToggleDo(\''+id+'\')">确认停用</button>');
+      return;
+    }
+    skillCertToggleDo(id);
+  }
+  function skillCertToggleDo(id){
+    const c=skillCertCfg.find(function(x){ return x.id===id; }); if(!c) return;
+    c.enabled=!c.enabled;
+    closeModal();
+    toast(c.enabled?('已启用「'+c.name+'」'):('已停用「'+c.name+'」'));
+    renderSkillCfgList();
+  }
+  /* 排序：上移 / 下移，直接改写 sort 并归一化，保证顺序稳定 */
+  function skillCertMove(id, dir){
+    const arr=skillCertAll();
+    const i=arr.findIndex(function(c){ return c.id===id; });
+    const j=i+dir;
+    if(i<0 || j<0 || j>=arr.length) return;
+    const tmp=arr[i]; arr[i]=arr[j]; arr[j]=tmp;
+    arr.forEach(function(c,k){ c.sort=k+1; });
+    renderSkillCfgList();
+  }
+  /* ===== 配置页（抽屉）：两个入口共用同一个渲染函数 ===== */
+  let skillCfgKw='';
+  function openSkillCfg(from){
+    skillCfgKw='';
+    openDrawer('技能证书名称配置',
+      '<div class="sc-row"><div class="sc-row-l">新增名称</div><div class="sc-row-r">'+
+        '<div class="sc-toolbar"><input class="inp sc-search" id="sc-new" placeholder="输入技能证书名称，如：低压电工操作证" maxlength="20" onkeydown="if(event.key===\'Enter\'){event.preventDefault();skillCertAddUi();}"/><button class="btn sm" onclick="skillCertAddUi()">新增</button></div>'+
+      '</div></div>'+
+      '<div class="sc-row"><div class="sc-row-l">名称列表</div><div class="sc-row-r">'+
+        '<div class="sc-toolbar"><input class="inp sc-search" id="sc-kw" placeholder="搜索名称" oninput="skillCfgFilter(this.value)"/><span class="sc-count" id="sc-count"></span></div>'+
+        '<div class="sc-sorttip">列表顺序即各端下拉框的展示顺序，可用 ↑ ↓ 调整（搜索状态下排序仍作用于全量列表）。</div>'+
+        '<div class="sc-list" id="sc-list"></div>'+
+      '</div></div>',
+      '<button class="btn ghost" onclick="closeDrawer()">关闭</button><button class="btn" onclick="skillCfgDone(\''+(from||'')+'\')">完成</button>','wide');
+    setTimeout(function(){ renderSkillCfgList(); },0);
+  }
+  function renderSkillCfgList(){
+    const box=document.getElementById('sc-list'); if(!box) return;
+    const kw=(skillCfgKw||'').trim();
+    const all=skillCertAll();
+    const list=all.filter(function(c){ return !kw || c.name.indexOf(kw)>=0; });
+    if(!list.length){
+      box.innerHTML='<div class="sc-empty">'+(kw?'没有匹配「'+escHtml(kw)+'」的名称':'尚未配置任何名称，请在上方新增')+'</div>';
+    } else {
+      box.innerHTML=list.map(function(c){
+        const idx=all.findIndex(function(x){ return x.id===c.id; });
+        return '<div class="sc-item'+(c.enabled?'':' off')+'">'+
+          '<span class="sc-idx">'+(idx+1)+'</span>'+
+          '<span class="sc-item-name" title="'+escAttr(c.name)+'">'+escHtml(c.name)+'</span>'+
+          '<span class="sc-badge '+(c.enabled?'on':'off')+'">'+(c.enabled?'启用中':'已停用')+'</span>'+
+          '<span class="sc-move"><span class="'+(idx===0?'dis':'')+'" onclick="'+(idx===0?'':'skillCertMove(\''+c.id+'\',-1)')+'" title="上移">↑</span><span class="'+(idx===all.length-1?'dis':'')+'" onclick="'+(idx===all.length-1?'':'skillCertMove(\''+c.id+'\',1)')+'" title="下移">↓</span></span>'+
+          '<span class="sc-act '+(c.enabled?'off':'on')+'" onclick="skillCertToggle(\''+c.id+'\')">'+(c.enabled?'停用':'启用')+'</span>'+
+        '</div>';
+      }).join('');
+    }
+    const cnt=document.getElementById('sc-count');
+    if(cnt){ const on=all.filter(function(c){ return c.enabled; }).length; cnt.textContent='共 '+all.length+' 项 · 启用中 '+on+' 项'; }
+  }
+  function skillCfgFilter(v){ skillCfgKw=v||''; renderSkillCfgList(); }
+  function skillCertAddUi(){
+    const inp=document.getElementById('sc-new'); if(!inp) return;
+    if(skillCertAdd(inp.value)){ inp.value=''; skillCfgKw=''; renderSkillCfgList(); }
+  }
+  function skillCfgDone(from){
+    closeDrawer();
+    if(from==='pd'){ setTimeout(function(){ openPublishDemand(); toast('已更新技能证书名称，重新选择即可'); },320); }
+  }
+
   function jobTypeOpts(){ return tagConfig.filter(t=>t.cat==='jobType'&&t.enabled&&t.level===1).sort((a,b)=>a.sort-b.sort).map(t=>t.name); }
   function jobTypeLeafOpts(){ return tagConfig.filter(t=>t.cat==='jobType'&&t.enabled&&t.level>1).sort((a,b)=>a.sort-b.sort).map(t=>t.name); }
   /* ===== 项目类型（两级：大类 projectCat → 项目类型 project）=====
@@ -23257,8 +23447,9 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     const arr=getCustomItems(p,kind).filter(x=>x!==v); try{ localStorage.setItem(customKey(p,kind), JSON.stringify(arr)); }catch(e){}
     const isBen=kind==='ben'||kind==='ben_welfare'||kind==='ben_marketing';
     if(isBen){ const a=benefitItemsArr(p); const i=a.findIndex(x=>x.text===v); if(i>=0){ a.splice(i,1); rerenderBenefitChips(p); } }
-    else { const a=(p==='pd'?pdSkills:edSkills); const i=a.indexOf(v); if(i>=0){ a.splice(i,1); rerenderMaterialChips(p); } }
-    const opts=document.getElementById(p+'-'+(isBen?'benefit':'material')+'-ms-opts'); if(opts) opts.innerHTML=(isBen?benefitOptsHtml(p,benefitItemsArr(p)):materialOptsHtml(p,(p==='pd'?pdSkills:edSkills)));
+    else { const a=(p==='pd'?pdSkills:edSkills); const i=a.indexOf(v); if(i>=0){ a.splice(i,1); } skRefresh(p); }
+    const opts=document.getElementById(p+'-'+(isBen?'benefit':'material')+'-ms-opts');
+    if(opts && isBen) opts.innerHTML=benefitOptsHtml(p,benefitItemsArr(p));
   }
   function benefitOptsHtml(p, benefitArr){
     const welfareCustom=getCustomItems(p,'ben_welfare');
@@ -23277,11 +23468,14 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     }
     return html+oldCustomHtml;
   }
-  function materialOptsHtml(p, skills){
-    const preset=pdSkillOpts().filter(v=>v!=='其他').map(t=>`<label class="ms-opt" data-t="${t}"><input type="checkbox" ${skills.includes(t)?'checked':''} onchange="msMaterialToggle('${p}','${t}',this)"/>${t}</label>`).join('');
-    const custom=getCustomItems(p,'skill');
-    const customHtml=custom.length?('<div class="ms-opt-sep">自定义</div>'+custom.map(t=>`<label class="ms-opt" data-t="${t}"><input type="checkbox" ${skills.includes(t)?'checked':''} onchange="msMaterialToggle('${p}','${t}',this)"/>${t}<a class="ms-opt-x" title="删除" onclick="event.stopPropagation();delCustomItem('${p}','skill','${escAttr(t)}')">×</a></label>`).join('')):'';
-    return preset+customHtml;
+  function materialOptsHtml(p, skills){ return skOptsHtml(p, skills||[]); }
+  function skRefresh(p){
+    const chips=document.getElementById(p+'-material-chips');
+    if(chips) chips.innerHTML=skTagsHtml(p,skArr(p));
+    const box=document.getElementById(p+'-material-ms-opts');
+    if(box) box.innerHTML=skOptsHtml(p,skArr(p));
+    const cnt=document.getElementById(p+'-sk-count');
+    if(cnt) cnt.textContent='已选 '+skArr(p).length+' 项';
   }
   function benefitChipHtml(p,arr){
     const items=arr.map((it,idx)=>({...it,idx}));
@@ -23466,9 +23660,71 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
   function msPlace(id){ const panel=document.getElementById(id+'-panel'); const anchor=document.getElementById(id); if(!panel||!anchor) return; popupPlaceFixed(panel, anchor, 260); popupBindClose(panel, function(){ panel.style.display='none'; popupUnbind(panel); }); }
   function msFilter(id,kw){ const opts=document.getElementById(id+'-opts'); if(!opts) return; kw=(kw||'').trim(); opts.querySelectorAll('.ms-opt').forEach(o=>{ const t=o.getAttribute('data-t'); o.style.display = (!kw || t.indexOf(kw)>=0)?'':'none'; }); }
   function msBenefitToggle(p,t,el){ const arr=benefitItemsArr(p); if(el.checked){ if(!arr.some(x=>x.text===t)) arr.push({text:t,type: WELFARE_POOL().includes(t)?'welfare':(MARKETING_POOL().includes(t)?'marketing':'custom')}); } else { const i=arr.findIndex(x=>x.text===t); if(i>=0) arr.splice(i,1); } rerenderBenefitChips(p); }
-  function materialChipHtml(p,arr){ return arr.length? arr.map((t,i)=>`<span class="chip item">${t} <a class="chip-x" onclick="materialDel('${p}',${i})">×</a></span>`).join('') : '<span class="muted">请选择技能要求</span>'; }
+  function materialChipHtml(p,arr){ return skTagsHtml(p,arr||[]); }
+  /* ===== 技能要求：标准下拉多选（输入框 + 下拉清单 + 已选标签） ===== */
+  const _skFilter={};
+  function skArr(p){ return p==='pd'?pdSkills:edSkills; }
+  function skTagsHtml(p,arr){
+    if(!arr.length) return '<span class="sk-ph">请选择技能要求（可多选）</span>';
+    return arr.map(function(t){
+      const off=skillCertEnabledNames().indexOf(t)<0;
+      return '<span class="sk-tag"'+(off?' style="color:#909399;background:#f4f5f7"':'')+' title="'+(off?'该名称已停用':'')+'">'+escHtml(t)+'<i onclick="event.stopPropagation();skToggleVal(\''+p+'\',\''+escAttr(t)+'\')">×</i></span>';
+    }).join('');
+  }
+  function skOptsHtml(p,arr){
+    const opts=pdSkillOpts();
+    const kw=(_skFilter[p]||'').trim();
+    const show=opts.filter(function(t){ return !kw || t.indexOf(kw)>=0; });
+    let html='';
+    if(!opts.length){
+      return '<div class="sk-empty">暂无可选名称<br/>请点击下方「去配置名称」新增</div>';
+    }
+    html+=show.map(function(t){
+      const on=arr.indexOf(t)>=0;
+      return '<div class="sk-opt'+(on?' on':'')+'" data-t="'+escAttr(t)+'" onclick="skToggleVal(\''+p+'\',\''+escAttr(t)+'\')"><span class="ck"></span><span>'+escHtml(t)+'</span></div>';
+    }).join('') || '<div class="sk-empty">没有匹配「'+escHtml(kw)+'」的名称</div>';
+    const extra=arr.filter(function(t){ return opts.indexOf(t)<0; });
+    if(extra.length){
+      html+='<div class="sk-opt-sep">已停用 / 历史引用</div>';
+      html+=extra.map(function(t){
+        return '<div class="sk-opt on" data-t="'+escAttr(t)+'" onclick="skToggleVal(\''+p+'\',\''+escAttr(t)+'\')"><span class="ck"></span><span>'+escHtml(t)+'</span><span class="sc-badge off" style="margin-left:6px">已停用</span></div>';
+      }).join('');
+    }
+    return html;
+  }
+  function skToggle(p){
+    const panel=document.getElementById(p+'-material-ms-panel');
+    const val=document.getElementById(p+'-sk-value');
+    if(!panel) return;
+    const open=panel.style.display==='none'||panel.style.display==='';
+    if(open){
+      _skFilter[p]='';
+      panel.style.display='block';
+      if(val) val.classList.add('open');
+      popupBindClose(panel, function(){ panel.style.display='none'; if(val) val.classList.remove('open'); popupUnbind(panel); });
+    } else {
+      panel.style.display='none';
+      if(val) val.classList.remove('open');
+      popupUnbind(panel);
+    }
+  }
+  function skFilter(p,kw){
+    _skFilter[p]=kw||'';
+    const box=document.getElementById(p+'-material-ms-opts');
+    if(box) box.innerHTML=skOptsHtml(p,skArr(p));
+  }
+  function skToggleVal(p,t){
+    const arr=skArr(p);
+    const i=arr.indexOf(t);
+    if(i>=0) arr.splice(i,1); else arr.push(t);
+    const chips=document.getElementById(p+'-material-chips');
+    if(chips) chips.innerHTML=skTagsHtml(p,arr);
+    const box=document.getElementById(p+'-material-ms-opts');
+    if(box) box.innerHTML=skOptsHtml(p,arr);
+    const cnt=document.getElementById(p+'-sk-count');
+    if(cnt) cnt.textContent='已选 '+arr.length+' 项';
+  }
   function msMaterialToggle(p,t,el){ const arr=(p==='pd'?pdSkills:edSkills); if(el.checked){ if(!arr.includes(t)) arr.push(t); } else { const i=arr.indexOf(t); if(i>=0) arr.splice(i,1); } rerenderMaterialChips(p); }
-  function materialAdd(p){ const inp=document.getElementById(p+'-material-input'); if(!inp) return; const v=inp.value.trim(); if(!v) return; if(pdSkillOpts().includes(v)){ toast('该项已在技能预设中'); return; } if(getCustomItems(p,'skill').includes(v)){ toast('该项已在自定义选项中'); return; } addCustomItem(p,'skill',v); const opts=document.getElementById(p+'-material-ms-opts'); if(opts) opts.innerHTML=materialOptsHtml(p,(p==='pd'?pdSkills:edSkills)); inp.value=''; toast('已加入可选项，勾选即可选中'); }
   function materialDel(p,i){ const arr=(p==='pd'?pdSkills:edSkills); arr.splice(i,1); rerenderMaterialChips(p); }
   function rerenderMaterialChips(p){ const cont=document.getElementById(p+'-material-chips'); if(!cont) return; cont.innerHTML=materialChipHtml(p,(p==='pd'?pdSkills:edSkills)); const opts=document.getElementById(p+'-material-ms-opts'); if(opts) opts.querySelectorAll('.ms-opt input').forEach(cb=>{ const t=cb.parentElement.getAttribute('data-t'); cb.checked=(p==='pd'?pdSkills:edSkills).includes(t); }); }
   /* ===== 所属城市：可输入实时搜索 + 下拉选择（替代级联弹窗） ===== */
@@ -23710,17 +23966,19 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     const expOpts=['无要求','1 年以下','1–3 年','3–5 年','5–10 年','10 年以上'].map(t=>`<option ${d&&d.exp===t?'selected':''}>${t}</option>`).join('');
     const cityOpts=['北京','上海','天津','广州','深圳','杭州','武汉','成都'].map(t=>`<option ${d&&d.city===t?'selected':''}>${t}</option>`).join('');
     const skills=isAdmin?pdSkills:edSkills;
-    const materialOpts=pdSkillOpts().filter(v=>v!=='其他');
-    const materialHtml=`<div class="ms" id="${p}-material-ms">
-      <div class="ms-control" onclick="toggleMs('${p}-material-ms')">
-        <div class="ms-chips" id="${p}-material-chips">${materialChipHtml(p,skills)}</div>
-        <span class="ms-arrow">▾</span>
+    const materialHtml=`<div class="sk-row">
+      <div class="sk-select" id="${p}-material-ms">
+        <div class="sk-value" id="${p}-sk-value" onclick="skToggle('${p}')">
+          <div class="sk-tags" id="${p}-material-chips">${skTagsHtml(p,skills)}</div>
+          <span class="sk-caret">▾</span>
+        </div>
+        <div class="sk-dd" id="${p}-material-ms-panel" style="display:none">
+          <div class="ms-search"><input class="inp" placeholder="搜索技能要求" oninput="skFilter('${p}',this.value)" onclick="event.stopPropagation()"/></div>
+          <div id="${p}-material-ms-opts">${skOptsHtml(p,skills)}</div>
+          <div class="sk-foot"><span id="${p}-sk-count">已选 ${skills.length} 项</span><span><a class="intro-link" onclick="event.stopPropagation();skToggle('${p}')">收起</a></span></div>
+        </div>
       </div>
-      <div class="ms-panel" id="${p}-material-ms-panel" style="display:none">
-        <div class="ms-search"><input class="inp" placeholder="搜索技能要求" oninput="msFilter('${p}-material-ms',this.value)"/></div>
-        <div class="ms-opts" id="${p}-material-ms-opts">${materialOptsHtml(p,skills)}</div>
-        <div class="ms-add"><input class="inp" id="${p}-material-input" placeholder="输入自定义技能，回车添加" onkeydown="if(event.key==='Enter'){event.preventDefault();materialAdd('${p}')}"/><button class="btn sm" onclick="materialAdd('${p}')">+ 添加</button><button class="btn ghost sm" onclick="toggleMs('${p}-material-ms')">关闭</button></div>
-      </div>
+      <button type="button" class="btn sm" style="flex:0 0 auto" onclick="openSkillCfg('${p}')">配置</button>
     </div>`;
     const entReadOnly = !isAdmin;
     const entDefault = isAdmin ? (d?d.ent:'') : (d?d.ent:ENT);
@@ -24807,7 +25065,8 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     const benCont=document.getElementById(p+'-benefit-chips'); if(benCont) benCont.innerHTML=benefitChipHtml(p,benArr);
     const mats = rec.materials ? rec.materials.map(m=>m.name) : (rec.requirements? String(rec.requirements).split('、').filter(Boolean):[]);
     if(p==='pd') pdSkills=mats.slice(); else edSkills=mats.slice();
-    const skCont=document.getElementById(p+'-material-chips'); if(skCont) skCont.innerHTML=materialChipHtml(p,mats);
+    const skCont=document.getElementById(p+'-material-chips'); if(skCont) skCont.innerHTML=skTagsHtml(p,mats);
+    skRefresh(p);
     if(rec.dept){ const dn=document.getElementById(p+'-dept-name'); if(dn) dn.value=rec.dept; const dh=document.getElementById(p+'-dept'); if(dh) dh.value=rec.dept; }
     set(p+'-position-id', rec.id||'');
     renderPostAuth(p);
@@ -28943,6 +29202,30 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     if(el2) el2.value='123456';
     toast('已填入 '+phone+'，点击登录');
   }
+  /* 按手机号加载/创建账号并登录：手机号快捷登录与微信一键登录共用。
+     微信一键登录只是多一种进门方式，实名绑定表完全不动。 */
+  function miniLoginByPhone(phone, fromWx){
+    authState.mini=true;
+    /* 把当前未保存的账号改动先回写 */
+    if(miniUser && miniUser.phone) syncMiniAccount();
+    let isNew=false;
+    if(!miniAccounts[phone]){
+      miniAccounts[phone]={ userId:'u'+Date.now(), name:'张伟', city:'北京', loc:'北京市朝阳区',
+        gender:'男', birth:'1995-08-12', resume:null, certFiles:[], isNew:true };
+      isNew=true;
+    }
+    /* 微信身份只作为该账号的一条附加登录凭证，不产生新账号、不转移实名 */
+    if(fromWx){
+      const acc=miniAccounts[phone];
+      if(!acc.wxOpenids) acc.wxOpenids=[];
+      if(acc.wxOpenids.indexOf(WX_DEMO_OPENID)<0) acc.wxOpenids.push(WX_DEMO_OPENID);
+    }
+    miniCurrentPhone=phone;
+    miniUser=buildMiniUser(phone);
+    nav('mini','m-work');
+    if(isNew) toast('注册成功，已登录');
+    else toast(fromWx?'微信一键登录成功':'登录成功');
+  }
   function miniAuth(){
     const phone=(document.getElementById('m-login-phone').value||'').trim();
     const code=(document.getElementById('m-login-code').value||'').trim();
@@ -28950,20 +29233,46 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     if(!/^1\d{10}$/.test(phone)){ toast('请输入正确的手机号'); return; }
     if(!code){ toast('请输入验证码'); return; }
     if(!agree){ toast('请先阅读并同意用户协议'); return; }
-    authState.mini=true;
-    /* 把当前未保存的账号改动先回写 */
-    if(miniUser && miniUser.phone) syncMiniAccount();
-    /* 按手机号加载账号：已有则登录，没有则新建（新账号天然未实名） */
-    if(!miniAccounts[phone]){
-      miniAccounts[phone]={ userId:'u'+Date.now(), name:'张伟', city:'北京', loc:'北京市朝阳区',
-        gender:'男', birth:'1995-08-12', resume:null, certFiles:[], isNew:true };
-      toast('注册成功，已登录');
-    }
-    miniCurrentPhone=phone;
-    miniUser=buildMiniUser(phone);
-    nav('mini','m-work');
-    if(!idBindOf(miniUser.userId)) toast('登录成功');
-    else toast('登录成功');
+    miniLoginByPhone(phone,false);
+  }
+
+  /* ===== 微信一键登录（演示模拟） =====
+     只有用户选号并点「允许」才拿到手机号并登录；拒绝不创建账号。 */
+  const WX_DEMO_OPENID='oDEMO_wx8f2';
+  let wxAuthState={ phone:'13800006688' };
+  function openWxLogin(){
+    const agree=document.getElementById('m-login-agree') && document.getElementById('m-login-agree').checked;
+    if(!agree){ toast('请先阅读并同意用户协议'); return; }
+    wxAuthState={ phone:'13800006688' };
+    renderWxAuth();
+  }
+  function renderWxAuth(){
+    const list=[
+      { phone:'13800006688', sub:'微信绑定号码' },
+      { phone:'13900002288', sub:'其他可用号码' }
+    ];
+    let h='<div class="wx-auth-t">灵工平台申请获取你的手机号，用于账号登录。请选择要使用的号码：</div>'+
+      '<div class="wx-auth-list">';
+    list.forEach(function(x){
+      const on=wxAuthState.phone===x.phone;
+      h+='<div class="wx-pick'+(on?' on':'')+'" data-p="'+x.phone+'" onclick="wxPickPhone(this.dataset.p)">'+
+        '<span class="wx-pick-radio"></span>'+
+        '<span class="wx-pick-main"><div class="wx-pick-ph">'+x.phone.slice(0,3)+'****'+x.phone.slice(-4)+'</div>'+
+        '<div class="wx-pick-sub">'+x.sub+'</div></span>'+
+      '</div>';
+    });
+    h+='</div>';
+    openMiniModal('微信一键登录', h,
+      '<button class="btn ghost" onclick="wxRejectLogin()">拒绝</button>'+
+      '<button class="btn primary" onclick="wxConfirmLogin()">允许</button>');
+  }
+  function wxPickPhone(p){ wxAuthState.phone=p; renderWxAuth(); }
+  function wxRejectLogin(){ closeMiniModal(); toast('已取消微信授权'); }
+  function wxConfirmLogin(){
+    const p=wxAuthState.phone;
+    if(!p){ toast('请选择手机号'); return; }
+    closeMiniModal();
+    miniLoginByPhone(p,true);
   }
 
   /* ===================== 6 步完善档案 ===================== */
@@ -29621,12 +29930,8 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
   /* ===================== C 端「技能证书」上传管理 ===================== */
   let certDraft=null;   // {id,name,certNo,issueDate,expireDate,fileName,dataUrl}
   /* 技能库：由运营后台统一维护。灵工小程序「我的资料-技能证书」添加/编辑时，证书名称以下拉选择呈现，数据来源于此库 */
-  const SKILL_LIBRARY=[
-    '普通话等级证书','计算机等级证书','电工证','焊工证','高处作业证','消防设施操作员',
-    '健康管理师','公共营养师','食品安全管理员','厨师资格证','收银员职业资格证',
-    '叉车驾驶证','机动车驾驶证','会计从业资格证','企业人力资源管理师','电子商务师',
-    '职业培训师','育婴员','保育师','养老护理员','美容师','美发师'
-  ];
+  function certNameOpts(){ return skillCertEnabledNames(); }
+  function certNameValid(n){ return certNameOpts().indexOf(n)>=0; }
   function mpvCertSection(){
     const u=miniUser; const list=u.certFiles||[];
     const listHtml=!list.length
@@ -29659,10 +29964,15 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
   function renderCertModal(){
     const body=
       '<div class="cert-row"><span class="cert-row-l">证书名称 <span class="req">*</span></span>'+
-        '<div class="cert-row-r"><div class="cert-combo-wrap" style="position:relative">'+
-          '<input class="inp" id="cert-name" autocomplete="off" value="'+escAttr(certDraft.name)+'" placeholder="输入关键词搜索证书"/>'+
-          '<div class="cert-combo-list" id="cert-combo-list" style="display:none;position:absolute;left:0;right:0;top:100%;z-index:50;margin-top:2px;background:#fff;border:1px solid var(--border-base);border-radius:4px;max-height:210px;overflow:auto;box-shadow:0 4px 12px rgba(0,0,0,.08)"></div>'+
-        '</div></div>'+
+        '<div class="cert-row-r"><div style="position:relative">'+
+          '<div class="cert-combo-wrap multi'+(certDraft.name?' has':'')+'" onclick="certComboOpen()">'+
+            '<span class="cc-chip sc-name"'+(certDraft.name?'':' style="display:none"')+'>'+(certDraft.name?escHtml(certDraft.name):'')+'</span>'+
+            '<input class="inp" id="cert-name" autocomplete="off" value="" placeholder="搜索或选择证书名称" oninput="certComboSearch(this.value)" onfocus="certComboOpen()"'+(certDraft.name?' style="flex:1;min-width:60px"':'')+'/>'+
+          '</div>'+
+          '<div class="cert-combo-list" id="cert-combo-list" style="display:none"></div>'+
+        '</div>'+
+        '<div class="sc-hint">名称由运营后台统一配置；如需新增其他证书，可先保存后在下方继续「添加证书」。</div>'+
+        '</div>'+
       '</div>'+
       '<div class="cert-row"><span class="cert-row-l">证书编号</span><div class="cert-row-r"><input class="inp" id="cert-no" value="'+escAttr(certDraft.certNo)+'" placeholder="如：GD202300123"/></div></div>'+
       '<div class="cert-row"><span class="cert-row-l">发证日期</span><div class="cert-row-r"><input class="inp" type="date" id="cert-issue" value="'+escAttr(certDraft.issueDate)+'"/></div></div>'+
@@ -29682,27 +29992,44 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     bindCertNameCombo();
     if(certDraft.fileName&&certDraft.dataUrl){ const pv=document.getElementById('cert-preview'); if(pv){ pv.style.display='block'; pv.innerHTML='<img src="'+certDraft.dataUrl+'" style="max-height:120px;border-radius:6px;display:block"/>'; } }
   }
-  function bindCertNameCombo(){
-    const inp=document.getElementById('cert-name');
-    const list=document.getElementById('cert-combo-list');
-    if(!inp||!list) return;
-    function render(kw){
-      const k=(kw||'').trim();
-      const items=SKILL_LIBRARY.filter(function(n){ return !k || n.indexOf(k)>=0; });
-      if(!items.length){ list.style.display='none'; return; }
-      list.innerHTML=items.map(function(n){ return '<div class="cert-combo-item" data-v="'+escAttr(n)+'" style="padding:8px 12px;font-size:13px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+escHtml(n)+'</div>'; }).join('');
-      list.style.display='block';
-    }
-    inp.addEventListener('input', function(){ render(inp.value); });
-    inp.addEventListener('focus', function(){ render(inp.value); });
-    list.addEventListener('mousedown', function(e){
-      const it=e.target.closest('.cert-combo-item'); if(!it) return;
-      e.preventDefault();
-      inp.value=it.getAttribute('data-v');
-      list.style.display='none';
-    });
-    inp.addEventListener('blur', function(){ setTimeout(function(){ list.style.display='none'; }, 120); });
+  function bindCertNameCombo(){ /* 名称选择改为事件驱动（见 certCombo* 系列函数），保留空的绑定入口 */ }
+  function certComboSel(){ return certDraft.name?[certDraft.name]:[]; }
+  function certComboOpen(){
+    const list=document.getElementById('cert-combo-list'); const inp=document.getElementById('cert-name');
+    if(!list) return;
+    certComboRender(inp?inp.value:'');
   }
+  function certComboSearch(kw){ certComboRender(kw); }
+  function certComboRender(kw){
+    const list=document.getElementById('cert-combo-list'); if(!list) return;
+    const k=(kw||'').trim();
+    const picked=certComboSel();
+    const all=certNameOpts();
+    const items=all.filter(function(n){ return picked.indexOf(n)<0 && (!k || n.indexOf(k)>=0); });
+    const cur=certDraft.name;
+    if(!all.length){
+      list.innerHTML='<div class="cert-combo-empty">暂无可选证书名称，请联系运营在后台配置</div>';
+      list.style.display='block'; return;
+    }
+    let html='';
+    /* 历史引用：当前记录的名称若已不在启用列表中（停用 / 改名 / 删除），仍列出并标注，避免编辑时名称丢失 */
+    if(cur && all.indexOf(cur)<0){
+      html+='<div class="cert-combo-item cur" data-v="'+escAttr(cur)+'" style="color:#909399" onclick="certComboPick(this.getAttribute(\'data-v\'))">'+escHtml(cur)+'<span class="sc-badge off" style="margin-left:6px">已停用</span></div>';
+    }
+    if(!items.length){
+      html+=k?('<div class="cert-combo-empty">没有匹配「'+escHtml(k)+'」的名称，请联系运营新增</div>'):'<div class="cert-combo-empty">已全部选择</div>';
+      list.innerHTML=html; list.style.display='block'; return;
+    }
+    html+=items.map(function(n){ return '<div class="cert-combo-item" data-v="'+escAttr(n)+'" onclick="certComboPick(this.getAttribute(\'data-v\'))">'+escHtml(n)+'</div>'; }).join('');
+    list.innerHTML=html;
+    list.style.display='block';
+  }
+  function certComboPick(v){
+    if(!v) return;
+    certDraft.name=v;
+    renderCertModal();
+  }
+  function certRemoveOther(i){ /* 多选已收回单本，保留占位 */ }
   function onCertFilePick(el){
     if(!el.files||!el.files[0]) return;
     const f=el.files[0];
@@ -29720,8 +30047,8 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     reader.readAsDataURL(f);
   }
   function saveCert(){
-    const name=(document.getElementById('cert-name').value||'').trim();
-    if(!name){ toast('请选择证书名称'); return; }
+    if(!certDraft.name){ toast('请选择证书名称'); return; }
+    if(certNameOpts().indexOf(certDraft.name)<0){ toast('该证书名称已停用，请重新选择'); return; }
     if(!certDraft.fileName){ toast('请上传证书附件'); return; }
     const certNo=(document.getElementById('cert-no').value||'').trim();
     const issueDate=(document.getElementById('cert-issue').value||'').trim();
@@ -29729,9 +30056,9 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     miniUser.certFiles=miniUser.certFiles||[];
     if(certDraft.id){
       const c=miniUser.certFiles.find(function(x){return x.id===certDraft.id;});
-      if(c){ c.name=name; c.certNo=certNo; c.issueDate=issueDate; c.expireDate=expireDate; c.fileName=certDraft.fileName; c.dataUrl=certDraft.dataUrl; }
+      if(c){ c.name=certDraft.name; c.certNo=certNo; c.issueDate=issueDate; c.expireDate=expireDate; c.fileName=certDraft.fileName; c.dataUrl=certDraft.dataUrl; }
     } else {
-      miniUser.certFiles.push({ id:'c'+Date.now(), name:name, certNo:certNo, issueDate:issueDate, expireDate:expireDate, fileName:certDraft.fileName, dataUrl:certDraft.dataUrl });
+      miniUser.certFiles.push({ id:'c'+Date.now(), name:certDraft.name, certNo:certNo, issueDate:issueDate, expireDate:expireDate, fileName:certDraft.fileName, dataUrl:certDraft.dataUrl });
     }
     closeCertSheet(); renderMyProfile(); toast('已保存证书');
   }
