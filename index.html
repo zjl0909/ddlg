@@ -3567,15 +3567,6 @@
   .ml-input:focus{outline:none;border-color:#0da09b;}
   .ml-btn{width:100%;height:46px;border:none;border-radius:24px;background:#0da09b;color:#fff;font-size:15px;font-weight:600;cursor:pointer;margin-top:18px;}
   /* 登录页演示账号快捷入口 */
-  .ml-demo{margin-top:18px;padding-top:14px;border-top:1px dashed #e3e8f0;}
-  .ml-demo-t{font-size:11px;color:#9aa3b2;margin-bottom:8px;}
-  .ml-demo-list{display:flex;flex-direction:column;gap:8px;}
-  .ml-demo-item{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;background:#f7f9fb;border:1px solid #e8edf4;border-radius:8px;cursor:pointer;transition:.15s;}
-  .ml-demo-item:hover{background:#eef6f3;border-color:#bfe0d4;}
-  .ml-demo-ph{font-size:13px;color:#1f2a44;font-weight:600;letter-spacing:.3px;}
-  .ml-demo-tag{font-size:10px;padding:1px 7px;border-radius:9px;background:#f0f0f5;color:#909399;font-weight:600;}
-  .ml-demo-tag.ok{background:#e7faf9;color:#0da09b;}
-  .ml-demo-tip{font-size:11px;color:#b0b7c3;margin-top:8px;line-height:1.5;}
   /* 主登录方式：微信一键登录（唯一实心按钮） */
   .ml-wx-main{width:100%;height:48px;border:none;border-radius:24px;background:#0da09b;color:#fff;font-size:15px;font-weight:700;letter-spacing:.8px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(13,160,155,.28);}
   .ml-wx-main:hover{background:#0b8a86;}
@@ -3602,7 +3593,6 @@
   .ml-agree-err{font-size:11px;color:#E24B4A;margin-top:6px;line-height:1.5;}
   /* 手机号快捷登录独立页 */
   .mlp-body{padding:22px 28px 40px; background:linear-gradient(180deg,#DCFAFB 0%,#F5F7FA 46%,#F5F7FA 100%); min-height:calc(100% - 96px);}
-  .mlp-tip{font-size:12px;color:#9aa3b2;line-height:1.6;margin-bottom:24px;}
   .mlp-body .ml-btn{margin-top:22px;}
   /* 其他登录方式独立页 */
   .mlo-body{padding:22px 28px 40px; background:linear-gradient(180deg,#DCFAFB 0%,#F5F7FA 46%,#F5F7FA 100%); min-height:calc(100% - 96px);}
@@ -8573,7 +8563,6 @@
             <span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
           </div>
           <div class="mlp-body">
-            <div class="mlp-tip">未注册的手机号验证通过后将自动创建账号</div>
             <div class="ml-field">
               <label>手机号</label>
               <input class="ml-input" id="m-login-phone" value="13800001001" placeholder="请输入手机号"/>
@@ -8586,21 +8575,6 @@
               </div>
             </div>
             <button class="ml-btn" onclick="miniAuth()">登录</button>
-            <!-- 演示账号快捷入口（一号一证场景演示） -->
-            <div class="ml-demo">
-              <div class="ml-demo-t">演示账号（点击填入）</div>
-              <div class="ml-demo-list">
-                <div class="ml-demo-item" onclick="miniDemoPick('13800006688')">
-                  <span class="ml-demo-ph">13800006688</span>
-                  <span class="ml-demo-tag ok">已实名</span>
-                </div>
-                <div class="ml-demo-item" onclick="miniDemoPick('13900002288')">
-                  <span class="ml-demo-ph">13900002288</span>
-                  <span class="ml-demo-tag">未实名</span>
-                </div>
-              </div>
-              <div class="ml-demo-tip">两个账号为同一人：用未实名账号去认证已绑定的证件，会提示该证件已被占用。</div>
-            </div>
           </div>
         </div>
 
@@ -29320,14 +29294,6 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     toast('验证码已发送');
     const t=setInterval(function(){ n--; if(n<=0){ clearInterval(t); btn.disabled=false; btn.textContent='获取验证码'; } else { btn.textContent=n+'s'; } },1000);
   }
-  /* 演示用：点击账号填入登录框 */
-  function miniDemoPick(phone){
-    const el1=document.getElementById('m-login-phone');
-    const el2=document.getElementById('m-login-code');
-    if(el1) el1.value=phone;
-    if(el2) el2.value='123456';
-    toast('已填入 '+phone+'，点击登录');
-  }
   /* 按手机号加载/创建账号并登录：手机号快捷登录与微信一键登录共用。
      微信一键登录只是多一种进门方式，实名绑定表完全不动。 */
   function miniLoginByPhone(phone, fromWx, wxChanged){
@@ -29678,7 +29644,7 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     if(!body) return;
     let inner='';
     if(st.step==='idno'){
-      inner='<div class="mlo-tip">请输入本人姓名与身份证号，验证通过后进入人脸识别。</div>'+
+      inner='<div class="mlo-tip">请输入姓名和身份证号，以核验你的实名信息。</div>'+
         '<div class="fl-field">'+
           '<label>姓名</label>'+
           '<input class="fl-input" id="fl-name" maxlength="20" placeholder="请输入姓名" value="'+escAttr(st.name)+'" oninput="faceLoginState.name=this.value"/>'+
