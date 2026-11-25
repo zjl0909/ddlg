@@ -8627,9 +8627,12 @@
             <div class="ml-title">人脸识别登录</div>
             <div class="ml-sub-t">请输入姓名和身份证号，以核验你的实名信息</div>
             <div class="ml-card" id="mlo-body"></div>
+          <div class="ml-agree-wrap" id="mlo-agree-wrap">
           <label class="ml-agree"><input type="checkbox" id="lg-agree-face"/> 我已阅读并同意<span class="ml-link" onclick="event.preventDefault();openAgreement('service')">《服务协议》</span> 和 <span class="ml-link" onclick="event.preventDefault();openAgreement('privacy')">《隐私政策》</span></label>
           <div class="ml-agree-err" id="lg-agree-face-err" style="display:none">请先阅读并同意《服务协议》和《隐私政策》</div>
+          </div>
             <div class="ml-flex-gap"></div>
+          <div class="ml-tabs-wrap" id="mlo-tabs-wrap">
           <div class="ml-tabs">
             <div class="ml-tabs-label">其他方式登录</div>
             <div class="ml-tabs-row">
@@ -8642,6 +8645,7 @@
                 <span class="ml-tab-t">手机号</span>
               </button>
             </div>
+          </div>
           </div>
           </div>
         </div>
@@ -29667,8 +29671,10 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
 
   /* ===== 其他登录方式（姓名 + 身份证号 → 人脸验证 → 登录）=====
      仅已实名账号可用；格式或实名记录校验不通过都停在当前页，不进入人脸验证。 */
-  let faceLoginState={ step:'idno', name:'', idno:'', err:'', scanning:false };
-  function faceLoginReset(){ faceLoginState={ step:'idno', name:'', idno:'', err:'', scanning:false }; }
+  /* 演示数据：默认填入一条可正常登录的已实名记录（张师傅 / 13800006688） */
+  const FACE_DEMO={ name:'张师傅', idno:'11010119950307651X' };
+  let faceLoginState={ step:'idno', name:FACE_DEMO.name, idno:FACE_DEMO.idno, err:'', scanning:false };
+  function faceLoginReset(){ faceLoginState={ step:'idno', name:FACE_DEMO.name, idno:FACE_DEMO.idno, err:'', scanning:false }; }
 
   /* 登录页「其他登录方式」按钮是否可见：存在任何已实名账号即可 */
   function faceLoginEnabled(){
@@ -29714,6 +29720,10 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     const tip=document.querySelector('#m-login-other .ml-sub-t');
     if(tit) tit.textContent = st.step==='face' ? '人脸验证' : '人脸识别登录';
     if(tip) tip.textContent = st.step==='face' ? '请正对摄像头完成活体检测' : '输入姓名和身份证号，以核验你的实名信息';
+    /* 第二步（人脸验证）属于同一登录动作的延续，隐藏协议勾选与「其他方式登录」切换 */
+    const inFace = (st.step==='face');
+    const aw=document.getElementById('mlo-agree-wrap'); if(aw) aw.style.display = inFace ? 'none' : '';
+    const tw=document.getElementById('mlo-tabs-wrap');  if(tw) tw.style.display = inFace ? 'none' : '';
     if(!body) return;
     let inner='';
     if(st.step==='idno'){
@@ -29745,6 +29755,8 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     faceLoginState.name=name;
     faceLoginState.idno=idno;
     faceLoginState.err='';
+    /* 未勾选协议不得进入下一步 */
+    if(!lgAgreed('lg-agree-face')){ toast('请先阅读并同意用户协议'); lgAgreeErr('lg-agree-face', true); return; }
 
     /* 姓名：2-20 字，仅中文 / 英文字母 / 间隔号 / 空格 */
     let nameOk=name.length>=2 && name.length<=20;
@@ -29789,6 +29801,8 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
 
   function faceLoginScan(){
     if(faceLoginState.scanning) return;
+    /* 兜底：第二步虽已隐藏协议行，仍校验一次（防止外部改动勾选状态） */
+    if(!lgAgreed('lg-agree-face')){ toast('请先阅读并同意用户协议'); faceLoginState.step='idno'; renderFaceLogin(); return; }
     faceLoginState.scanning=true;
     faceLoginState.err='';
     renderFaceLogin();
