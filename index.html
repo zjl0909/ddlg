@@ -30,7 +30,7 @@
      略实 1px 线 + 统一小圆角(容器6/控件4) + 少用阴影 + 正文12px
      字段名12 / 值11 + 说明文字10px；层次靠实线边框，侧栏保持白色 */
   #p-admin{ --primary:#3771eb; --primary-light:#eaf1fe; --primary-lighter:#f4f8fe; }
-  #p-mini{ --primary:#0d8f6e; --primary-light:#E0FCFD; --primary-lighter:#F0FEFF; --primary-hover:#14b8a6; --primary-disabled:#B2F5EA; }
+  #p-mini{ --primary:#0da09b; --primary-light:#E4FCFA; --primary-lighter:#F2FDFD; --primary-hover:#10bdb8; --primary-disabled:#C4EDEB; }
   #p-mini .screen{ scrollbar-width:none; -ms-overflow-style:none; background:#F5F7FA; }
   #p-mini .screen::-webkit-scrollbar{ display:none; width:0; height:0; }
   #p-mini .mscreen{ min-height:100%; height:100%; display:flex; flex-direction:column; }
@@ -705,6 +705,15 @@
   .progress > i{display:block; height:100%; background:var(--primary);}
   /* mini program */
   .phonewrap{display:flex; justify-content:center; padding:24px;}
+  /* 手机模型外壳：仅 #p-mini 使用，浅灰机身 + 圆角 + 内屏裁切 */
+  .phone-shell{position:relative; width:374px; padding:12px 12px 18px; box-sizing:border-box;
+    background:#F2F3F5; border:1px solid #E3E5E9; border-radius:38px;
+    box-shadow:0 10px 28px rgba(31,42,68,.10), 0 1px 2px rgba(31,42,68,.06);}
+  .phone-shell .ps-notch{position:absolute; top:22px; left:50%; transform:translateX(-50%);
+    width:88px; height:18px; background:#E4E6EA; border-radius:9px; z-index:101; pointer-events:none;}
+  .phone-shell .ps-bar{position:absolute; bottom:7px; left:50%; transform:translateX(-50%);
+    width:112px; height:4px; background:#D5D8DE; border-radius:2px; pointer-events:none;}
+  .phone-shell .phone{border-radius:26px;}
   .phone{width:350px; height:700px; box-sizing:border-box; background:#fff; position:relative; overflow:hidden;}
   .phone .statusbar{height:30px; position:absolute; top:0; left:0; right:0; z-index:100; background:transparent; color:#0c3d2b; display:flex; align-items:center; justify-content:space-between; padding:0 16px; font-size:11px; pointer-events:none;}
   .phone .statusbar > *{pointer-events:auto;}
@@ -713,7 +722,7 @@
   .phone .mtab{position:absolute; bottom:0; left:0; right:0; height:56px; background:#fff; border-top:1px solid var(--border-lighter); display:flex;}
   .phone .mtab button{flex:1; border:none; background:transparent; font-size:11px; color:var(--text-regular); cursor:pointer; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px;}
   .phone .mtab button.active{color:var(--primary); font-weight:600;}
-  .mhead{background:linear-gradient(180deg,#C6FCFD 0%,#E0FCFD 100%); color:#0c3d2b; padding:16px 16px 16px; font-size:14px; font-weight:600; display:flex; align-items:center; justify-content:space-between;}
+  .mhead{background:linear-gradient(180deg,#C6FCFD 0%,#E4FCFA 100%); color:#0c3d2b; padding:16px 16px 16px; font-size:14px; font-weight:600; display:flex; align-items:center; justify-content:space-between;}
   /* 顶部右侧功能按钮胶囊：●●● | — | ⊙ */
   .mini-caps{display:inline-flex; align-items:center; gap:10px; height:30px; padding:0 12px; background:#fff; border-radius:16px; box-shadow:0 1px 4px rgba(12,61,43,.08); flex:0 0 auto;}
   .mini-caps .mc-dots{display:flex; gap:2.5px;}
@@ -723,7 +732,7 @@
   .mini-caps .mc-circle::after{content:''; position:absolute; inset:2.5px; border-radius:50%; background:#0c3d2b;}
   /* 工作台/任务大厅/消息/我的：与推荐页统一的淡出渐变 + 吸顶 */
   #m-work,#m-taskhall,#m-msg,#m-me{background:#F5F7FA;}
-  #m-work .mhead,#m-taskhall .mhead,#m-msg .mhead,#m-me .mhead{position:sticky; top:0; z-index:20; background:linear-gradient(180deg,#C6FCFD 0%,#E0FCFD 70%,#F5F7FA 100%);}
+  #m-work .mhead,#m-taskhall .mhead,#m-msg .mhead,#m-me .mhead{position:sticky; top:0; z-index:20; background:linear-gradient(180deg,#C6FCFD 0%,#E4FCFA 70%,#F5F7FA 100%);}
   .mcard{background:#fff; border-radius:8px; margin:12px; padding:14px; border:1px solid var(--border-extra-light);}
   .mjob h3{margin:0 0 6px; font-size:15px;}
   .mjob .meta{color:var(--text-secondary); font-size:12px; margin-bottom:8px;}
@@ -785,7 +794,7 @@
   .phone .cert-combo-empty{padding:10px 12px;font-size:12px;color:#909399;line-height:1.6;}
   .phone .cert-combo-wrap.multi{display:flex;flex-wrap:wrap;gap:6px;align-items:center;min-height:22px;border:1px solid #dcdfe6;border-radius:6px;background:#fff;padding:6px 8px;cursor:pointer;}
   .phone .cert-combo-wrap.multi .inp{flex:1;min-width:70px;width:auto;border:0;padding:2px 0;height:22px;box-shadow:none;background:transparent;font-size:13px;}
-  .phone .cc-chip{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:#0d8f6e;background:#e6f7f1;border-radius:4px;padding:2px 6px;line-height:1.5;white-space:nowrap;}
+  .phone .cc-chip{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:#0da09b;background:#e7faf9;border-radius:4px;padding:2px 6px;line-height:1.5;white-space:nowrap;}
   .phone .cc-chip i{font-style:normal;color:#6fbfa5;cursor:pointer;padding:0 1px;}
   .phone .mini-modal .mm-foot .btn.ghost{ background:#F4F4F8; color:#6B6B82; }
   .phone .mini-modal .mm-foot .btn.primary{ background:var(--primary); color:#fff; }
@@ -799,7 +808,7 @@
   #m-poster-apply .pa-body::-webkit-scrollbar{ display:none; }
   #m-poster-apply .pa-card{ background:#fff; border-radius:12px; padding:12px 14px; margin-bottom:10px; box-shadow:0 2px 8px rgba(0,0,0,.04); }
   #m-poster-apply .pa-card .pa-ent{ display:flex; align-items:center; gap:10px; }
-  #m-poster-apply .pa-card .pa-ent .logo{ width:40px; height:40px; border-radius:10px; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:15px; background:#0d8f6e; }
+  #m-poster-apply .pa-card .pa-ent .logo{ width:40px; height:40px; border-radius:10px; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:15px; background:#0da09b; }
   #m-poster-apply .pa-card .pa-ent .ent{ font-weight:700; font-size:12px; color:#1B1B2F; }
   #m-poster-apply .pa-card .pa-ent .post{ font-size:12px; color:#9A9AB8; margin-top:2px; }
   #m-poster-apply .pa-sec-title{ font-size:12px; font-weight:700; color:#1B1B2F; margin-bottom:8px; }
@@ -839,7 +848,7 @@
   #m-poster-apply .pa-foot{ flex:0 0 auto; position:static; display:flex; gap:12px; padding:10px 16px 14px; background:#fff; border-top:1px solid #ebeef5; box-sizing:border-box; }
   #m-poster-apply .pa-foot .btn{ flex:1; min-height:44px; border-radius:10px; padding:12px; font-size:14px; font-weight:600; border:0; display:flex; align-items:center; justify-content:center; box-sizing:border-box; cursor:pointer; -webkit-tap-highlight-color:transparent; }
   #m-poster-apply .pa-foot .btn.ghost{ background:#fff; border:1px solid #dcdfe6; color:#606266; }
-  #m-poster-apply .pa-foot .btn.primary{ background:#0d8f6e; color:#fff; box-shadow:0 4px 12px rgba(13,143,110,.25); }
+  #m-poster-apply .pa-foot .btn.primary{ background:#0da09b; color:#fff; box-shadow:0 4px 12px rgba(13,160,155,.25); }
   /* 报名成功单页 */
   #m-apply-success{ display:flex; flex-direction:column; height:100%; overflow:hidden; background:#F5F7FA; }
   #m-apply-success .as-body{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:40px 32px; text-align:center; }
@@ -849,7 +858,7 @@
   #m-apply-success .as-foot{ flex:0 0 auto; display:flex; gap:12px; padding:12px 16px 16px; background:#fff; border-top:1px solid #ebeef5; box-sizing:border-box; }
   #m-apply-success .as-foot .btn{ flex:1; min-height:44px; border-radius:10px; padding:12px; font-size:14px; font-weight:600; border:0; display:flex; align-items:center; justify-content:center; box-sizing:border-box; cursor:pointer; -webkit-tap-highlight-color:transparent; }
   #m-apply-success .as-foot .btn.ghost{ background:#fff; border:1px solid #dcdfe6; color:#606266; }
-  #m-apply-success .as-foot .btn.primary{ background:#0d8f6e; color:#fff; box-shadow:0 4px 12px rgba(13,143,110,.25); }
+  #m-apply-success .as-foot .btn.primary{ background:#0da09b; color:#fff; box-shadow:0 4px 12px rgba(13,160,155,.25); }
   #m-apply-success .as-body::-webkit-scrollbar{ display:none; }
   #m-apply-success .as-head{ flex:0 0 auto; position:relative; display:flex; align-items:center; gap:10px; padding:10px 16px; background:#fff; border-bottom:1px solid #ebeef5; box-sizing:border-box; }
   #m-apply-success .as-head .back{ flex:0 0 44px; font-size:24px; color:#1B1B2F; cursor:pointer; margin-left:-8px; }
@@ -1208,7 +1217,7 @@
   .sc-item-name{flex:1;min-width:0;font-size:13px;color:#1f2a44;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
   .sc-item.off .sc-item-name{color:#a8b0be;}
   .sc-badge{flex:0 0 auto;font-size:11px;font-weight:600;border-radius:9px;padding:1px 8px;}
-  .sc-badge.on{color:#0d8f6e;background:#e6f7f1;}
+  .sc-badge.on{color:#0da09b;background:#e7faf9;}
   .sc-badge.off{color:#909399;background:#f0f0f5;}
   .sc-act{flex:0 0 auto;font-size:12px;cursor:pointer;padding:0 2px;}
   .sc-act.on{color:#3771eb;}
@@ -2069,7 +2078,7 @@
 
   /* ===== 推荐页 ===== */
   #m-rec{position:relative;}
-  .mr-header{position:sticky; top:0; z-index:20; background:linear-gradient(180deg,#C6FCFD 0%,#E0FCFD 70%,#F5F7FA 100%); padding:16px 16px 6px;}
+  .mr-header{position:sticky; top:0; z-index:20; background:linear-gradient(180deg,#C6FCFD 0%,#E4FCFA 70%,#F5F7FA 100%); padding:16px 16px 6px;}
   .mr-top{display:flex; align-items:center; gap:10px; padding:10px 14px 6px 6px;}
   .mr-city{font-size:14px; font-weight:700; color:#0c3d2b; display:flex; align-items:center; gap:4px; cursor:pointer; flex:0 0 auto; white-space:nowrap; max-width:90px;}
   .mr-city .arrow{font-size:16px; color:#0c3d2b; opacity:.85; line-height:1; margin-left:1px;}
@@ -2085,14 +2094,14 @@
   .mr-tabs{display:flex; gap:20px; padding:6px 16px 8px; position:relative; border-bottom:1px solid rgba(0,0,0,.06);}
   .mr-tabs button{padding:4px 2px; border:none; background:transparent; font-size:14px; color:#5b6b66; position:relative; cursor:pointer; font-weight:500;}
   .mr-tabs button.on{color:#0c3d2b; font-weight:700;}
-  .mr-tabs button.on::after{content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:#0d8f6e; border-radius:2px 2px 0 0;}
+  .mr-tabs button.on::after{content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:#0da09b; border-radius:2px 2px 0 0;}
   .mr-sortbar{display:flex; align-items:center; gap:8px; padding:10px 14px; background:transparent; overflow:auto; scrollbar-width:none;}
   .mr-sortbar::-webkit-scrollbar{display:none;}
   .mr-chips{display:flex; gap:8px; flex:0 0 auto;}
   .mr-chip{font-size:12px; padding:6px 14px; border-radius:6px; background:#F2F3F5; color:#374151; border:none; cursor:pointer; position:relative; white-space:nowrap; display:inline-flex; align-items:center; gap:4px;}
-  .mr-chip.on{background:#E0FCFD; color:#0d8f6e; font-weight:600;}
+  .mr-chip.on{background:#E4FCFA; color:#0da09b; font-weight:600;}
   .mr-chip.has-opt::after{content:''; width:0; height:0; border-left:4px solid transparent; border-right:4px solid transparent; border-top:5px solid #9ca3af;}
-  .mr-chip.has-opt.on::after{border-top-color:#0d8f6e;}
+  .mr-chip.has-opt.on::after{border-top-color:#0da09b;}
   #m-rec-body{flex:1; background:#F5F7FA; min-height:calc(100% - 150px);}
   .mr-list{padding:10px 0 12px;}
   .mr-card{background:#fff; border-radius:12px; margin:0 14px 14px; padding:14px 16px; box-shadow:0 2px 8px rgba(31,41,55,.05); cursor:pointer;}
@@ -2116,20 +2125,20 @@
   /* 城市选择器 */
   .mr-city-picker{display:none; position:absolute; inset:0; background:#F5F7FA; z-index:50; flex-direction:column;}
   .mr-city-picker.on{display:flex;}
-  .cp-head{display:flex; align-items:center; gap:10px; padding:42px 14px 12px; background:linear-gradient(180deg,#C6FCFD 0%,#E0FCFD 100%);}
+  .cp-head{display:flex; align-items:center; gap:10px; padding:42px 14px 12px; background:linear-gradient(180deg,#C6FCFD 0%,#E4FCFA 100%);}
   .cp-back{font-size:22px; color:#0c3d2b; cursor:pointer; line-height:1;}
   .cp-title{font-size:16px; font-weight:700; color:#0c3d2b;}
   .cp-search{display:flex; align-items:center; gap:6px; margin:12px 14px; background:#fff; border-radius:18px; padding:8px 14px;}
   .cp-search input{border:none; background:transparent; flex:1; font-size:13px; outline:none;}
   .cp-current{font-size:13px; color:#374151; padding:0 16px 8px;}
-  .cp-current span{color:#0d8f6e; font-weight:600;}
+  .cp-current span{color:#0da09b; font-weight:600;}
   .cp-body{flex:1; overflow:auto; padding:0 16px 20px;}
   .cp-body::-webkit-scrollbar{display:none;}
   .cp-group{margin-bottom:14px;}
   .cp-group-h{font-size:12px; font-weight:700; color:#9ca3af; margin:8px 0;}
   .cp-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:10px;}
   .cp-cell{background:#fff; border-radius:8px; padding:9px 0; text-align:center; font-size:13px; color:#374151; cursor:pointer; border:1px solid #eef0f2;}
-  .cp-cell.on{background:#E0FCFD; color:#0d8f6e; border-color:#0d8f6e;}
+  .cp-cell.on{background:#E4FCFA; color:#0da09b; border-color:#0da09b;}
   .cp-empty{text-align:center; padding:40px 0; color:#9ca3af; font-size:13px; display:none;}
   /* 推荐页筛选弹窗（从 chip 弹出） */
   .mr-pop{display:none; position:absolute; inset:0; z-index:60; background:rgba(0,0,0,.35);}
@@ -2140,11 +2149,11 @@
   .mp-foot{display:flex; flex-wrap:wrap; gap:10px; padding:12px 16px; border-top:1px solid #f0f2f5;}
   .mp-foot .btn{flex:1; border-radius:12px; padding:11px 0; font-size:14px; font-weight:600; border:0; cursor:pointer;}
   .mp-foot .btn.ghost{background:#f3f4f6; color:#374151;}
-  .mp-foot .btn.primary{background:#0d8f6e; color:#fff;}
+  .mp-foot .btn.primary{background:#0da09b; color:#fff;}
   .mp-foot-btns{display:flex; gap:10px; flex:1 1 100%;}
   .mp-foot-btns .btn{flex:1; border-radius:12px; padding:11px 0; font-size:14px; font-weight:600; border:0; cursor:pointer;}
   .mp-foot-btns .btn.ghost{background:#f3f4f6; color:#374151;}
-  .mp-foot-btns .btn.primary{background:#0d8f6e; color:#fff;}
+  .mp-foot-btns .btn.primary{background:#0da09b; color:#fff;}
   /* 单字段多选小弹层（紧贴 chip，一行一项） */
   .mr-mini-mask{position:absolute; inset:0; z-index:64; display:none;}
   .mr-mini{position:absolute; z-index:65; background:#fff; border-radius:10px; box-shadow:0 6px 18px rgba(31,41,55,.16); min-width:124px; display:none; flex-direction:column; overflow:hidden;}
@@ -2152,10 +2161,10 @@
   .mr-mini-body{padding:4px 0;}
   .mr-mini-row{display:flex; align-items:center; justify-content:space-between; padding:10px 16px; font-size:13px; color:#374151; cursor:pointer; white-space:nowrap;}
   .mr-mini-row:hover{background:#f7f8fa;}
-  .mr-mini-row.on{color:#0d8f6e; font-weight:600;}
-  .mr-mini-row .ck{color:#0d8f6e; font-size:12px; margin-left:10px;}
+  .mr-mini-row.on{color:#0da09b; font-weight:600;}
+  .mr-mini-row .ck{color:#0da09b; font-size:12px; margin-left:10px;}
   .mr-mini-foot{padding:8px 12px; border-top:1px solid #f0f2f5; display:flex; justify-content:flex-end;}
-  .mr-mini-foot button{background:#0d8f6e; color:#fff; border:0; border-radius:8px; padding:7px 16px; font-size:13px; font-weight:600; cursor:pointer;}
+  .mr-mini-foot button{background:#0da09b; color:#fff; border:0; border-radius:8px; padding:7px 16px; font-size:13px; font-weight:600; cursor:pointer;}
   /* 品牌弹窗：已选标签条（单行横滑，点×移除） */
   .mp-selbar-wrap{flex:1 1 100%; margin-bottom:2px;}
   .mp-selbar{display:flex; gap:8px; overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none;}
@@ -2167,39 +2176,39 @@
   .mp-brand{border:0; background:none; border-radius:0; padding:4px 0; text-align:center; cursor:pointer; min-width:0;}
   .mp-brand.on{border:0; background:none;}
   .mp-brand-logo{width:42px; height:42px; border-radius:50%; margin:0 auto 6px; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:14px;}
-  .mp-brand.on .mp-brand-logo{box-shadow:0 0 0 2px #fff, 0 0 0 3.5px #0d8f6e;}
+  .mp-brand.on .mp-brand-logo{box-shadow:0 0 0 2px #fff, 0 0 0 3.5px #0da09b;}
   .mp-brand-name{font-size:11px; color:#374151; line-height:1.4; max-width:6em; margin:0 auto; word-break:break-all;}
-  .mp-brand.on .mp-brand-name{color:#0d8f6e; font-weight:600;}
+  .mp-brand.on .mp-brand-name{color:#0da09b; font-weight:600;}
   .mp-group{margin-bottom:16px;}
   .mp-group-h{font-size:13px; font-weight:700; color:#374151; margin-bottom:8px;}
   .mp-tags{display:flex; flex-wrap:wrap; gap:8px;}
   .mp-tag{font-size:12px; padding:6px 14px; border-radius:14px; background:#fff; border:1px solid #e5e7eb; color:#374151; cursor:pointer; white-space:nowrap;}
-  .mp-tag.on{background:#E0FCFD; color:#0d8f6e; border-color:#0d8f6e;}
+  .mp-tag.on{background:#E4FCFA; color:#0da09b; border-color:#0da09b;}
   /* 抢班卡片 */
   .gb-card{background:#fff; border-radius:12px; margin:0 14px 14px; padding:14px 16px; box-shadow:0 2px 8px rgba(31,41,55,.05);}
   .gb-head{display:flex; align-items:center; gap:8px;}
   .gb-title{font-size:15px; font-weight:700; color:#1f2937; flex:1; min-width:0;}
-  .gb-tag{font-size:10px; padding:2px 6px; border-radius:4px; background:#E0FCFD; color:#0d8f6e; margin-left:4px;}
+  .gb-tag{font-size:10px; padding:2px 6px; border-radius:4px; background:#E4FCFA; color:#0da09b; margin-left:4px;}
   .gb-income{font-size:10px; padding:2px 6px; border-radius:4px; background:#fff7e6; color:#d48806; margin-left:4px;}
   .gb-meta{font-size:12px; color:#9ca3af; margin:6px 0 10px;}
-  .gb-shift-h{font-size:13px; font-weight:700; color:#374151; margin-bottom:8px; border-left:3px solid #0d8f6e; padding-left:6px;}
+  .gb-shift-h{font-size:13px; font-weight:700; color:#374151; margin-bottom:8px; border-left:3px solid #0da09b; padding-left:6px;}
   .gb-shift{display:flex; align-items:center; justify-content:space-between; padding:10px 0; border-top:1px solid #f0f2f5;}
   .gb-shift:first-of-type{border-top:none;}
   .gb-shift-d{font-size:13px; color:#1f2937; font-weight:600;}
   .gb-shift-t{font-size:12px; color:#9ca3af; margin-top:3px;}
   .gb-shift-r{display:flex; align-items:center; gap:10px;}
   .gb-shift-seat{font-size:11px; color:#9ca3af;}
-  .gb-grab{background:#0d8f6e; color:#fff; border:0; border-radius:14px; padding:6px 14px; font-size:12px; font-weight:600; cursor:pointer; white-space:nowrap;}
-  .gb-more{text-align:center; font-size:13px; color:#0d8f6e; padding:10px 0; cursor:pointer;}
+  .gb-grab{background:#0da09b; color:#fff; border:0; border-radius:14px; padding:6px 14px; font-size:12px; font-weight:600; cursor:pointer; white-space:nowrap;}
+  .gb-more{text-align:center; font-size:13px; color:#0da09b; padding:10px 0; cursor:pointer;}
 
   /* ===== 岗位详情页 ===== */
-  .md-header{position:relative; background:linear-gradient(180deg,#C6FCFD 0%,#E0FCFD 100%); overflow:hidden;}
+  .md-header{position:relative; background:linear-gradient(180deg,#C6FCFD 0%,#E4FCFA 100%); overflow:hidden;}
   .md-topbar{position:relative; z-index:4; height:48px; display:flex; align-items:center; justify-content:space-between; padding:0 12px;}
   .md-header .back{width:44px; height:44px; display:flex; align-items:center; justify-content:center; font-size:26px; color:var(--text-primary); cursor:pointer; z-index:4; margin-left:-8px;}
   .md-topbar .topbar-caps{flex:0 0 auto;}
   .md-header .img-txt{position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:13px; text-align:center;}
   .md-header .img-idx{position:absolute; top:58px; right:10px; background:rgba(0,0,0,.4); color:#fff; font-size:11px; padding:2px 8px; border-radius:10px; z-index:3;}
-  .md-gal{position:relative; width:100%; aspect-ratio:16/9; display:flex; overflow-x:auto; scroll-snap-type:x mandatory; background:#E0FCFD;}
+  .md-gal{position:relative; width:100%; aspect-ratio:16/9; display:flex; overflow-x:auto; scroll-snap-type:x mandatory; background:#E4FCFA;}
   .md-gal-img{height:100%; width:100%; flex:0 0 100%; object-fit:cover; scroll-snap-align:start;}
   .md-body{background:#F5F7FA; border-radius:16px 16px 0 0; margin-top:-16px; position:relative; z-index:1; padding:0 0 64px; min-height:300px;}
   .md-body > * + *{margin-top:10px;}
@@ -2224,16 +2233,16 @@
     background-image:
       repeating-linear-gradient(0deg, transparent 0 20px, rgba(255,255,255,.6) 20px 22px),
       repeating-linear-gradient(90deg, transparent 0 20px, rgba(255,255,255,.6) 20px 22px),
-      radial-gradient(30px 30px at 88% 26%, rgba(13,143,110,.22), transparent 70%),
+      radial-gradient(30px 30px at 88% 26%, rgba(13,160,155,.22), transparent 70%),
       radial-gradient(24px 24px at 10% 86%, rgba(56,140,209,.16), transparent 70%),
       linear-gradient(180deg,#eef6f2,#e3efe9);
-    border:1px solid rgba(13,143,110,.14);
+    border:1px solid rgba(13,160,155,.14);
     box-shadow:0 1px 4px rgba(0,0,0,.04);}
   .md-addr::before{content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(255,255,255,.62), rgba(255,255,255,.4)); pointer-events:none;}
   .md-addr::after{content:'📍'; position:absolute; right:2px; bottom:-10px; font-size:56px; opacity:.07; transform:rotate(6deg); pointer-events:none;}
   .md-addr > *{position:relative; z-index:1;}
   .md-addr .r1{display:flex; align-items:center; gap:8px;}
-  .md-addr .loc-pin{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px; border-radius:50%; background:var(--primary,#0d8f6e); color:#fff; font-size:15px; box-shadow:0 2px 6px rgba(13,143,110,.3); flex:0 0 auto;}
+  .md-addr .loc-pin{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px; border-radius:50%; background:var(--primary,#0da09b); color:#fff; font-size:15px; box-shadow:0 2px 6px rgba(13,160,155,.3); flex:0 0 auto;}
   .md-addr .name{font-size:15px; font-weight:700; color:var(--text-primary);}
   .md-addr .addr{font-size:12px; color:var(--text-secondary); margin-top:4px;}
   .md-addr .dist{font-size:12px; color:var(--primary); margin-top:2px;}
@@ -2241,7 +2250,7 @@
   .md-banner .arrow{color:var(--text-secondary);}
   .md-sec{background:#fff; padding:14px 16px;}
   .md-sec-h{display:flex; align-items:center; gap:8px; font-size:15px; font-weight:700; color:var(--text-primary); margin-bottom:10px;}
-  .md-sec-h .sec-ic{flex:0 0 auto; width:26px; height:26px; border-radius:8px; background:rgba(13,143,110,.12); display:flex; align-items:center; justify-content:center; font-size:14px;}
+  .md-sec-h .sec-ic{flex:0 0 auto; width:26px; height:26px; border-radius:8px; background:rgba(13,160,155,.12); display:flex; align-items:center; justify-content:center; font-size:14px;}
   .md-sec-h .toggle{font-size:12px; color:var(--text-secondary); cursor:pointer;}
   .md-duty,.md-req{margin:0; padding-left:16px; font-size:13px; color:var(--text-regular); line-height:1.8;}
   .md-duty{white-space:pre-wrap;}
@@ -2254,14 +2263,14 @@
   #p-mini #m-rec{position:relative;}
   .mr-where{display:none; position:absolute; inset:0; background:#F5F7FA; z-index:80; flex-direction:column;}
   .mr-where.on{display:flex;}
-  .where-head{display:flex; align-items:center; gap:10px; padding:42px 14px 12px; background:linear-gradient(180deg,#C6FCFD 0%,#E0FCFD 100%);}
+  .where-head{display:flex; align-items:center; gap:10px; padding:42px 14px 12px; background:linear-gradient(180deg,#C6FCFD 0%,#E4FCFA 100%);}
   .where-back{font-size:22px; color:#0c3d2b; cursor:pointer; line-height:1;}
   .where-title{font-size:16px; font-weight:700; color:#0c3d2b;}
   .where-search{display:flex; align-items:center; gap:6px; margin:12px 14px; background:#fff; border-radius:18px; padding:8px 14px;}
   .ws-city{display:flex; align-items:center; gap:3px; font-size:14px; font-weight:600; color:#0c3d2b; white-space:nowrap; cursor:pointer;}
   .ws-arrow{font-size:11px; opacity:.7; line-height:1;}
   .ws-div{width:1px; height:16px; background:#e5e7eb; margin:0 4px; flex:0 0 auto;}
-  .city-more-cell{color:#0d8f6e; font-weight:600;}
+  .city-more-cell{color:#0da09b; font-weight:600;}
   .where-search input{border:none; background:transparent; flex:1; font-size:13px; outline:none;}
   .where-body{flex:1; overflow:auto; padding:0 16px 24px;}
   .where-body::-webkit-scrollbar{display:none;}
@@ -2272,23 +2281,23 @@
   .where-loc .wl-txt{flex:1; min-width:0;}
   .where-loc .wl-name{font-size:14px; color:#1f2937; font-weight:600; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
   .where-loc .wl-sub{font-size:11px; color:#9ca3af; margin-top:2px;}
-  .where-loc .wl-reloc{font-size:12px; color:#0d8f6e; font-weight:600; flex:0 0 auto; margin-left:8px;}
+  .where-loc .wl-reloc{font-size:12px; color:#0da09b; font-weight:600; flex:0 0 auto; margin-left:8px;}
   .wa-item{display:flex; align-items:center; gap:10px; background:#fff; border-radius:10px; padding:12px 14px; margin-bottom:8px;}
-  .wa-item .wa-pin{font-size:16px; color:#0d8f6e;}
+  .wa-item .wa-pin{font-size:16px; color:#0da09b;}
   .wa-item .wa-txt{flex:1; min-width:0;}
   .wa-item .wa-name{font-size:14px; color:#1f2937; font-weight:600; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
   .wa-item .wa-sub{font-size:11px; color:#9ca3af; margin-top:2px;}
   .wa-item .wa-ico{font-size:15px; color:#bbb; padding:4px 6px; cursor:pointer;}
   .wa-item .wa-ico:hover{color:#4b5563;}
-  .wa-add{display:flex; align-items:center; gap:8px; justify-content:center; background:#fff; border:1px dashed #cbd5e1; border-radius:10px; padding:12px; color:#0d8f6e; font-size:13px; font-weight:600; cursor:pointer; margin-top:4px;}
+  .wa-add{display:flex; align-items:center; gap:8px; justify-content:center; background:#fff; border:1px dashed #cbd5e1; border-radius:10px; padding:12px; color:#0da09b; font-size:13px; font-weight:600; cursor:pointer; margin-top:4px;}
   .wa-add.disabled{color:#bbb; border-color:#e5e7eb; cursor:not-allowed;}
   .mpv-card .wa-item{border:1px solid #eef1f3; background:#fcfdfd;}
   .mpv-card .wa-add{border-color:#dbe4ee;}
   .city-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:10px;}
   .city-cell{background:#fff; border-radius:8px; padding:12px 0; text-align:center; font-size:13px; color:#374151; cursor:pointer; border:1px solid #eef0f2; position:relative;}
-  .city-cell.on{background:#E0FCFD; color:#0d8f6e; border-color:#0d8f6e;}
+  .city-cell.on{background:#E4FCFA; color:#0da09b; border-color:#0da09b;}
   .city-cell .cc-n{position:absolute; top:4px; right:7px; font-size:10px; color:#9ca3af;}
-  .city-more{margin-top:10px; text-align:center; font-size:13px; color:#0d8f6e; font-weight:600; cursor:pointer; background:#fff; border-radius:8px; padding:12px;}
+  .city-more{margin-top:10px; text-align:center; font-size:13px; color:#0da09b; font-weight:600; cursor:pointer; background:#fff; border-radius:8px; padding:12px;}
   /* 全量城市选择页 */
   .mr-city-more{display:none; position:absolute; inset:0; background:#F5F7FA; z-index:90; flex-direction:column;}
   .mr-city-more.on{display:flex;}
@@ -2296,7 +2305,7 @@
   .city-more-body{flex:1; overflow:auto; padding:0 16px 24px; padding-right:30px;}
   .city-az-sec{margin-bottom:4px;}
   .city-az-letter{font-size:12px; font-weight:700; color:#9ca3af; margin:6px 0 4px; background:#F5F7FA; padding:2px 4px;}
-  .city-az{position:absolute; right:4px; top:0; bottom:0; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:1px; font-size:11px; color:#0d8f6e; width:22px;}
+  .city-az{position:absolute; right:4px; top:0; bottom:0; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:1px; font-size:11px; color:#0da09b; width:22px;}
   .city-az-i{padding:1px 2px; cursor:pointer; line-height:1.25; user-select:none;}
   .city-az-i:active{font-weight:700;}
   .cm-search{display:flex; align-items:center; gap:6px; margin:10px 14px 4px; background:#fff; border-radius:18px; padding:9px 14px; box-shadow:0 1px 4px rgba(15,61,43,.06);}
@@ -2308,7 +2317,7 @@
   .mpk-head{display:flex; align-items:center; justify-content:space-between; padding:14px 16px; border-bottom:1px solid #f0f2f5; font-size:15px; font-weight:700; color:#1f2937;}
   .mpk-head .mpk-cancel,.mpk-head .mpk-ok{font-size:14px; font-weight:600; cursor:pointer;}
   .mpk-head .mpk-cancel{color:#9ca3af;}
-  .mpk-head .mpk-ok{color:#0d8f6e;}
+  .mpk-head .mpk-ok{color:#0da09b;}
   .mpk-search{display:flex; align-items:center; gap:6px; margin:12px 16px; background:#f3f4f6; border-radius:18px; padding:9px 14px;}
   .mpk-search input{border:none; background:transparent; flex:1; font-size:13px; outline:none;}
   .mpk-map{flex:0 0 200px; margin:0 16px; border-radius:12px; background:linear-gradient(135deg,#e7f0ee 0%,#dfeaf6 100%); position:relative; display:flex; align-items:center; justify-content:center; overflow:hidden;}
@@ -2317,11 +2326,11 @@
   .mpk-pois{flex:1; overflow:auto; padding:8px 16px 16px;}
   .mpk-pois::-webkit-scrollbar{display:none;}
   .poi-row{display:flex; align-items:center; gap:10px; padding:12px 4px; border-bottom:1px solid #f3f4f6; cursor:pointer;}
-  .poi-row .poi-ico{font-size:16px; color:#0d8f6e;}
+  .poi-row .poi-ico{font-size:16px; color:#0da09b;}
   .poi-row .poi-txt{flex:1; min-width:0;}
   .poi-row .poi-name{font-size:14px; color:#1f2937; font-weight:600;}
   .poi-row .poi-sub{font-size:12px; color:#9ca3af; margin-top:3px;}
-  .poi-row .poi-ck{color:#0d8f6e; font-size:14px; opacity:0;}
+  .poi-row .poi-ck{color:#0da09b; font-size:14px; opacity:0;}
   .poi-row.on .poi-ck{opacity:1;}
   /* 删除确认 */
   .mr-delmask{display:none; position:absolute; inset:0; z-index:92; background:rgba(0,0,0,.4);}
@@ -2347,12 +2356,12 @@
   .md-reqs .req-card.req-wide{grid-column:1 / -1;}
   .md-reqs.req-grid3{grid-template-columns:repeat(3,1fr);}
   .md-reqs .req-card{background:#fff; border:1px solid var(--border-extra-light,#eee); border-radius:10px; padding:9px 8px; display:flex; align-items:center; gap:7px;}
-  .md-reqs .req-ic{flex:0 0 auto; width:24px; height:24px; border-radius:8px; background:rgba(13,143,110,.12); display:flex; align-items:center; justify-content:center; font-size:14px;}
+  .md-reqs .req-ic{flex:0 0 auto; width:24px; height:24px; border-radius:8px; background:rgba(13,160,155,.12); display:flex; align-items:center; justify-content:center; font-size:14px;}
   .md-reqs .req-body{display:flex; flex-direction:column; gap:2px; min-width:0;}
   .md-reqs .req-k{font-size:12px; font-weight:700; color:var(--text-primary);}
   .md-reqs .req-v{font-size:12px; color:var(--text-regular); line-height:1.4; text-align:left; white-space:nowrap;}
   .md-reqs .req-chips{display:flex; flex-wrap:wrap; gap:4px; margin-top:1px;}
-  .md-reqs .req-chips i{font-style:normal; font-size:11px; color:var(--primary); background:rgba(13,143,110,.1); border-radius:6px; padding:1px 6px; white-space:nowrap;}
+  .md-reqs .req-chips i{font-style:normal; font-size:11px; color:var(--primary); background:rgba(13,160,155,.1); border-radius:6px; padding:1px 6px; white-space:nowrap;}
   .md-reqs .at-line{display:block; line-height:1.55; font-size:12px; color:var(--text-regular); white-space:nowrap;}
   /* 工作地点折叠 */
   .addr-more{font-size:12px; color:var(--primary,#8B7BFF); margin-left:8px; cursor:pointer;}
@@ -2363,7 +2372,7 @@
   .md-time .tm .t{font-size:12px; color:var(--text-secondary);}
   .md-benefits{display:grid; grid-template-columns:repeat(4,1fr); gap:8px;}
   .md-benefits .ben-cell{background:#fff; border:1px solid var(--border-extra-light,#eee); border-radius:10px; padding:10px 4px; display:flex; flex-direction:column; align-items:center; gap:6px;}
-  .md-benefits .ben-ic{flex:0 0 auto; width:30px; height:30px; border-radius:9px; background:rgba(13,143,110,.12); display:flex; align-items:center; justify-content:center; font-size:16px;}
+  .md-benefits .ben-ic{flex:0 0 auto; width:30px; height:30px; border-radius:9px; background:rgba(13,160,155,.12); display:flex; align-items:center; justify-content:center; font-size:16px;}
   .md-benefits .ben-name{font-size:11px; color:var(--text-regular); text-align:center; line-height:1.3;}
   /* 底部操作栏：作为 .phone 直接子元素，绝对定位吸底在 tab 之上 */
   .phone   .md-bottom{position:absolute; bottom:56px; left:0; right:0; background:#fff; border-top:1px solid var(--border-extra-light); padding:8px 12px; display:flex; z-index:20; box-shadow:0 -2px 8px rgba(0,0,0,.05);}
@@ -2857,6 +2866,8 @@
   .emq-card{font-size:14px; color:var(--text-primary); line-height:1.7;}
   /* ===== 我的报名列表与详情 ===== */
   .msec-head{position:sticky; top:0; z-index:10; background:#fff; display:flex; align-items:center; justify-content:space-between; padding:14px 16px 10px; border-bottom:1px solid var(--border-extra-light);}
+  /* 小程序画布有状态栏（30px）与机身听筒，二级页标题下移避让 */
+  #p-mini .msec-head{padding-top:38px; background:linear-gradient(180deg,#C6FCFD 0%,#DCFAFB 100%); border-bottom:1px solid rgba(13,160,155,.10);}
   .msec-head .back{position:absolute; left:4px; width:44px; height:44px; display:flex; align-items:center; justify-content:center; font-size:26px; color:var(--text-primary); cursor:pointer;}
   .msec-head .title{flex:1; text-align:center; font-size:14px; font-weight:700; color:var(--text-primary);}
   .msec-head .mini-caps{flex:0 0 auto;}
@@ -2873,7 +2884,7 @@
   .ma-card .tag{font-size:11px; padding:3px 8px; border-radius:10px; white-space:nowrap;}
   .ma-card .sub{font-size:12px; color:var(--text-secondary); margin-bottom:8px;}
   .ma-card .msg{font-size:12px; color:var(--text-regular); background:#f8f9fb; border-radius:8px; padding:10px 12px; line-height:1.5; margin-bottom:10px;}
-  .ma-card .msg.ok{color:#0d8f6e;}
+  .ma-card .msg.ok{color:#0da09b;}
   .ma-card .msg.rej{color:#f44336;}
   .ma-card .foot{display:flex; align-items:center; justify-content:space-between; font-size:12px; color:var(--text-secondary);}
   .ma-card .time{display:flex; align-items:center; gap:2px;}
@@ -2911,7 +2922,7 @@
   .tag-money{background:#fff7e6; color:#ff9c19;}
   .tag-time{background:#ffebee; color:#f44336;}
   .tag-blue{background:#e6f2ff; color:#3b82f6;}
-  .tag-purple{background:#F5F7FA; color:#0d8f6e;}
+  .tag-purple{background:#F5F7FA; color:#0da09b;}
   .tag-green{background:#e6f9ed; color:#22c55e;}
   /* 运营角色数据权限「自定义部门」段 */
   .scope-radio-row{display:flex; align-items:flex-start; gap:8px; padding:6px 0; cursor:pointer;}
@@ -3533,23 +3544,28 @@
   .rt-radio-group{display:flex; gap:20px;}
   .rt-radio-group label{display:flex; align-items:center; gap:6px; cursor:pointer;}
   .rt-tag{padding:4px 12px; border-radius:4px; font-size:13px;}
-  .rt-tag.on{background:#e6f7ef; color:#237804; border:1px solid #b7eb8f;}
+  .rt-tag.on{background:#e7faf9; color:#237804; border:1px solid #b7eb8f;}
   .rt-tag.off{background:#fff1f0; color:#cf1322; border:1px solid #ffa39e;}
   .drawer.wide{min-width:720px; max-width:60vw;}
 
   /* ===== C 端登录 / 注册 ===== */
   /* 登录页：极简纯色风（大面积浅绿底 + 下划线输入框 + 无卡片） */
-  .ml-bg{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;min-height:100%;flex:1;padding:94px 28px 40px;background:#F5F7FA;}
-  .ml-logo{display:flex;align-items:center;gap:10px;margin-bottom:8px;color:#0d8f6e;}
-  .ml-badge{width:42px;height:42px;border-radius:12px;background:#0d8f6e;color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;}
+  /* 登录页背景：与内页统一（顶部青绿渐变 → 浅灰底，与 .mhead 渐变同色系） */
+  .ml-bg{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;min-height:100%;flex:1;padding:94px 28px 40px;
+    background:linear-gradient(180deg,#C6FCFD 0%,#DCFAFB 34%,#F5F7FA 62%,#F5F7FA 100%);}
+  .ml-logo{display:flex;align-items:center;gap:10px;margin-bottom:8px;color:#0da09b;}
+  .ml-badge{width:42px;height:42px;border-radius:12px;background:#0da09b;color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;box-shadow:0 2px 8px rgba(13,160,155,.25);}
   .ml-name{font-size:22px;font-weight:700;}
-  .ml-card{width:100%;max-width:340px;background:transparent;box-shadow:none;padding:18px 0;}
-  .ml-title{font-size:22px;font-weight:700;color:#222;margin-bottom:28px;text-align:left;}
+  .ml-card{width:100%;max-width:340px;background:transparent;box-shadow:none;padding:18px 0;
+    flex:1; display:flex; flex-direction:column;}
+  /* 次路径区（或 + 两枚图标 + 协议）：从主按钮下方推开，落到页面下段 */
+  .ml-sub{margin-top:auto; margin-bottom:auto; padding-top:24px;}
+  .ml-title{font-size:20px;font-weight:700;color:#222;margin-bottom:20px;text-align:left;letter-spacing:.5px;}
   .ml-field{margin-bottom:22px;}
   .ml-field label{display:block;font-size:13px;color:#606266;margin-bottom:5px;font-weight:500;}
-  .ml-input{width:100%;height:40px;border:none;border-bottom:1.5px solid #99f6e4;border-radius:0;padding:0 2px;font-size:14px;box-sizing:border-box;background:transparent;}
-  .ml-input:focus{outline:none;border-color:#0d8f6e;}
-  .ml-btn{width:100%;height:46px;border:none;border-radius:24px;background:#0d8f6e;color:#fff;font-size:15px;font-weight:600;cursor:pointer;margin-top:18px;}
+  .ml-input{width:100%;height:44px;border:1px solid #A0E3E1;border-radius:10px;padding:0 12px;font-size:14px;box-sizing:border-box;background:#fff;color:#1f2a44;}
+  .ml-input:focus{outline:none;border-color:#0da09b;}
+  .ml-btn{width:100%;height:46px;border:none;border-radius:24px;background:#0da09b;color:#fff;font-size:15px;font-weight:600;cursor:pointer;margin-top:18px;}
   /* 登录页演示账号快捷入口 */
   .ml-demo{margin-top:18px;padding-top:14px;border-top:1px dashed #e3e8f0;}
   .ml-demo-t{font-size:11px;color:#9aa3b2;margin-bottom:8px;}
@@ -3558,50 +3574,85 @@
   .ml-demo-item:hover{background:#eef6f3;border-color:#bfe0d4;}
   .ml-demo-ph{font-size:13px;color:#1f2a44;font-weight:600;letter-spacing:.3px;}
   .ml-demo-tag{font-size:10px;padding:1px 7px;border-radius:9px;background:#f0f0f5;color:#909399;font-weight:600;}
-  .ml-demo-tag.ok{background:#e6f7f1;color:#0d8f6e;}
+  .ml-demo-tag.ok{background:#e7faf9;color:#0da09b;}
   .ml-demo-tip{font-size:11px;color:#b0b7c3;margin-top:8px;line-height:1.5;}
-  /* 其他登录方式分隔线 + 微信一键登录 */
-  .ml-alt-sep{display:flex;align-items:center;gap:10px;margin:16px 0 4px;color:#b0b7c3;font-size:11px;}
-  .ml-alt-sep:before,.ml-alt-sep:after{content:"";flex:1;height:1px;background:#e8edf4;}
-  .ml-wx-btn{width:100%;height:44px;margin-top:8px;border:1px solid #bfe0d4;border-radius:22px;background:#E8F8F1;color:#0d8f6e;font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;}
-  .ml-wx-btn:hover{background:#dcf3e9;}
-  .wx-ico{display:inline-flex;align-items:center;justify-content:center;width:19px;height:19px;border-radius:50%;background:#0d8f6e;color:#fff;font-size:11px;font-weight:700;line-height:1;}
+  /* 主登录方式：微信一键登录（唯一实心按钮） */
+  .ml-wx-main{width:100%;height:48px;border:none;border-radius:24px;background:#0da09b;color:#fff;font-size:15px;font-weight:700;letter-spacing:.8px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(13,160,155,.28);}
+  .ml-wx-main:hover{background:#0b8a86;}
+  .ml-wx-main:active{background:#07716e;}
+  /* 「或」分隔线 */
+  .ml-or-sep{display:flex;align-items:center;gap:10px;margin:0 0 14px;color:#b0b7c3;font-size:11px;}
+  .ml-or-sep:before,.ml-or-sep:after{content:"";flex:1;height:1px;background:#e8edf4;}
+  /* 并列次路径：图标 + 文字，等宽居中 */
+  .ml-duo{display:flex;justify-content:space-around;gap:10px;margin-top:4px;}
+  .ml-duo-ico{flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;gap:7px;
+    background:transparent;border:none;padding:6px 0 2px;cursor:pointer;}
+  .ml-ico-ring{width:52px;height:52px;border-radius:50%;border:1px solid #cddfd8;background:#fff;
+    display:flex;align-items:center;justify-content:center;transition:.15s;}
+  .ml-duo-ico:hover .ml-ico-ring{border-color:#0da09b;background:#f4fdfd;}
+  .ml-duo-ico:active .ml-ico-ring{background:#e9fbfa;}
+  .ml-ico-t{font-size:12px;color:#5a6478;line-height:1;}
+  .ml-duo-note{font-size:11px;color:#b0b7c3;text-align:center;margin-top:7px;}
+  /* 登录首页协议勾选（唯一同意入口） */
+  .ml-agree{display:flex;align-items:flex-start;gap:7px;font-size:11.5px;color:#7a8496;line-height:1.6;margin:12px 0 0;cursor:pointer;}
+  .ml-agree input{flex:0 0 auto;width:14px;height:14px;margin:2px 0 0;accent-color:#0da09b;cursor:pointer;}
+  .ml-agree .ml-link{font-weight:400;}
+  .ml-agree.err{color:#E24B4A;}
+  .ml-agree.err input{outline:1px solid #E24B4A;outline-offset:2px;border-radius:2px;}
+  .ml-agree-err{font-size:11px;color:#E24B4A;margin-top:6px;line-height:1.5;}
+  /* 手机号快捷登录独立页 */
+  .mlp-body{padding:22px 28px 40px; background:linear-gradient(180deg,#DCFAFB 0%,#F5F7FA 46%,#F5F7FA 100%); min-height:calc(100% - 96px);}
+  .mlp-tip{font-size:12px;color:#9aa3b2;line-height:1.6;margin-bottom:24px;}
+  .mlp-body .ml-btn{margin-top:22px;}
+  /* 其他登录方式独立页 */
+  .mlo-body{padding:22px 28px 40px; background:linear-gradient(180deg,#DCFAFB 0%,#F5F7FA 46%,#F5F7FA 100%); min-height:calc(100% - 96px);}
+  .mlo-tip{font-size:12px;color:#9aa3b2;line-height:1.7;margin-bottom:22px;}
+  .mlo-body .fl-input{height:44px;}
+  .mlo-body .fl-field{margin-bottom:16px;}
+  .mlo-body .fl-acts{margin-top:22px;}
   /* 微信授权弹层 */
   .wx-auth-t{font-size:12px;color:#7a8496;line-height:1.6;margin-bottom:12px;}
   .wx-auth-list{display:flex;flex-direction:column;gap:8px;margin-bottom:6px;}
-  .wx-pick{display:flex;align-items:center;gap:9px;padding:10px 12px;border:1px solid #e3e8f0;border-radius:10px;background:#fafbfd;cursor:pointer;text-align:left;transition:.15s;}
-  .wx-pick:hover{background:#f2fbf7;}
-  .wx-pick.on{border-color:#0d8f6e;background:#eef8f4;}
+  .wx-pick{display:flex;align-items:center;gap:9px;padding:10px 12px;border:1px solid #A0E3E1;border-radius:10px;background:#fff;cursor:pointer;text-align:left;transition:.15s;}
+  .wx-pick:hover{background:#f2fdfd;border-color:#74DAD6;}
+  .wx-pick.on{border-color:#0da09b;background:#e7fbf9;}
   .wx-pick-radio{width:15px;height:15px;flex:0 0 auto;border-radius:50%;border:1.5px solid #c8d0dc;box-sizing:border-box;}
-  .wx-pick.on .wx-pick-radio{border:4.5px solid #0d8f6e;background:#fff;}
+  .wx-pick.on .wx-pick-radio{border:4.5px solid #0da09b;background:#fff;}
   .wx-pick-main{flex:1;min-width:0;}
   .wx-pick-ph{font-size:14px;font-weight:600;color:#1f2a44;letter-spacing:.3px;}
   .wx-pick-sub{font-size:10px;color:#9aa3b2;margin-top:2px;}
-  /* 人脸识别登录 */
-  .ml-face-btn{width:100%;height:44px;margin-top:10px;border:1px solid #0d8f6e;border-radius:22px;background:#fff;color:#0d8f6e;font-size:14px;font-weight:600;cursor:pointer;}
-  .ml-face-btn:hover{background:#f2fbf7;}
-  .ml-face-note{font-size:11px;color:#b0b7c3;text-align:center;margin-top:6px;}
+  /* 使用其他手机号 */
+  .wx-more{margin-top:2px;padding:12px 0 2px;text-align:center;font-size:13px;color:#0da09b;font-weight:600;cursor:pointer;border-top:1px solid #f0f2f5;margin-top:10px;}
+  .wx-more:hover{opacity:.8;}
+  .wx-input{width:100%;height:46px;box-sizing:border-box;border:1px solid #A0E3E1;border-radius:10px;
+    padding:0 14px;font-size:15px;letter-spacing:.6px;background:#fff;color:#1f2a44;}
+  .wx-input:focus{border-color:#0da09b;background:#fff;outline:none;box-shadow:0 0 0 3px rgba(13,160,155,.08);}
+  .wx-err{font-size:11px;color:#E24B4A;margin-top:8px;line-height:1.5;}
+  .wx-back{margin-top:12px;padding-top:12px;border-top:1px solid #f0f2f5;text-align:center;
+    font-size:12px;color:#7a8496;cursor:pointer;}
+  .wx-back:hover{color:#0da09b;}
+  /* 其他登录方式（姓名 + 证件号 → 人脸验证）：入口样式见 .ml-duo-ico */
   .fl-wrap{padding:2px 2px 0;}
   .fl-tip{font-size:12px;color:#7a8496;line-height:1.7;margin-bottom:12px;}
   .fl-field{margin-bottom:10px;}
   .fl-field label{display:block;font-size:12px;color:#5a6478;margin-bottom:6px;}
-  .fl-input{width:100%;height:42px;box-sizing:border-box;border:1px solid #e3e8f0;border-radius:10px;padding:0 12px;font-size:14px;background:#fafbfd;letter-spacing:.4px;}
-  .fl-input:focus{border-color:#0d8f6e;background:#fff;outline:none;}
+  .fl-input{width:100%;height:42px;box-sizing:border-box;border:1px solid #A0E3E1;border-radius:10px;padding:0 12px;font-size:14px;background:#fff;color:#1f2a44;letter-spacing:.4px;}
+  .fl-input:focus{border-color:#0da09b;background:#fff;outline:none;box-shadow:0 0 0 3px rgba(13,160,155,.08);}
   .fl-err{font-size:11px;color:#E24B4A;margin-bottom:8px;line-height:1.5;}
   .fl-acts{display:flex;gap:10px;margin-top:6px;}
   .fl-btn{flex:1;height:42px;border-radius:21px;font-size:14px;font-weight:600;cursor:pointer;border:1px solid transparent;}
   .fl-btn.ghost{background:#f5f6f9;color:#5a6478;border-color:#e6e9f0;}
-  .fl-btn.primary{background:linear-gradient(135deg,#0d8f6e,#0bb89a);color:#fff;}
+  .fl-btn.primary{background:linear-gradient(135deg,#0da09b,#0bb89a);color:#fff;}
   .fl-btn:disabled{opacity:.55;cursor:not-allowed;}
-  .fl-face{width:112px;height:112px;margin:6px auto 14px;border-radius:50%;background:#eef8f4;border:2px dashed #9fd7c4;display:flex;align-items:center;justify-content:center;font-size:44px;color:#0d8f6e;}
-  .fl-face.scanning{border-color:#0d8f6e;background:#e3f6ee;font-size:13px;font-weight:600;}
+  .fl-face{width:112px;height:112px;margin:6px auto 14px;border-radius:50%;background:#e9fbfa;border:2px dashed #9fd7c4;display:flex;align-items:center;justify-content:center;font-size:44px;color:#0da09b;}
+  .fl-face.scanning{border-color:#0da09b;background:#e3f6ee;font-size:13px;font-weight:600;}
   .fl-hint{font-size:11px;color:#b0b7c3;text-align:center;margin-top:10px;}
-  .fl-hint a{color:#0d8f6e;font-weight:600;cursor:pointer;}
+  .fl-hint a{color:#0da09b;font-weight:600;cursor:pointer;}
   .ml-foot{text-align:center;font-size:13px;color:#7a8a82;margin-top:14px;}
-  .ml-link{color:#0d8f6e;cursor:pointer;font-weight:600;}
+  .ml-link{color:#0da09b;cursor:pointer;font-weight:600;}
   .ml-field-code .ml-code-row{display:flex;align-items:center;gap:10px;}
   .ml-field-code .ml-input{flex:1;min-width:0;}
-  .ml-code-btn{flex:0 0 auto;height:34px;padding:0 14px;border:none;border-radius:17px;background:#e6f7f2;color:#0d8f6e;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;}
+  .ml-code-btn{flex:0 0 auto;height:34px;padding:0 14px;border:none;border-radius:17px;background:#e6f7f2;color:#0da09b;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;}
   .ml-code-btn:disabled{background:#eee;color:#b0b0b0;cursor:not-allowed;}
   .mr-bg{min-height:100%;height:100%;flex:1;background:#F5F7FA;display:flex;flex-direction:column;align-items:center;padding:30px 20px 16px;box-sizing:border-box;}
   .mr-nav{width:100%;max-width:310px;display:flex;align-items:center;justify-content:center;position:relative;padding:10px 0 6px;}
@@ -3613,13 +3664,13 @@
   .mr-field label{display:block;font-size:13px;color:#606266;margin-bottom:6px;font-weight:500;}
   .mr-field label .req{color:#f44336;margin-left:2px;}
   .mr-field input{width:100%;height:42px;border:1px solid #e3e3ec;border-radius:10px;padding:0 14px;font-size:14px;box-sizing:border-box;background:#fafafa;}
-  .mr-field input:focus{outline:none;border-color:#0d8f6e;background:#fff;}
+  .mr-field input:focus{outline:none;border-color:#0da09b;background:#fff;}
   .mr-agree{display:flex;align-items:flex-start;gap:6px;font-size:11px;color:#606266;margin:12px 0 14px;}
   .mr-agree input{margin-top:1px;}
-  .mr-agree span{color:#0d8f6e;cursor:pointer;}
-  .mr-btn{width:100%;height:42px;border:none;border-radius:21px;background:linear-gradient(135deg,#14b8a6,#0d8f6e);color:#fff;font-size:15px;font-weight:600;cursor:pointer;}
+  .mr-agree span{color:#0da09b;cursor:pointer;}
+  .mr-btn{width:100%;height:42px;border:none;border-radius:21px;background:linear-gradient(135deg,#10bdb8,#0da09b);color:#fff;font-size:15px;font-weight:600;cursor:pointer;}
   .mr-foot{text-align:center;font-size:12px;color:#909399;margin-top:12px;}
-  .mr-foot span{color:#0d8f6e;cursor:pointer;font-weight:600;}
+  .mr-foot span{color:#0da09b;cursor:pointer;font-weight:600;}
 
   /* ===== C 端 6 步完善档案 ===== */
   #m-profile{background:#F5F7FA;display:flex;flex-direction:column;height:100%;}
@@ -3635,8 +3686,8 @@
   .rn-tip{font-size:12px;color:#8a93a6;margin-bottom:14px;}
   .rn-ups{display:flex;gap:12px;}
   .rn-up{flex:1;border:1.5px dashed #cfd6e4;border-radius:12px;padding:22px 8px;text-align:center;background:#fafbfc;cursor:pointer;}
-  .rn-up.done{border-style:solid;border-color:#0d8f6e;background:#E8F8F1;}
-  .rn-up-ico{font-size:26px;color:#0d8f6e;}
+  .rn-up.done{border-style:solid;border-color:#0da09b;background:#E8F8F1;}
+  .rn-up-ico{font-size:26px;color:#0da09b;}
   .rn-up-t{font-size:12px;color:#5a6478;margin-top:6px;}
   .rn-ocr{margin-top:12px;border-top:1px dashed #eef0f4;padding-top:10px;}
   /* 一号一证：冲突提示与转移绑定 */
@@ -3646,46 +3697,46 @@
   .rn-cf-acts{display:flex;gap:8px;}
   .rn-cf-btn{flex:1;height:38px;border-radius:19px;font-size:13px;font-weight:600;cursor:pointer;border:1px solid transparent;}
   .rn-cf-btn.ghost{background:#fff;border-color:#e0c9ae;color:#8a6d4b;}
-  .rn-cf-btn.primary{background:linear-gradient(135deg,#0d8f6e,#0bb89a);color:#fff;}
+  .rn-cf-btn.primary{background:linear-gradient(135deg,#0da09b,#0bb89a);color:#fff;}
   .rn-cf-btn:disabled{opacity:.55;cursor:not-allowed;}
   .rn-cf-row{display:flex;gap:8px;margin-bottom:8px;}
   .rn-cf-input{flex:1;height:38px;border:1px solid #e3e8f0;border-radius:8px;padding:0 10px;font-size:13px;background:#fff;}
-  .rn-cf-input:focus{border-color:#0d8f6e;outline:none;}
-  .rn-cf-send{flex:0 0 auto;height:38px;padding:0 12px;border:1px solid #cfe3da;border-radius:8px;background:#E8F8F1;color:#0d8f6e;font-size:12px;font-weight:600;cursor:pointer;}
+  .rn-cf-input:focus{border-color:#0da09b;outline:none;}
+  .rn-cf-send{flex:0 0 auto;height:38px;padding:0 12px;border:1px solid #cfe3da;border-radius:8px;background:#E8F8F1;color:#0da09b;font-size:12px;font-weight:600;cursor:pointer;}
   .rn-cf-send:disabled{opacity:.6;cursor:not-allowed;}
   .rn-cf-err{font-size:11px;color:#E24B4A;margin-bottom:8px;}
   .rn-cf-fallback{font-size:11px;color:#9aa3b2;text-align:center;margin-top:10px;}
-  .rn-cf-fallback a{color:#0d8f6e;font-weight:600;cursor:pointer;}
-  .rn-cf-face{font-size:44px;text-align:center;padding:16px 0;color:#0d8f6e;}
+  .rn-cf-fallback a{color:#0da09b;font-weight:600;cursor:pointer;}
+  .rn-cf-face{font-size:44px;text-align:center;padding:16px 0;color:#0da09b;}
   .rn-btn:disabled{opacity:.5;cursor:not-allowed;}
-  .rn-ocr-t{font-size:12px;color:#0d8f6e;font-weight:600;margin-bottom:8px;}
+  .rn-ocr-t{font-size:12px;color:#0da09b;font-weight:600;margin-bottom:8px;}
   .rn-field{display:flex;align-items:center;gap:8px;margin-bottom:7px;}
   .rn-field label{width:84px;font-size:12px;color:#5a6478;flex:0 0 auto;}
   .rn-input{flex:1;height:32px;border:1px solid #e3e8f0;border-radius:8px;padding:0 8px;font-size:12px;background:#fafbfc;}
   .rn-body::-webkit-scrollbar{display:none;}
   .rn-body{scrollbar-width:none;-ms-overflow-style:none;}
-  .rn-input:focus{background:#fff;border-color:#0d8f6e;outline:none;}
+  .rn-input:focus{background:#fff;border-color:#0da09b;outline:none;}
   .rn-face{text-align:center;padding:18px 0;}
   .rn-face-ico{font-size:54px;}
-  .rn-face.ok{color:#0d8f6e;font-weight:600;padding:30px 0;}
+  .rn-face.ok{color:#0da09b;font-weight:600;padding:30px 0;}
   .rn-foot{flex:0 0 auto;padding:12px 16px 20px;}
-  .rn-btn{width:100%;height:46px;border:none;border-radius:24px;background:linear-gradient(135deg,#0d8f6e,#0bb89a);color:#fff;font-size:16px;font-weight:600;cursor:pointer;}
+  .rn-btn{width:100%;height:46px;border:none;border-radius:24px;background:linear-gradient(135deg,#0da09b,#0bb89a);color:#fff;font-size:16px;font-weight:600;cursor:pointer;}
   .rn-btn:disabled,.rn-btn.loading{opacity:.6;}
-  .rn-btn.primary{background:linear-gradient(135deg,#0d8f6e,#0bb89a);}
-  .me-realname-link{color:#0d8f6e;font-weight:600;cursor:pointer;}
+  .rn-btn.primary{background:linear-gradient(135deg,#0da09b,#0bb89a);}
+  .me-realname-link{color:#0da09b;font-weight:600;cursor:pointer;}
   .pf-back{position:absolute;left:10px;font-size:22px;color:#333;cursor:pointer;}
   .pf-title{font-size:16px;font-weight:600;color:#222;}
   .pf-progress{display:flex;align-items:center;gap:10px;padding:14px 16px 10px;background:#F5F7FA;}
   .pf-bar{flex:1;height:6px;background:#e5e6eb;border-radius:3px;overflow:hidden;}
-  .pf-bar-in{height:100%;background:linear-gradient(90deg,#14b8a6,#0d8f6e);transition:width .3s;border-radius:3px;}
+  .pf-bar-in{height:100%;background:linear-gradient(90deg,#10bdb8,#0da09b);transition:width .3s;border-radius:3px;}
   .pf-pct{font-size:12px;color:#909399;min-width:34px;text-align:right;}
   .pf-steps{display:flex;padding:6px 8px 12px;background:#F5F7FA;}
   .pf-step{flex:1;display:flex;flex-direction:column;align-items:center;color:#bbb;min-width:0;}
   .pf-step-n{width:28px;height:28px;border-radius:50%;border:2px solid #ddd;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;background:#fff;}
   .pf-step-t{font-size:10px;margin-top:5px;text-align:center;white-space:nowrap;min-height:15px;}
-  .pf-step-cur{color:#0d8f6e;font-size:12px;font-weight:600;}
-  .pf-step.on .pf-step-n{border-color:#0d8f6e;color:#0d8f6e;}
-  .pf-step.on .pf-step-t{  color:#0d8f6e;}
+  .pf-step-cur{color:#0da09b;font-size:12px;font-weight:600;}
+  .pf-step.on .pf-step-n{border-color:#0da09b;color:#0da09b;}
+  .pf-step.on .pf-step-t{  color:#0da09b;}
   .pf-step.done .pf-step-n{border-color:#52c41a;background:#52c41a;color:#fff;}
   .pf-step.done .pf-step-t{color:#52c41a;}
   .pf-body{flex:1;padding:0 16px 12px;overflow:auto;background:#F5F7FA;}
@@ -3696,7 +3747,7 @@
   .pf-field label{display:block;font-size:13px;color:#606266;margin-bottom:6px;font-weight:500;}
   .pf-field label .req{color:#f44336;margin-left:2px;}
   .pf-input{width:100%;height:42px;border:1px solid #e3e3ec;border-radius:10px;padding:0 14px;font-size:14px;box-sizing:border-box;}
-  .pf-input:focus{outline:none;border-color:#0d8f6e;}
+  .pf-input:focus{outline:none;border-color:#0da09b;}
   .pf-face{text-align:center;padding:24px 0 8px;}
   .pf-face-ico{font-size:64px;margin-bottom:8px;}
   .pf-face .pf-tip{margin-bottom:16px;}
@@ -3705,40 +3756,40 @@
   .pf-pref-lab{font-size:13px;color:#606266;width:48px;flex:none;line-height:32px;}
   .pf-pref-opts{display:flex;flex-wrap:wrap;gap:8px;flex:1;}
   .pf-chip{padding:6px 14px;border:1px solid #e0e0e8;border-radius:16px;font-size:13px;color:#606266;cursor:pointer;background:#fff;}
-  .pf-chip.on{background:#0d8f6e;color:#fff;border-color:#0d8f6e;}
+  .pf-chip.on{background:#0da09b;color:#fff;border-color:#0da09b;}
   .pf-cert-cat{font-size:13px;color:#909399;margin:12px 0 8px;}
   .pf-cert-cat:first-child{margin-top:0;}
   .pf-cert-row{display:flex;flex-wrap:wrap;gap:8px;}
   .pf-foot{padding:12px 16px 16px;display:flex;gap:10px;background:#F5F7FA;}
-  .pf-btn{flex:1;height:42px;border:none;border-radius:21px;background:linear-gradient(135deg,#14b8a6,#0d8f6e);color:#fff;font-size:14px;font-weight:600;cursor:pointer;}
+  .pf-btn{flex:1;height:42px;border:none;border-radius:21px;background:linear-gradient(135deg,#10bdb8,#0da09b);color:#fff;font-size:14px;font-weight:600;cursor:pointer;}
   .pf-btn.ghost{background:#f0f0f5;color:#606266;}
   .pf-btn.skip{background:#fff;border:1px solid #d9d9e3;color:#909399;}
-  .pf-btn.primary{background:linear-gradient(135deg,#14b8a6,#0d8f6e);}
+  .pf-btn.primary{background:linear-gradient(135deg,#10bdb8,#0da09b);}
   .pf-btn.loading{opacity:.7;}
   .pf-btn.loading{opacity:.7;}
 
   /* ===== C 端「我的」页 ===== */
   .me-wrap{min-height:100%;flex:1;padding-bottom:20px;position:relative;background:#F5F7FA;}
-  .me-topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 0;background:linear-gradient(180deg,#C6FCFD,#E0FCFD);}
+  .me-topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 0;background:linear-gradient(180deg,#C6FCFD,#E4FCFA);}
   .me-topbar-t{font-size:14px;font-weight:700;color:#0c3d2b;}
   .me-head{display:flex;align-items:center;gap:12px;margin:12px;padding:14px;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.04);color:#0c3d2b;}
-  .me-avatar{width:52px;height:52px;border-radius:50%;background:rgba(13,143,110,.15);color:#0d8f6e;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;}
+  .me-avatar{width:52px;height:52px;border-radius:50%;background:rgba(13,160,155,.15);color:#0da09b;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;}
   .me-info{flex:1;}
   .me-name{font-size:17px;font-weight:700;display:flex;align-items:center;gap:8px;}
   .me-tag{font-size:11px;padding:1px 7px;border-radius:8px;}
-  .me-tag.ok{background:#E0FCFD;color:#0d8f6e;}
+  .me-tag.ok{background:#E4FCFA;color:#0da09b;}
   .me-tag.warn{background:#ffd666;color:#874d00;}
   .me-head .me-sub{font-size:12px;color:#5b6b66;margin-top:4px;background:transparent;padding:0;}
   .me-ins-tag{display:inline-flex; align-items:center; gap:5px; font-size:12px; font-weight:600; color:#8a9099; cursor:pointer;}
   .me-ins-tag::before{content:''; width:6px; height:6px; border-radius:50%; background:#c0c4cc; flex:none;}
-  .me-ins-tag.ok{color:#0d8f6e;}
-  .me-ins-tag.ok::before{background:#0d8f6e;}
+  .me-ins-tag.ok{color:#0da09b;}
+  .me-ins-tag.ok::before{background:#0da09b;}
   .insd-tag{display:inline-flex; align-items:center; gap:6px; font-size:14px; font-weight:700; color:#606266;}
   .insd-tag::before{content:''; width:8px; height:8px; border-radius:50%; background:#c0c4cc; flex:none;}
-  .insd-tag.ok{color:#0d8f6e;}
-  .insd-tag.ok::before{background:#0d8f6e;}
+  .insd-tag.ok{color:#0da09b;}
+  .insd-tag.ok::before{background:#0da09b;}
   .insd-msg{font-size:14px; color:#909399; margin-top:14px; line-height:1.6;}
-  .insd-msg.ok{color:#0d8f6e;}
+  .insd-msg.ok{color:#0da09b;}
   .me-income{background:#fff;margin:12px;border-radius:12px;padding:14px;box-shadow:0 2px 8px rgba(0,0,0,.04);}
   .me-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#f0f0f5;margin:0 12px;border-radius:12px;overflow:hidden;}
   .me-grid-item{background:#fff;padding:16px 4px;text-align:center;cursor:pointer;}
@@ -3754,34 +3805,34 @@
   .mepref-card{background:#fff;margin:12px;border-radius:12px;padding:14px;box-shadow:0 2px 8px rgba(0,0,0,.04);}
   .mepref-t{font-size:13px;color:#909399;margin-bottom:10px;}
   .mepref-tags{display:flex;flex-wrap:wrap;gap:8px;}
-  .mepref-tag{padding:5px 12px;background:#E0FCFD;color:#0d8f6e;border-radius:14px;font-size:12px;display:flex;align-items:center;gap:6px;line-height:1.6;}
-  .mepref-tag .x{font-size:13px;line-height:1;cursor:pointer;color:#0d8f6e;}
+  .mepref-tag{padding:5px 12px;background:#E4FCFA;color:#0da09b;border-radius:14px;font-size:12px;display:flex;align-items:center;gap:6px;line-height:1.6;}
+  .mepref-tag .x{font-size:13px;line-height:1;cursor:pointer;color:#0da09b;}
   .mepref-tag.fixed{background:#f3f4f6;color:#606266;}
-  .mepref-tag.on{background:#0d8f6e;color:#fff;}
+  .mepref-tag.on{background:#0da09b;color:#fff;}
   .mepref-add{display:flex;gap:8px;margin-top:4px;}
   .mepref-input{flex:1;height:38px;border:1px solid #e5e7eb;border-radius:8px;padding:0 12px;font-size:13px;box-sizing:border-box;outline:none;}
-  .mepref-input:focus{border-color:#0d8f6e;box-shadow:0 0 0 2px rgba(13,143,110,.12);}
-  .mepref-addbtn{height:38px;padding:0 16px;border:none;border-radius:8px;background:#0d8f6e;color:#fff;font-size:13px;font-weight:600;cursor:pointer;flex:none;}
+  .mepref-input:focus{border-color:#0da09b;box-shadow:0 0 0 2px rgba(13,160,155,.12);}
+  .mepref-addbtn{height:38px;padding:0 16px;border:none;border-radius:8px;background:#0da09b;color:#fff;font-size:13px;font-weight:600;cursor:pointer;flex:none;}
 
   /* ===== C 端「我的资料」页 ===== */
   .mpv-progress{display:flex;align-items:center;gap:10px;padding:14px 16px;}
   .mpv-prog-lab{font-size:13px;color:#606266;}
   .mpv-prog-bar{flex:1;height:8px;background:#eee;border-radius:4px;overflow:hidden;}
-  .mpv-prog-in{height:100%;background:linear-gradient(90deg,#14b8a6,#0d8f6e);}
-  .mpv-prog-pct{font-size:12px;color:#0d8f6e;font-weight:600;}
+  .mpv-prog-in{height:100%;background:linear-gradient(90deg,#10bdb8,#0da09b);}
+  .mpv-prog-pct{font-size:12px;color:#0da09b;font-weight:600;}
   .mpv-card{background:#fff;margin:0 12px 12px;border-radius:12px;padding:14px;}
   .mpv-card-t{font-size:14px;font-weight:700;color:#222;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;}
   .mpv-status{font-size:11px;font-weight:600;padding:2px 9px;border-radius:10px;background:#f0f0f5;color:#909399;}
-  .mpv-status.ok{background:#e6f7f1;color:#0d8f6e;}
+  .mpv-status.ok{background:#e7faf9;color:#0da09b;}
   .mpv-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px dashed #f0f0f5;font-size:13px;}
   .mpv-row:last-child{border-bottom:none;}
   .mpv-k{color:#909399;}
   .mpv-v{color:#222;}
-  .mpv-real-btn{width:100%;height:36px;margin-top:10px;border:none;border-radius:18px;background:linear-gradient(135deg,#0d8f6e,#0bb89a);color:#fff;font-size:13px;font-weight:600;cursor:pointer;}
+  .mpv-real-btn{width:100%;height:36px;margin-top:10px;border:none;border-radius:18px;background:linear-gradient(135deg,#0da09b,#0bb89a);color:#fff;font-size:13px;font-weight:600;cursor:pointer;}
   .mpv-v-phone{display:flex;align-items:center;gap:8px;}
-  .mpv-edit{font-size:11px;color:#0d8f6e;font-weight:600;padding:1px 8px;border:1px solid #bfe0d4;border-radius:10px;background:#f2fbf7;cursor:pointer;}
-  .mpv-edit:hover{background:#e6f7f1;}
-  .pm-send{flex:0 0 auto;height:42px;padding:0 12px;border:1px solid #cfe3da;border-radius:10px;background:#E8F8F1;color:#0d8f6e;font-size:12px;font-weight:600;cursor:pointer;}
+  .mpv-edit{font-size:11px;color:#0da09b;font-weight:600;padding:1px 8px;border:1px solid #bfe0d4;border-radius:10px;background:#f2fdfd;cursor:pointer;}
+  .mpv-edit:hover{background:#e7faf9;}
+  .pm-send{flex:0 0 auto;height:42px;padding:0 12px;border:1px solid #cfe3da;border-radius:10px;background:#E8F8F1;color:#0da09b;font-size:12px;font-weight:600;cursor:pointer;}
   .pm-send:disabled{opacity:.6;cursor:not-allowed;}
   .mpv-head{position:relative;text-align:center;padding:16px;}
   .rn-head .title,.mpv-head .title{ flex:1; text-align:center; font-size:14px; font-weight:600; color:#0c3d2b; }
@@ -3795,9 +3846,9 @@
   .mpv-res{display:flex;align-items:center;gap:8px;background:#f7f8fa;border-radius:8px;padding:10px;}
   .mpv-res-file{flex:1;font-size:13px;color:#333;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;}
   .mpv-res-acts{display:flex;gap:16px;font-size:12px;margin-top:8px;padding:0 2px;}
-  .mpv-res-link{color:#0d8f6e;cursor:pointer;}
+  .mpv-res-link{color:#0da09b;cursor:pointer;}
   .mpv-res-del{color:#cf1322;cursor:pointer;}
-  .mpv-add{font-size:12px;font-weight:600;color:#0d8f6e;cursor:pointer;}
+  .mpv-add{font-size:12px;font-weight:600;color:#0da09b;cursor:pointer;}
   .mpv-sub-t{font-size:12px;color:#909399;margin-bottom:6px;}
   .mpv-cert{background:#f7f8fa;border-radius:8px;padding:10px;margin-top:8px;}
   .mpv-cert-name{font-size:13px;color:#222;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
@@ -3821,18 +3872,18 @@
   .st-tag{font-size:12px;padding:2px 9px;border-radius:9px;white-space:nowrap;}
   .mad-tl{margin-top:2px;}
   .mad-tl-item{display:flex;align-items:center;height:40px;padding:0 6px;margin:0 -6px;box-sizing:border-box;}
-  .mad-tl-item.on{background:rgba(13,143,110,.07);border-radius:8px;}
+  .mad-tl-item.on{background:rgba(13,160,155,.07);border-radius:8px;}
   .mad-tl-rail{width:18px;display:flex;flex-direction:column;align-items:center;flex-shrink:0;margin-right:10px;}
   .mad-tl-dot{width:14px;height:14px;border-radius:50%;border:2px solid #ccc;background:#fff;display:flex;align-items:center;justify-content:center;font-size:9px;color:#bbb;flex-shrink:0;margin-top:1px;}
   .mad-tl-line{flex:1;width:2px;background:#eee;margin:4px 0;}
   .mad-tl-item:last-child .mad-tl-line{display:none;}
-  .mad-tl-item.done .mad-tl-dot{background:#0d8f6e;border-color:#0d8f6e;color:#fff;}
-  .mad-tl-item.done .mad-tl-line{background:#0d8f6e;}
-  .mad-tl-item.on .mad-tl-dot{border-color:#0d8f6e;color:#0d8f6e;}
+  .mad-tl-item.done .mad-tl-dot{background:#0da09b;border-color:#0da09b;color:#fff;}
+  .mad-tl-item.done .mad-tl-line{background:#0da09b;}
+  .mad-tl-item.on .mad-tl-dot{border-color:#0da09b;color:#0da09b;}
   .mad-tl-main{flex:1;display:flex;align-items:center;gap:8px;}
   .mad-tl-name{flex:1;font-size:12px;color:#909399;line-height:1.5;}
-  .mad-tl-item.done .mad-tl-name{color:#0d8f6e;}
-  .mad-tl-item.on .mad-tl-name{color:#0d8f6e;font-weight:700;}
+  .mad-tl-item.done .mad-tl-name{color:#0da09b;}
+  .mad-tl-item.on .mad-tl-name{color:#0da09b;font-weight:700;}
   .mad-tl-item.rej{background:rgba(244,67,54,.06);border-radius:8px;}
   .mad-tl-item.rej .mad-tl-dot{background:#f44336;border-color:#f44336;color:#fff;}
   .mad-tl-item.rej .mad-tl-name{color:#f44336;font-weight:700;}
@@ -8343,8 +8394,10 @@
       <div class="umi" onclick="logoutCurrent()" data-page-node-id="NlODtTUAviXZXmQumkQKjG">退出登录</div>
     </div>
   </div>
-    <div class="phone" data-page-node-id="dlWRAy0iYU4dOuOCFSXx8j">
-      <div class="screen" id="m-screen" data-page-node-id="eFPe6cmkoPsniTpfOMAyCK">
+    <div class="phone-shell" id="mini-shell">
+      <div class="ps-notch"></div>
+      <div class="phone" data-page-node-id="dlWRAy0iYU4dOuOCFSXx8j">
+        <div class="screen" id="m-screen" data-page-node-id="eFPe6cmkoPsniTpfOMAyCK">
         <!-- ===== Tab1 工作台 ===== -->
         <div class="mscreen" id="m-work" data-page-node-id="t9vS32SC2TeLTJS9EHhwIU">
           <div class="mhead" data-page-node-id="FdETFifp2yghMT99Gtp7uh"><span>工作台</span><span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span></div>
@@ -8471,46 +8524,95 @@
         <div class="mscreen" id="m-login" style="display:none" data-page-node-id="9CwYYpA1Va1w1heizW1227">
           <span class="mini-caps" style="position:absolute; top:14px; right:12px; z-index:40;"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
           <div class="ml-bg" data-v="b" data-page-node-id="YhIPa3IkmAjHvGdOiU6TGj">
-            <div class="ml-logo" data-page-node-id="Sr93vvCoUE74cFiMeUiEuL"><span class="ml-badge" data-page-node-id="8fWSoqCeh0Tb4CU8zn8gIc">灵</span><span class="ml-name" data-page-node-id="n8DMHXStElCYf7T9WelOu8">灵工平台</span></div>
+            <div class="ml-logo" data-page-node-id="Sr93vvCoUE74cFiMeUiEuL"><span class="ml-badge" data-page-node-id="8fWSoqCeh0Tb4CU8zn8gIc">灵</span><span class="ml-name" data-page-node-id="n8DMHXStElCYf7T9WelOu8">多多灵工平台</span></div>
             <div class="ml-card" data-page-node-id="xDukmMxq5YvK00xsEX5HEH">
-              <div class="ml-title" data-page-node-id="gdH98rfwYJt5tgLk6siU6f">手机号登录 / 注册</div>
-              <div class="ml-field" data-page-node-id="xLtuQ1XQ9OXgoITxu2ezC0">
-                <label data-page-node-id="y0VTTW81q9qV0PDKJCstkL">手机号</label>
-                <input class="ml-input" id="m-login-phone" value="13800001001" placeholder="请输入手机号" data-page-node-id="iPnuTHinaXRREROoYHIlPc"/>
+              <div class="ml-title" data-page-node-id="gdH98rfwYJt5tgLk6siU6f">欢迎登录</div>
+              <!-- 主路径：微信一键登录 -->
+              <button class="ml-wx-main" onclick="openWxLogin()">微信一键登录</button>
+              <label class="ml-agree" id="ml-agree-wrap"><input type="checkbox" id="m-login-main-agree" onchange="mlAgreeSync()"/> 我已阅读并同意<span class="ml-link" onclick="event.preventDefault();openAgreement('service')">《服务协议》</span>和<span class="ml-link" onclick="event.preventDefault();openAgreement('privacy')">《隐私政策》</span></label>
+              <div class="ml-agree-err" id="ml-agree-err" style="display:none">请先阅读并同意《服务协议》和《隐私政策》</div>
+              <div class="ml-sub">
+              <div class="ml-or-sep"><span>或</span></div>
+              <!-- 并列次路径：手机号快捷登录 + 其他登录方式，等宽同行；点击统一校验同意状态 -->
+              <div class="ml-duo">
+                <button class="ml-duo-ico" onclick="miniGotoPhoneLogin()" id="ml-phone-toggle">
+                  <span class="ml-ico-ring">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#0da09b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="6.5" y="2.5" width="11" height="19" rx="2.4"/>
+                      <line x1="10.5" y1="18.6" x2="13.5" y2="18.6"/>
+                    </svg>
+                  </span>
+                  <span class="ml-ico-t">手机号</span>
+                </button>
+                <button class="ml-duo-ico" onclick="miniGotoOtherLogin()">
+                  <span class="ml-ico-ring">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#0da09b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M4 8V6a2 2 0 0 1 2-2h2"/>
+                      <path d="M16 4h2a2 2 0 0 1 2 2v2"/>
+                      <path d="M20 16v2a2 2 0 0 1-2 2h-2"/>
+                      <path d="M8 20H6a2 2 0 0 1-2-2v-2"/>
+                      <path d="M9.2 9.4v1.4M14.8 9.4v1.4"/>
+                      <path d="M9 14.2c.8.9 1.8 1.3 3 1.3s2.2-.4 3-1.3"/>
+                    </svg>
+                  </span>
+                  <span class="ml-ico-t">其他方式</span>
+                </button>
               </div>
-              <div class="ml-field ml-field-code" data-page-node-id="wk8YKqnbBdj0GKLk8H6i0D">
-                <label data-page-node-id="kDzGDB9DyBdg6MlvmqBo7M">验证码</label>
-                <div class="ml-code-row" data-page-node-id="TTt0HWYbFtcY99FJZxhVno">
-                  <input class="ml-input" id="m-login-code" value="123456" placeholder="请输入验证码" data-page-node-id="UksZ3a9kseoLAyPQPgGTKR"/>
-                  <button class="ml-code-btn" id="m-login-codebtn" type="button" onclick="miniSendCode(this)" data-page-node-id="CdTmGMzCckGDKBlvAEABEJ">获取验证码</button>
-                </div>
-              </div>
-              <label class="mr-agree" data-page-node-id="k23c9aGRsOnkfNXHJFzGHF"><input type="checkbox" id="m-login-agree" checked data-page-node-id="yKVFeYGEl9MzAgBZN3zb0J"/> 我已阅读并同意<span onclick="openAgreement('service')" data-page-node-id="X0GC7ZvdN0smOMztAFb4ln">《服务协议》</span>和<span onclick="openAgreement('privacy')" data-page-node-id="CpcNpx0DiNEyEMdsFEs7pU">《隐私政策》</span></label>
-              <button class="ml-btn" onclick="miniAuth()" data-page-node-id="Dizk1EBKMH8VCHUW2qi5NQ">手机号快捷登录</button>
-              <div class="ml-alt-sep"><span>其他登录方式</span></div>
-              <button class="ml-wx-btn" onclick="openWxLogin()"><span class="wx-ico">微</span>微信一键登录</button>
-              <button class="ml-face-btn" onclick="openFaceLogin()">人脸识别登录</button>
-              <div class="ml-face-note">仅已完成实名认证的账号可使用</div>
-              <!-- 演示账号快捷入口（一号一证场景演示） -->
-              <div class="ml-demo">
-                <div class="ml-demo-t">演示账号（点击填入）</div>
-                <div class="ml-demo-list">
-                  <div class="ml-demo-item" onclick="miniDemoPick('13800006688')">
-                    <span class="ml-demo-ph">13800006688</span>
-                    <span class="ml-demo-tag ok">已实名</span>
-                  </div>
-                  <div class="ml-demo-item" onclick="miniDemoPick('13900002288')">
-                    <span class="ml-demo-ph">13900002288</span>
-                    <span class="ml-demo-tag">未实名</span>
-                  </div>
-                </div>
-                <div class="ml-demo-tip">两个账号为同一人：用未实名账号去认证已绑定的证件，会提示该证件已被占用。</div>
               </div>
             </div>
           </div>
         </div>
 
         <!-- C 端注册页已合并至 m-login（手机号+验证码单页） -->
+
+        <!-- ===== C 端 手机号快捷登录（独立页：手机号 + 验证码） ===== -->
+        <div class="mscreen" id="m-login-phone" style="display:none">
+          <div class="msec-head">
+            <div class="back" onclick="nav('mini','m-login')">‹</div>
+            <div class="title">手机号快捷登录</div>
+            <span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
+          </div>
+          <div class="mlp-body">
+            <div class="mlp-tip">未注册的手机号验证通过后将自动创建账号</div>
+            <div class="ml-field">
+              <label>手机号</label>
+              <input class="ml-input" id="m-login-phone" value="13800001001" placeholder="请输入手机号"/>
+            </div>
+            <div class="ml-field ml-field-code">
+              <label>验证码</label>
+              <div class="ml-code-row">
+                <input class="ml-input" id="m-login-code" value="123456" placeholder="请输入验证码"/>
+                <button class="ml-code-btn" id="m-login-codebtn" type="button" onclick="miniSendCode(this)">获取验证码</button>
+              </div>
+            </div>
+            <button class="ml-btn" onclick="miniAuth()">登录</button>
+            <!-- 演示账号快捷入口（一号一证场景演示） -->
+            <div class="ml-demo">
+              <div class="ml-demo-t">演示账号（点击填入）</div>
+              <div class="ml-demo-list">
+                <div class="ml-demo-item" onclick="miniDemoPick('13800006688')">
+                  <span class="ml-demo-ph">13800006688</span>
+                  <span class="ml-demo-tag ok">已实名</span>
+                </div>
+                <div class="ml-demo-item" onclick="miniDemoPick('13900002288')">
+                  <span class="ml-demo-ph">13900002288</span>
+                  <span class="ml-demo-tag">未实名</span>
+                </div>
+              </div>
+              <div class="ml-demo-tip">两个账号为同一人：用未实名账号去认证已绑定的证件，会提示该证件已被占用。</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== C 端 其他登录方式（独立页：姓名 + 身份证号 → 人脸验证） ===== -->
+        <div class="mscreen" id="m-login-other" style="display:none">
+          <div class="msec-head">
+            <div class="back" id="mlo-back" onclick="nav('mini','m-login')">‹</div>
+            <div class="title" id="mlo-title">其他登录方式</div>
+            <span class="mini-caps"><span class="mc-dots"><i></i><i></i><i></i></span><span class="mc-div"></span><span class="mc-circle"></span></span>
+          </div>
+          <div class="mlo-body" id="mlo-body"></div>
+        </div>
 
         <!-- ===== C 端 实名认证（身份证 OCR + 人脸识别） ===== -->
         <div class="mscreen" id="m-realname" style="display:none" data-page-node-id="jzWcTPZjC5HZHsbgUG7CBY"></div>
@@ -8579,6 +8681,8 @@
         </div>
       </div>
     </div>
+    </div>
+    <div class="ps-bar"></div>
   </div>
 </div>
 
@@ -13619,7 +13723,7 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
       const tabKey = (screenId==='m-detail') ? 'm-rec' : (screenId==='m-myapply'||screenId==='m-applydetail'||screenId==='m-resume'||screenId==='m-profile-view'||screenId==='m-meprefs'||screenId==='m-insdetail') ? 'm-me' : screenId;
       platEl.querySelectorAll('.mtab button').forEach(b=>b.classList.toggle('active', b.dataset.m===tabKey));
       // 二级页（含登录/注册/资料/各类详情）隐藏底部 Tab，仅通过左上角返回
-      const hideTab = ['m-detail','m-myapply','m-applydetail','m-resume','m-profile-view','m-meprefs','m-login','m-realname','m-poster-apply','m-apply-success'].indexOf(screenId)>=0;
+      const hideTab = ['m-detail','m-myapply','m-applydetail','m-resume','m-profile-view','m-meprefs','m-login','m-login-phone','m-login-other','m-realname','m-poster-apply','m-apply-success'].indexOf(screenId)>=0;
       platEl.querySelectorAll('.mtab').forEach(b=>b.style.display=hideTab?'none':'');
       // 无底部 Tab 时 .screen 占满全屏，否则预留 56px
       if(frame) frame.style.bottom=hideTab?'0':'56px';
@@ -15159,7 +15263,7 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     if(type==='privacy'){
       title='隐私政策';
       body='<div class="agr">'+
-        '<p>本隐私政策说明灵工平台如何收集、使用、存储和保护您的个人信息。</p>'+
+        '<p>本隐私政策说明多多灵工平台如何收集、使用、存储和保护您的个人信息。</p>'+
         '<h4>一、我们收集的信息</h4><p>1. 注册信息：手机号、真实姓名、身份证号（用于实名认证与结算）。</p><p>2. 使用信息：位置、设备信息、报名与考勤记录。</p>'+
         '<h4>二、信息的使用</h4><p>用于账号实名认证、岗位匹配、薪资结算与合规留存，不会用于未告知的用途。</p>'+
         '<h4>三、信息存储与安全</h4><p>采用加密传输与存储，保存期限不超出服务必需的最短时间。</p>'+
@@ -15168,8 +15272,8 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     } else {
       title='服务协议';
       body='<div class="agr">'+
-        '<p>欢迎使用灵工平台。注册并使用本服务，即表示您同意以下条款。</p>'+
-        '<h4>一、服务说明</h4><p>灵工平台为灵活用工供需双方提供岗位发布、报名、考勤与结算等信息服务。</p>'+
+        '<p>欢迎使用多多灵工平台。注册并使用本服务，即表示您同意以下条款。</p>'+
+        '<h4>一、服务说明</h4><p>多多灵工平台为灵活用工供需双方提供岗位发布、报名、考勤与结算等信息服务。</p>'+
         '<h4>二、账号与实名</h4><p>您需提供真实身份信息完成实名认证；账号仅限本人使用，不得转让或出借。</p>'+
         '<h4>三、用户义务</h4><p>您应确保提交的信息真实合法，不得发布虚假岗位或冒用他人身份。</p>'+
         '<h4>四、费用与结算</h4><p>薪资由用工方按约定结算，平台按规则提供对账与提现服务。</p>'+
@@ -20400,7 +20504,7 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
   const ENT_LIST=['中国移动四川公司','中国移动北京朝阳分公司','中国移动浙江分公司','中国移动广东公司','中国移动江苏公司','中国移动北京公司','中国移动上海公司'];
   const PROG_FLOW=['待筛选','待面试','面试待反馈','谈薪中','背调中','体检中','待入职','已入职','已离职','已达标','已结束'];
   // 跟进进度时间线：每个环节独立配色（与 PROG_FLOW 顺序对应）
-  const STAGE_COLORS=['#e6a23c','#f56c6b','#409eff','#6366f1','#0ea5e9','#14b8a6','#22c55e','#84cc16','#e74c3c','#a855f7','#909399'];
+  const STAGE_COLORS=['#e6a23c','#f56c6b','#409eff','#6366f1','#0ea5e9','#10bdb8','#22c55e','#84cc16','#e74c3c','#a855f7','#909399'];
   function nowStr(){ const d=new Date(); const p=n=>String(n).padStart(2,'0'); return `${d.getFullYear()}/${p(d.getMonth()+1)}/${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`; }
   function todayStr(){ const d=new Date(); const p=n=>String(n).padStart(2,'0'); return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}`; }
   /* 证书状态派生：未上传(灰)=无附件；过期(红)=有附件且有效期至<今天；有效(绿)=其余 */
@@ -28975,7 +29079,7 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
   const MINI_MSGS=[
     {type:'排班通知',title:'您已被指派【售后组】中班 2026-09-22',desc:'班次：【售后组】中班 · 9月22日 14:00-22:00，请确认是否可出勤。',time:'09-21 09:30',unread:true,act:'shift'},
     {type:'收入通知',title:'您的日结工资已到账',desc:'9月20日 中国移动朝阳营业厅 早班收入 ¥225 已结算，可前往领取。',time:'09-21 08:15',unread:true,act:'income'},
-    {type:'系统通知',title:'服务协议更新提醒',desc:'《灵工平台服务协议》已更新，请阅读并确认后继续接单。',time:'09-20 18:00',unread:true,act:'agree'},
+    {type:'系统通知',title:'服务协议更新提醒',desc:'《多多灵工平台服务协议》已更新，请阅读并确认后继续接单。',time:'09-20 18:00',unread:true,act:'agree'},
     {type:'系统通知',title:'新岗位上线 · 移动营业厅店员（海淀）',desc:'中国移动海淀分公司发布新岗位「移动营业厅店员」，地点海淀旗舰店，薪资 180-220 元/天，点击查看并报名。',time:'09-21 10:00',unread:true},
     {type:'报名通知',title:'面试通过',desc:'报名岗位：中国移动-移动营业厅店员，恭喜您被录用！请于 9月26日 准时入职。',time:'09-20 17:30',unread:true,act:'progress'},
     {type:'报名通知',title:'您本次报名未通过',desc:'报名岗位：中国移动-5G套餐推广，感谢您的关注，更多岗位持续开放中，欢迎继续投递。',time:'09-19 14:00',unread:false,more:true},
@@ -29019,7 +29123,7 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
       if(actKey){
         const a=MINI_MSG_ACTS[actKey];
         btn='<button onclick="miniMsgAct(\''+actKey+'\',\''+MINI_MSGS.indexOf(m)+'\')" style="'
-          +(a.s==='primary'?'background:var(--primary);border:1px solid var(--primary);color:#fff':'background:var(--primary-light,#E0FCFD);border:1px solid var(--primary);color:var(--primary)')
+          +(a.s==='primary'?'background:var(--primary);border:1px solid var(--primary);color:#fff':'background:var(--primary-light,#E4FCFA);border:1px solid var(--primary);color:var(--primary)')
           +';border-radius:16px;padding:6px 14px;font-size:12px;cursor:pointer;flex:0 0 auto;align-self:center;font-weight:600">'+a.t+'</button>';
       }
       return '<div style="display:flex;gap:10px;padding:14px 16px;border-bottom:1px solid #f0f2f5;background:#fff">'
@@ -29187,6 +29291,28 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
   }
 
   /* ===================== C 端登录 / 注册 ===================== */
+  /* 协议同意：只在登录首页勾选一次，三个登录入口共用该状态 */
+  function miniAgreed(){
+    const cb=document.getElementById('m-login-main-agree');
+    return !!(cb && cb.checked);
+  }
+  function miniAgreeErr(show){
+    const el=document.getElementById('ml-agree-err');
+    if(el) el.style.display=show?'block':'none';
+    const w=document.getElementById('ml-agree-wrap');
+    if(w) w.classList.toggle('err',!!show);
+  }
+  /* 用户勾选后立即消除错误提示 */
+  function mlAgreeSync(){ if(miniAgreed()) miniAgreeErr(false); }
+  /* 两个并列入口：未勾选不跳转 */
+  function miniGotoPhoneLogin(){
+    if(!miniAgreed()){ miniAgreeErr(true); toast('请先阅读并同意用户协议'); return; }
+    nav('mini','m-login-phone');
+  }
+  function miniGotoOtherLogin(){
+    if(!miniAgreed()){ miniAgreeErr(true); toast('请先阅读并同意用户协议'); return; }
+    openFaceLogin();
+  }
   function miniSendCode(btn){
     const phone=(document.getElementById('m-login-phone').value||'').trim();
     if(!/^1\d{10}$/.test(phone)){ toast('请输入正确的手机号'); return; }
@@ -29204,7 +29330,7 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
   }
   /* 按手机号加载/创建账号并登录：手机号快捷登录与微信一键登录共用。
      微信一键登录只是多一种进门方式，实名绑定表完全不动。 */
-  function miniLoginByPhone(phone, fromWx){
+  function miniLoginByPhone(phone, fromWx, wxChanged){
     authState.mini=true;
     /* 把当前未保存的账号改动先回写 */
     if(miniUser && miniUser.phone) syncMiniAccount();
@@ -29224,56 +29350,106 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     miniUser=buildMiniUser(phone);
     nav('mini','m-work');
     if(isNew) toast('注册成功，已登录');
+    else if(wxChanged) toast('号码已验证，已登录 ' + phone.slice(0,3) + '****' + phone.slice(-4));
     else toast(fromWx?'微信一键登录成功':'登录成功');
   }
   function miniAuth(){
     const phone=(document.getElementById('m-login-phone').value||'').trim();
     const code=(document.getElementById('m-login-code').value||'').trim();
-    const agree=document.getElementById('m-login-agree') && document.getElementById('m-login-agree').checked;
     if(!/^1\d{10}$/.test(phone)){ toast('请输入正确的手机号'); return; }
     if(!code){ toast('请输入验证码'); return; }
-    if(!agree){ toast('请先阅读并同意用户协议'); return; }
+    if(!miniAgreed()){ toast('请先阅读并同意用户协议'); nav('mini','m-login'); miniAgreeErr(true); return; }
     miniLoginByPhone(phone,false);
   }
 
   /* ===== 微信一键登录（演示模拟） =====
      只有用户选号并点「允许」才拿到手机号并登录；拒绝不创建账号。 */
   const WX_DEMO_OPENID='oDEMO_wx8f2';
-  let wxAuthState={ phone:'13800006688' };
+  /* 微信身份当前绑定的手机号（真实环境由微信侧维护，换号验证通过后会更新） */
+  let wxBoundPhone='13800006688';
+  let wxAuthState={ phone:wxBoundPhone, mode:'pick', otherPhone:'', err:'' };
+  function wxResetAuth(){
+    wxAuthState={ phone:wxBoundPhone, mode:'pick', otherPhone:'', err:'' };
+  }
   function openWxLogin(){
-    const agree=document.getElementById('m-login-agree') && document.getElementById('m-login-agree').checked;
-    if(!agree){ toast('请先阅读并同意用户协议'); return; }
-    wxAuthState={ phone:'13800006688' };
+    if(!miniAgreed()){ miniAgreeErr(true); toast('请先阅读并同意用户协议'); return; }
+    wxResetAuth();
     renderWxAuth();
   }
+  /* 微信手机号授权：底部弹出
+     面板态（选微信绑定号 / 使用其他号码）→ 其他号码需微信侧短信验证 → 允许后回传号码 */
   function renderWxAuth(){
-    const list=[
-      { phone:'13800006688', sub:'微信绑定号码' },
-      { phone:'13900002288', sub:'其他可用号码' }
-    ];
-    let h='<div class="wx-auth-t">灵工平台申请获取你的手机号，用于账号登录。请选择要使用的号码：</div>'+
-      '<div class="wx-auth-list">';
-    list.forEach(function(x){
-      const on=wxAuthState.phone===x.phone;
-      h+='<div class="wx-pick'+(on?' on':'')+'" data-p="'+x.phone+'" onclick="wxPickPhone(this.dataset.p)">'+
-        '<span class="wx-pick-radio"></span>'+
-        '<span class="wx-pick-main"><div class="wx-pick-ph">'+x.phone.slice(0,3)+'****'+x.phone.slice(-4)+'</div>'+
-        '<div class="wx-pick-sub">'+x.sub+'</div></span>'+
-      '</div>';
-    });
-    h+='</div>';
-    openMiniModal('微信一键登录', h,
-      '<button class="btn ghost" onclick="wxRejectLogin()">拒绝</button>'+
-      '<button class="btn primary" onclick="wxConfirmLogin()">允许</button>');
+    const st=wxAuthState;
+    let h='', title='微信一键登录';
+    if(st.mode==='input'){
+      /* 使用其他号码：只填号码。验证由微信在其自有页面完成，不在本原型范围内 */
+      h='<div class="wx-auth-t">请输入要使用的手机号。</div>'+
+        '<input class="wx-input" id="wx-other-input" type="tel" maxlength="11" placeholder="请输入 11 位手机号" value="'+escAttr(st.otherPhone||'')+'" oninput="wxAuthState.otherPhone=this.value;wxInputSync()"/>'+
+        '<div class="wx-err" id="wx-err-box"'+(st.err?'':' style="display:none"')+'>'+(st.err||'')+'</div>'+
+        '<div class="wx-back" onclick="wxBackToPick()">‹ 返回选择号码</div>';
+    } else {
+      const masked=wxBoundPhone.slice(0,3)+'****'+wxBoundPhone.slice(-4);
+      h='<div class="wx-auth-t">多多灵工平台申请获取你的手机号，用于账号登录。请选择要使用的号码：</div>'+
+        '<div class="wx-auth-list">'+
+          '<div class="wx-pick'+(wxAuthState.phone===wxBoundPhone?' on':'')+'" data-p="'+wxBoundPhone+'" onclick="wxPickPhone(this.dataset.p)">'+
+            '<span class="wx-pick-radio"></span>'+
+            '<span class="wx-pick-main"><div class="wx-pick-ph">'+masked+'</div>'+
+            '<div class="wx-pick-sub">微信绑定号码</div></span>'+
+          '</div>'+
+        '</div>'+
+        '<div class="wx-more" onclick="wxUseOther()">使用其他手机号码</div>';
+    }
+    const foot='<button class="btn ghost" onclick="wxRejectLogin()">拒绝</button>'+
+      '<button class="btn primary" id="wx-allow-btn" onclick="wxConfirmLogin()"'+(wxCanAllow()?'':' disabled')+'>允许</button>';
+    openCertSheet(title, h, foot);
+  }
+  function wxCanAllow(){
+    const st=wxAuthState;
+    if(st.mode==='input') return /^1\d{10}$/.test(String(st.otherPhone||'').trim());
+    return !!st.phone;
   }
   function wxPickPhone(p){ wxAuthState.phone=p; renderWxAuth(); }
-  function wxRejectLogin(){ closeMiniModal(); toast('已取消微信授权'); }
-  function wxConfirmLogin(){
-    const p=wxAuthState.phone;
-    if(!p){ toast('请选择手机号'); return; }
-    closeMiniModal();
-    miniLoginByPhone(p,true);
+  /* 输入框同步：只更新允许按钮可用性，不整块重绘，避免丢焦点 */
+  function wxInputSync(){
+    const btn=document.getElementById('wx-allow-btn');
+    if(btn){ const ok=wxCanAllow(); btn.disabled=!ok; btn.classList.toggle('disabled',!ok); }
   }
+  /* 返回选号面板 */
+  function wxBackToPick(){
+    wxAuthState.mode='pick';
+    wxAuthState.phone=wxBoundPhone;
+    wxAuthState.otherPhone='';
+    wxAuthState.err='';
+    renderWxAuth();
+  }
+  /* 点「使用其他手机号码」→ 切到输入态 */
+  function wxUseOther(){
+    wxAuthState.mode='input';
+    wxAuthState.phone='';
+    wxAuthState.otherPhone='';
+    wxAuthState.err='';
+    renderWxAuth();
+    setTimeout(function(){ const el=document.getElementById('wx-other-input'); if(el&&el.focus) el.focus(); },60);
+  }
+  function wxConfirmLogin(){
+    const st=wxAuthState;
+    if(st.mode==='input'){
+      const ph=String(st.otherPhone||'').trim();
+      if(!/^1\d{10}$/.test(ph)){ st.err='请输入正确的手机号'; renderWxAuth(); return; }
+      /* 微信验证通过后，该号码成为此微信的绑定号，下次面板默认显示它 */
+      wxBoundPhone=ph;
+      closeCertSheet();
+      miniLoginByPhone(ph,true,true);
+      return;
+    }
+    const p=st.phone;
+    if(!p){ toast('请选择手机号'); return; }
+    wxBoundPhone=p;
+    closeCertSheet();
+    miniLoginByPhone(p,true,false);
+  }
+  function wxRejectLogin(){ closeCertSheet(); toast('已取消微信授权'); }
+
 
   /* ===================== 6 步完善档案 ===================== */
   let pfStep=1;
@@ -29342,7 +29518,7 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     miniCurrentPhone=miniUser.phone;
     miniUser=buildMiniUser(miniUser.phone);
     if(!miniIsRealname()){ toast('请先完成前 3 步实名认证'); return; }
-    nav('mini','m-work'); toast('档案完善完成，欢迎使用灵工平台');
+    nav('mini','m-work'); toast('档案完善完成，欢迎使用多多灵工平台');
   }
   function pfFaceScan(){
     if(miniUser.faceScanning) return;
@@ -29451,90 +29627,118 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
       '<button class="btn primary" onclick="closeMiniModal()">知道了</button>');
   }
 
-  /* ===== 人脸识别登录（仅已实名账号可用）=====
-     支持输入手机号或身份证号两种方式。 */
-  let faceLoginState={ step:'idno', input:'', err:'', scanning:false };
-  function faceLoginReset(){ faceLoginState={ step:'idno', input:'', err:'', scanning:false }; }
+  /* ===== 其他登录方式（姓名 + 身份证号 → 人脸验证 → 登录）=====
+     仅已实名账号可用；格式或实名记录校验不通过都停在当前页，不进入人脸验证。 */
+  let faceLoginState={ step:'idno', name:'', idno:'', err:'', scanning:false };
+  function faceLoginReset(){ faceLoginState={ step:'idno', name:'', idno:'', err:'', scanning:false }; }
 
-  /* 登录页「人脸识别登录」按钮是否可见：存在任何已实名账号即可 */
+  /* 登录页「其他登录方式」按钮是否可见：存在任何已实名账号即可 */
   function faceLoginEnabled(){
     return identityBindings.some(function(b){ return b.status==='active'; });
   }
 
+  /* 姓名 + 身份证号共同匹配一条生效的实名记录 */
+  function faceLoginFindBind(name, idno){
+    const n=String(name||'').trim();
+    const k=String(idno||'').trim().toUpperCase();
+    for(let i=0;i<identityBindings.length;i++){
+      const b=identityBindings[i];
+      if(b.status!=='active') continue;
+      if(String(b.idcardNo).toUpperCase()!==k) continue;
+      if(String(b.name||'').trim()!==n) continue;
+      return b;
+    }
+    return null;
+  }
+
+  /* 打开独立页面并渲染第一步 */
   function openFaceLogin(){
     faceLoginReset();
-    /* 演示：默认填入已实名账号信息 */
+    /* 演示：默认填入已实名账号的姓名与证件号 */
     const b=identityBindings.filter(function(x){return x.status==='active';})[0];
-    if(b && b.idcardNo) faceLoginState.input=b.idcardNo;
+    if(b){ faceLoginState.name=b.name||''; faceLoginState.idno=b.idcardNo||''; }
+    nav('mini','m-login-other');
     renderFaceLogin();
   }
-  function closeFaceLogin(){ faceLoginReset(); closeMiniModal(); }
+  /* 返回：第一步回登录页；第二步回第一步（不退出整个页面） */
+  function closeFaceLogin(){
+    if(faceLoginState.step==='face'){ faceLoginState.step='idno'; faceLoginState.scanning=false; faceLoginState.err=''; renderFaceLogin(); return; }
+    faceLoginReset();
+    nav('mini','m-login');
+  }
 
+  /* 页面内渲染：两步共用同一页，标题与返回键随步骤切换 */
   function renderFaceLogin(){
     const st=faceLoginState;
+    const body=document.getElementById('mlo-body');
+    const bar=document.getElementById('mlo-back');
+    const tit=document.getElementById('mlo-title');
+    if(bar) bar.setAttribute('onclick', st.step==='face' ? "closeFaceLogin()" : "nav('mini','m-login')");
+    if(tit) tit.textContent = st.step==='face' ? '人脸验证' : '其他登录方式';
+    if(!body) return;
     let inner='';
     if(st.step==='idno'){
-      inner='<div class="fl-wrap">'+
+      inner='<div class="mlo-tip">请输入本人姓名与身份证号，验证通过后进入人脸识别。</div>'+
         '<div class="fl-field">'+
-          '<input class="fl-input" id="fl-input" maxlength="18" placeholder="请输入手机号或身份证号" value="'+st.input+'" oninput="faceLoginState.input=this.value"/>'+
+          '<label>姓名</label>'+
+          '<input class="fl-input" id="fl-name" maxlength="20" placeholder="请输入姓名" value="'+escAttr(st.name)+'" oninput="faceLoginState.name=this.value"/>'+
+        '</div>'+
+        '<div class="fl-field">'+
+          '<label>身份证号</label>'+
+          '<input class="fl-input" id="fl-idno" maxlength="18" placeholder="请输入身份证号" value="'+escAttr(st.idno)+'" oninput="faceLoginState.idno=this.value"/>'+
         '</div>'+
         (st.err?'<div class="fl-err">'+st.err+'</div>':'')+
         '<div class="fl-acts">'+
-          '<button class="fl-btn ghost" onclick="closeFaceLogin()">取消</button>'+
+          '<button class="fl-btn ghost" onclick="nav(\'mini\',\'m-login\')">取消</button>'+
           '<button class="fl-btn primary" onclick="faceLoginNext()">下一步</button>'+
-        '</div>'+
-      '</div>';
+        '</div>';
     } else {
-      inner='<div class="fl-wrap">'+
-        '<div class="fl-tip">请正对摄像头完成活体检测，系统将与证件照比对。</div>'+
+      inner='<div class="mlo-tip" style="text-align:center;color:#5a6478">请正对摄像头完成活体检测，确认是本人后即可登录。</div>'+
         '<div class="fl-face'+(st.scanning?' scanning':'')+'">'+(st.scanning?'识别中…':'🙂')+'</div>'+
         (st.err?'<div class="fl-err">'+st.err+'</div>':'')+
         '<div class="fl-acts">'+
           '<button class="fl-btn ghost" onclick="faceLoginBack()">返回</button>'+
           '<button class="fl-btn primary" onclick="faceLoginScan()"'+(st.scanning?' disabled':'')+'>'+(st.scanning?'识别中…':'开始验证')+'</button>'+
-        '</div>'+
-      '</div>';
+        '</div>';
     }
-    openMiniModal('人脸识别登录', inner, '');
+    body.innerHTML=inner;
   }
 
-  /* 第一步校验：手机号 / 身份证号两种方式 */
+  /* 第一步：格式校验 → 实名记录校验，任一不通过都停在当前页 */
   function faceLoginNext(){
-    const el=document.getElementById('fl-input');
-    const v=String((el?el.value:faceLoginState.input)||'').trim().toUpperCase();
-    faceLoginState.input=v;
+    const elN=document.getElementById('fl-name');
+    const elI=document.getElementById('fl-idno');
+    const name=String((elN?elN.value:faceLoginState.name)||'').trim();
+    const idno=String((elI?elI.value:faceLoginState.idno)||'').trim().toUpperCase();
+    faceLoginState.name=name;
+    faceLoginState.idno=idno;
     faceLoginState.err='';
 
-    /* 判断输入类型 */
-    const isPhone=/^1\d{10}$/.test(v);
-    const isIdno=/^\d{17}[\dX]$/.test(v);
-
-    if(!isPhone && !isIdno){
-      faceLoginState.err='请输入正确的手机号或身份证号';
+    /* 姓名：2-20 字，仅中文 / 英文字母 / 间隔号 / 空格 */
+    let nameOk=name.length>=2 && name.length<=20;
+    if(nameOk){
+      for(let i=0;i<name.length;i++){
+        const c=name.charCodeAt(i);
+        const cn=(c>=0x4e00 && c<=0x9fa5);
+        const en=(c>=65&&c<=90)||(c>=97&&c<=122);
+        if(!cn && !en && c!==0x00B7 && c!==0x20){ nameOk=false; break; }
+      }
+    }
+    /* 身份证号：18 位，前 17 位数字，末位数字或 X */
+    let idnoOk=idno.length===18;
+    if(idnoOk){
+      for(let i=0;i<17;i++){ const c=idno.charCodeAt(i); if(c<48||c>57){ idnoOk=false; break; } }
+      if(idnoOk){ const z=idno.charAt(17); idnoOk=(z>='0'&&z<='9')||z==='X'; }
+    }
+    if(!nameOk || !idnoOk){
+      faceLoginState.err='请输入正确的姓名、身份证号';
       renderFaceLogin(); return;
     }
 
-    let bind=null;
-    if(isPhone){
-      /* 按手机号找账号，再看该账号是否有实名记录 */
-      let acc=miniAccounts[v];
-      let uid=acc?acc.userId:null;
-      if(!uid){
-        /* 兼容：绑定表里有该手机号但账号表缺记录 */
-        const bb=identityBindings.filter(function(b){ return b.status==='active' && b.phone===v; })[0];
-        if(bb){ uid=bb.userId; }
-      }
-      bind=uid?idBindOf(uid):null;
-      if(!bind){
-        faceLoginState.err='该账号尚未完成实名认证，无法使用人脸识别登录';
-        renderFaceLogin(); return;
-      }
-    } else {
-      bind=idBindByIdcard(v);
-      if(!bind){
-        faceLoginState.err='该账号尚未完成实名认证，无法使用人脸识别登录';
-        renderFaceLogin(); return;
-      }
+    const bind=faceLoginFindBind(name, idno);
+    if(!bind){
+      faceLoginState.err='该账号尚未完成实名认证，无法登录';
+      renderFaceLogin(); return;
     }
 
     faceLoginState.step='face';
@@ -29558,22 +29762,22 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
     renderFaceLogin();
     setTimeout(function(){
       faceLoginState.scanning=false;
-      /* 用第一步解析出的账号登录；若失效则重新解析 */
+      /* 用第一步解析出的账号登录；若失效则按姓名 + 证件号重新解析 */
       let uid=faceLoginState.bindUserId, phone=faceLoginState.bindPhone;
       if(!uid){
-        const b=idBindByIdcard(faceLoginState.input);
+        const b=faceLoginFindBind(faceLoginState.name, faceLoginState.idno);
         if(b){ uid=b.userId; phone=b.phone; }
       }
       if(!uid){
         faceLoginState.step='idno';
-        faceLoginState.err='该账号尚未完成实名认证，无法使用人脸识别登录';
+        faceLoginState.err='该账号尚未完成实名认证，无法登录';
         renderFaceLogin();
         return;
       }
       const bind=idBindOf(uid);
       if(!bind){
         faceLoginState.step='idno';
-        faceLoginState.err='该账号尚未完成实名认证，无法使用人脸识别登录';
+        faceLoginState.err='该账号尚未完成实名认证，无法登录';
         renderFaceLogin();
         return;
       }
@@ -29589,7 +29793,7 @@ function em2TaskRankToggle(){ EM2_TASK_RANK_ALL=!EM2_TASK_RANK_ALL; em2RenderTas
       closeMiniModal();
       faceLoginReset();
       nav('mini','m-work');
-      toast('已通过人脸识别登录 ' + phone.slice(0,3) + '****' + phone.slice(-4));
+      toast('人脸验证通过，已登录 ' + phone.slice(0,3) + '****' + phone.slice(-4));
     },1300);
   }
 
